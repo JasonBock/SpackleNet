@@ -1,0 +1,2 @@
+nuget pack -sym Spackle.NET.nuspec
+nuget push Spackle.7.1.0.0.nupkg 
