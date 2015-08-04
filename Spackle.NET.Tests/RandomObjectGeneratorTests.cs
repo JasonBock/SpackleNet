@@ -115,6 +115,16 @@ namespace Spackle.Tests
 			Assert.IsTrue(result.Value);
 		}
 
+        [TestMethod]
+        public void GenerateForFloatArgument()
+        {
+            const float value = 0.58f;
+
+            var random = new MockedRandom(value);
+            var result = new RandomObjectGenerator(random).Generate<TypedArgument<float>>();
+            Assert.AreEqual(value, result.Value);
+        }
+
 		[TestMethod]
 		public void GenerateForDoubleArgument()
 		{
