@@ -233,6 +233,10 @@ namespace Spackle
 				result = new RandomObjectGeneratorResults(true,
 					BitConverter.ToChar(this.GetBuffer(2), 0));
 			}
+            else if (typeof(float).IsAssignableFrom(target))
+            {
+                result = new RandomObjectGeneratorResults(true, (float)this.Random.NextDouble());
+            }
 			else if (typeof(double).IsAssignableFrom(target))
 			{
 				result = new RandomObjectGeneratorResults(true, this.Random.NextDouble());
