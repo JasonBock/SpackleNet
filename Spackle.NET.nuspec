@@ -8,15 +8,12 @@
     <licenseUrl>http://spacklenet.codeplex.com/license</licenseUrl>
     <projectUrl>http://spacklenet.codeplex.com</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>An assembly that contains utilities and extension methods to augment the .NET and Silverlight frameworks.</description>
-    <copyright>Copyright 2012</copyright>
+    <description>An assembly that contains utilities and extension methods to augment the .NET Framework and .NET Core libraries.</description>
+    <copyright>Copyright 2016</copyright>
   </metadata>
   <files>
     <!-- .NET 4.0 Client -->
     <file src="Spackle.NET\bin\Release\Spackle.dll" target="lib\NET4.0" />
     <file src="Spackle.NET\bin\Release\Spackle.XML" target="lib\NET4.0" />
-    <!-- Silverlight 4.0 Client -->
-    <file src="Spackle.Silverlight\Bin\Release\Spackle.dll" target="lib\SL4.0" />
-    <file src="Spackle.Silverlight\Bin\Release\Spackle.XML" target="lib\SL4.0" />
   </files>
 </package>

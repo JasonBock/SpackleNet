@@ -1,1 +1,0 @@
-http://blog.davidebbo.com/2011/04/easy-way-to-publish-nuget-packages-with.html

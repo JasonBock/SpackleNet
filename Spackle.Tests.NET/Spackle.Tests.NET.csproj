@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F06089BF-FD10-495B-BCB6-B9317A40856B}</ProjectGuid>
+    <ProjectGuid>{B707C667-E6BD-40A4-9EC0-5FE5F6AB3C34}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spackle</RootNamespace>
-    <AssemblyName>Spackle</AssemblyName>
+    <RootNamespace>Spackle.Tests</RootNamespace>
+    <AssemblyName>Spackle.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -42,15 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <ProjectReference Include="..\Spackle.NET\Spackle.NET.csproj">
+      <Project>{f06089bf-fd10-495b-bcb6-b9317a40856b}</Project>
+      <Name>Spackle.NET</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventArgs.cs" />
-    <Compile Include="Extensions\ExceptionExtensions.cs" />
-    <Compile Include="Extensions\ICommunicationObjectExtensions.cs" />
-    <Compile Include="Extensions\Reflection\MethodBaseExtensions.cs" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <Import Project="..\Spackle.Shared\Spackle.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="..\Spackle.Tests.Shared\Spackle.Tests.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

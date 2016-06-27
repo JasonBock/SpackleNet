@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>9de85aa3-b867-4b1f-a114-14558c9abcff</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Spackle.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)EventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ActionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\DynamicBindingExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\EnumExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ExceptionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\IEnumerableOfTExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\IListOfTExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ObjectExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\RotateDirection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\TypeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RandomObjectGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RandomObjectGeneratorResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Range.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\Extensions\ICustomAttributeProviderExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\Extensions\MethodBaseExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SecureRandom.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValueGeneration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Version.cs" />
+  </ItemGroup>
+</Project>

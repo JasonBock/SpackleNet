@@ -1,2 +1,0 @@
-nuget pack -sym Spackle.NET.csproj 
-nuget push Spackle.?.?.nupkg 
