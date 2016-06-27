@@ -2,18 +2,21 @@
 <package >
   <metadata>
     <id>Spackle</id>
-    <version>7.1.0.0</version>
+    <version>8.0.0.0</version>
     <title>Spackle</title>
     <authors>Jason Bock</authors>
     <licenseUrl>http://spacklenet.codeplex.com/license</licenseUrl>
-    <projectUrl>http://spacklenet.codeplex.com</projectUrl>
+    <projectUrl>https://github.com/JasonBock/SpackleNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>An assembly that contains utilities and extension methods to augment the .NET Framework and .NET Core libraries.</description>
     <copyright>Copyright 2016</copyright>
   </metadata>
   <files>
-    <!-- .NET 4.0 Client -->
-    <file src="Spackle.NET\bin\Release\Spackle.dll" target="lib\NET4.0" />
-    <file src="Spackle.NET\bin\Release\Spackle.XML" target="lib\NET4.0" />
+    <!-- .NET 4.6 -->
+    <file src="Spackle.NET\bin\Release\Spackle.dll" target="lib\net46" />
+    <file src="Spackle.NET\bin\Release\Spackle.XML" target="lib\net46" />
+    <!-- .NET Standard 1.6 -->
+    <file src="Spackle.NETStandard\bin\Release\netstandard1.6\Spackle.dll" target="lib\netstandard1.6" />
+    <file src="Spackle.NETStandard\bin\Release\netstandard1.6\Spackle.XML" target="lib\netstandard1.6" />
   </files>
 </package>

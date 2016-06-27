@@ -1,8 +1,11 @@
-﻿{
+{
+	"title": "Spackle",
 	"version": "1.0.0-*",
 
 	"buildOptions": {
-		"compile": [ "../Spackle.Shared/**/*.cs" ]
+		"compile": [ "../Spackle.Shared/**/*.cs" ],
+		"outputName": "Spackle",
+		"xmlDoc": true
 	},
 
 	"dependencies": {
