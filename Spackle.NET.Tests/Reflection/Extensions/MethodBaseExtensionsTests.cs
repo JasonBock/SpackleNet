@@ -18,13 +18,13 @@ namespace Spackle.Tests.Reflection.Extensions
 		public void GetParameterTypesForMethodThatHasNoArguments()
 		{
 			Assert.AreEqual(0,
-				this.GetType().GetMethod("NoArguments").GetParameterTypes().Length);
+				this.GetType().GetMethod(nameof(this.NoArguments)).GetParameterTypes().Length);
 		}
 		
 		[TestMethod]
 		public void GetParameterTypesForMethodThatHasManyArguments()
 		{
-			var parameterTypes = this.GetType().GetMethod("ManyArguments").GetParameterTypes();
+			var parameterTypes = this.GetType().GetMethod(nameof(this.ManyArguments)).GetParameterTypes();
 			Assert.AreEqual(3, parameterTypes.Length);
 			Assert.AreEqual(typeof(int), parameterTypes[0]);
 			Assert.AreEqual(typeof(string), parameterTypes[1]);

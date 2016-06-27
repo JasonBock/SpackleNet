@@ -23,7 +23,7 @@ namespace Spackle.Reflection.Extensions
 		/// </remarks>
 		public static Type[] GetParameterTypes(this MethodBase @this)
 		{
-			@this.CheckParameterForNull("@this");
+			@this.CheckParameterForNull(nameof(@this));
 
 			var parameterTypes = Type.EmptyTypes;
 

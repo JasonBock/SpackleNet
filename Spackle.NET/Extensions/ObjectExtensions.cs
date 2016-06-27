@@ -65,7 +65,7 @@ namespace Spackle.Extensions
 		/// </exception>
 		public static bool HasAttribute(this object @this, Type attributeType, bool inherit)
 		{
-			@this.CheckParameterForNull("@this");
+			@this.CheckParameterForNull(nameof(@this));
 			return ICustomAttributeProviderExtensions.HasAttribute(
 				@this.GetType(), attributeType, inherit);
 		}

@@ -55,7 +55,6 @@ namespace Spackle.Tests.Extensions
 			}
 		}
 
-#if !SILVERLIGHT
 		[TestMethod]
 		public void BindToLocalVariable()
 		{
@@ -91,7 +90,6 @@ namespace Spackle.Tests.Extensions
 
 			Assert.AreEqual(original, binded.InternalInstanceField);
 		}
-#endif
 
 		[TestMethod]
 		public void BindToInternalInstanceProperty()
@@ -111,7 +109,6 @@ namespace Spackle.Tests.Extensions
 			Assert.AreEqual(original, binded.InternalInstanceProperty);
 		}
 
-#if !SILVERLIGHT
 		[TestMethod]
 		public void BindToInternalStaticField()
 		{
@@ -129,7 +126,6 @@ namespace Spackle.Tests.Extensions
 
 			Assert.AreEqual(original, Binded.InternalStaticField);
 		}
-#endif
 
 		[TestMethod]
 		public void BindToInternalStaticProperty()

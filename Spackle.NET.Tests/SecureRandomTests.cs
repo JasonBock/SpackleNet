@@ -8,8 +8,8 @@ namespace Spackle.Tests
 	[TestClass]
 	public sealed class SecureRandomTests : CoreTests
 	{
-#if !SILVERLIGHT
-		[TestMethod, ExpectedException(typeof(ArgumentException))]
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentException))]
 		public void CreateBigIntegerWithZeroLength()
 		{
 			using(var random = new SecureRandom())
@@ -65,7 +65,6 @@ namespace Spackle.Tests
 				Assert.AreEqual(length, value.ToString().Length);
 			}
 		}
-#endif
 
 		[TestMethod]
 		public void CreateGeneratorWithDefaultProvider()
@@ -88,9 +87,7 @@ namespace Spackle.Tests
 		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
 		public void CreateGeneratorWithNullProvider()
 		{
-			using (var random = new SecureRandom(null))
-			{
-			}
+			using (var random = new SecureRandom(null)) { }
 		}
 
 		[TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -213,9 +210,7 @@ namespace Spackle.Tests
 		{
 			SecureRandom random = null;
 
-			using (random = new SecureRandom())
-			{
-			}
+			using (random = new SecureRandom()) { }
 
 			random.Next();
 		}
@@ -225,9 +220,7 @@ namespace Spackle.Tests
 		{
 			SecureRandom random = null;
 
-			using (random = new SecureRandom())
-			{
-			}
+			using (random = new SecureRandom()) { }
 
 			random.Next(2);
 		}
@@ -237,9 +230,7 @@ namespace Spackle.Tests
 		{
 			SecureRandom random = null;
 
-			using (random = new SecureRandom())
-			{
-			}
+			using (random = new SecureRandom()) { }
 
 			random.Next(0, 2);
 		}
@@ -259,9 +250,7 @@ namespace Spackle.Tests
 		{
 			SecureRandom random = null;
 
-			using (random = new SecureRandom())
-			{
-			}
+			using (random = new SecureRandom()) { }
 
 			random.NextBytes(new byte[10]);
 		}
@@ -289,9 +278,7 @@ namespace Spackle.Tests
 		{
 			SecureRandom random = null;
 
-			using (random = new SecureRandom())
-			{
-			}
+			using (random = new SecureRandom()) { }
 
 			var @switch = random.NextBoolean();
 		}
@@ -315,9 +302,7 @@ namespace Spackle.Tests
 		{
 			SecureRandom random = null;
 
-			using (random = new SecureRandom())
-			{
-			}
+			using (random = new SecureRandom()) { }
 
 			random.NextDouble();
 		}
@@ -327,9 +312,7 @@ namespace Spackle.Tests
 		{
 			SecureRandom random = null;
 
-			using (random = new SecureRandom())
-			{
-			}
+			using (random = new SecureRandom()) { }
 
 			random.GetDoubleValues(1);
 		}
@@ -413,9 +396,7 @@ namespace Spackle.Tests
 		{
 			SecureRandom random = null;
 
-			using (random = new SecureRandom())
-			{
-			}
+			using (random = new SecureRandom()) { }
 
 			random.GetByteValues(1, ValueGeneration.DuplicatesAllowed);
 		}
@@ -496,9 +477,7 @@ namespace Spackle.Tests
 		{
 			SecureRandom random = null;
 
-			using (random = new SecureRandom())
-			{
-			}
+			using (random = new SecureRandom()) { }
 
 			random.GetInt32Values(1, ValueGeneration.DuplicatesAllowed);
 		}

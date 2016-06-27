@@ -45,13 +45,12 @@ namespace Spackle.Extensions
 		/// </remarks>
 		public static void Rotate<T>(this IList<T> @this, int positions, RotateDirection direction)
 		{
-			@this.CheckParameterForNull("@this");
+			@this.CheckParameterForNull(nameof(@this));
 			var itemsCount = @this.Count;
 			
 			if(positions <= 0 || positions > itemsCount)
 			{
-				throw new ArgumentException(IListOfTExtensions.ErrorOutOfPosition,
-					"positions");
+				throw new ArgumentException(IListOfTExtensions.ErrorOutOfPosition, nameof(positions));
 			}
 
 			if(@this.Count > 1 && positions % itemsCount != 0)
@@ -96,7 +95,7 @@ namespace Spackle.Extensions
 		/// </remarks>
 		public static void Shuffle<T>(this IList<T> @this)
 		{
-			@this.CheckParameterForNull("@this");
+			@this.CheckParameterForNull(nameof(@this));
 
 			using(var random = new SecureRandom())
 			{
@@ -117,8 +116,8 @@ namespace Spackle.Extensions
 		/// </remarks>
 		public static void Shuffle<T>(this IList<T> @this, Random random)
 		{
-			@this.CheckParameterForNull("@this");
-			random.CheckParameterForNull("random");
+			@this.CheckParameterForNull(nameof(@this));
+			random.CheckParameterForNull(nameof(random));
 
 			var length = @this.Count;
 			
@@ -145,7 +144,7 @@ namespace Spackle.Extensions
 		/// </remarks>
 		public static void Swap<T>(this IList<T> @this, int x, int y)
 		{
-			@this.CheckParameterForNull("@this");
+			@this.CheckParameterForNull(nameof(@this));
 
 			if(x != y)
 			{

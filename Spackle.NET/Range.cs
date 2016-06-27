@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using Spackle.Extensions;
 
 namespace Spackle
@@ -139,7 +138,7 @@ namespace Spackle
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is <c>null</c>.</exception>
 		public Range<T> Intersect(Range<T> target)
 		{
-			target.CheckParameterForNull("target");
+			target.CheckParameterForNull(nameof(target));
 
 			Range<T> intersection = null;
 
@@ -159,8 +158,7 @@ namespace Spackle
 		/// <returns>Returns a string in the format "(start,end)".</returns>
 		public override string ToString()
 		{
-			return string.Format(CultureInfo.CurrentCulture, "({0},{1})", 
-				this.Start, this.End);
+			return $"({this.Start},{this.End})";
 		}
 
 		/// <summary>
@@ -173,7 +171,7 @@ namespace Spackle
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is <c>null</c>.</exception>
 		public Range<T> Union(Range<T> target)
 		{
-			target.CheckParameterForNull("target");
+			target.CheckParameterForNull(nameof(target));
 
 			Range<T> intersection = null;
 
@@ -191,11 +189,11 @@ namespace Spackle
 		/// <summary>
 		/// Gets the end of the range.
 		/// </summary>
-		public T End { get; private set; }
+		public T End { get; }
 
 		/// <summary>
 		/// Gets the start of the range.
 		/// </summary>
-		public T Start { get; private set; }
+		public T Start { get; }
 	}
 }

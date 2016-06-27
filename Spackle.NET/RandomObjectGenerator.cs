@@ -91,7 +91,7 @@ namespace Spackle
 		{
 			if (excludedValues == null)
 			{
-				throw new ArgumentNullException("excludedValues");
+				throw new ArgumentNullException(nameof(excludedValues));
 			}
 
 			var value = (T)this.Generate(typeof(T));
@@ -152,21 +152,7 @@ namespace Spackle
 
 		private object GetEnumerationValue(Type target)
 		{
-#if !SILVERLIGHT
 			var values = Enum.GetValues(target);
-#else
-			var fieldValues = new List<object>();
-			var fields = from field in target.GetFields()
-							 where field.IsLiteral
-							 select field;
-
-			foreach (var field in fields)
-			{
-				fieldValues.Add(field.GetValue(target));
-			}
-
-			var values = fieldValues.ToArray();
-#endif
 			return values.GetValue(this.Random.Next(values.Length));
 		}
 
@@ -256,7 +242,7 @@ namespace Spackle
 			else if (typeof(Uri).IsAssignableFrom(target))
 			{
 				result = new RandomObjectGeneratorResults(true, new Uri(string.Format(
-					CultureInfo.CurrentCulture, "http://www.{0}.com", Guid.NewGuid().ToString("N"))));
+					CultureInfo.CurrentCulture, $"http://www.{Guid.NewGuid().ToString("N")}.com")));
 			}
 			else if (typeof(TimeSpan).IsAssignableFrom(target))
 			{
@@ -267,19 +253,11 @@ namespace Spackle
 			{
 				var collectionType = target.GetGenericArguments()[0];
 				object collection = Activator.CreateInstance(typeof(List<>).MakeGenericType(new Type[] { collectionType }));
-#if !SILVERLIGHT
 				collection.GetType().InvokeMember("Add", BindingFlags.InvokeMethod, null,
 					collection, new object[] { this.Generate(collectionType) }, CultureInfo.CurrentCulture);
 				result = new RandomObjectGeneratorResults(true, collection.GetType().InvokeMember(
 					"AsReadOnly", BindingFlags.InvokeMethod, null, collection,
 					null, CultureInfo.CurrentCulture));
-#else
-				collection.GetType().InvokeMember("Add", BindingFlags.InvokeMethod, null,
-					collection, new object[] { this.Generate(collectionType) });
-				result = new RandomObjectGeneratorResults(true, collection.GetType().InvokeMember(
-					"AsReadOnly", BindingFlags.InvokeMethod, null, collection,
-					null));
-#endif
 			}
 			else
 			{

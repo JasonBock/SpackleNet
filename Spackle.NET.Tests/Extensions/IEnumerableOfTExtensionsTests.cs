@@ -2,7 +2,6 @@
 using Spackle.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Spackle.Tests.Extensions
 {

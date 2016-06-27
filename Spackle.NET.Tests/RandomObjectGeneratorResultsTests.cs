@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spackle;
-using System;
 
 namespace Spackle.Tests
 {

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-#if !SILVERLIGHT
 using System.Diagnostics;
-#endif
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -23,21 +21,13 @@ namespace Spackle.Extensions
 			var builder = string.Join<string>(", ",
 				(from parameter in targetMethod.GetParameters()
 				 select parameter.ParameterType.FullName).ToArray());
-#if !SILVERLIGHT
 			var assemblyName = targetMethod.DeclaringType != null ?
 				targetMethod.DeclaringType.Assembly.GetName().Name :
 				ExceptionExtensions.Unknown;
-#else
-			var assemblyName = targetMethod.DeclaringType != null ?
-				targetMethod.DeclaringType.Assembly.FullName :
-				ExceptionExtensions.Unknown;
-#endif
 			var typeName = targetMethod.DeclaringType != null ?
 				targetMethod.DeclaringType.ToString() : ExceptionExtensions.Unknown;
 
-			return string.Format(CultureInfo.CurrentCulture, "[{0}], {1}::{2}({3})",
-				assemblyName, typeName,
-				targetMethod.Name, builder.ToString());
+			return $"[{assemblyName}], {typeName}::{targetMethod.Name}({builder.ToString()})";
 		}
 
 		/// <summary>
@@ -60,20 +50,14 @@ namespace Spackle.Extensions
 		/// </exception>
 		public static void Print(this Exception @this, TextWriter writer)
 		{
-			@this.CheckParameterForNull("@this");
-			writer.CheckParameterForNull("writer");
+			@this.CheckParameterForNull(nameof(@this));
+			writer.CheckParameterForNull(nameof(writer));
 
-			writer.WriteLine("Type Name: {0}", @this.GetType().FullName);
-
-#if !SILVERLIGHT
-			writer.WriteLine("\tSource: {0}", @this.Source);
-			writer.WriteLine("\tTargetSite: {0}",
-				ExceptionExtensions.FormatMethod(@this.TargetSite));
-#endif
-			writer.WriteLine("\tMessage: {0}", @this.Message);
-#if !SILVERLIGHT
-			writer.WriteLine("\tHelpLink: {0}", @this.HelpLink);
-#endif
+			writer.WriteLine($"Type Name: {@this.GetType().FullName}");
+			writer.WriteLine($"\tSource: {@this.Source}");
+			writer.WriteLine($"\tTargetSite: {ExceptionExtensions.FormatMethod(@this.TargetSite)}");
+			writer.WriteLine($"\tMessage: {@this.Message}");
+			writer.WriteLine($"\tHelpLink: {@this.HelpLink}");
 
 			@this.PrintCustomProperties(writer);
 			@this.PrintStackTrace(writer);
@@ -101,12 +85,11 @@ namespace Spackle.Extensions
 			if (properties.Count > 0)
 			{
 				writer.WriteLine();
-				writer.WriteLine("\tCustom Properties (" + properties.Count + "):");
+				writer.WriteLine($"\tCustom Properties ({properties.Count}):");
 
 				foreach (var property in properties)
 				{
-					writer.WriteLine(string.Format(CultureInfo.CurrentCulture,
-						"\t\t{0} = {1}", property.Name, property.GetValue(@this, null)));
+					writer.WriteLine($"\t\t{property.Name} = {property.GetValue(@this, null)}");
 				}
 			}
 		}
@@ -116,7 +99,6 @@ namespace Spackle.Extensions
 			if (@this.Data.Count > 0)
 			{
 				writer.WriteLine();
-
 				writer.WriteLine("\tData:");
 
 				foreach (DictionaryEntry dataPair in @this.Data)
@@ -124,8 +106,7 @@ namespace Spackle.Extensions
 					var value = dataPair.Value != null ? dataPair.Value.ToString() :
 						ExceptionExtensions.Null;
 
-					writer.WriteLine("\t\tKey: {0}, Value: {1}",
-						dataPair.Key.ToString(), value);
+					writer.WriteLine($"\t\tKey: {dataPair.Key.ToString()}, Value: {value}");
 				}
 			}
 		}
@@ -135,24 +116,19 @@ namespace Spackle.Extensions
 			writer.WriteLine();
 			writer.WriteLine("\tStackTrace:");
 
-#if !SILVERLIGHT
 			var trace = new StackTrace(@this, true);
 
 			for (var i = 0; i < trace.FrameCount; i++)
 			{
-				writer.WriteLine("\t\tFrame: {0}", i);
+				writer.WriteLine($"\t\tFrame: {i}");
 				var frame = trace.GetFrame(i);
-				writer.WriteLine("\t\t\tMethod: {0}",
-					ExceptionExtensions.FormatMethod(frame.GetMethod()));
-				writer.WriteLine("\t\t\tFile: {0}", frame.GetFileName());
-				writer.WriteLine("\t\t\tColumn: {0}", frame.GetFileColumnNumber());
-				writer.WriteLine("\t\t\tLine: {0}", frame.GetFileLineNumber());
-				writer.WriteLine("\t\t\tIL Offset: {0}", frame.GetILOffset());
-				writer.WriteLine("\t\t\tNative Offset: {0}", frame.GetNativeOffset());
+				writer.WriteLine($"\t\t\tMethod: {ExceptionExtensions.FormatMethod(frame.GetMethod())}");
+				writer.WriteLine($"\t\t\tFile: {frame.GetFileName()}");
+				writer.WriteLine($"\t\t\tColumn: {frame.GetFileColumnNumber()}");
+				writer.WriteLine($"\t\t\tLine: {frame.GetFileLineNumber()}");
+				writer.WriteLine($"\t\t\tIL Offset: {frame.GetILOffset()}");
+            writer.WriteLine($"\t\t\tNative Offset: {frame.GetNativeOffset()}");
 			}
-#else
-			writer.WriteLine(@this.StackTrace);
-#endif
 		}
 	}
 }

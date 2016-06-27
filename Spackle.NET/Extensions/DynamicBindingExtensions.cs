@@ -87,13 +87,8 @@ namespace Spackle.Extensions
 
 		private static MethodInfo GenerateFieldSetter(FieldInfo field)
 		{
-#if !SILVERLIGHT
 			var method = new DynamicMethod("FieldSetter", typeof(void),
 				new Type[] { field.DeclaringType, field.FieldType }, field.DeclaringType);
-#else
-			var method = new DynamicMethod("FieldSetter", typeof(void),
-				new Type[] { field.DeclaringType, field.FieldType });
-#endif
 
 			var generator = method.GetILGenerator();
 

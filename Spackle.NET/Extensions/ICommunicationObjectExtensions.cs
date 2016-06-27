@@ -41,7 +41,7 @@ namespace Spackle.Extensions
 		{
 			if(work == null)
 			{
-				throw new ArgumentNullException("work");
+				throw new ArgumentNullException(nameof(work));
 			}
 
 			var service = @this.Convert();

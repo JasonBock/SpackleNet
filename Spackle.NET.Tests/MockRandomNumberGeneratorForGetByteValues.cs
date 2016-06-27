@@ -16,15 +16,10 @@ namespace Spackle.Tests
 		{
 			if (this.Values == ValueGeneration.DuplicatesAllowed)
 			{
-#if !SILVERLIGHT
 				using (var generator = RandomNumberGenerator.Create())
 				{
 					generator.GetBytes(data);
 				}
-#else
-				var generator = new RNGCryptoServiceProvider();
-				generator.GetBytes(data);
-#endif
 			}
 			else
 			{
@@ -35,12 +30,10 @@ namespace Spackle.Tests
 			this.MethodCallCount++;
 		}
 
-#if !SILVERLIGHT
 		public override void GetNonZeroBytes(byte[] data)
 		{
 			throw new NotImplementedException();
 		}
-#endif
 
 		public int MethodCallCount { get; private set; }
 

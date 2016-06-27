@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spackle;
 using System;
 
 namespace Spackle.Tests
@@ -100,7 +99,7 @@ namespace Spackle.Tests
 		public void GetIntersectionWithRangesReversed()
 		{
 			var range = new Range<int>(5, 8);
-			Range<int> intersection = range.Intersect(new Range<int>(3, 6));
+			var intersection = range.Intersect(new Range<int>(3, 6));
 
 			Assert.AreEqual(5, intersection.Start);
 			Assert.AreEqual(6, intersection.End);
@@ -117,7 +116,7 @@ namespace Spackle.Tests
 		public void GetIntersectionWithEndAndStartEqual()
 		{
 			var range = new Range<int>(3, 6);
-			Range<int> intersection = range.Intersect(new Range<int>(6, 8));
+			var intersection = range.Intersect(new Range<int>(6, 8));
 
 			Assert.AreEqual(6, intersection.Start);
 			Assert.AreEqual(6, intersection.End);

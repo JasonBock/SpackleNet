@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spackle.Extensions
+﻿namespace Spackle.Extensions
 {
 	/// <summary>
 	/// Specifies the rotational direction for the <seealso cref="IListOfTExtensions.Rotate"/> method.

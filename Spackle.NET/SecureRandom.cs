@@ -2,9 +2,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
-#if !SILVERLIGHT
 using System.Numerics;
-#endif
 using System.Security.Cryptography;
 
 namespace Spackle
@@ -25,11 +23,7 @@ namespace Spackle
 		public SecureRandom()
 			: base()
 		{
-#if !SILVERLIGHT
 			this.Generator = RandomNumberGenerator.Create();
-#else
-			this.Generator = new RNGCryptoServiceProvider();
-#endif
 		}
 
 		/// <summary>
@@ -40,7 +34,7 @@ namespace Spackle
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="generator"/> is <c>null</c>.</exception>
 		public SecureRandom(RandomNumberGenerator generator)
 		{
-			generator.CheckParameterForNull("generator");
+			generator.CheckParameterForNull(nameof(generator));
 			this.Generator = generator;
 		}
 
@@ -51,15 +45,12 @@ namespace Spackle
 		{
 			if (!this.disposed)
 			{
-#if !SILVERLIGHT
 				this.Generator.Dispose();
-#endif
 				this.disposed = true;
 				GC.SuppressFinalize(this);
 			}
 		}
 
-#if !SILVERLIGHT
 		/// <summary>
 		/// Generates a <see cref="BigInteger"/> value with the specified number of digits.
 		/// </summary>
@@ -68,9 +59,14 @@ namespace Spackle
 		/// <exception cref="ArgumentException">Thrown if <paramref name="numberOfDigits"/> is zero.</exception>
 		public BigInteger GetBigInteger(ulong numberOfDigits)
 		{
+			if (this.disposed)
+			{
+				throw new ObjectDisposedException(nameof(SecureRandom));
+			}
+
 			if (numberOfDigits == 0)
 			{
-				throw new ArgumentException("The number of digits cannot be zero.", "numberOfDigits");
+				throw new ArgumentException("The number of digits cannot be zero.", nameof(numberOfDigits));
 			}
 
 			var digit = BigInteger.Zero;
@@ -101,7 +97,6 @@ namespace Spackle
 
 			return digit;
 		}
-#endif
 
 		/// <summary>
 		/// Gets an array of random <see cref="byte"/> values.
@@ -129,13 +124,13 @@ namespace Spackle
 		{
 			if (this.disposed)
 			{
-				throw new ObjectDisposedException("SecureRandom");
+				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
 			if (values == ValueGeneration.UniqueValuesOnly && numberOfElements > byte.MaxValue)
 			{
 				throw new ArgumentException(string.Format(CultureInfo.CurrentCulture,
-					SecureRandom.ErrorTooManyUniqueElements, byte.MaxValue), "numberOfElements");
+					SecureRandom.ErrorTooManyUniqueElements, byte.MaxValue), nameof(numberOfElements));
 			}
 
 			var elements = new byte[numberOfElements];
@@ -177,7 +172,7 @@ namespace Spackle
 		{
 			if (this.disposed)
 			{
-				throw new ObjectDisposedException("SecureRandom");
+				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
 			var elements = new double[numberOfElements];
@@ -247,13 +242,13 @@ namespace Spackle
 		{
 			if (this.disposed)
 			{
-				throw new ObjectDisposedException("SecureRandom");
+				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
 			if (values == ValueGeneration.UniqueValuesOnly && numberOfElements > int.MaxValue)
 			{
 				throw new ArgumentException(string.Format(CultureInfo.CurrentCulture,
-					SecureRandom.ErrorTooManyUniqueElements, int.MaxValue), "numberOfElements");
+					SecureRandom.ErrorTooManyUniqueElements, int.MaxValue), nameof(numberOfElements));
 			}
 
 			var elements = new int[numberOfElements];
@@ -295,7 +290,7 @@ namespace Spackle
 		{
 			if (this.disposed)
 			{
-				throw new ObjectDisposedException("SecureRandom");
+				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
 			return this.Next(Int32.MaxValue);
@@ -314,12 +309,12 @@ namespace Spackle
 		{
 			if (this.disposed)
 			{
-				throw new ObjectDisposedException("SecureRandom");
+				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
 			if (maxValue < 0)
 			{
-				throw new ArgumentException("maxValue must be greater than or equal to zero.", "maxValue");
+				throw new ArgumentException("maxValue must be greater than or equal to zero.", nameof(maxValue));
 			}
 
 			byte[] newNumber = new byte[4];
@@ -343,14 +338,14 @@ namespace Spackle
 		{
 			if (this.disposed)
 			{
-				throw new ObjectDisposedException("SecureRandom");
+				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
 			int value = 0;
 
 			if (maxValue < minValue)
 			{
-				throw new ArgumentException("maxValue must be greater than minValue.", "maxValue");
+				throw new ArgumentException("maxValue must be greater than minValue.", nameof(maxValue));
 			}
 
 			if (maxValue == minValue)
@@ -379,7 +374,7 @@ namespace Spackle
 		{
 			if (this.disposed)
 			{
-				throw new ObjectDisposedException("SecureRandom");
+				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
 			return this.Next(2) == 0;
@@ -393,7 +388,7 @@ namespace Spackle
 		{
 			if (this.disposed)
 			{
-				throw new ObjectDisposedException("SecureRandom");
+				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
 			this.Generator.GetBytes(buffer);
@@ -407,7 +402,7 @@ namespace Spackle
 		{
 			if (this.disposed)
 			{
-				throw new ObjectDisposedException("SecureRandom");
+				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
 			return (double)this.Next(Int32.MaxValue) * MaxInt32Inverse;
@@ -416,6 +411,6 @@ namespace Spackle
 		/// <summary>
 		/// Gets the underlying <see cref="RandomNumberGenerator"/>.
 		/// </summary>
-		public RandomNumberGenerator Generator { get; private set; }
+		public RandomNumberGenerator Generator { get; }
 	}
 }

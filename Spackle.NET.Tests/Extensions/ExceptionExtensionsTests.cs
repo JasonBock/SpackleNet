@@ -29,19 +29,16 @@ namespace Spackle.Tests.Extensions
 
 					this.TestContext.WriteLine(content);
 					Assert.IsTrue(content.Contains("Type Name: System.NotImplementedException"));
-#if !SILVERLIGHT
 					Assert.IsTrue(content.Contains("Source: Spackle.Tests"));
 					Assert.IsTrue(content.Contains("TargetSite: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::Throw()"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::Throw()"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::Format()"));
-#endif
 					Assert.IsFalse(content.Contains("Data:"));
 					Assert.IsFalse(content.Contains("Custom Properties:"));
 				}
 			}
 		}
 
-#if !SILVERLIGHT
 		[TestMethod]
 		public void FormatToConsole()
 		{
@@ -78,7 +75,6 @@ namespace Spackle.Tests.Extensions
 				}
 			}
 		}
-#endif
 
 		[TestMethod]
 		public void FormatFromExceptionRaisedInDynamicMethod()
@@ -102,12 +98,10 @@ namespace Spackle.Tests.Extensions
 
 					this.TestContext.WriteLine(content);
 					Assert.IsTrue(content.Contains("Type Name: System.NotImplementedException"));
-#if !SILVERLIGHT
 					Assert.IsTrue(content.Contains("Source: Anonymously Hosted DynamicMethods Assembly"));
 					Assert.IsTrue(content.Contains("TargetSite: [UNKNOWN], UNKNOWN::DynamicMethod()"));
 					Assert.IsTrue(content.Contains("Method: [UNKNOWN], UNKNOWN::DynamicMethod()"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::FormatFromExceptionRaisedInDynamicMethod()"));
-#endif
 					Assert.IsFalse(content.Contains("Data:"));
 					Assert.IsFalse(content.Contains("Custom Properties:"));
 				}
@@ -134,11 +128,9 @@ namespace Spackle.Tests.Extensions
 
 					this.TestContext.WriteLine(content);
 					Assert.IsTrue(content.Contains("Type Name: System.NotImplementedException"));
-#if !SILVERLIGHT
 					Assert.IsTrue(content.Contains("Source: Spackle.Tests"));
 					Assert.IsTrue(content.Contains("TargetSite: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::FormatWithExceptionThatContainsNullValueInData()"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::FormatWithExceptionThatContainsNullValueInData()"));
-#endif
 					Assert.IsTrue(content.Contains("Data:"));
 					Assert.IsTrue(content.Contains(string.Format(CultureInfo.CurrentCulture,
 						"Key: {0}, Value: null", key)));
@@ -164,12 +156,10 @@ namespace Spackle.Tests.Extensions
 
 					this.TestContext.WriteLine(content);
 					Assert.IsTrue(content.Contains("Type Name: System.NotImplementedException"));
-#if !SILVERLIGHT
 					Assert.IsTrue(content.Contains("Source: Spackle.Tests"));
 					Assert.IsTrue(content.Contains("TargetSite: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::ThrowWithMethodThatHasArguments(System.Int32, Spackle.Tests.Extensions.ExceptionExtensionsTests)"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::ThrowWithMethodThatHasArguments(System.Int32, Spackle.Tests.Extensions.ExceptionExtensionsTests)"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::FormatWithMethodThatHasArguments()"));
-#endif
 					Assert.IsFalse(content.Contains("Data:"));
 					Assert.IsFalse(content.Contains("Custom Properties:"));
 				}
@@ -206,12 +196,10 @@ namespace Spackle.Tests.Extensions
 					this.TestContext.WriteLine(content);
 					Assert.IsTrue(content.Contains("Type Name: System.NotImplementedException"));
 					Assert.IsTrue(content.Contains("Type Name: System.NotSupportedException"));
-#if !SILVERLIGHT
 					Assert.IsTrue(content.Contains("Source: Spackle.Tests"));
 					Assert.IsTrue(content.Contains("TargetSite: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::ThrowWithInnerException()"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::ThrowWithInnerException()"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::FormatWithInnerException()"));
-#endif
 					Assert.IsFalse(content.Contains("Data:"));
 					Assert.IsFalse(content.Contains("Custom Properties:"));
 				}
@@ -235,12 +223,10 @@ namespace Spackle.Tests.Extensions
 
 					this.TestContext.WriteLine(content);
 					Assert.IsTrue(content.Contains("Type Name: System.NotImplementedException"));
-#if !SILVERLIGHT
 					Assert.IsTrue(content.Contains("Source: Spackle.Tests"));
 					Assert.IsTrue(content.Contains("TargetSite: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::ThrowWithData()"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::ThrowWithData()"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::FormatWithData()"));
-#endif
 					Assert.IsTrue(content.Contains("Data:"));
 					Assert.IsTrue(content.Contains("Key: This, Value: That"));
 					Assert.IsTrue(content.Contains("Key: And, Value: 33"));
@@ -266,12 +252,10 @@ namespace Spackle.Tests.Extensions
 
 					this.TestContext.WriteLine(content);
 					Assert.IsTrue(content.Contains("Type Name: Spackle.Tests.Extensions.ExceptionExtensionsTests+CustomException"));
-#if !SILVERLIGHT
 					Assert.IsTrue(content.Contains("Source: Spackle.Tests"));
 					Assert.IsTrue(content.Contains("TargetSite: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::ThrowWithCustomProperties()"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::ThrowWithCustomProperties()"));
 					Assert.IsTrue(content.Contains("Method: [Spackle.Tests], Spackle.Tests.Extensions.ExceptionExtensionsTests::FormatWithCustomProperties()"));
-#endif
 					Assert.IsFalse(content.Contains("Data:"));
 					Assert.IsTrue(content.Contains("Message: some message"));
 					Assert.IsTrue(content.Contains("Custom Properties (1):"));
@@ -320,30 +304,30 @@ namespace Spackle.Tests.Extensions
 			throw new CustomException("some message") { Value = "custom" };
 		}
 
-#if !SILVERLIGHT
 		[Serializable]
-#endif
 		public sealed class CustomException
 			: Exception
 		{
 			public CustomException()
-				: base() { }
+				: base()
+			{ }
 
 			public CustomException(string message)
-				: base(message) { }
+				: base(message)
+			{ }
 
 			public CustomException(string message, Exception innerException)
-				: base(message, innerException) { }
+				: base(message, innerException)
+			{ }
 
-#if !SILVERLIGHT
 			private CustomException(SerializationInfo info, StreamingContext context)
-				: base(info, context) { }
+				: base(info, context)
+			{ }
 
 			public override void GetObjectData(SerializationInfo info, StreamingContext context)
 			{
 				base.GetObjectData(info, context);
 			}
-#endif
 
 			public string Value { get; set; }
 		}

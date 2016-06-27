@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spackle
+﻿namespace Spackle
 {
 	/// <summary>
 	/// Used by <see cref="SecureRandom"/> when generating arrays of random numbers.

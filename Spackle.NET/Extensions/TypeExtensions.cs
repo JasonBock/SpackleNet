@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 namespace Spackle.Extensions
 {
@@ -22,7 +21,7 @@ namespace Spackle.Extensions
 		/// </remarks>
 		public static Type GetRootElementType(this Type @this)
 		{
-			@this.CheckParameterForNull("@this");
+			@this.CheckParameterForNull(nameof(@this));
 			
 			var type = @this;
 

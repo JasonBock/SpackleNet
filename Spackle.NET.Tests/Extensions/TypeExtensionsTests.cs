@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spackle.Extensions;
 using System;
-using System.Reflection;
 
 namespace Spackle.Tests.Extensions
 {

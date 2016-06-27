@@ -8,9 +8,7 @@ namespace Spackle
 	/// <see cref="EventHandler&lt;T&gt;"/>
 	/// </summary>
 	/// <typeparam name="T">The type of the event data.</typeparam>
-#if !SILVERLIGHT
 	[Serializable]
-#endif
 	[ComVisible(true)]
 	public class EventArgs<T> : EventArgs
 	{
@@ -26,6 +24,6 @@ namespace Spackle
 		/// <summary>
 		/// Gets the event data.
 		/// </summary>
-		public T Value { get; protected set; }
+		public T Value { get; }
 	}
 }

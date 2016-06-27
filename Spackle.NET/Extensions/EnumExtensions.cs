@@ -23,7 +23,7 @@ namespace Spackle.Extensions
 
 			if(!thisType.IsEnum)
 			{
-				throw new ArgumentException(EnumExtensions.ErrorValueNotEnum, "this");
+				throw new ArgumentException(EnumExtensions.ErrorValueNotEnum, nameof(@this));
 			}
 
 			var description = string.Empty;
@@ -55,7 +55,7 @@ namespace Spackle.Extensions
 
 			if(!thisType.IsEnum)
 			{
-				throw new ArgumentException(EnumExtensions.ErrorValueNotEnum, "this");
+				throw new ArgumentException(EnumExtensions.ErrorValueNotEnum, nameof(@this));
 			}
 
 			return Enum.GetName(thisType, @this);
