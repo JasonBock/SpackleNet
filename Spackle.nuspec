@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Spackle</id>
-    <version>8.0.0.0</version>
+    <version>8.1.0.0</version>
     <title>Spackle</title>
     <authors>Jason Bock</authors>
     <licenseUrl>https://github.com/JasonBock/SpackleNet/blob/master/LICENSE.md</licenseUrl>
