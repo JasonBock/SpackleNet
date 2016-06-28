@@ -17,5 +17,16 @@ namespace Spackle.Extensions
 		{
 			return new Uri(@this);
 		}
+
+		/// <summary>
+		/// Changes a <see cref="string"/> into a <see cref="Uri"/> if it can.
+		/// </summary>
+		/// <param name="this">The <see cref="string"/> to transform.</param>
+		/// <param name="result">The new <see cref="Uri"/> if the given string could be transforms into a <see cref="Uri"/> .</param>
+		/// <param name="kind">The <see cref="UriKind"/> to use for <paramref name="this"/>.</param>
+		public static bool TryAsUri(this string @this, out Uri result, UriKind kind = UriKind.Absolute)
+		{
+			return Uri.TryCreate(@this, kind, out result);
+		}
 	}
 }
