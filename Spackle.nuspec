@@ -5,7 +5,7 @@
     <version>8.0.0.0</version>
     <title>Spackle</title>
     <authors>Jason Bock</authors>
-    <licenseUrl>http://spacklenet.codeplex.com/license</licenseUrl>
+    <licenseUrl>https://github.com/JasonBock/SpackleNet/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/JasonBock/SpackleNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>An assembly that contains utilities and extension methods to augment the .NET Framework and .NET Core libraries.</description>
