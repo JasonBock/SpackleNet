@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -12,7 +11,13 @@ namespace Spackle.Extensions
 	/// </summary>
 	public static partial class ExceptionExtensions
 	{
+		/// <summary>
+		/// Defines a null value
+		/// </summary>
 		public const string Null = "null";
+		/// <summary>
+		/// Defines a value if certain values are unknown.
+		/// </summary>
 		public const string Unknown = "UNKNOWN";
 
 		private static string FormatMethod(MethodBase targetMethod)

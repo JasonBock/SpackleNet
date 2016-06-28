@@ -17,10 +17,6 @@ namespace Spackle.Reflection.Extensions
 		/// <param name="this">The <see cref="MethodBase"/> to get parameter types for.</param>
 		/// <returns>An array of <see cref="Type"/>s that map directly to the parameters (in terms of location) in the given method.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		/// <remarks>
-		/// If <paramref name="this"/> is a <see cref="MethodBuilder"/> or <see cref="ConstructorBuilder"/>, 
-		/// no parameter type information can be determined, so the returned array will be empty.
-		/// </remarks>
 		public static Type[] GetParameterTypes(this MethodBase @this)
 		{
 			@this.CheckParameterForNull(nameof(@this));
