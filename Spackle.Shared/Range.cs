@@ -153,6 +153,19 @@ namespace Spackle
 		}
 
 		/// <summary>
+		/// Gets the intersection of the current <see cref="Range&lt;T&gt;" /> 
+		/// and the target range specified by <paramref name="start"/> and <paramref name="end"/>.
+		/// </summary>
+		/// <param name="start">The start value of the range.</param>
+		/// <param name="end">The end value of the range.</param>
+		/// <returns>A new <see cref="Range&lt;T&gt;" /> instance that is the intersection, 
+		/// or <c>null</c> if there is no intersection.</returns>
+		public Range<T> Intersect(T start, T end)
+		{
+			return this.Intersect(new Range<T>(start, end));
+		}
+
+		/// <summary>
 		/// Provides a string representation of the current <see cref="Range&lt;T&gt;"/>.
 		/// </summary>
 		/// <returns>Returns a string in the format "(start,end)".</returns>

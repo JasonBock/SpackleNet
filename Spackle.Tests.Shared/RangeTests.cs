@@ -96,6 +96,16 @@ namespace Spackle.Tests
 		}
 
 		[TestMethod]
+		public void GetIntersectionWithStartAndEndValues()
+		{
+			var range = new Range<int>(3, 6);
+			Range<int> intersection = range.Intersect(5, 8);
+
+			Assert.AreEqual(5, intersection.Start);
+			Assert.AreEqual(6, intersection.End);
+		}
+
+		[TestMethod]
 		public void GetIntersectionWithRangesReversed()
 		{
 			var range = new Range<int>(5, 8);
