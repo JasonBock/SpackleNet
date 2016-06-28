@@ -64,21 +64,16 @@ namespace Spackle
 		/// <param name="a">A <see cref="Range&lt;T&gt;" /> or a null reference.</param>
 		/// <param name="b">A <see cref="Range&lt;T&gt;" /> or a null reference.</param>
 		/// <returns><b>true</b> if the value of <paramref name="a"/> is different from the value of <paramref name="b"/>; otherwise, <b>false</b>. </returns>
-		public static bool operator !=(Range<T> a, Range<T> b)
-		{
-			return !(a == b);
-		}
+		public static bool operator !=(Range<T> a, Range<T> b) => !(a == b);
 
 		/// <summary>
 		/// Checks to see if the given value is within the current range (inclusive).
 		/// </summary>
 		/// <param name="value">The value to check.</param>
 		/// <returns>Returns <c>true</c> if <paramref name="value"/> is in the range; otherwise, <c>false</c>.</returns>
-		public bool Contains(T value)
-		{
-			return value.CompareTo(this.Start) >= 0 &&
+		public bool Contains(T value) => 
+			value.CompareTo(this.Start) >= 0 &&
 				value.CompareTo(this.End) <= 0;
-		}
 
 		/// <summary>
 		/// Determines whether this instance of <see cref="Range&lt;T&gt;" /> and a 
@@ -107,10 +102,7 @@ namespace Spackle
 		/// <param name="obj">An <see cref="Object" />.</param>
 		/// <returns><b>true</b> if <paramref name="obj"/> is a <see cref="Range&lt;T&gt;" /> and its value 
 		/// is the same as this instance; otherwise, <b>false</b>.</returns>
-		public override bool Equals(object obj)
-		{
-			return this.Equals(obj as Range<T>);
-		}
+		public override bool Equals(object obj) => this.Equals(obj as Range<T>);
 
 		/// <summary>
 		/// Returns the hash code for this <see cref="Range&lt;T&gt;" />.
@@ -160,19 +152,13 @@ namespace Spackle
 		/// <param name="end">The end value of the range.</param>
 		/// <returns>A new <see cref="Range&lt;T&gt;" /> instance that is the intersection, 
 		/// or <c>null</c> if there is no intersection.</returns>
-		public Range<T> Intersect(T start, T end)
-		{
-			return this.Intersect(new Range<T>(start, end));
-		}
+		public Range<T> Intersect(T start, T end) => this.Intersect(new Range<T>(start, end));
 
 		/// <summary>
 		/// Provides a string representation of the current <see cref="Range&lt;T&gt;"/>.
 		/// </summary>
 		/// <returns>Returns a string in the format "(start,end)".</returns>
-		public override string ToString()
-		{
-			return $"({this.Start},{this.End})";
-		}
+		public override string ToString() => $"({this.Start},{this.End})";
 
 		/// <summary>
 		/// Gets the union of the current <see cref="Range&lt;T&gt;" /> 

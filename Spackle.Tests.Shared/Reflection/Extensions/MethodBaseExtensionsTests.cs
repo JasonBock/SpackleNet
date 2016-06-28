@@ -1,34 +1,33 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using Spackle.Reflection.Extensions;
 using System;
 using System.Reflection;
 
 namespace Spackle.Tests.Reflection.Extensions
 {
-	[TestClass]
-	public sealed class MethodBaseExtensionsTests : CoreTests
+	public sealed class MethodBaseExtensionsTests 
 	{
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
 		public void GetParameterTypesForNullArgument()
 		{
-			(null as MethodBase).GetParameterTypes();
+			Assert.Throws<ArgumentNullException>(() => (null as MethodBase).GetParameterTypes());
 		}
 
-		[TestMethod]
+		[Fact]
 		public void GetParameterTypesForMethodThatHasNoArguments()
 		{
-			Assert.AreEqual(0,
+			Assert.Equal(0,
 				this.GetType().GetMethod(nameof(this.NoArguments)).GetParameterTypes().Length);
 		}
 		
-		[TestMethod]
+		[Fact]
 		public void GetParameterTypesForMethodThatHasManyArguments()
 		{
 			var parameterTypes = this.GetType().GetMethod(nameof(this.ManyArguments)).GetParameterTypes();
-			Assert.AreEqual(3, parameterTypes.Length);
-			Assert.AreEqual(typeof(int), parameterTypes[0]);
-			Assert.AreEqual(typeof(string), parameterTypes[1]);
-			Assert.AreEqual(typeof(int), parameterTypes[2]);
+			Assert.Equal(3, parameterTypes.Length);
+			Assert.Equal(typeof(int), parameterTypes[0]);
+			Assert.Equal(typeof(string), parameterTypes[1]);
+			Assert.Equal(typeof(int), parameterTypes[2]);
 		}
 		
 		public void NoArguments()

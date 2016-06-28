@@ -1,70 +1,73 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using Spackle.Extensions;
 using System;
 
 namespace Spackle.Tests.Extensions
 {
-	[TestClass]
-	public sealed class ObjectExtensionsTests : CoreTests
+	public sealed class ObjectExtensionsTests 
 	{
-		[TestMethod]
+		[Fact]
 		public void CheckNonNullParameterForNull()
 		{
 			new object().CheckParameterForNull("o");
 		}
 
-		[TestMethod]
+		[Fact]
 		public void CheckNonNullParameterForNullWithMessage()
 		{
 			new object().CheckParameterForNull("o", "message");
 		}
 
-		[TestMethod]
+		[Fact]
 		public void CheckNonNullValue()
 		{
-			Assert.IsFalse(new object().IsNull());
+			Assert.False(new object().IsNull());
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
 		public void CheckNullParameterForNull()
 		{
-			(null as object).CheckParameterForNull("o");
+			Assert.Throws<ArgumentNullException>(() => (null as object).CheckParameterForNull("o"));
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentNullException), "message")]
+		[Fact]
 		public void CheckNullParameterForNullWithMessage()
 		{
-			(null as object).CheckParameterForNull("o", "message");
+			Assert.Throws<ArgumentNullException>(() => (null as object).CheckParameterForNull("o", "message"));
 		}
 
-		[TestMethod]
+		[Fact]
 		public void CheckNullValue()
 		{
-			Assert.IsTrue((null as object).IsNull());
+			Assert.True((null as object).IsNull());
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
 		public void HasAttributeWithNullThis()
 		{
-			(null as object).HasAttribute(typeof(TestClassAttribute), false);
+			Assert.Throws<ArgumentNullException>(() => (null as object).HasAttribute(typeof(ClassAttribute), false));
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
 		public void HasAttributeWithNullArgument()
 		{
-			this.HasAttribute(null, false);
+			Assert.Throws<ArgumentNullException>(() => this.HasAttribute(null, false));
 		}
 
-		[TestMethod]
+		[Fact]
 		public void HasAttributeForExistingAttribute()
 		{
-			Assert.IsTrue(this.HasAttribute(typeof(TestClassAttribute), false));
+			Assert.True(new HasAttribute().HasAttribute(typeof(ClassAttribute), false));
 		}
 
-		[TestMethod]
+		[Fact]
 		public void HasAttributeForMissingAttribute()
 		{
-			Assert.IsFalse(this.HasAttribute(typeof(TestMethodAttribute), false));
+			Assert.False(new DoesNotHaveAttribute().HasAttribute(typeof(ClassAttribute), false));
 		}
+
+		[Class]
+		private sealed class HasAttribute { }
+
+		private sealed class DoesNotHaveAttribute { }
 	}
 }

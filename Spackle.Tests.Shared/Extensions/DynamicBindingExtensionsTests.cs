@@ -1,14 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using Spackle.Extensions;
 using System.IO;
 using System.Text;
 
 namespace Spackle.Tests.Extensions
 {
-	[TestClass]
-	public sealed class DynamicBindingExtensionsTests : CoreTests
+	public sealed class DynamicBindingExtensionsTests 
 	{
-		[TestMethod]
+		[Fact]
 		public void WithUsingExpression()
 		{
 			var generator = new RandomObjectGenerator();
@@ -26,12 +25,12 @@ namespace Spackle.Tests.Extensions
 					writer.Write(newValue);
 				}
 
-				Assert.AreEqual(newValue, builder.ToString());
-				Assert.AreEqual(original, writer.Writer.GetStringBuilder().ToString());
+				Assert.Equal(newValue, builder.ToString());
+				Assert.Equal(original, writer.Writer.GetStringBuilder().ToString());
 			}
 		}
 
-		[TestMethod]
+		[Fact]
 		public void WithUsingFuncAndAction()
 		{
 			var generator = new RandomObjectGenerator();
@@ -50,12 +49,12 @@ namespace Spackle.Tests.Extensions
 					writer.Write(newValue);
 				}
 
-				Assert.AreEqual(newValue, builder.ToString());
-				Assert.AreEqual(original, writer.Writer.GetStringBuilder().ToString());
+				Assert.Equal(newValue, builder.ToString());
+				Assert.Equal(original, writer.Writer.GetStringBuilder().ToString());
 			}
 		}
 
-		[TestMethod]
+		[Fact]
 		public void BindToLocalVariable()
 		{
 			var generator = new RandomObjectGenerator();
@@ -63,17 +62,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<int>();
 			var binded = original;
 
-			Assert.AreEqual(original, binded);
+			Assert.Equal(original, binded);
 
 			using (binded.Bind(() => newValue))
 			{
-				Assert.AreEqual(newValue, binded);
+				Assert.Equal(newValue, binded);
 			}
 
-			Assert.AreEqual(original, binded);
+			Assert.Equal(original, binded);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void BindToInternalInstanceField()
 		{
 			var generator = new RandomObjectGenerator();
@@ -81,17 +80,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InternalInstanceField = original };
 
-			Assert.AreEqual(original, binded.InternalInstanceField);
+			Assert.Equal(original, binded.InternalInstanceField);
 
 			using(newValue.Bind(() => binded.InternalInstanceField))
 			{
-				Assert.AreEqual(newValue, binded.InternalInstanceField);
+				Assert.Equal(newValue, binded.InternalInstanceField);
 			}
 
-			Assert.AreEqual(original, binded.InternalInstanceField);
+			Assert.Equal(original, binded.InternalInstanceField);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void BindToInternalInstanceProperty()
 		{
 			var generator = new RandomObjectGenerator();
@@ -99,17 +98,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InternalInstanceProperty = original };
 
-			Assert.AreEqual(original, binded.InternalInstanceProperty);
+			Assert.Equal(original, binded.InternalInstanceProperty);
 
 			using (newValue.Bind(() => binded.InternalInstanceProperty))
 			{
-				Assert.AreEqual(newValue, binded.InternalInstanceProperty);
+				Assert.Equal(newValue, binded.InternalInstanceProperty);
 			}
 
-			Assert.AreEqual(original, binded.InternalInstanceProperty);
+			Assert.Equal(original, binded.InternalInstanceProperty);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void BindToInternalStaticField()
 		{
 			var generator = new RandomObjectGenerator();
@@ -117,17 +116,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			Binded.InternalStaticField = original;
 
-			Assert.AreEqual(original, Binded.InternalStaticField);
+			Assert.Equal(original, Binded.InternalStaticField);
 
 			using(newValue.Bind(() => Binded.InternalStaticField))
 			{
-				Assert.AreEqual(newValue, Binded.InternalStaticField);
+				Assert.Equal(newValue, Binded.InternalStaticField);
 			}
 
-			Assert.AreEqual(original, Binded.InternalStaticField);
+			Assert.Equal(original, Binded.InternalStaticField);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void BindToInternalStaticProperty()
 		{
 			var generator = new RandomObjectGenerator();
@@ -135,17 +134,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			Binded.InternalStaticProperty = original;
 
-			Assert.AreEqual(original, Binded.InternalStaticProperty);
+			Assert.Equal(original, Binded.InternalStaticProperty);
 
 			using (newValue.Bind(() => Binded.InternalStaticProperty))
 			{
-				Assert.AreEqual(newValue, Binded.InternalStaticProperty);
+				Assert.Equal(newValue, Binded.InternalStaticProperty);
 			}
 
-			Assert.AreEqual(original, Binded.InternalStaticProperty);
+			Assert.Equal(original, Binded.InternalStaticProperty);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void BindToInstanceField()
 		{
 			var generator = new RandomObjectGenerator();
@@ -153,17 +152,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InstanceField = original };
 
-			Assert.AreEqual(original, binded.InstanceField);
+			Assert.Equal(original, binded.InstanceField);
 
 			using (newValue.Bind(() => binded.InstanceField))
 			{
-				Assert.AreEqual(newValue, binded.InstanceField);
+				Assert.Equal(newValue, binded.InstanceField);
 			}
 
-			Assert.AreEqual(original, binded.InstanceField);
+			Assert.Equal(original, binded.InstanceField);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void BindToInstanceProperty()
 		{
 			var generator = new RandomObjectGenerator();
@@ -171,17 +170,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InstanceProperty = original };
 
-			Assert.AreEqual(original, binded.InstanceProperty);
+			Assert.Equal(original, binded.InstanceProperty);
 
 			using (newValue.Bind(() => binded.InstanceProperty))
 			{
-				Assert.AreEqual(newValue, binded.InstanceProperty);
+				Assert.Equal(newValue, binded.InstanceProperty);
 			}
 
-			Assert.AreEqual(original, binded.InstanceProperty);
+			Assert.Equal(original, binded.InstanceProperty);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void BindToStaticField()
 		{
 			var generator = new RandomObjectGenerator();
@@ -189,17 +188,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			Binded.StaticField = original;
 
-			Assert.AreEqual(original, Binded.StaticField);
+			Assert.Equal(original, Binded.StaticField);
 
 			using (newValue.Bind(() => Binded.StaticField))
 			{
-				Assert.AreEqual(newValue, Binded.StaticField);
+				Assert.Equal(newValue, Binded.StaticField);
 			}
 
-			Assert.AreEqual(original, Binded.StaticField);
+			Assert.Equal(original, Binded.StaticField);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void BindToStaticProperty()
 		{
 			var generator = new RandomObjectGenerator();
@@ -207,14 +206,14 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			Binded.StaticProperty = original;
 
-			Assert.AreEqual(original, Binded.StaticProperty);
+			Assert.Equal(original, Binded.StaticProperty);
 
 			using (newValue.Bind(() => Binded.StaticProperty))
 			{
-				Assert.AreEqual(newValue, Binded.StaticProperty);
+				Assert.Equal(newValue, Binded.StaticProperty);
 			}
 
-			Assert.AreEqual(original, Binded.StaticProperty);
+			Assert.Equal(original, Binded.StaticProperty);
 		}
 	}
 }

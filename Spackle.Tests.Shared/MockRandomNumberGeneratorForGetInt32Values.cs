@@ -3,7 +3,8 @@ using System.Security.Cryptography;
 
 namespace Spackle.Tests
 {
-	internal sealed class MockRandomNumberGeneratorForGetInt32Values : RandomNumberGenerator
+	internal sealed class MockRandomNumberGeneratorForGetInt32Values 
+		: RandomNumberGenerator
 	{
 		internal MockRandomNumberGeneratorForGetInt32Values(ValueGeneration values)
 			: base()
@@ -43,11 +44,6 @@ namespace Spackle.Tests
 			}
 
 			this.MethodCallCount++;
-		}
-
-		public override void GetNonZeroBytes(byte[] data)
-		{
-			throw new NotImplementedException();
 		}
 
 		private byte[] DuplicateNumber { get; set; }

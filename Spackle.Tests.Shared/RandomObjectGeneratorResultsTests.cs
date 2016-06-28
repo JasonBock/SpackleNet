@@ -1,11 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace Spackle.Tests
 {
-	[TestClass]
 	public sealed class RandomObjectGeneratorResultsTests
 	{
-		[TestMethod]
+		[Fact]
 		public void Create()
 		{
 			var generator = new RandomObjectGenerator();
@@ -13,8 +12,8 @@ namespace Spackle.Tests
 			var value = generator.Generate<object>();
 
 			var result = new RandomObjectGeneratorResults(handled, value);
-			Assert.AreEqual(handled, result.Handled);
-			Assert.AreSame(value, result.Value);
+			Assert.Equal(handled, result.Handled);
+			Assert.Same(value, result.Value);
 		}
 	}
 }

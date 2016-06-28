@@ -1,37 +1,44 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using Spackle.Reflection.Extensions;
 using System;
+using System.Reflection;
 
 namespace Spackle.Tests.Reflection.Extensions
 {
-	[TestClass]
-	public sealed class ICustomAttributeProviderExtensionsTests : CoreTests
+	public sealed class ICustomAttributeProviderExtensionsTests
 	{
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
 		public void HasAttributeWithNullThis()
 		{
-			(null as Type).HasAttribute(typeof(TestClassAttribute), false);
+			Assert.Throws<ArgumentNullException>(
+				() => (null as Type).GetTypeInfo().HasAttribute(typeof(ClassAttribute), false));
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
 		public void HasAttributeWithNullArgument()
 		{
-			typeof(ICustomAttributeProviderExtensionsTests).HasAttribute(
-				null, false);
+			Assert.Throws<ArgumentNullException>(
+				() => typeof(ICustomAttributeProviderExtensionsTests).GetTypeInfo().HasAttribute(
+					null, false));
 		}
 
-		[TestMethod]
+		[Fact]
 		public void HasAttributeForExistingAttribute()
 		{
-			Assert.IsTrue(typeof(ICustomAttributeProviderExtensionsTests).HasAttribute(
-				typeof(TestClassAttribute), false));
+			Assert.True(typeof(HasAttribute).GetTypeInfo().HasAttribute(
+				typeof(ClassAttribute), false));
 		}
 
-		[TestMethod]
+		[Fact]
 		public void HasAttributeForMissingAttribute()
 		{
-			Assert.IsFalse(typeof(ICustomAttributeProviderExtensionsTests).HasAttribute(
-				typeof(TestMethodAttribute), false));
+			Assert.False(typeof(DoesNotHaveAttribute).GetTypeInfo().HasAttribute(
+				typeof(ClassAttribute), false));
 		}
+
+		[Class]
+		private sealed class HasAttribute { }
+
+		private sealed class DoesNotHaveAttribute { }
 	}
 }

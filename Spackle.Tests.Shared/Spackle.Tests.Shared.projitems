@@ -9,14 +9,14 @@
     <Import_RootNamespace>Spackle.Tests.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)CoreTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ClassAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventArgsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ActionExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Binded.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\CustomException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\DynamicBindingExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\EnumExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ExceptionExtensionsTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ICommunicationObjectExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\IEnumerableOfTExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\IListOfTExtensionsTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ObjectExtensionsTests.cs" />

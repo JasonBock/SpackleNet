@@ -1,26 +1,25 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using Spackle.Extensions;
 using System;
 
 namespace Spackle.Tests.Extensions
 {
-	[TestClass]
 	public sealed class EnumExtensionsTests
 	{
 		private const string Description = "Description";
 		private const string Name = "ValueThatHasDescription";
 
-		[TestMethod]
+		[Fact]
 		public void GetName()
 		{
-			Assert.AreEqual(EnumExtensionsTests.Name, 
+			Assert.Equal(EnumExtensionsTests.Name, 
 				EnumExtensionsTests.TestEnum.ValueThatHasDescription.GetName());
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentException))]
+		[Fact]
 		public void GetNameForValueThatIsNotAnEnum()
 		{
-			Guid.NewGuid().GetName();
+			Assert.Throws<ArgumentException>(() => Guid.NewGuid().GetName());
 		}
 
 		private enum TestEnum

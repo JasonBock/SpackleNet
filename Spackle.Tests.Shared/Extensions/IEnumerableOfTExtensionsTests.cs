@@ -1,26 +1,25 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using Spackle.Extensions;
 using System;
 using System.Collections.Generic;
 
 namespace Spackle.Tests.Extensions
 {
-	[TestClass]
-	public sealed class IEnumerableOfTExtensionsTests : CoreTests
+	public sealed class IEnumerableOfTExtensionsTests 
 	{
-		[TestMethod]
+		[Fact]
 		public void Create()
 		{
 			var collection = new HashSet<string> { "A", "B", "A" }.AsReadOnly();
-			Assert.AreEqual(2, collection.Count);
-			Assert.IsTrue(collection.Contains("A"));
-			Assert.IsTrue(collection.Contains("B"));
+			Assert.Equal(2, collection.Count);
+			Assert.True(collection.Contains("A"));
+			Assert.True(collection.Contains("B"));
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
 		public void CreateWithNullArgument()
 		{
-			(null as HashSet<string>).AsReadOnly();
+			Assert.Throws<ArgumentNullException>(() => (null as HashSet<string>).AsReadOnly());
 		}
 	}
 }

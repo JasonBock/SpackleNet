@@ -1,27 +1,26 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using Spackle.Extensions;
 using System;
 
 namespace Spackle.Tests.Extensions
 {
-	[TestClass]
-	public sealed class StringExtensionsTests : CoreTests
+	public sealed class StringExtensionsTests 
 	{
-		[TestMethod]
+		[Fact]
 		public void AsUri()
 		{
 			const string Site = "http://www.goodsite.com";
 
-			Assert.AreEqual(new Uri(Site), Site.AsUri());
+			Assert.Equal(new Uri(Site), Site.AsUri());
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
 		public void AsUriWithNull()
 		{
-			(null as string).AsUri();
+			Assert.Throws<ArgumentNullException>(() => (null as string).AsUri());
 		}
 
-		[TestMethod]
+		[Fact]
 		public void TryAsUri()
 		{
 			const string Site = "http://www.goodsite.com";
@@ -29,18 +28,18 @@ namespace Spackle.Tests.Extensions
 
 			var success = Site.TryAsUri(out result);
 
-			Assert.IsTrue(success);
-			Assert.AreEqual(new Uri(Site), result);
+			Assert.True(success);
+			Assert.Equal(new Uri(Site), result);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void TryAsUriWithInvalidForamt()
 		{
 			const string Site = "this is not a Uri";
 			Uri result = null;
 
 			var success = Site.TryAsUri(out result);
-			Assert.IsFalse(success);
+			Assert.False(success);
 		}
 	}
 }

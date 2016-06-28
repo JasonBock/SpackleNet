@@ -1,11 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using Spackle.Extensions;
 using System;
 using System.ServiceModel;
 
 namespace Spackle.Tests.Extensions
 {
-	[TestClass]
 	public sealed class ICommunicationObjectExtensionsTests
 	{
 #pragma warning disable 67
@@ -121,7 +120,7 @@ namespace Spackle.Tests.Extensions
 		}
 #pragma warning restore 67
 
-		[TestMethod]
+		[Fact]
 		public void UseWithAction()
 		{
 			var communcationMock = new MockedCommunicationObject();
@@ -129,73 +128,73 @@ namespace Spackle.Tests.Extensions
 
 			communcationMock.Use(new Action(() => wasWorkCalled = true));
 
-			Assert.IsTrue(wasWorkCalled);
-			Assert.IsTrue(communcationMock.WasCloseCalled);
-			Assert.IsFalse(communcationMock.WasAbortCalled);
+			Assert.True(wasWorkCalled);
+			Assert.True(communcationMock.WasCloseCalled);
+			Assert.False(communcationMock.WasAbortCalled);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void UseWithActionWithCommunicationObjectInFaultedState()
 		{
 			var communcationMock = new MockedCommunicationObject(CommunicationState.Faulted);
 
 			communcationMock.Use(new Action(() => { }));
 
-			Assert.IsFalse(communcationMock.WasCloseCalled);
-			Assert.IsTrue(communcationMock.WasAbortCalled);
+			Assert.False(communcationMock.WasCloseCalled);
+			Assert.True(communcationMock.WasAbortCalled);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void UseWithActionWhenCloseThrowsCommunicationObjectFaultedException()
 		{
 			var communcationMock = new MockedCommunicationObject(true, false);
 
 			communcationMock.Use(new Action(() => { }));
 
-			Assert.IsTrue(communcationMock.WasCloseCalled);
-			Assert.IsTrue(communcationMock.WasAbortCalled);
+			Assert.True(communcationMock.WasCloseCalled);
+			Assert.True(communcationMock.WasAbortCalled);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void UseWithActionWhenCloseThrowsTimeoutException()
 		{
 			var communcationMock = new MockedCommunicationObject(false, true);
 
 			communcationMock.Use(new Action(() => { }));
 
-			Assert.IsTrue(communcationMock.WasCloseCalled);
-			Assert.IsTrue(communcationMock.WasAbortCalled);
+			Assert.True(communcationMock.WasCloseCalled);
+			Assert.True(communcationMock.WasAbortCalled);
 		}
 
-		[TestMethod, ExpectedException(typeof(NotSupportedException))]
+		[Fact]
 		public void UseWithActionWhenThisIsNotACommunicationObject()
 		{
-			Guid.NewGuid().Use(new Action(() => { }));
+			Assert.Throws<NotSupportedException>(() => Guid.NewGuid().Use(new Action(() => { })));
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
 		public void UseWithActionWhenWorkIsNull()
 		{
 			var communcationMock = new MockedCommunicationObject();
-			communcationMock.Use(null as Action);
+			Assert.Throws<ArgumentNullException>(() => communcationMock.Use(null as Action));
 		}
 
-		[TestMethod]
+		[Fact]
 		public void UseWithFunc()
 		{
 			const int result = 1;
 
 			var communcationMock = new MockedCommunicationObject();
 
-			Assert.AreEqual(result, communcationMock.Use(new Func<int>(() =>
+			Assert.Equal(result, communcationMock.Use(new Func<int>(() =>
 			{
 				return result;
 			})));
-			Assert.IsTrue(communcationMock.WasCloseCalled);
-			Assert.IsFalse(communcationMock.WasAbortCalled);
+			Assert.True(communcationMock.WasCloseCalled);
+			Assert.False(communcationMock.WasAbortCalled);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void UseWithFuncWithCommunicationObjectInFaultedState()
 		{
 			var communcationMock = new MockedCommunicationObject(CommunicationState.Faulted);
@@ -205,11 +204,11 @@ namespace Spackle.Tests.Extensions
 				return 1;
 			}));
 
-			Assert.IsFalse(communcationMock.WasCloseCalled);
-			Assert.IsTrue(communcationMock.WasAbortCalled);
+			Assert.False(communcationMock.WasCloseCalled);
+			Assert.True(communcationMock.WasAbortCalled);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void UseWithFuncWhenCloseThrowsCommunicationObjectFaultedException()
 		{
 			var communcationMock = new MockedCommunicationObject(true, false);
@@ -219,11 +218,11 @@ namespace Spackle.Tests.Extensions
 				return 1;
 			}));
 
-			Assert.IsTrue(communcationMock.WasCloseCalled);
-			Assert.IsTrue(communcationMock.WasAbortCalled);
+			Assert.True(communcationMock.WasCloseCalled);
+			Assert.True(communcationMock.WasAbortCalled);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void UseWithFuncWhenCloseThrowsTimeoutException()
 		{
 			var communcationMock = new MockedCommunicationObject(false, true);
@@ -233,24 +232,24 @@ namespace Spackle.Tests.Extensions
 				return 1;
 			}));
 
-			Assert.IsTrue(communcationMock.WasCloseCalled);
-			Assert.IsTrue(communcationMock.WasAbortCalled);
+			Assert.True(communcationMock.WasCloseCalled);
+			Assert.True(communcationMock.WasAbortCalled);
 		}
 
-		[TestMethod, ExpectedException(typeof(NotSupportedException))]
+		[Fact]
 		public void UseWithFuncWhenThisIsNotACommunicationObject()
 		{
-			Guid.NewGuid().Use(new Func<int>(() =>
+			Assert.Throws<NotSupportedException>(() => Guid.NewGuid().Use(new Func<int>(() =>
 			{
 				return 1;
-			}));
+			})));
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
 		public void UseWithFuncWhenWorkIsNull()
 		{
 			var communcationMock = new MockedCommunicationObject();
-			communcationMock.Use(null as Func<int>);
+			Assert.Throws<ArgumentNullException>(() => communcationMock.Use(null as Func<int>));
 		}
 	}
 }

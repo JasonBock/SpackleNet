@@ -30,11 +30,6 @@ namespace Spackle.Tests
 			this.MethodCallCount++;
 		}
 
-		public override void GetNonZeroBytes(byte[] data)
-		{
-			throw new NotImplementedException();
-		}
-
 		public int MethodCallCount { get; private set; }
 
 		private byte NextValue { get; set; }

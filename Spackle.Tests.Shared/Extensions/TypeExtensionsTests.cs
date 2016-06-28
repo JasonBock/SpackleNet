@@ -1,35 +1,34 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 using Spackle.Extensions;
 using System;
 
 namespace Spackle.Tests.Extensions
 {
-	[TestClass]
-	public sealed class TypeExtensionsTests : CoreTests
+	public sealed class TypeExtensionsTests 
 	{
-		[TestMethod]
+		[Fact]
 		public void GetRootElementTypeFromRefArrayArray()
 		{
-			Assert.AreEqual(typeof(int), 
+			Assert.Equal(typeof(int), 
 				typeof(int).MakeArrayType().MakeByRefType().GetRootElementType());
 		}
 
-		[TestMethod]
+		[Fact]
 		public void GetRootElementTypeFromArray()
 		{
-			Assert.AreEqual(typeof(int), typeof(int[]).GetRootElementType());
+			Assert.Equal(typeof(int), typeof(int[]).GetRootElementType());
 		}
 
-		[TestMethod]
+		[Fact]
 		public void GetRootElementTypeFromPrimitive()
 		{
-			Assert.AreEqual(typeof(int), typeof(int).GetRootElementType());
+			Assert.Equal(typeof(int), typeof(int).GetRootElementType());
 		}
 
-		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
 		public void GetRootElementTypeWithNullArgument()
 		{
-			(null as Type).GetRootElementType();
+			Assert.Throws<ArgumentNullException>(() => (null as Type).GetRootElementType());
 		}
 	}
 }
