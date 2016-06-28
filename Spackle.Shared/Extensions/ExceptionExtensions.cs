@@ -12,21 +12,28 @@ namespace Spackle.Extensions
 	/// </summary>
 	public static partial class ExceptionExtensions
 	{
-		private const string Null = "null";
-		private const string Unknown = "UNKNOWN";
+		public const string Null = "null";
+		public const string Unknown = "UNKNOWN";
 
 		private static string FormatMethod(MethodBase targetMethod)
 		{
-			var builder = string.Join<string>(", ",
-				(from parameter in targetMethod.GetParameters()
-				 select parameter.ParameterType.FullName).ToArray());
-			var assemblyName = targetMethod.DeclaringType != null ?
-				targetMethod.DeclaringType.GetTypeInfo().Assembly.GetName().Name :
-				ExceptionExtensions.Unknown;
-			var typeName = targetMethod.DeclaringType != null ?
-				targetMethod.DeclaringType.ToString() : ExceptionExtensions.Unknown;
+			if(targetMethod != null)
+			{
+				var builder = string.Join<string>(", ",
+					(from parameter in targetMethod.GetParameters()
+					 select parameter.ParameterType.FullName).ToArray());
+				var assemblyName = targetMethod.DeclaringType != null ?
+					targetMethod.DeclaringType.GetTypeInfo().Assembly.GetName().Name :
+					ExceptionExtensions.Unknown;
+				var typeName = targetMethod.DeclaringType != null ?
+					targetMethod.DeclaringType.ToString() : ExceptionExtensions.Unknown;
 
-			return $"[{assemblyName}], {typeName}::{targetMethod.Name}({builder.ToString()})";
+				return $"[{assemblyName}], {typeName}::{targetMethod.Name}({builder.ToString()})";
+			}
+			else
+			{
+				return ExceptionExtensions.Unknown;
+			}
 		}
 
 		/// <summary>

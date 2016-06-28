@@ -40,6 +40,24 @@ namespace Spackle.Tests.Extensions
 		}
 
 		[TestMethod]
+		public void FormatWhenExceptionHasNotBeenThrown()
+		{
+			var exception = new NotSupportedException();
+			using (var writer = new StringWriter(CultureInfo.CurrentCulture))
+			{
+				exception.Print(writer);
+				var content = writer.GetStringBuilder().ToString();
+
+				Assert.IsTrue(content.Contains("Type Name: System.NotSupportedException"));
+				Assert.IsTrue(content.Contains("Source: "));
+				Assert.IsTrue(content.Contains($"TargetSite: {ExceptionExtensions.Unknown}"));
+				Assert.IsFalse(content.Contains($"Method:"));
+				Assert.IsFalse(content.Contains("Data:"));
+				Assert.IsFalse(content.Contains("Custom Properties:"));
+			}
+		}
+
+		[TestMethod]
 		public void FormatToConsole()
 		{
 			try
