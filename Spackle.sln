@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spackle.Tests.NET", "Spackl
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Spackle.NETStandard", "Spackle.NETStandard\Spackle.NETStandard.xproj", "{3CC12C5C-98C8-41AC-B196-08B06432006F}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Spackle.CA", "Spackle.CA\Spackle.CA.xproj", "{098ED807-976A-4F2C-8296-2EF17FCE6874}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Spackle.Shared\Spackle.Shared.projitems*{9de85aa3-b867-4b1f-a114-14558c9abcff}*SharedItemsImports = 13
@@ -39,10 +37,6 @@ Global
 		{3CC12C5C-98C8-41AC-B196-08B06432006F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CC12C5C-98C8-41AC-B196-08B06432006F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CC12C5C-98C8-41AC-B196-08B06432006F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{098ED807-976A-4F2C-8296-2EF17FCE6874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{098ED807-976A-4F2C-8296-2EF17FCE6874}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{098ED807-976A-4F2C-8296-2EF17FCE6874}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{098ED807-976A-4F2C-8296-2EF17FCE6874}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
