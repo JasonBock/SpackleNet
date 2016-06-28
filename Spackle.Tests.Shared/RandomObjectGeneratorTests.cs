@@ -146,6 +146,17 @@ namespace Spackle.Tests
 		}
 
 		[TestMethod]
+		public void GenerateForFloatArgument()
+		{
+			const double value = 0.65;
+			const float expectedResult = 0.300000011920929F;
+
+			var random = new MockedRandom(value);
+			var result = new RandomObjectGenerator(random).Generate<TypedArgument<float>>();
+			Assert.AreEqual(expectedResult, result.Value);
+		}
+
+		[TestMethod]
 		public void GenerateForShortArgument()
 		{
 			var buffer = new byte[] { 0, 2 };

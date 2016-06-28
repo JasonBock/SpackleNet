@@ -219,6 +219,13 @@ namespace Spackle
 				result = new RandomObjectGeneratorResults(true,
 					BitConverter.ToChar(this.GetBuffer(2), 0));
 			}
+			else if (typeof(float).GetTypeInfo().IsAssignableFrom(target))
+			{
+				// Lifted from: http://stackoverflow.com/questions/3365337/best-way-to-generate-a-random-float-in-c-sharp
+				var mantissa = (this.Random.NextDouble() * 2.0) - 1.0;
+				var exponent = Math.Pow(2.0, this.Random.Next(-126, 128));
+				result = new RandomObjectGeneratorResults(true, (float)(mantissa * exponent));
+			}
 			else if (typeof(double).GetTypeInfo().IsAssignableFrom(target))
 			{
 				result = new RandomObjectGeneratorResults(true, this.Random.NextDouble());
