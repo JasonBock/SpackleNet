@@ -1,2 +1,0 @@
-nuget pack -sym Spackle.nuspec
-nuget push Spackle.8.0.0.0.nupkg 

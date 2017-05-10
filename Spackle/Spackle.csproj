@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp1.1;net462;netstandard1.6;</TargetFrameworks>
+    <Version>8.2.0</Version>
+    <Description>An assembly that contains utilities and extension methods to augment the .NET Framework and .NET Core libraries.</Description>
+    <Authors>Jason Bock</Authors>
+    <PackageLicenseUrl>https://github.com/JasonBock/SpackleNet/blob/master/LICENSE.md</PackageLicenseUrl>
+    <Copyright>Copyright 2017</Copyright>
+    <PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+</Project>
