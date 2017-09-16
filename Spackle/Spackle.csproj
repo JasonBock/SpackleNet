@@ -1,15 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp1.1;net462;netstandard1.6;</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Version>8.2.0</Version>
     <Description>An assembly that contains utilities and extension methods to augment the .NET Framework and .NET Core libraries.</Description>
     <Authors>Jason Bock</Authors>
-    <PackageLicenseUrl>https://github.com/JasonBock/SpackleNet/blob/master/LICENSE.md</PackageLicenseUrl>
-    <Copyright>Copyright 2017</Copyright>
-    <PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
+    <Copyright>Copyright © 2017</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <PackageId>Spackle</PackageId>
+    <PackageLicenseUrl>https://github.com/JasonBock/SpackleNet/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
+    <PackageVersion>8.2.0</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.ValueTuple" Version="4.4.0-preview1-25305-02" />
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 </Project>
