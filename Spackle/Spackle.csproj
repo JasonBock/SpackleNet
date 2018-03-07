@@ -1,20 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>8.2.0</Version>
-    <Description>An assembly that contains utilities and extension methods to augment the .NET Framework and .NET Core libraries.</Description>
+    <LangVersion>latest</LangVersion>
+    <AssemblyVersion>Spackle</AssemblyVersion>
+    <RootNamespace>Spackle</RootNamespace>
+    <Version>8.2.1</Version>
+    <RepositoryUrl>https://github.com/jasonbock/spacklenet</RepositoryUrl>
+    <Description>An assembly that contains utilities and extension methods to augment .NET development.</Description>
     <Authors>Jason Bock</Authors>
-    <Copyright>Copyright © 2017</Copyright>
+    <Copyright>Copyright © 2018</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <AssemblyVersion>8.2.1.0</AssemblyVersion>
+    <FileVersion>8.2.1.0</FileVersion>
     <PackageId>Spackle</PackageId>
     <PackageLicenseUrl>https://github.com/JasonBock/SpackleNet/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
-    <PackageVersion>8.2.0</PackageVersion>
+    <PackageVersion>8.2.1</PackageVersion>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
-  </ItemGroup>
 </Project>

@@ -12,8 +12,8 @@ namespace Spackle.Tests.Extensions
 		{
 			var collection = new HashSet<string> { "A", "B", "A" }.AsReadOnly();
 			Assert.Equal(2, collection.Count);
-			Assert.True(collection.Contains("A"));
-			Assert.True(collection.Contains("B"));
+			Assert.Contains("A", collection);
+			Assert.Contains("B", collection);
 		}
 
 		[Fact]

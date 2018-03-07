@@ -43,7 +43,7 @@ namespace Spackle
 		/// <returns><b>true</b> if the value of <paramref name="a"/> is the same as the value of <paramref name="b"/>; otherwise, <b>false</b>. </returns>
 		public static bool operator ==(Range<T> a, Range<T> b)
 		{
-			bool areEqual = false;
+			var areEqual = false;
 
 			if(object.ReferenceEquals(a, b))
 			{

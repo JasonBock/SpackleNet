@@ -30,6 +30,7 @@ namespace Spackle.Tests.Extensions
 		public void CheckNullValue() =>
 			Assert.True((null as object).IsNull());
 
+		[Fact]
 		public void HasAttributeWithNullThis() =>
 			Assert.Throws<ArgumentNullException>(() => (null as object).HasAttribute(typeof(ClassAttribute), false));
 

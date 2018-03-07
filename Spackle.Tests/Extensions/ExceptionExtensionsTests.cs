@@ -26,11 +26,11 @@ namespace Spackle.Tests.Extensions
 					e.Print(writer);
 					var content = writer.GetStringBuilder().ToString();
 
-					Assert.True(content.Contains("Type Name: System.NotImplementedException"));
-					Assert.True(content.Contains("Source: Spackle.Tests"));
+					Assert.Contains("Type Name: System.NotImplementedException", content);
+					Assert.Contains("Source: Spackle.Tests", content);
 					this.VerifyFormat(content);
-					Assert.False(content.Contains("Data:"));
-					Assert.False(content.Contains("Custom Properties:"));
+					Assert.DoesNotContain("Data:", content);
+					Assert.DoesNotContain("Custom Properties:", content);
 				}
 			}
 		}
@@ -46,11 +46,11 @@ namespace Spackle.Tests.Extensions
 				exception.Print(writer);
 				var content = writer.GetStringBuilder().ToString();
 
-				Assert.True(content.Contains("Type Name: System.NotSupportedException"));
-				Assert.True(content.Contains("Source: "));
+				Assert.Contains("Type Name: System.NotSupportedException", content);
+				Assert.Contains("Source: ", content);
 				this.VerifyFormatWhenExceptionHasNotBeenThrown(content);
-				Assert.False(content.Contains("Data:"));
-				Assert.False(content.Contains("Custom Properties:"));
+				Assert.DoesNotContain("Data:", content);
+				Assert.DoesNotContain("Custom Properties:", content);
 			}
 		}
 
@@ -76,11 +76,11 @@ namespace Spackle.Tests.Extensions
 						e.Print();
 						var content = writer.GetStringBuilder().ToString();
 
-						Assert.True(content.Contains("Type Name: System.NotImplementedException"));
-						Assert.True(content.Contains("Source: Spackle.Tests"));
+						Assert.Contains("Type Name: System.NotImplementedException", content);
+						Assert.Contains("Source: Spackle.Tests", content);
 						this.VerifyFormatToConsole(content);
-						Assert.False(content.Contains("Data:"));
-						Assert.False(content.Contains("Custom Properties:"));
+						Assert.DoesNotContain("Data:", content);
+						Assert.DoesNotContain("Custom Properties:", content);
 					}
 				}
 				finally
@@ -112,11 +112,11 @@ namespace Spackle.Tests.Extensions
 					e.Print(writer);
 					var content = writer.GetStringBuilder().ToString();
 
-					Assert.True(content.Contains("Type Name: System.NotImplementedException"));
-					Assert.True(content.Contains("Source: Anonymously Hosted DynamicMethods Assembly"));
+					Assert.Contains("Type Name: System.NotImplementedException", content);
+					Assert.Contains("Source: Anonymously Hosted DynamicMethods Assembly", content);
 					this.VerifyFormatFromExceptionRaisedInDynamicMethod(content);
-					Assert.False(content.Contains("Data:"));
-					Assert.False(content.Contains("Custom Properties:"));
+					Assert.DoesNotContain("Data:", content);
+					Assert.DoesNotContain("Custom Properties:", content);
 				}
 			}
 		}
@@ -141,13 +141,13 @@ namespace Spackle.Tests.Extensions
 					e.Print(writer);
 					var content = writer.GetStringBuilder().ToString();
 
-					Assert.True(content.Contains("Type Name: System.NotImplementedException"));
-					Assert.True(content.Contains("Source: Spackle.Tests"));
+					Assert.Contains("Type Name: System.NotImplementedException", content);
+					Assert.Contains("Source: Spackle.Tests", content);
 					this.VerifyFormatWithExceptionThatContainsNullValueInData(content);
-					Assert.True(content.Contains("Data:"));
-					Assert.True(content.Contains(string.Format(CultureInfo.CurrentCulture,
-						"Key: {0}, Value: null", key)));
-					Assert.False(content.Contains("Custom Properties:"));
+					Assert.Contains("Data:", content);
+					Assert.Contains(string.Format(CultureInfo.CurrentCulture,
+						"Key: {0}, Value: null", key), content);
+					Assert.DoesNotContain("Custom Properties:", content);
 				}
 			}
 		}
@@ -169,11 +169,11 @@ namespace Spackle.Tests.Extensions
 					e.Print(writer);
 					var content = writer.GetStringBuilder().ToString();
 
-					Assert.True(content.Contains("Type Name: System.NotImplementedException"));
-					Assert.True(content.Contains("Source: Spackle.Tests"));
+					Assert.Contains("Type Name: System.NotImplementedException", content);
+					Assert.Contains("Source: Spackle.Tests", content);
 					this.VerifyFormatWithMethodThatHasArguments(content);
-					Assert.False(content.Contains("Data:"));
-					Assert.False(content.Contains("Custom Properties:"));
+					Assert.DoesNotContain("Data:", content);
+					Assert.DoesNotContain("Custom Properties:", content);
 				}
 			}
 		}
@@ -203,12 +203,12 @@ namespace Spackle.Tests.Extensions
 					e.Print(writer);
 					var content = writer.GetStringBuilder().ToString();
 
-					Assert.True(content.Contains("Type Name: System.NotImplementedException"));
-					Assert.True(content.Contains("Type Name: System.NotSupportedException"));
-					Assert.True(content.Contains("Source: Spackle.Tests"));
+					Assert.Contains("Type Name: System.NotImplementedException", content);
+					Assert.Contains("Type Name: System.NotSupportedException", content);
+					Assert.Contains("Source: Spackle.Tests", content);
 					this.VerifyFormatWithInnerException(content);
-					Assert.False(content.Contains("Data:"));
-					Assert.False(content.Contains("Custom Properties:"));
+					Assert.DoesNotContain("Data:", content);
+					Assert.DoesNotContain("Custom Properties:", content);
 				}
 			}
 		}
@@ -230,13 +230,13 @@ namespace Spackle.Tests.Extensions
 					e.Print(writer);
 					var content = writer.GetStringBuilder().ToString();
 
-					Assert.True(content.Contains("Type Name: System.NotImplementedException"));
-					Assert.True(content.Contains("Source: Spackle.Tests"));
+					Assert.Contains("Type Name: System.NotImplementedException", content);
+					Assert.Contains("Source: Spackle.Tests", content);
 					this.VerifyFormatWithData(content);
-					Assert.True(content.Contains("Data:"));
-					Assert.True(content.Contains("Key: This, Value: That"));
-					Assert.True(content.Contains("Key: And, Value: 33"));
-					Assert.False(content.Contains("Custom Properties:"));
+					Assert.Contains("Data:", content);
+					Assert.Contains("Key: This, Value: That", content);
+					Assert.Contains("Key: And, Value: 33", content);
+					Assert.DoesNotContain("Custom Properties:", content);
 				}
 			}
 		}
@@ -258,13 +258,13 @@ namespace Spackle.Tests.Extensions
 					e.Print(writer);
 					var content = writer.GetStringBuilder().ToString();
 
-					Assert.True(content.Contains("Type Name: Spackle.Tests.Extensions.CustomException"));
-					Assert.True(content.Contains("Source: Spackle.Tests"));
+					Assert.Contains("Type Name: Spackle.Tests.Extensions.CustomException", content);
+					Assert.Contains("Source: Spackle.Tests", content);
 					this.VerifyFormatWithCustomProperties(content);
-					Assert.False(content.Contains("Data:"));
-					Assert.True(content.Contains("Message: some message"));
-					Assert.True(content.Contains("Custom Properties (1):"));
-					Assert.True(content.Contains("Value = custom"));
+					Assert.DoesNotContain("Data:", content);
+					Assert.Contains("Message: some message", content);
+					Assert.Contains("Custom Properties (1):", content);
+					Assert.Contains("Value = custom", content);
 				}
 			}
 		}

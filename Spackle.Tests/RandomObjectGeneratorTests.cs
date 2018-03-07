@@ -104,7 +104,7 @@ namespace Spackle.Tests
 			var random = new MockedRandom(buffer);
 
 			var result = new RandomObjectGenerator(random).Generate<int[]>();
-			Assert.Equal(1, result.Length);
+			Assert.Single(result);
 			Assert.Equal(33554432, result[0]);
 		}
 
@@ -301,7 +301,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<ReadOnlyCollection<int>>>();
-			Assert.Equal(1, result.Value.Count);
+			Assert.Single(result.Value);
 			Assert.Equal(33554432, result.Value[0]);
 		}
 

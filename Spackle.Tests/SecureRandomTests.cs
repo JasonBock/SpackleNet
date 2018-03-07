@@ -459,6 +459,7 @@ namespace Spackle.Tests
 			}
 		}
 
+		[Fact]
 		public void GetInt32ValuesUniqueValuesOnlyButElementNumberIsTooBig()
 		{
 			using (var random = new SecureRandom())
@@ -467,6 +468,7 @@ namespace Spackle.Tests
 			}
 		}
 
+		[Fact]
 		public void GetInt32ValuesAfterDisposing()
 		{
 			SecureRandom random = null;
