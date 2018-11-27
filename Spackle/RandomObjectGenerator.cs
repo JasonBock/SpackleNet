@@ -19,6 +19,9 @@ namespace Spackle
 	{
 		private const string ErrorNoConstructorFound = "Count not find a constructor on the {0} type.";
 
+		private Dictionary<Type, Func<RandomObjectGeneratorResults>> generators { get; }
+		private readonly Random random;
+
 		/// <summary>
 		/// Creates a new <see cref="RandomObjectGenerator"/> instance.
 		/// </summary>
@@ -57,16 +60,14 @@ namespace Spackle
 		/// <param name="random">The <see cref="Random"/> instance to use.</param>
 		/// <param name="generators">The generators to use.</param>
 		/// <exception cref="ArgumentNullException">
-		/// Thrown if <paramref name="random"/> or <paramref name="generators"/>
+		/// Thrown if <paramref name="Random"/> or <paramref name="generators"/>
 		/// is <c>null</c>.
 		/// </exception>
 		public RandomObjectGenerator(Random random,
 			Dictionary<Type, Func<RandomObjectGeneratorResults>> generators)
 		{
-			random.CheckParameterForNull("random");
-			generators.CheckParameterForNull("generators");
-			this.Random = random;
-			this.Generators = generators;
+			this.random = random ?? throw new ArgumentNullException(nameof(random)) ;
+			this.generators = generators ?? throw new ArgumentNullException(nameof(generators));
 		}
 
 		/// <summary>
@@ -143,14 +144,14 @@ namespace Spackle
 		private byte[] GetBuffer(int size)
 		{
 			var buffer = new byte[size];
-			this.Random.NextBytes(buffer);
+			this.random.NextBytes(buffer);
 			return buffer;
 		}
 
 		private object GetEnumerationValue(Type target)
 		{
 			var values = Enum.GetValues(target);
-			return values.GetValue(this.Random.Next(values.Length));
+			return values.GetValue(this.random.Next(values.Length));
 		}
 
 		private RandomObjectGeneratorResults GetHandledValue(Type target)
@@ -171,7 +172,7 @@ namespace Spackle
 			}
 			else if (typeof(bool).GetTypeInfo().IsAssignableFrom(target))
 			{
-				result = new RandomObjectGeneratorResults(true, this.Random.Next(2) == 1);
+				result = new RandomObjectGeneratorResults(true, this.random.Next(2) == 1);
 			}
 			else if (typeof(byte).GetTypeInfo().IsAssignableFrom(target))
 			{
@@ -219,17 +220,17 @@ namespace Spackle
 			else if (typeof(float).GetTypeInfo().IsAssignableFrom(target))
 			{
 				// Lifted from: http://stackoverflow.com/questions/3365337/best-way-to-generate-a-random-float-in-c-sharp
-				var mantissa = (this.Random.NextDouble() * 2.0) - 1.0;
-				var exponent = Math.Pow(2.0, this.Random.Next(-126, 128));
+				var mantissa = (this.random.NextDouble() * 2.0) - 1.0;
+				var exponent = Math.Pow(2.0, this.random.Next(-126, 128));
 				result = new RandomObjectGeneratorResults(true, (float)(mantissa * exponent));
 			}
 			else if (typeof(double).GetTypeInfo().IsAssignableFrom(target))
 			{
-				result = new RandomObjectGeneratorResults(true, this.Random.NextDouble());
+				result = new RandomObjectGeneratorResults(true, this.random.NextDouble());
 			}
 			else if (typeof(decimal).GetTypeInfo().IsAssignableFrom(target))
 			{
-				result = new RandomObjectGeneratorResults(true, new decimal(this.Random.Next(1, int.MaxValue)));
+				result = new RandomObjectGeneratorResults(true, new decimal(this.random.Next(1, int.MaxValue)));
 			}
 			else if (typeof(Guid).GetTypeInfo().IsAssignableFrom(target))
 			{
@@ -251,7 +252,7 @@ namespace Spackle
 			else if (typeof(TimeSpan).GetTypeInfo().IsAssignableFrom(target))
 			{
 				result = new RandomObjectGeneratorResults(true, new TimeSpan(
-					this.Random.Next(1, 10), this.Random.Next(0, 24), this.Random.Next(0, 60), this.Random.Next(0, 60)));
+					this.random.Next(1, 10), this.random.Next(0, 24), this.random.Next(0, 60), this.random.Next(0, 60)));
 			}
 			else if (target.GetTypeInfo().IsGenericType && 
 				typeof(ReadOnlyCollection<>).GetTypeInfo().IsAssignableFrom(target.GetGenericTypeDefinition()))
@@ -278,9 +279,9 @@ namespace Spackle
 		{
 			RandomObjectGeneratorResults result = null;
 
-			if (this.Generators.ContainsKey(target))
+			if (this.generators.ContainsKey(target))
 			{
-				result = this.Generators[target]();
+				result = this.generators[target]();
 
 				if (result == null || !result.Handled)
 				{
@@ -294,8 +295,5 @@ namespace Spackle
 
 			return result;
 		}
-
-		private Dictionary<Type, Func<RandomObjectGeneratorResults>> Generators { get; }
-		private Random Random;
 	}
 }

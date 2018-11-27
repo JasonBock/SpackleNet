@@ -50,7 +50,7 @@ namespace Spackle
 				areEqual = true;
 			}
 
-			if((object)a != null && (object)b != null)
+			if(!(a is null) && !(b is null))
 			{
 				areEqual = a.Equals(b);
 			}

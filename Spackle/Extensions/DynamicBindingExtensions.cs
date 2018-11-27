@@ -38,9 +38,7 @@ namespace Spackle.Extensions
 
 		private static Binder<T> BuildBinder<T>(T newValue, Expression<Func<T>> locator, bool dispose)
 		{
-			var location = locator.Body as MemberExpression;
-
-			if (location == null)
+			if (!(locator.Body is MemberExpression location))
 			{
 				throw new ArgumentException("Must be property or field expression", nameof(location));
 			}

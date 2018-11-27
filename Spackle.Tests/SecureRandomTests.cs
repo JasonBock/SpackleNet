@@ -16,51 +16,21 @@ namespace Spackle.Tests
 			}
 		}
 
-		[Fact]
-		public void CreateBigIntegerWithLengthOf1()
+		[Theory]
+		[InlineData(1ul)]
+		[InlineData(2ul)]
+		[InlineData(9ul)]
+		[InlineData(10ul)]
+		[InlineData(11ul)]
+		[InlineData(20ul)]
+		[InlineData(50ul)]
+		[InlineData(100ul)]
+		public void CreateBigIntegerWithSpecifiedLength(ulong length)
 		{
-			const int length = 1;
-
 			using(var random = new SecureRandom())
 			{
 				var value = random.GetBigInteger(length);
-				Assert.Equal(length, value.ToString().Length);
-			}
-		}
-
-		[Fact]
-		public void CreateBigIntegerWithLengthOf2()
-		{
-			const int length = 2;
-
-			using(var random = new SecureRandom())
-			{
-				var value = random.GetBigInteger(length);
-				Assert.Equal(length, value.ToString().Length);
-			}
-		}
-
-		[Fact]
-		public void CreateBigIntegerWithLengthOf9()
-		{
-			const int length = 9;
-
-			using(var random = new SecureRandom())
-			{
-				var value = random.GetBigInteger(length);
-				Assert.Equal(length, value.ToString().Length);
-			}
-		}
-
-		[Fact]
-		public void CreateBigIntegerWithLengthOf10()
-		{
-			const int length = 10;
-
-			using(var random = new SecureRandom())
-			{
-				var value = random.GetBigInteger(length);
-				Assert.Equal(length, value.ToString().Length);
+				Assert.Equal((int)length, value.ToString().Length);
 			}
 		}
 
