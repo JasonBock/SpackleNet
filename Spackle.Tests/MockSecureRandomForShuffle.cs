@@ -8,35 +8,18 @@ namespace Spackle.Tests
 		// to understand why the values are being generated the way they are.
 		public override int Next(int maxValue)
 		{
-			var value = 0;
-			
-			switch(this.MethodCallCount)
+			var value = this.MethodCallCount switch
 			{
-				case 0:
-					value = 5;
-					break;
-				case 1:
-					value = 1;
-					break;
-				case 2:
-					value = 5;
-					break;
-				case 3:
-					value = 0;
-					break;
-				case 4:
-					value = 2;
-					break;
-				case 5:
-					value = 2;
-					break;
-				case 6:
-					value = 0;
-					break;
-				default:
-					throw new NotImplementedException();
-			}
-			
+				0 => 5,
+				1 => 1,
+				2 => 5,
+				3 => 0,
+				4 => 2,
+				5 => 2,
+				6 => 0,
+				_ => throw new NotImplementedException()
+			};
+
 			this.MethodCallCount++;
 			
 			return value;

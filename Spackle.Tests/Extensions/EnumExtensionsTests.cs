@@ -6,7 +6,6 @@ namespace Spackle.Tests.Extensions
 {
 	public sealed class EnumExtensionsTests
 	{
-		private const string Description = "Description";
 		private const string Name = "ValueThatHasDescription";
 
 		[Fact]

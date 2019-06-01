@@ -10,10 +10,8 @@ namespace Spackle.Tests
 		[Fact]
 		public void CreateBigIntegerWithZeroLength()
 		{
-			using(var random = new SecureRandom())
-			{
-				Assert.Throws<ArgumentException>(() => random.GetBigInteger(0));
-			}
+			using var random = new SecureRandom();
+			Assert.Throws<ArgumentException>(() => random.GetBigInteger(0));
 		}
 
 		[Theory]
@@ -27,29 +25,23 @@ namespace Spackle.Tests
 		[InlineData(100ul)]
 		public void CreateBigIntegerWithSpecifiedLength(ulong length)
 		{
-			using(var random = new SecureRandom())
-			{
-				var value = random.GetBigInteger(length);
-				Assert.Equal((int)length, value.ToString().Length);
-			}
+			using var random = new SecureRandom();
+			var value = random.GetBigInteger(length);
+			Assert.Equal((int)length, value.ToString().Length);
 		}
 
 		[Fact]
 		public void CreateGeneratorWithDefaultProvider()
 		{
-			using (var random = new SecureRandom())
-			{
-				Assert.NotNull(random.Generator);
-			}
+			using var random = new SecureRandom();
+			Assert.NotNull(random.Generator);
 		}
 
 		[Fact]
 		public void CreateGeneratorWithGivenProvider()
 		{
-			using (var random = new SecureRandom(new MyGenerator()))
-			{
-				Assert.NotNull(random.Generator);
-			}
+			using var random = new SecureRandom(new MyGenerator());
+			Assert.NotNull(random.Generator);
 		}
 
 		[Fact]
@@ -59,116 +51,100 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateIntegerWithNegativeUpperBound()
 		{
-			using (var random = new SecureRandom())
-			{
-				Assert.Throws<ArgumentException>(() => random.Next(-2));
-			}
+			using var random = new SecureRandom();
+			Assert.Throws<ArgumentException>(() => random.Next(-2));
 		}
 
 		[Fact]
 		public void GenerateIntegers()
 		{
-			using (var random = new SecureRandom())
+			using var random = new SecureRandom();
+			for (var i = 0; i < 100000; i++)
 			{
-				for (var i = 0; i < 100000; i++)
-				{
-					var x = random.Next();
-					Assert.True(x >= 0);
-				}
+				var x = random.Next();
+				Assert.True(x >= 0);
 			}
 		}
 
 		[Fact]
 		public void GenerateIntegersWithMaxLimit()
 		{
-			using (var random = new SecureRandom())
-			{
-				const int Max = 25;
+			using var random = new SecureRandom();
+			const int Max = 25;
 
-				for (var i = 0; i < 100000; i++)
-				{
-					var x = random.Next(Max);
-					Assert.True(x >= 0);
-					Assert.True(x < Max);
-				}
+			for (var i = 0; i < 100000; i++)
+			{
+				var x = random.Next(Max);
+				Assert.True(x >= 0);
+				Assert.True(x < Max);
 			}
 		}
 
 		[Fact]
 		public void GenerateIntegersWithPositiveMaxAndMinLimits()
 		{
-			using (var random = new SecureRandom())
-			{
-				const int Max = 25;
-				const int Min = 15;
+			using var random = new SecureRandom();
+			const int Max = 25;
+			const int Min = 15;
 
-				for (var i = 0; i < 100000; i++)
-				{
-					var x = random.Next(Min, Max);
-					Assert.True(x >= Min);
-					Assert.True(x < Max);
-				}
+			for (var i = 0; i < 100000; i++)
+			{
+				var x = random.Next(Min, Max);
+				Assert.True(x >= Min);
+				Assert.True(x < Max);
 			}
 		}
 
 		[Fact]
 		public void GenerateIntegersWithPositiveMaxAndNegativeMinLimits()
 		{
-			using (var random = new SecureRandom())
-			{
-				const int Max = 25;
-				const int Min = -15;
+			using var random = new SecureRandom();
+			const int Max = 25;
+			const int Min = -15;
 
-				for (var i = 0; i < 100000; i++)
-				{
-					var x = random.Next(Min, Max);
-					Assert.True(x >= Min);
-					Assert.True(x < Max);
-				}
+			for (var i = 0; i < 100000; i++)
+			{
+				var x = random.Next(Min, Max);
+				Assert.True(x >= Min);
+				Assert.True(x < Max);
 			}
 		}
 
 		[Fact]
 		public void GenerateIntegersWithNegativeMaxAndMinLimits()
 		{
-			using (var random = new SecureRandom())
-			{
-				const int Max = -15;
-				const int Min = -25;
+			using var random = new SecureRandom();
+			const int Max = -15;
+			const int Min = -25;
 
-				for (var i = 0; i < 100000; i++)
-				{
-					var x = random.Next(Min, Max);
-					Assert.True(x >= Min);
-					Assert.True(x < Max);
-				}
+			for (var i = 0; i < 100000; i++)
+			{
+				var x = random.Next(Min, Max);
+				Assert.True(x >= Min);
+				Assert.True(x < Max);
 			}
 		}
 
 		[Fact]
 		public void GenerateIntegersWithSameMaxAndMinLimits()
 		{
-			using (var random = new SecureRandom())
-			{
-				const int Max = 25;
-				const int Min = 25;
+			using var random = new SecureRandom();
+			const int Max = 25;
+			const int Min = 25;
 
-				for (var i = 0; i < 100000; i++)
-				{
-					Assert.True(random.Next(Min, Max) == Min);
-				}
+			for (var i = 0; i < 100000; i++)
+			{
+				Assert.True(random.Next(Min, Max) == Min);
 			}
 		}
 
 		[Fact]
 		public void GenerateIntegersWithInvalidMaxAndMinValues()
 		{
-			using (var random = new SecureRandom())
-			{
-				const int Max = -25;
-				const int Min = 25;
-				Assert.Throws<ArgumentException>(() => random.Next(Min, Max));
-			}
+			using var random = new SecureRandom();
+			const int Max = -25;
+			const int Min = 25;
+			Assert.Throws<ArgumentException>(() => random.Next(Min, Max));
 		}
 
 		[Fact]
@@ -205,10 +181,8 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateBits()
 		{
-			using (var random = new SecureRandom())
-			{
-				random.NextBytes(new byte[10]);
-			}
+			using var random = new SecureRandom();
+			random.NextBytes(new byte[10]);
 		}
 
 		[Fact]
@@ -224,19 +198,15 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateBitsWithNullArgument()
 		{
-			using (var random = new SecureRandom())
-			{
-				Assert.Throws<ArgumentNullException>(() => random.NextBytes(null));
-			}
+			using var random = new SecureRandom();
+			Assert.Throws<ArgumentNullException>(() => random.NextBytes(null));
 		}
 
 		[Fact]
 		public void GenerateBoolean()
 		{
-			using (var random = new SecureRandom())
-			{
-				var @switch = random.NextBoolean();
-			}
+			using var random = new SecureRandom();
+			_ = random.NextBoolean();
 		}
 
 		[Fact]
@@ -252,14 +222,12 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateDoubles()
 		{
-			using (var random = new SecureRandom())
+			using var random = new SecureRandom();
+			for (var i = 0; i < 500000; i++)
 			{
-				for (var i = 0; i < 500000; i++)
-				{
-					var d = random.NextDouble();
-					Assert.True(d >= 0.0);
-					Assert.True(d < 1.0);
-				}
+				var d = random.NextDouble();
+				Assert.True(d >= 0.0);
+				Assert.True(d < 1.0);
 			}
 		}
 
@@ -287,53 +255,9 @@ namespace Spackle.Tests
 		public void GetByteValuesDuplicatesAllowed()
 		{
 			var generator = new MockRandomNumberGeneratorForGetByteValues(ValueGeneration.DuplicatesAllowed);
-			using (var random = new SecureRandom(generator))
+			using var random = new SecureRandom(generator);
+			var elements = random.GetByteValues(10, ValueGeneration.DuplicatesAllowed);
 			{
-				var elements = random.GetByteValues(10, ValueGeneration.DuplicatesAllowed);
-				{
-					Assert.Equal(10, elements.Length);
-
-					for (var i = 0; i < elements.Length; i++)
-					{
-						var element = elements[i];
-						Assert.True(element >= byte.MinValue);
-						Assert.True(element <= byte.MaxValue);
-					}
-					Assert.Equal(1, generator.MethodCallCount);
-				}
-			}
-		}
-
-		[Fact]
-		public void GetByteValuesDuplicatesAllowedAndElementNumberExceedsByteMaximum()
-		{
-			using (var random = new SecureRandom())
-			{
-				var elements = random.GetByteValues(2560, ValueGeneration.DuplicatesAllowed);
-
-				Assert.Equal(2560, elements.Length);
-
-				for (var i = 0; i < elements.Length; i++)
-				{
-					var element = elements[i];
-					Assert.True(element >= byte.MinValue);
-					Assert.True(element <= byte.MaxValue);
-				}
-
-				Assert.NotEqual(elements.Length, new HashSet<byte>(elements).Count);
-			}
-		}
-
-		[Fact]
-		public void GetByteValuesUniqueValuesOnly()
-		{
-			var generator = new MockRandomNumberGeneratorForGetByteValues(ValueGeneration.UniqueValuesOnly);
-
-			using (var random = new SecureRandom(generator))
-			{
-				var elements = random.GetByteValues(
-					10, ValueGeneration.UniqueValuesOnly);
-
 				Assert.Equal(10, elements.Length);
 
 				for (var i = 0; i < elements.Length; i++)
@@ -342,19 +266,55 @@ namespace Spackle.Tests
 					Assert.True(element >= byte.MinValue);
 					Assert.True(element <= byte.MaxValue);
 				}
-
-				Assert.Equal(elements.Length, new HashSet<byte>(elements).Count);
-				Assert.Equal(11, generator.MethodCallCount);
+				Assert.Equal(1, generator.MethodCallCount);
 			}
+		}
+
+		[Fact]
+		public void GetByteValuesDuplicatesAllowedAndElementNumberExceedsByteMaximum()
+		{
+			using var random = new SecureRandom();
+			var elements = random.GetByteValues(2560, ValueGeneration.DuplicatesAllowed);
+
+			Assert.Equal(2560, elements.Length);
+
+			for (var i = 0; i < elements.Length; i++)
+			{
+				var element = elements[i];
+				Assert.True(element >= byte.MinValue);
+				Assert.True(element <= byte.MaxValue);
+			}
+
+			Assert.NotEqual(elements.Length, new HashSet<byte>(elements).Count);
+		}
+
+		[Fact]
+		public void GetByteValuesUniqueValuesOnly()
+		{
+			var generator = new MockRandomNumberGeneratorForGetByteValues(ValueGeneration.UniqueValuesOnly);
+
+			using var random = new SecureRandom(generator);
+			var elements = random.GetByteValues(
+10, ValueGeneration.UniqueValuesOnly);
+
+			Assert.Equal(10, elements.Length);
+
+			for (var i = 0; i < elements.Length; i++)
+			{
+				var element = elements[i];
+				Assert.True(element >= byte.MinValue);
+				Assert.True(element <= byte.MaxValue);
+			}
+
+			Assert.Equal(elements.Length, new HashSet<byte>(elements).Count);
+			Assert.Equal(11, generator.MethodCallCount);
 		}
 
 		[Fact]
 		public void GetByteValuesUniqueValuesOnlyButElementNumberIsTooBig()
 		{
-			using (var random = new SecureRandom())
-			{
-				Assert.Throws<ArgumentException>(() => random.GetByteValues(2560, ValueGeneration.UniqueValuesOnly));
-			}
+			using var random = new SecureRandom();
+			Assert.Throws<ArgumentException>(() => random.GetByteValues(2560, ValueGeneration.UniqueValuesOnly));
 		}
 
 		[Fact]
@@ -370,16 +330,14 @@ namespace Spackle.Tests
 		[Fact]
 		public void GetDoubleValues()
 		{
-			using (var random = new SecureRandom())
-			{
-				var elements = random.GetDoubleValues(8);
+			using var random = new SecureRandom();
+			var elements = random.GetDoubleValues(8);
 
-				for (var i = 0; i < elements.Length; i++)
-				{
-					var element = elements[i];
-					Assert.True(element >= double.MinValue);
-					Assert.True(element < double.MaxValue);
-				}
+			for (var i = 0; i < elements.Length; i++)
+			{
+				var element = elements[i];
+				Assert.True(element >= double.MinValue);
+				Assert.True(element < double.MaxValue);
 			}
 		}
 
@@ -388,21 +346,19 @@ namespace Spackle.Tests
 		{
 			var generator = new MockRandomNumberGeneratorForGetInt32Values(ValueGeneration.DuplicatesAllowed);
 
-			using (var random = new SecureRandom(generator))
+			using var random = new SecureRandom(generator);
+			var elements = random.GetInt32Values(8, ValueGeneration.DuplicatesAllowed);
+
+			Assert.Equal(8, elements.Length);
+
+			for (var i = 0; i < elements.Length; i++)
 			{
-				var elements = random.GetInt32Values(8, ValueGeneration.DuplicatesAllowed);
-
-				Assert.Equal(8, elements.Length);
-
-				for (var i = 0; i < elements.Length; i++)
-				{
-					var element = elements[i];
-					Assert.True(element >= int.MinValue);
-					Assert.True(element < int.MaxValue);
-				}
-
-				Assert.Equal(8, generator.MethodCallCount);
+				var element = elements[i];
+				Assert.True(element >= int.MinValue);
+				Assert.True(element < int.MaxValue);
 			}
+
+			Assert.Equal(8, generator.MethodCallCount);
 		}
 
 		[Fact]
@@ -410,32 +366,28 @@ namespace Spackle.Tests
 		{
 			var generator = new MockRandomNumberGeneratorForGetInt32Values(ValueGeneration.UniqueValuesOnly);
 
-			using (var random = new SecureRandom(generator))
+			using var random = new SecureRandom(generator);
+			var elements = random.GetInt32Values(
+8, ValueGeneration.UniqueValuesOnly);
+
+			Assert.Equal(8, elements.Length);
+
+			for (var i = 0; i < elements.Length; i++)
 			{
-				var elements = random.GetInt32Values(
-					8, ValueGeneration.UniqueValuesOnly);
-
-				Assert.Equal(8, elements.Length);
-
-				for (var i = 0; i < elements.Length; i++)
-				{
-					var element = elements[i];
-					Assert.True(element >= int.MinValue);
-					Assert.True(element <= int.MaxValue);
-				}
-
-				Assert.Equal(elements.Length, new HashSet<int>(elements).Count);
-				Assert.Equal(9, generator.MethodCallCount);
+				var element = elements[i];
+				Assert.True(element >= int.MinValue);
+				Assert.True(element <= int.MaxValue);
 			}
+
+			Assert.Equal(elements.Length, new HashSet<int>(elements).Count);
+			Assert.Equal(9, generator.MethodCallCount);
 		}
 
 		[Fact]
 		public void GetInt32ValuesUniqueValuesOnlyButElementNumberIsTooBig()
 		{
-			using (var random = new SecureRandom())
-			{
-				Assert.Throws<ArgumentException>(() => random.GetInt32Values((uint)int.MaxValue + 10u, ValueGeneration.UniqueValuesOnly));
-			}
+			using var random = new SecureRandom();
+			Assert.Throws<ArgumentException>(() => random.GetInt32Values((uint)int.MaxValue + 10u, ValueGeneration.UniqueValuesOnly));
 		}
 
 		[Fact]

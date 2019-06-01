@@ -20,27 +20,6 @@ namespace Spackle.Extensions
 		/// </summary>
 		public const string Unknown = "UNKNOWN";
 
-		private static string FormatMethod(MethodBase targetMethod)
-		{
-			if(targetMethod != null)
-			{
-				var builder = string.Join<string>(", ",
-					(from parameter in targetMethod.GetParameters()
-					 select parameter.ParameterType.FullName).ToArray());
-				var assemblyName = targetMethod.DeclaringType != null ?
-					targetMethod.DeclaringType.GetTypeInfo().Assembly.GetName().Name :
-					ExceptionExtensions.Unknown;
-				var typeName = targetMethod.DeclaringType != null ?
-					targetMethod.DeclaringType.ToString() : ExceptionExtensions.Unknown;
-
-				return $"[{assemblyName}], {typeName}::{targetMethod.Name}({builder.ToString()})";
-			}
-			else
-			{
-				return ExceptionExtensions.Unknown;
-			}
-		}
-
 		/// <summary>
 		/// Prints the contents of <paramref name="this"/> to the console's output stream.
 		/// </summary>

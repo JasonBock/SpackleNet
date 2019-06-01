@@ -16,10 +16,8 @@ namespace Spackle.Tests
 		{
 			if (this.Values == ValueGeneration.DuplicatesAllowed)
 			{
-				using (var generator = RandomNumberGenerator.Create())
-				{
-					generator.GetBytes(data);
-				}
+				using var generator = RandomNumberGenerator.Create();
+				generator.GetBytes(data);
 			}
 			else
 			{

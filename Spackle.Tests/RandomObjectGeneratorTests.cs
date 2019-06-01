@@ -405,21 +405,9 @@ namespace Spackle.Tests
 
 			public override int Next(int maxValue) => this.IntegerValue;
 
-			public override int Next(int minValue, int maxValue)
-			{
-				var result = 0;
-
-				if (this.TimeSpanValues != null)
-				{
-					result = this.TimeSpanValues.Pop();
-				}
-				else
-				{
-					result = this.IntegerValue;
-				}
-
-				return result;
-			}
+			public override int Next(int minValue, int maxValue) =>
+				this.TimeSpanValues != null ?
+					this.TimeSpanValues.Pop() : this.IntegerValue;
 
 			public override double NextDouble() => this.DoubleValue;
 

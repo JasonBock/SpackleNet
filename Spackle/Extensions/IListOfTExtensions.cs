@@ -8,15 +8,13 @@ namespace Spackle.Extensions
 	/// </summary>
 	public static class IListOfTExtensions
 	{
-		private static string ErrorOutOfPosition = "The positions parameter is not a valid position value.";
+		private const string ErrorOutOfPosition = "The positions parameter is not a valid position value.";
 
 		private static int GCD(int a, int b)
 		{
-			var remainder = 0;
-
-			while(b != 0)
+			while (b != 0)
 			{
-				remainder = a % b;
+				var remainder = a % b;
 				a = b;
 				b = remainder;
 			}
@@ -95,10 +93,8 @@ namespace Spackle.Extensions
 		{
 			@this.CheckParameterForNull(nameof(@this));
 
-			using(var random = new SecureRandom())
-			{
-				@this.Shuffle(random);
-			}
+			using var random = new SecureRandom();
+			@this.Shuffle(random);
 		}
 
 		/// <summary>

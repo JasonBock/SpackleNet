@@ -104,19 +104,10 @@ namespace Spackle
 
 		private object Generate(Type target)
 		{
-			object result = null;
 			var generated = this.GetValue(target);
 
-			if (!generated.Handled)
-			{
-				result = Activator.CreateInstance(target, this.GetArgumentValues(target));
-			}
-			else
-			{
-				result = generated.Value;
-			}
-
-			return result;
+			return !generated.Handled ?
+				Activator.CreateInstance(target, this.GetArgumentValues(target)) : generated.Value;
 		}
 
 		private object[] GetArgumentValues(Type target)
@@ -156,7 +147,7 @@ namespace Spackle
 
 		private RandomObjectGeneratorResults GetHandledValue(Type target)
 		{
-			RandomObjectGeneratorResults result = null;
+			RandomObjectGeneratorResults result;
 
 			if (target.IsArray)
 			{

@@ -14,20 +14,18 @@ namespace Spackle.Tests.Extensions
 			var original = generator.Generate<string>();
 			var newValue = generator.Generate<string>();
 
-			using (var writer = new TestWriter())
+			using var writer = new TestWriter();
+			writer.Write(original);
+
+			var builder = new StringBuilder();
+
+			using (new StringWriter(builder).With(() => writer.Writer))
 			{
-				writer.Write(original);
-
-				var builder = new StringBuilder();
-
-				using (new StringWriter(builder).With(() => writer.Writer))
-				{
-					writer.Write(newValue);
-				}
-
-				Assert.Equal(newValue, builder.ToString());
-				Assert.Equal(original, writer.Writer.GetStringBuilder().ToString());
+				writer.Write(newValue);
 			}
+
+			Assert.Equal(newValue, builder.ToString());
+			Assert.Equal(original, writer.Writer.GetStringBuilder().ToString());
 		}
 
 		[Fact]
@@ -37,21 +35,19 @@ namespace Spackle.Tests.Extensions
 			var original = generator.Generate<string>();
 			var newValue = generator.Generate<string>();
 
-			using (var writer = new TestWriter())
+			using var writer = new TestWriter();
+			writer.Write(original);
+
+			var builder = new StringBuilder();
+
+			using (new StringWriter(builder).With(
+				() => writer.Writer, (value) => writer.Writer = value))
 			{
-				writer.Write(original);
-
-				var builder = new StringBuilder();
-
-				using (new StringWriter(builder).With(
-					() => writer.Writer, (value) => writer.Writer = value))
-				{
-					writer.Write(newValue);
-				}
-
-				Assert.Equal(newValue, builder.ToString());
-				Assert.Equal(original, writer.Writer.GetStringBuilder().ToString());
+				writer.Write(newValue);
 			}
+
+			Assert.Equal(newValue, builder.ToString());
+			Assert.Equal(original, writer.Writer.GetStringBuilder().ToString());
 		}
 
 		[Fact]

@@ -356,13 +356,12 @@ namespace Spackle
 				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
-			var value = 0;
-
 			if (maxValue < minValue)
 			{
 				throw new ArgumentException("maxValue must be greater than minValue.", nameof(maxValue));
 			}
 
+			int value;
 			if (maxValue == minValue)
 			{
 				value = minValue;

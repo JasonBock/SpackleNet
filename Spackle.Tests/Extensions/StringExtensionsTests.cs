@@ -33,8 +33,7 @@ namespace Spackle.Tests.Extensions
 		public void TryAsUriWithInvalidForamt()
 		{
 			const string Site = "this is not a Uri";
-
-			var success = Site.TryAsUri(out var result);
+			var success = Site.TryAsUri(out _);
 			Assert.False(success);
 		}
 	}

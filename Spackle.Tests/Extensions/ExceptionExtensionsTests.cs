@@ -21,17 +21,15 @@ namespace Spackle.Tests.Extensions
 			}
 			catch (NotImplementedException e)
 			{
-				using (var writer = new StringWriter(CultureInfo.CurrentCulture))
-				{
-					e.Print(writer);
-					var content = writer.GetStringBuilder().ToString();
+				using var writer = new StringWriter(CultureInfo.CurrentCulture);
+				e.Print(writer);
+				var content = writer.GetStringBuilder().ToString();
 
-					Assert.Contains("Type Name: System.NotImplementedException", content);
-					Assert.Contains("Source: Spackle.Tests", content);
-					this.VerifyFormat(content);
-					Assert.DoesNotContain("Data:", content);
-					Assert.DoesNotContain("Custom Properties:", content);
-				}
+				Assert.Contains("Type Name: System.NotImplementedException", content);
+				Assert.Contains("Source: Spackle.Tests", content);
+				this.VerifyFormat(content);
+				Assert.DoesNotContain("Data:", content);
+				Assert.DoesNotContain("Custom Properties:", content);
 			}
 		}
 
@@ -41,17 +39,15 @@ namespace Spackle.Tests.Extensions
 		public void FormatWhenExceptionHasNotBeenThrown()
 		{
 			var exception = new NotSupportedException();
-			using (var writer = new StringWriter(CultureInfo.CurrentCulture))
-			{
-				exception.Print(writer);
-				var content = writer.GetStringBuilder().ToString();
+			using var writer = new StringWriter(CultureInfo.CurrentCulture);
+			exception.Print(writer);
+			var content = writer.GetStringBuilder().ToString();
 
-				Assert.Contains("Type Name: System.NotSupportedException", content);
-				Assert.Contains("Source: ", content);
-				this.VerifyFormatWhenExceptionHasNotBeenThrown(content);
-				Assert.DoesNotContain("Data:", content);
-				Assert.DoesNotContain("Custom Properties:", content);
-			}
+			Assert.Contains("Type Name: System.NotSupportedException", content);
+			Assert.Contains("Source: ", content);
+			this.VerifyFormatWhenExceptionHasNotBeenThrown(content);
+			Assert.DoesNotContain("Data:", content);
+			Assert.DoesNotContain("Custom Properties:", content);
 		}
 
 		partial void VerifyFormatWhenExceptionHasNotBeenThrown(string content);
@@ -70,18 +66,16 @@ namespace Spackle.Tests.Extensions
 
 				try
 				{
-					using (var writer = new StringWriter(CultureInfo.CurrentCulture))
-					{
-						Console.SetOut(writer);
-						e.Print();
-						var content = writer.GetStringBuilder().ToString();
+					using var writer = new StringWriter(CultureInfo.CurrentCulture);
+					Console.SetOut(writer);
+					e.Print();
+					var content = writer.GetStringBuilder().ToString();
 
-						Assert.Contains("Type Name: System.NotImplementedException", content);
-						Assert.Contains("Source: Spackle.Tests", content);
-						this.VerifyFormatToConsole(content);
-						Assert.DoesNotContain("Data:", content);
-						Assert.DoesNotContain("Custom Properties:", content);
-					}
+					Assert.Contains("Type Name: System.NotImplementedException", content);
+					Assert.Contains("Source: Spackle.Tests", content);
+					this.VerifyFormatToConsole(content);
+					Assert.DoesNotContain("Data:", content);
+					Assert.DoesNotContain("Custom Properties:", content);
 				}
 				finally
 				{
@@ -107,17 +101,15 @@ namespace Spackle.Tests.Extensions
 			}
 			catch (NotImplementedException e)
 			{
-				using (var writer = new StringWriter(CultureInfo.CurrentCulture))
-				{
-					e.Print(writer);
-					var content = writer.GetStringBuilder().ToString();
+				using var writer = new StringWriter(CultureInfo.CurrentCulture);
+				e.Print(writer);
+				var content = writer.GetStringBuilder().ToString();
 
-					Assert.Contains("Type Name: System.NotImplementedException", content);
-					Assert.Contains("Source: Anonymously Hosted DynamicMethods Assembly", content);
-					this.VerifyFormatFromExceptionRaisedInDynamicMethod(content);
-					Assert.DoesNotContain("Data:", content);
-					Assert.DoesNotContain("Custom Properties:", content);
-				}
+				Assert.Contains("Type Name: System.NotImplementedException", content);
+				Assert.Contains("Source: Anonymously Hosted DynamicMethods Assembly", content);
+				this.VerifyFormatFromExceptionRaisedInDynamicMethod(content);
+				Assert.DoesNotContain("Data:", content);
+				Assert.DoesNotContain("Custom Properties:", content);
 			}
 		}
 
@@ -136,19 +128,17 @@ namespace Spackle.Tests.Extensions
 			}
 			catch (NotImplementedException e)
 			{
-				using (var writer = new StringWriter(CultureInfo.CurrentCulture))
-				{
-					e.Print(writer);
-					var content = writer.GetStringBuilder().ToString();
+				using var writer = new StringWriter(CultureInfo.CurrentCulture);
+				e.Print(writer);
+				var content = writer.GetStringBuilder().ToString();
 
-					Assert.Contains("Type Name: System.NotImplementedException", content);
-					Assert.Contains("Source: Spackle.Tests", content);
-					this.VerifyFormatWithExceptionThatContainsNullValueInData(content);
-					Assert.Contains("Data:", content);
-					Assert.Contains(string.Format(CultureInfo.CurrentCulture,
-						"Key: {0}, Value: null", key), content);
-					Assert.DoesNotContain("Custom Properties:", content);
-				}
+				Assert.Contains("Type Name: System.NotImplementedException", content);
+				Assert.Contains("Source: Spackle.Tests", content);
+				this.VerifyFormatWithExceptionThatContainsNullValueInData(content);
+				Assert.Contains("Data:", content);
+				Assert.Contains(string.Format(CultureInfo.CurrentCulture,
+					"Key: {0}, Value: null", key), content);
+				Assert.DoesNotContain("Custom Properties:", content);
 			}
 		}
 
@@ -164,17 +154,15 @@ namespace Spackle.Tests.Extensions
 			}
 			catch (NotImplementedException e)
 			{
-				using (var writer = new StringWriter(CultureInfo.CurrentCulture))
-				{
-					e.Print(writer);
-					var content = writer.GetStringBuilder().ToString();
+				using var writer = new StringWriter(CultureInfo.CurrentCulture);
+				e.Print(writer);
+				var content = writer.GetStringBuilder().ToString();
 
-					Assert.Contains("Type Name: System.NotImplementedException", content);
-					Assert.Contains("Source: Spackle.Tests", content);
-					this.VerifyFormatWithMethodThatHasArguments(content);
-					Assert.DoesNotContain("Data:", content);
-					Assert.DoesNotContain("Custom Properties:", content);
-				}
+				Assert.Contains("Type Name: System.NotImplementedException", content);
+				Assert.Contains("Source: Spackle.Tests", content);
+				this.VerifyFormatWithMethodThatHasArguments(content);
+				Assert.DoesNotContain("Data:", content);
+				Assert.DoesNotContain("Custom Properties:", content);
 			}
 		}
 
@@ -198,18 +186,16 @@ namespace Spackle.Tests.Extensions
 			}
 			catch (NotImplementedException e)
 			{
-				using (var writer = new StringWriter(CultureInfo.CurrentCulture))
-				{
-					e.Print(writer);
-					var content = writer.GetStringBuilder().ToString();
+				using var writer = new StringWriter(CultureInfo.CurrentCulture);
+				e.Print(writer);
+				var content = writer.GetStringBuilder().ToString();
 
-					Assert.Contains("Type Name: System.NotImplementedException", content);
-					Assert.Contains("Type Name: System.NotSupportedException", content);
-					Assert.Contains("Source: Spackle.Tests", content);
-					this.VerifyFormatWithInnerException(content);
-					Assert.DoesNotContain("Data:", content);
-					Assert.DoesNotContain("Custom Properties:", content);
-				}
+				Assert.Contains("Type Name: System.NotImplementedException", content);
+				Assert.Contains("Type Name: System.NotSupportedException", content);
+				Assert.Contains("Source: Spackle.Tests", content);
+				this.VerifyFormatWithInnerException(content);
+				Assert.DoesNotContain("Data:", content);
+				Assert.DoesNotContain("Custom Properties:", content);
 			}
 		}
 
@@ -225,19 +211,17 @@ namespace Spackle.Tests.Extensions
 			}
 			catch (NotImplementedException e)
 			{
-				using (var writer = new StringWriter(CultureInfo.CurrentCulture))
-				{
-					e.Print(writer);
-					var content = writer.GetStringBuilder().ToString();
+				using var writer = new StringWriter(CultureInfo.CurrentCulture);
+				e.Print(writer);
+				var content = writer.GetStringBuilder().ToString();
 
-					Assert.Contains("Type Name: System.NotImplementedException", content);
-					Assert.Contains("Source: Spackle.Tests", content);
-					this.VerifyFormatWithData(content);
-					Assert.Contains("Data:", content);
-					Assert.Contains("Key: This, Value: That", content);
-					Assert.Contains("Key: And, Value: 33", content);
-					Assert.DoesNotContain("Custom Properties:", content);
-				}
+				Assert.Contains("Type Name: System.NotImplementedException", content);
+				Assert.Contains("Source: Spackle.Tests", content);
+				this.VerifyFormatWithData(content);
+				Assert.Contains("Data:", content);
+				Assert.Contains("Key: This, Value: That", content);
+				Assert.Contains("Key: And, Value: 33", content);
+				Assert.DoesNotContain("Custom Properties:", content);
 			}
 		}
 
@@ -253,19 +237,17 @@ namespace Spackle.Tests.Extensions
 			}
 			catch (CustomException e)
 			{
-				using (var writer = new StringWriter(CultureInfo.CurrentCulture))
-				{
-					e.Print(writer);
-					var content = writer.GetStringBuilder().ToString();
+				using var writer = new StringWriter(CultureInfo.CurrentCulture);
+				e.Print(writer);
+				var content = writer.GetStringBuilder().ToString();
 
-					Assert.Contains("Type Name: Spackle.Tests.Extensions.CustomException", content);
-					Assert.Contains("Source: Spackle.Tests", content);
-					this.VerifyFormatWithCustomProperties(content);
-					Assert.DoesNotContain("Data:", content);
-					Assert.Contains("Message: some message", content);
-					Assert.Contains("Custom Properties (1):", content);
-					Assert.Contains("Value = custom", content);
-				}
+				Assert.Contains("Type Name: Spackle.Tests.Extensions.CustomException", content);
+				Assert.Contains("Source: Spackle.Tests", content);
+				this.VerifyFormatWithCustomProperties(content);
+				Assert.DoesNotContain("Data:", content);
+				Assert.Contains("Message: some message", content);
+				Assert.Contains("Custom Properties (1):", content);
+				Assert.Contains("Value = custom", content);
 			}
 		}
 
