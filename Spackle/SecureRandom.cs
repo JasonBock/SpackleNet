@@ -329,7 +329,7 @@ namespace Spackle
 
 			if (maxValue < 0)
 			{
-				throw new ArgumentException("maxValue must be greater than or equal to zero.", nameof(maxValue));
+				throw new ArgumentException($"{nameof(maxValue)} must be greater than or equal to zero.", nameof(maxValue));
 			}
 
 			var newNumber = new byte[4];
@@ -358,7 +358,7 @@ namespace Spackle
 
 			if (maxValue < minValue)
 			{
-				throw new ArgumentException("maxValue must be greater than minValue.", nameof(maxValue));
+				throw new ArgumentException($"{nameof(maxValue)} must be greater than {nameof(minValue)}.", nameof(maxValue));
 			}
 
 			int value;

@@ -25,13 +25,11 @@ namespace Spackle
 		{
 			if(start.CompareTo(end) <= 0)
 			{
-				this.Start = start;
-				this.End = end;
+				(this.Start, this.End) = (start, end);
 			}
 			else
 			{
-				this.Start = end;
-				this.End = start;
+				(this.Start, this.End) = (end, start);
 			}
 		}
 
@@ -108,17 +106,7 @@ namespace Spackle
 		/// Returns the hash code for this <see cref="Range&lt;T&gt;" />.
 		/// </summary>
 		/// <returns>A 32-bit signed integer hash code.</returns>		
-		public override int GetHashCode()
-		{
-			var hashCode = this.Start.GetHashCode();
-
-			if(this.End.CompareTo(this.Start) != 0)
-			{
-				hashCode ^= this.End.GetHashCode();
-			}
-
-			return hashCode;
-		}
+		public override int GetHashCode() => HashCode.Combine(this.Start, this.End);
 		
 		/// <summary>
 		/// Gets the intersection of the current <see cref="Range&lt;T&gt;" /> 

@@ -1,22 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <LangVersion>8.0</LangVersion>
-    <AssemblyVersion>Spackle</AssemblyVersion>
-    <RootNamespace>Spackle</RootNamespace>
-    <Version>9.0.0</Version>
-    <RepositoryUrl>https://github.com/jasonbock/spacklenet</RepositoryUrl>
-    <Description>An assembly that contains utilities and extension methods to augment .NET development.</Description>
     <Authors>Jason Bock</Authors>
     <Copyright>Copyright © 2019</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>9.0.0.0</AssemblyVersion>
-    <FileVersion>9.0.0.0</FileVersion>
+    <Description>An assembly that contains utilities and extension methods to augment .NET development.</Description>
+    <LangVersion>latest</LangVersion>
     <PackageId>Spackle</PackageId>
     <PackageLicenseUrl>https://github.com/JasonBock/SpackleNet/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
-    <PackageVersion>9.0.0-rc.1</PackageVersion>
+    <PackageVersion>9.0.0</PackageVersion>
+    <RepositoryUrl>https://github.com/jasonbock/spacklenet</RepositoryUrl>
+    <RootNamespace>Spackle</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <Version>9.0.0</Version>
   </PropertyGroup>
 </Project>
