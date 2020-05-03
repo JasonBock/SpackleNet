@@ -18,6 +18,6 @@ namespace Spackle.Tests.Extensions
 
 		[Fact]
 		public void CreateWithNullArgument() =>
-			Assert.Throws<ArgumentNullException>(() => (null as HashSet<string>).AsReadOnly());
+			Assert.Throws<ArgumentNullException>(() => (null as HashSet<string>)!.AsReadOnly());
 	}
 }

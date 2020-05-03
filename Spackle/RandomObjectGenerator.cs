@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -19,14 +20,15 @@ namespace Spackle
 	{
 		private const string ErrorNoConstructorFound = "Count not find a constructor on the {0} type.";
 
-		private Dictionary<Type, Func<RandomObjectGeneratorResults>> generators { get; }
 		private readonly Random random;
 
 		/// <summary>
 		/// Creates a new <see cref="RandomObjectGenerator"/> instance.
 		/// </summary>
 		public RandomObjectGenerator()
+#pragma warning disable CA2000 // Dispose objects before losing scope
 			: this(new SecureRandom(), new Dictionary<Type, Func<RandomObjectGeneratorResults>>()) { }
+#pragma warning restore CA2000 // Dispose objects before losing scope
 
 		/// <summary>
 		/// Creates a new <see cref="RandomObjectGenerator"/> instance
@@ -50,7 +52,9 @@ namespace Spackle
 		/// is <c>null</c>.
 		/// </exception>
 		public RandomObjectGenerator(Dictionary<Type, Func<RandomObjectGeneratorResults>> generators)
+#pragma warning disable CA2000 // Dispose objects before losing scope
 			: this(new SecureRandom(), generators) { }
+#pragma warning restore CA2000 // Dispose objects before losing scope
 
 		/// <summary>
 		/// Creates a new <see cref="RandomObjectGenerator"/> instance
@@ -67,7 +71,7 @@ namespace Spackle
 			Dictionary<Type, Func<RandomObjectGeneratorResults>> generators)
 		{
 			this.random = random ?? throw new ArgumentNullException(nameof(random)) ;
-			this.generators = generators ?? throw new ArgumentNullException(nameof(generators));
+			this.Generators = generators ?? throw new ArgumentNullException(nameof(generators));
 		}
 
 		/// <summary>
@@ -75,6 +79,7 @@ namespace Spackle
 		/// </summary>
 		/// <typeparam name="T">The type to generate a value for.</typeparam>
 		/// <returns>Returns a random value of type <typeparamref name="T" />.</returns>
+		[return: MaybeNull]
 		public T Generate<T>() => (T)this.Generate(typeof(T));
 
 		/// <summary>
@@ -85,6 +90,7 @@ namespace Spackle
 		/// <param name="excludedValues">A set of values that should not be generated.</param>
 		/// <returns>Returns a random value of type <typeparamref name="T" />.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="excludedValues"/> is <c>null</c>.</exception>
+		[return: MaybeNull]
 		public T Generate<T>(ISet<T> excludedValues)
 		{
 			if (excludedValues == null)
@@ -94,7 +100,7 @@ namespace Spackle
 
 			var value = (T)this.Generate(typeof(T));
 
-			while (excludedValues.Contains(value))
+			while (excludedValues.Contains(value!))
 			{
 				value = (T)this.Generate(typeof(T));
 			}
@@ -102,7 +108,7 @@ namespace Spackle
 			return value;
 		}
 
-		private object Generate(Type target)
+		private object? Generate(Type target)
 		{
 			var generated = this.GetValue(target);
 
@@ -110,7 +116,7 @@ namespace Spackle
 				Activator.CreateInstance(target, this.GetArgumentValues(target)) : generated.Value;
 		}
 
-		private object[] GetArgumentValues(Type target)
+		private object?[] GetArgumentValues(Type target)
 		{
 			var ctor = (from constructor in target.GetTypeInfo().GetConstructors()
 							select constructor).FirstOrDefault();
@@ -122,7 +128,7 @@ namespace Spackle
 						RandomObjectGenerator.ErrorNoConstructorFound, target.FullName));
 			}
 
-			var arguments = new List<object>();
+			var arguments = new List<object?>();
 
 			foreach (var parameter in ctor.GetParameters())
 			{
@@ -151,7 +157,7 @@ namespace Spackle
 
 			if (target.IsArray)
 			{
-				var rootType = target.GetRootElementType();
+				var rootType = target.GetRootElementType()!;
 				var value = Array.CreateInstance(rootType, 1);
 				value.SetValue(this.GetHandledValue(rootType).Value, 0);
 
@@ -238,7 +244,7 @@ namespace Spackle
 			else if (typeof(Uri).GetTypeInfo().IsAssignableFrom(target))
 			{
 				result = new RandomObjectGeneratorResults(true, new Uri(string.Format(
-					CultureInfo.CurrentCulture, $"http://www.{Guid.NewGuid().ToString("N")}.com")));
+					CultureInfo.CurrentCulture, $"http://www.{Guid.NewGuid():N}.com")));
 			}
 			else if (typeof(TimeSpan).GetTypeInfo().IsAssignableFrom(target))
 			{
@@ -252,7 +258,7 @@ namespace Spackle
 				var collection = Activator.CreateInstance(typeof(List<>).MakeGenericType(new Type[] { collectionType }));
 
 				var addMethod = collection.GetType().GetTypeInfo().GetMethod(nameof(ICollection<int>.Add));
-				addMethod.Invoke(collection, new object[] { this.Generate(collectionType) });
+				addMethod.Invoke(collection, new object?[] { this.Generate(collectionType) });
 
 				var asReadOnly = collection.GetType().GetTypeInfo().GetMethod(nameof(List<int>.AsReadOnly));
 
@@ -268,11 +274,11 @@ namespace Spackle
 
 		private RandomObjectGeneratorResults GetValue(Type target)
 		{
-			RandomObjectGeneratorResults result = null;
+			RandomObjectGeneratorResults result;
 
-			if (this.generators.ContainsKey(target))
+			if (this.Generators.ContainsKey(target))
 			{
-				result = this.generators[target]();
+				result = this.Generators[target]();
 
 				if (result == null || !result.Handled)
 				{
@@ -286,5 +292,7 @@ namespace Spackle
 
 			return result;
 		}
+
+		private Dictionary<Type, Func<RandomObjectGeneratorResults>> Generators { get; }
 	}
 }

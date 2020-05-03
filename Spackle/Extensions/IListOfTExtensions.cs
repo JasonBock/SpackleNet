@@ -41,7 +41,11 @@ namespace Spackle.Extensions
 		/// </remarks>
 		public static void Rotate<T>(this IList<T> @this, int positions, RotateDirection direction)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var itemsCount = @this.Count;
 			
 			if(positions <= 0 || positions > itemsCount)
@@ -91,7 +95,10 @@ namespace Spackle.Extensions
 		/// </remarks>
 		public static void Shuffle<T>(this IList<T> @this)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
 
 			using var random = new SecureRandom();
 			@this.Shuffle(random);
@@ -110,8 +117,15 @@ namespace Spackle.Extensions
 		/// </remarks>
 		public static void Shuffle<T>(this IList<T> @this, Random random)
 		{
-			@this.CheckParameterForNull(nameof(@this));
-			random.CheckParameterForNull(nameof(random));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
+			if (random is null)
+			{
+				throw new ArgumentNullException(nameof(random));
+			}
 
 			var length = @this.Count;
 			
@@ -138,7 +152,10 @@ namespace Spackle.Extensions
 		/// </remarks>
 		public static void Swap<T>(this IList<T> @this, int x, int y)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
 
 			if(x != y)
 			{

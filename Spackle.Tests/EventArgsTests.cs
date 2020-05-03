@@ -7,7 +7,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void Create()
 		{
-			var value = new RandomObjectGenerator().Generate<string>();
+			var value = new RandomObjectGenerator().Generate<string>()!;
 			var args = new EventArgs<string>(value);
 			Assert.Equal(value, args.Value);
 		}

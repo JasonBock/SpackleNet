@@ -24,7 +24,7 @@ namespace Spackle.Tests
 			{
 				if (this.MethodCallCount == 3)
 				{
-					Array.Copy(this.DuplicateNumber, data, 0);
+					Array.Copy(this.DuplicateNumber!, data, 0);
 				}
 				else
 				{
@@ -44,7 +44,7 @@ namespace Spackle.Tests
 			this.MethodCallCount++;
 		}
 
-		private byte[] DuplicateNumber { get; set; }
+		private byte[]? DuplicateNumber { get; set; }
 
 		public int MethodCallCount { get; private set; }
 

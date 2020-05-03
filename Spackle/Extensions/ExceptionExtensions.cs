@@ -38,8 +38,15 @@ namespace Spackle.Extensions
 		/// </exception>
 		public static void Print(this Exception @this, TextWriter writer)
 		{
-			@this.CheckParameterForNull(nameof(@this));
-			writer.CheckParameterForNull(nameof(writer));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
+			if (writer is null)
+			{
+				throw new ArgumentNullException(nameof(writer));
+			}
 
 			writer.WriteLine($"Type Name: {@this.GetType().FullName}");
 			writer.WriteLine($"\tSource: {@this.Source}");
@@ -98,7 +105,7 @@ namespace Spackle.Extensions
 					var value = dataPair.Value != null ? dataPair.Value.ToString() :
 						ExceptionExtensions.Null;
 
-					writer.WriteLine($"\t\tKey: {dataPair.Key.ToString()}, Value: {value}");
+					writer.WriteLine($"\t\tKey: {dataPair.Key}, Value: {value}");
 				}
 			}
 		}

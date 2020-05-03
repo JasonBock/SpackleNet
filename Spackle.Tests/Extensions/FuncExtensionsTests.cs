@@ -227,78 +227,78 @@ namespace Spackle.Tests.Extensions
 
 		[Fact]
 		public void TimeNullFunc() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<Guid>).Time());
+			Assert.Throws<ArgumentNullException>(() => (null as Func<Guid>)!.Time());
 
 		[Fact]
 		public void TimeNullFuncWithOneParameter() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, Guid>).Time(0));
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, Guid>)!.Time(0));
 
 		[Fact]
 		public void TimeNullFuncWithTwoParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, Guid>).Time(0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, Guid>)!.Time(0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithThreeParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, Guid>).Time(0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, Guid>)!.Time(0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithFourParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, Guid>).Time(0, 0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, Guid>)!.Time(0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithFiveParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, Guid>).Time(0, 0, 0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithSixParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, Guid>).Time(0, 0, 0, 0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithSevenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, Guid>).Time(0, 0, 0, 0, 0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithEightParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, Guid>).Time(0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithNineParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, Guid>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithTenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, Guid>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithElevenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, Guid>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithTwelveParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, Guid>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithThirteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithFourteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithFifteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullFuncWithSixteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 	}
 }

@@ -21,6 +21,6 @@ namespace Spackle.Tests.Extensions
 
 		[Fact]
 		public void GetRootElementTypeWithNullArgument() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Type).GetRootElementType());
+			Assert.Throws<ArgumentNullException>(() => (null as Type)!.GetRootElementType());
 	}
 }

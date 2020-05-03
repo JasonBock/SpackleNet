@@ -2,7 +2,8 @@
 
 namespace Spackle.Tests
 {
-	internal sealed class MockSecureRandomForShuffle : SecureRandom
+	internal sealed class MockSecureRandomForShuffle 
+		: Random
 	{
 		// See the example at http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 		// to understand why the values are being generated the way they are.

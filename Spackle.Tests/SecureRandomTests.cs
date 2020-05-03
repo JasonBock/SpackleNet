@@ -40,13 +40,14 @@ namespace Spackle.Tests
 		[Fact]
 		public void CreateGeneratorWithGivenProvider()
 		{
-			using var random = new SecureRandom(new MyGenerator());
+			using var generator = new MyGenerator();
+			using var random = new SecureRandom(generator);
 			Assert.NotNull(random.Generator);
 		}
 
 		[Fact]
 		public void CreateGeneratorWithNullProvider() =>
-			Assert.Throws<ArgumentNullException>(() => new SecureRandom(null));
+			Assert.Throws<ArgumentNullException>(() => new SecureRandom(null!));
 
 		[Fact]
 		public void GenerateIntegerWithNegativeUpperBound()
@@ -150,7 +151,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateIntegerAfterDisposing()
 		{
-			SecureRandom random = null;
+			SecureRandom random;
 
 			using (random = new SecureRandom()) { }
 
@@ -160,7 +161,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateIntegerWithUpperRangeAfterDisposing()
 		{
-			SecureRandom random = null;
+			SecureRandom random;
 
 			using (random = new SecureRandom()) { }
 
@@ -170,7 +171,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateIntegerWithLowerAndUpperRangeAfterDisposing()
 		{
-			SecureRandom random = null;
+			SecureRandom random;
 
 			using (random = new SecureRandom()) { }
 
@@ -188,7 +189,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateBitsAfterDisposing()
 		{
-			SecureRandom random = null;
+			SecureRandom random;
 
 			using (random = new SecureRandom()) { }
 
@@ -199,7 +200,7 @@ namespace Spackle.Tests
 		public void GenerateBitsWithNullArgument()
 		{
 			using var random = new SecureRandom();
-			Assert.Throws<ArgumentNullException>(() => random.NextBytes(null));
+			Assert.Throws<ArgumentNullException>(() => random.NextBytes(null!));
 		}
 
 		[Fact]
@@ -212,7 +213,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateBooleanAfterDisposing()
 		{
-			SecureRandom random = null;
+			SecureRandom random;
 
 			using (random = new SecureRandom()) { }
 
@@ -234,7 +235,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateDoubleAfterDisposing()
 		{
-			SecureRandom random = null;
+			SecureRandom random;
 
 			using (random = new SecureRandom()) { }
 
@@ -244,7 +245,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void GenerateDoubleValuesAfterDisposing()
 		{
-			SecureRandom random = null;
+			SecureRandom random;
 
 			using (random = new SecureRandom()) { }
 
@@ -254,8 +255,9 @@ namespace Spackle.Tests
 		[Fact]
 		public void GetByteValuesDuplicatesAllowed()
 		{
-			var generator = new MockRandomNumberGeneratorForGetByteValues(ValueGeneration.DuplicatesAllowed);
+			using var generator = new MockRandomNumberGeneratorForGetByteValues(ValueGeneration.DuplicatesAllowed);
 			using var random = new SecureRandom(generator);
+
 			var elements = random.GetByteValues(10, ValueGeneration.DuplicatesAllowed);
 			{
 				Assert.Equal(10, elements.Length);
@@ -266,6 +268,7 @@ namespace Spackle.Tests
 					Assert.True(element >= byte.MinValue);
 					Assert.True(element <= byte.MaxValue);
 				}
+
 				Assert.Equal(1, generator.MethodCallCount);
 			}
 		}
@@ -291,11 +294,9 @@ namespace Spackle.Tests
 		[Fact]
 		public void GetByteValuesUniqueValuesOnly()
 		{
-			var generator = new MockRandomNumberGeneratorForGetByteValues(ValueGeneration.UniqueValuesOnly);
-
+			using var generator = new MockRandomNumberGeneratorForGetByteValues(ValueGeneration.UniqueValuesOnly);
 			using var random = new SecureRandom(generator);
-			var elements = random.GetByteValues(
-10, ValueGeneration.UniqueValuesOnly);
+			var elements = random.GetByteValues(10, ValueGeneration.UniqueValuesOnly);
 
 			Assert.Equal(10, elements.Length);
 
@@ -320,7 +321,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void GetByteValuesAfterDisposing()
 		{
-			SecureRandom random = null;
+			SecureRandom random;
 
 			using (random = new SecureRandom()) { }
 
@@ -344,8 +345,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void GetInt32ValuesDuplicatesAllowed()
 		{
-			var generator = new MockRandomNumberGeneratorForGetInt32Values(ValueGeneration.DuplicatesAllowed);
-
+			using var generator = new MockRandomNumberGeneratorForGetInt32Values(ValueGeneration.DuplicatesAllowed);
 			using var random = new SecureRandom(generator);
 			var elements = random.GetInt32Values(8, ValueGeneration.DuplicatesAllowed);
 
@@ -364,11 +364,9 @@ namespace Spackle.Tests
 		[Fact]
 		public void GetInt32ValuesUniqueValuesOnly()
 		{
-			var generator = new MockRandomNumberGeneratorForGetInt32Values(ValueGeneration.UniqueValuesOnly);
-
+			using var generator = new MockRandomNumberGeneratorForGetInt32Values(ValueGeneration.UniqueValuesOnly);
 			using var random = new SecureRandom(generator);
-			var elements = random.GetInt32Values(
-8, ValueGeneration.UniqueValuesOnly);
+			var elements = random.GetInt32Values(8, ValueGeneration.UniqueValuesOnly);
 
 			Assert.Equal(8, elements.Length);
 
@@ -393,7 +391,7 @@ namespace Spackle.Tests
 		[Fact]
 		public void GetInt32ValuesAfterDisposing()
 		{
-			SecureRandom random = null;
+			SecureRandom random;
 
 			using (random = new SecureRandom()) { }
 

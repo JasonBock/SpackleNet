@@ -18,6 +18,7 @@ namespace Spackle.Extensions
 		/// <remarks>
 		/// This method is primarily used to ensure a parameter to a method is not null.
 		/// </remarks>
+		[Obsolete("Use 'is' checks in code directly.", false)]
 		public static void CheckParameterForNull(this object @this, string parameterName)
 		{
 			if(@this.IsNull())
@@ -36,6 +37,7 @@ namespace Spackle.Extensions
 		/// <remarks>
 		/// This method is primarily used to ensure a parameter to a method is not null.
 		/// </remarks>
+		[Obsolete("Use 'is' checks in code directly.", false)]
 		public static void CheckParameterForNull(this object @this, string parameterName, string message)
 		{
 			if(@this.IsNull())
@@ -49,6 +51,7 @@ namespace Spackle.Extensions
 		/// </summary>
 		/// <param name="this">The object to check.</param>
 		/// <returns>Returns <c>true</c> if <paramref name="this"/> is <c>null</c>, otherwise <c>false</c>.</returns>
+		[Obsolete("Use 'is' checks in code directly.", false)]
 		public static bool IsNull(this object @this) => @this == null;
 		
 		/// <summary>
@@ -63,7 +66,11 @@ namespace Spackle.Extensions
 		/// </exception>
 		public static bool HasAttribute(this object @this, Type attributeType, bool inherit)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if(@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			return ICustomAttributeProviderExtensions.HasAttribute(
 				@this.GetType().GetTypeInfo(), attributeType, inherit);
 		}

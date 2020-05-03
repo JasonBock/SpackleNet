@@ -16,7 +16,7 @@ namespace Spackle.Tests.Extensions
 
 		[Fact]
 		public void AsUriWithNull() =>
-			Assert.Throws<ArgumentNullException>(() => (null as string).AsUri());
+			Assert.Throws<ArgumentNullException>(() => (null as string)!.AsUri());
 
 		[Fact]
 		public void TryAsUri()

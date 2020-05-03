@@ -78,7 +78,7 @@ namespace Spackle.Tests.Extensions
 		[Fact]
 		public void RotateWithNullArgument()
 		{
-			IList<string> items = null;
+			IList<string> items = null!;
 			Assert.Throws<ArgumentNullException>(() => items.Rotate(3, RotateDirection.Positive));
 		}
 
@@ -92,26 +92,22 @@ namespace Spackle.Tests.Extensions
 		[Fact]
 		public void ShuffleWithNullList()
 		{
-			IList<string> items = null;
-			Assert.Throws<ArgumentNullException>(() => items.Shuffle());
+			IList<string> items = null!;
+			Assert.Throws<ArgumentNullException>(() => items!.Shuffle());
 		}
 
 		[Fact]
 		public void ShuffleWithNullRandomGenerator()
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
-			Assert.Throws<ArgumentNullException>(() => items.Shuffle(null));
+			Assert.Throws<ArgumentNullException>(() => items.Shuffle(null!));
 		}
 
 		[Fact]
 		public void ShuffleWithProvidedRandomGenerator()
 		{
 			var items = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
-
-			using(var random = (new MockSecureRandomForShuffle()))
-			{
-				items.Shuffle(random);
-			}
+			items.Shuffle(new MockSecureRandomForShuffle());
 
 			Assert.Equal(new List<int> { 7, 5, 4, 3, 1, 8, 2, 6 }, items);
 		}
@@ -137,7 +133,7 @@ namespace Spackle.Tests.Extensions
 		[Fact]
 		public void SwapWithNullArgument()
 		{
-			IList<string> items = null;
+			IList<string> items = null!;
 			Assert.Throws<ArgumentNullException>(() => items.Swap(2, 4));
 		}
 

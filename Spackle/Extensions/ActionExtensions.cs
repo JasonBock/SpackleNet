@@ -16,7 +16,11 @@ namespace Spackle.Extensions
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time(this Action @this)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this();
 			watch.Stop();
@@ -33,7 +37,11 @@ namespace Spackle.Extensions
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T>(this Action<T> @this, T obj)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(obj);
 			watch.Stop();
@@ -52,7 +60,11 @@ namespace Spackle.Extensions
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2>(this Action<T1, T2> @this, T1 arg1, T2 arg2)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2);
 			watch.Stop();
@@ -73,7 +85,11 @@ namespace Spackle.Extensions
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3>(this Action<T1, T2, T3> @this, T1 arg1, T2 arg2, T3 arg3)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3);
 			watch.Stop();
@@ -96,7 +112,11 @@ namespace Spackle.Extensions
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4>(this Action<T1, T2, T3, T4> @this, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4);
 			watch.Stop();
@@ -123,7 +143,11 @@ namespace Spackle.Extensions
 		  this Action<T1, T2, T3, T4, T5> @this,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5);
 			watch.Stop();
@@ -152,7 +176,11 @@ namespace Spackle.Extensions
 		  this Action<T1, T2, T3, T4, T5, T6> @this,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6);
 			watch.Stop();
@@ -183,7 +211,11 @@ namespace Spackle.Extensions
 		  this Action<T1, T2, T3, T4, T5, T6, T7> @this,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 			watch.Stop();
@@ -216,7 +248,11 @@ namespace Spackle.Extensions
 		  this Action<T1, T2, T3, T4, T5, T6, T7, T8> @this,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 			watch.Stop();
@@ -252,7 +288,11 @@ namespace Spackle.Extensions
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 			watch.Stop();
@@ -290,7 +330,11 @@ namespace Spackle.Extensions
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
 			watch.Stop();
@@ -330,7 +374,11 @@ namespace Spackle.Extensions
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
 			watch.Stop();
@@ -372,7 +420,11 @@ namespace Spackle.Extensions
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);
 			watch.Stop();
@@ -416,7 +468,11 @@ namespace Spackle.Extensions
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13);
 			watch.Stop();
@@ -462,7 +518,11 @@ namespace Spackle.Extensions
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
 			watch.Stop();
@@ -510,7 +570,11 @@ namespace Spackle.Extensions
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15);
 			watch.Stop();
@@ -560,7 +624,11 @@ namespace Spackle.Extensions
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15, T16 arg16)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
 			var watch = Stopwatch.StartNew();
 			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
 			watch.Stop();

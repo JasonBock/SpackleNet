@@ -24,7 +24,7 @@ namespace Spackle.Extensions
 		/// <param name="setter">delegate to set the value</param>
 		/// <returns>an instance to wrap use in a using construct</returns>
 		public static IDisposable Bind<T>(this T newValue, Func<T> getter, Action<T> setter) =>
-			new DynamicBindingExtensions.Binder<T>(getter, setter, newValue, false);
+			new DynamicBindingExtensions.Binder<T>(getter ?? throw new ArgumentNullException(nameof(getter)), setter, newValue, false);
 
 		/// <summary>
 		/// Binds newvalue with get/set property
@@ -34,13 +34,13 @@ namespace Spackle.Extensions
 		/// <param name="locator">the locator, must be in the form () =&gt; instance.Property or () =&gt; Type.Property</param>
 		/// <returns>an instance to wrap use in a using construct</returns>
 		public static IDisposable Bind<T>(this T newValue, Expression<Func<T>> locator) =>
-			DynamicBindingExtensions.BuildBinder(newValue, locator, false);
+			DynamicBindingExtensions.BuildBinder(newValue, locator ?? throw new ArgumentNullException(nameof(locator)), false);
 
 		private static Binder<T> BuildBinder<T>(T newValue, Expression<Func<T>> locator, bool dispose)
 		{
 			if (!(locator.Body is MemberExpression location))
 			{
-				throw new ArgumentException("Must be property or field expression", nameof(location));
+				throw new ArgumentException("Must be property or field expression", nameof(locator));
 			}
 
 			var getter = locator.Compile();
@@ -49,7 +49,7 @@ namespace Spackle.Extensions
 			var inst = location.Expression;
 			var property = location.Member as PropertyInfo;
 
-			Expression body = null;
+			Expression? body = null;
 
 			if (property != null && property.CanRead && property.CanWrite)
 			{
@@ -68,7 +68,7 @@ namespace Spackle.Extensions
 						!field.IsStatic ? inst : null, field), x);
 			}
 
-			if (body == null)
+			if (body is null)
 			{
 				throw new ArgumentException("Not supported, not a field or property that can read and write");
 			}
@@ -87,7 +87,7 @@ namespace Spackle.Extensions
 		/// <param name="setter">A method to set the set the value.</param>
 		/// <returns>An instance to wrap use in a <c>using</c> construct.</returns>
 		public static IDisposable With<T>(this T newValue, Func<T> getter, Action<T> setter) where T : IDisposable =>
-			new DynamicBindingExtensions.Binder<T>(getter, setter, newValue, true);
+			new DynamicBindingExtensions.Binder<T>(getter ?? throw new ArgumentNullException(nameof(getter)), setter, newValue, true);
 
 		/// <summary>
 		/// Binds <paramref name="newValue"/> with get/set property and disposes the value when exiting the <c>using</c> construct.
@@ -97,7 +97,7 @@ namespace Spackle.Extensions
 		/// <param name="locator">The locator, must be in the form <c>() =&gt; instance.Property</c>, or <c>() =&gt; Type.Property</c>.</param>
 		/// <returns>An instance to wrap use in a <c>using</c> construct.</returns>
 		public static IDisposable With<T>(this T newValue, Expression<Func<T>> locator) where T : IDisposable =>
-			DynamicBindingExtensions.BuildBinder(newValue, locator, true);
+			DynamicBindingExtensions.BuildBinder(newValue, locator ?? throw new ArgumentNullException(nameof(locator)), true);
 
 		private sealed class Binder<T> : IDisposable
 		{
@@ -121,7 +121,10 @@ namespace Spackle.Extensions
 
 				if (this.dispose)
 				{
-					((IDisposable)this.current).Dispose();
+					if(this.current is { })
+					{
+						((IDisposable)this.current).Dispose();
+					}
 				}
 			}
 		}

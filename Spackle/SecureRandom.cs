@@ -11,7 +11,8 @@ namespace Spackle
 	/// Combines the security of <see cref="RandomNumberGenerator"/>
 	/// with the simple interface of <see cref="Random"/>.
 	/// </summary>
-	public class SecureRandom : Random, IDisposable
+	public sealed class SecureRandom 
+		: Random, IDisposable
 	{
 		private const string ErrorTooManyUniqueElements = "Cannot create the number of unique elements requested - maximum allowed is {0}.";
 		private const double MaxInt32Inverse = 1.0 / int.MaxValue;
@@ -29,11 +30,8 @@ namespace Spackle
 		/// </summary>
 		/// <param name="generator">The <see cref="RandomNumberGenerator"/> to use.</param>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="generator"/> is <c>null</c>.</exception>
-		public SecureRandom(RandomNumberGenerator generator)
-		{
-			generator.CheckParameterForNull(nameof(generator));
-			this.Generator = generator;
-		}
+		public SecureRandom(RandomNumberGenerator generator) => 
+			this.Generator = generator ?? throw new ArgumentNullException(nameof(generator));
 
 		/// <summary>
 		/// Disposes the current object (i.e. dispose the wrapped <see cref="RandomNumberGenerator">generator</see>.
@@ -225,8 +223,7 @@ namespace Spackle
 		/// the longer it will take for <c>GetInt32Values</c> to produce a unique random set of values.
 		/// </remarks>
 		public int[] GetInt32Values(uint numberOfElements, ValueGeneration values) =>
-			this.GetInt32Values(numberOfElements,
-				new Range<int>(0, int.MaxValue), values);
+			this.GetInt32Values(numberOfElements, 0..int.MaxValue, values);
 
 		/// <summary>
 		/// Gets an array of random <see cref="int"/> values between a given range.
@@ -253,7 +250,7 @@ namespace Spackle
 		/// the size of the range. The closer the ratio of <c>numberOfElements/(range.End - range.Start)</c> is to 1, 
 		/// the longer it will take for <c>GetInt32Values</c> to produce a unique random set of values.
 		/// </remarks>
-		public int[] GetInt32Values(uint numberOfElements, Range<int> range, ValueGeneration values)
+		public int[] GetInt32Values(uint numberOfElements, Range range, ValueGeneration values)
 		{
 			if (this.disposed)
 			{
@@ -272,7 +269,7 @@ namespace Spackle
 			{
 				for (var i = 0; i < numberOfElements; i++)
 				{
-					elements[i] = this.Next(range.Start, range.End);
+					elements[i] = this.Next(range.Start.Value, range.End.Value);
 				}
 			}
 			else
@@ -281,7 +278,7 @@ namespace Spackle
 
 				while (createdElementsCount < numberOfElements)
 				{
-					var value = this.Next(range.Start, range.End);
+					var value = this.Next(range.Start.Value, range.End.Value);
 
 					if (!elements.Contains(value))
 					{
@@ -384,7 +381,7 @@ namespace Spackle
 		/// <returns>
 		/// Returns a new random <see cref="bool"/> value.
 		/// </returns>
-		public virtual bool NextBoolean()
+		public bool NextBoolean()
 		{
 			if (this.disposed)
 			{

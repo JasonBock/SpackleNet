@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Authors>Jason Bock</Authors>
-    <Copyright>Copyright © 2019</Copyright>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Copyright>Copyright © 2020</Copyright>
     <Description>An assembly that contains utilities and extension methods to augment .NET development.</Description>
-    <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>Spackle</PackageId>
     <PackageLicenseUrl>https://github.com/JasonBock/SpackleNet/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
-    <PackageVersion>9.0.0</PackageVersion>
+    <PackageVersion>9.1.0</PackageVersion>
     <RepositoryUrl>https://github.com/jasonbock/spacklenet</RepositoryUrl>
     <RootNamespace>Spackle</RootNamespace>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <Version>9.0.0</Version>
+    <Version>9.1.0</Version>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Collections.Immutable" Version="1.7.0" />
+  </ItemGroup>
 </Project>

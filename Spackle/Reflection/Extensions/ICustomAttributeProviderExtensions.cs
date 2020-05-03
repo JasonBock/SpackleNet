@@ -22,8 +22,15 @@ namespace Spackle.Reflection.Extensions
 		/// </exception>
 		public static bool HasAttribute(this ICustomAttributeProvider @this, Type attributeType, bool inherit)
 		{
-			@this.CheckParameterForNull(nameof(@this));
-			attributeType.CheckParameterForNull(nameof(attributeType));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
+
+			if (attributeType is null)
+			{
+				throw new ArgumentNullException(nameof(attributeType));
+			}
 
 			return (from attribute in @this.GetCustomAttributes(attributeType, inherit)
 					  where attributeType.GetTypeInfo().IsAssignableFrom(attribute.GetType())

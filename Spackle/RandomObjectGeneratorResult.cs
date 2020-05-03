@@ -12,7 +12,7 @@
 		/// </summary>
 		/// <param name="handled">Specifies if a type was handled.</param>
 		/// <param name="value">The generated value.</param>
-		public RandomObjectGeneratorResults(bool handled, object value)
+		public RandomObjectGeneratorResults(bool handled, object? value)
 		{
 			this.Handled = handled;
 			this.Value = value;
@@ -26,6 +26,6 @@
 		/// <summary>
 		/// Gets the value.
 		/// </summary>
-		public object Value { get; }
+		public object? Value { get; }
 	}
 }

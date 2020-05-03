@@ -92,8 +92,8 @@ namespace Spackle.Tests.Extensions
 			try
 			{
 				var exceptionConstructor = typeof(NotImplementedException).GetTypeInfo().GetConstructor(Type.EmptyTypes);
-				var action = (Expression.Lambda(
-					Expression.Throw(Expression.New(exceptionConstructor))).Compile()) as Action;
+				var action = (Action)Expression.Lambda(
+					Expression.Throw(Expression.New(exceptionConstructor))).Compile();
 
 				action();
 
@@ -170,11 +170,11 @@ namespace Spackle.Tests.Extensions
 
 		[Fact]
 		public void FormatWithNullException() =>
-			Assert.Throws<ArgumentNullException>(() => (null as NotImplementedException).Print());
+			Assert.Throws<ArgumentNullException>(() => (null as NotImplementedException)!.Print());
 
 		[Fact]
 		public void FormatWithNullWriter() =>
-			Assert.Throws<ArgumentNullException>(() => new NotImplementedException().Print(null));
+			Assert.Throws<ArgumentNullException>(() => new NotImplementedException().Print(null!));
 
 		[Fact]
 		public void FormatWithInnerException()

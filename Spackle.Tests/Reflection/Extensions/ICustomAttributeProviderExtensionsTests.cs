@@ -10,13 +10,13 @@ namespace Spackle.Tests.Reflection.Extensions
 		[Fact]
 		public void HasAttributeWithNullThis() =>
 			Assert.Throws<ArgumentNullException>(
-				() => (null as Type).GetTypeInfo().HasAttribute(typeof(ClassAttribute), false));
+				() => (null as Type)!.GetTypeInfo().HasAttribute(typeof(ClassAttribute), false));
 
 		[Fact]
 		public void HasAttributeWithNullArgument() =>
 			Assert.Throws<ArgumentNullException>(
 				() => typeof(ICustomAttributeProviderExtensionsTests).GetTypeInfo().HasAttribute(
-					null, false));
+					null!, false));
 
 		[Fact]
 		public void HasAttributeForExistingAttribute() =>
@@ -28,9 +28,11 @@ namespace Spackle.Tests.Reflection.Extensions
 			Assert.False(typeof(DoesNotHaveAttribute).GetTypeInfo().HasAttribute(
 				typeof(ClassAttribute), false));
 
+#pragma warning disable CA1812
 		[Class]
 		private sealed class HasAttribute { }
 
 		private sealed class DoesNotHaveAttribute { }
+#pragma warning restore CA1812
 	}
 }

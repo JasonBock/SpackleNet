@@ -80,14 +80,16 @@ namespace Spackle
 		/// <param name="other">A <see cref="Range&lt;T&gt;" />.</param>
 		/// <returns><b>true</b> if <paramref name="other"/> is a <see cref="Range&lt;T&gt;" /> and its value 
 		/// is the same as this instance; otherwise, <b>false</b>.</returns>
-		public bool Equals(Range<T> other)
+		public bool Equals(Range<T>? other)
 		{
 			var areEqual = false;
 
-			if(other != null)
+			if(other is { })
 			{
-				areEqual = this.Start.CompareTo(other.Start) == 0 && 
+#pragma warning disable CA1062 // Validate arguments of public methods
+				areEqual = this.Start.CompareTo(other.Start) == 0 &&
 					this.End.CompareTo(other.End) == 0;
+#pragma warning restore CA1062 // Validate arguments of public methods
 			}
 
 			return areEqual;
@@ -116,11 +118,14 @@ namespace Spackle
 		/// <returns>A new <see cref="Range&lt;T&gt;" /> instance that is the intersection, 
 		/// or <c>null</c> if there is no intersection.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is <c>null</c>.</exception>
-		public Range<T> Intersect(Range<T> target)
+		public Range<T>? Intersect(Range<T> target)
 		{
-			target.CheckParameterForNull(nameof(target));
+			if (target is null)
+			{
+				throw new ArgumentNullException(nameof(target));
+			}
 
-			Range<T> intersection = null;
+			Range<T>? intersection = null;
 
 			if(this.Contains(target.Start) || this.Contains(target.End))
 			{
@@ -140,7 +145,7 @@ namespace Spackle
 		/// <param name="end">The end value of the range.</param>
 		/// <returns>A new <see cref="Range&lt;T&gt;" /> instance that is the intersection, 
 		/// or <c>null</c> if there is no intersection.</returns>
-		public Range<T> Intersect(T start, T end) => this.Intersect(new Range<T>(start, end));
+		public Range<T>? Intersect(T start, T end) => this.Intersect(new Range<T>(start, end));
 
 		/// <summary>
 		/// Provides a string representation of the current <see cref="Range&lt;T&gt;"/>.
@@ -156,11 +161,14 @@ namespace Spackle
 		/// <returns>A new <see cref="Range&lt;T&gt;" /> instance that is the union, 
 		/// or <c>null</c> if there is no intersection.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is <c>null</c>.</exception>
-		public Range<T> Union(Range<T> target)
+		public Range<T>? Union(Range<T> target)
 		{
-			target.CheckParameterForNull(nameof(target));
+			if (target is null)
+			{
+				throw new ArgumentNullException(nameof(target));
+			}
 
-			Range<T> intersection = null;
+			Range<T>? intersection = null;
 
 			if(this.Contains(target.Start) || this.Contains(target.End) ||
 				target.Contains(this.Start) || target.Contains(this.End))

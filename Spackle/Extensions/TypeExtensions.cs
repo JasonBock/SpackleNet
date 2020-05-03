@@ -19,13 +19,16 @@ namespace Spackle.Extensions
 		/// which in turn has an element type of "int". This method makes it easier
 		/// to find the root element type for any given <see cref="Type"/>.
 		/// </remarks>
-		public static Type GetRootElementType(this Type @this)
+		public static Type? GetRootElementType(this Type @this)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
 			
 			var type = @this;
 
-			while(type.HasElementType)
+			while(type?.HasElementType ?? false)
 			{
 				type = type.GetElementType();
 			}

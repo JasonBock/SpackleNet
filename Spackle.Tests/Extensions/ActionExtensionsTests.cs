@@ -159,78 +159,78 @@ namespace Spackle.Tests.Extensions
 
 		[Fact]
 		public void TimeNullAction() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action).Time());
+			Assert.Throws<ArgumentNullException>(() => (null as Action)!.Time());
 
 		[Fact]
 		public void TimeNullActionWithOneParameter() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int>).Time(0));
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int>)!.Time(0));
 
 		[Fact]
 		public void TimeNullActionWithTwoParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int>).Time(0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int>)!.Time(0, 0));
 
 		[Fact]
 		public void TimeNullActionWithThreeParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int>).Time(0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int>)!.Time(0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithFourParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int>).Time(0, 0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int>)!.Time(0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithFiveParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int>).Time(0, 0, 0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int>)!.Time(0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithSixParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int>).Time(0, 0, 0, 0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int>)!.Time(0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithSevenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int>).Time(0, 0, 0, 0, 0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int>)!.Time(0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithEightParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int>).Time(0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int>)!.Time(0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithNineParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithTenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithElevenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithTwelveParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithThirteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithFourteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithFifteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
 		[Fact]
 		public void TimeNullActionWithSixteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>).Time(
+			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 	}
 }

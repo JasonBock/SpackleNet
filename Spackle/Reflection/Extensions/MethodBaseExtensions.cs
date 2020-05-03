@@ -18,7 +18,10 @@ namespace Spackle.Reflection.Extensions
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static Type[] GetParameterTypes(this MethodBase @this)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new ArgumentNullException(nameof(@this));
+			}
 
 			var parameterTypes = Type.EmptyTypes;
 			var builderTypeResult = false;

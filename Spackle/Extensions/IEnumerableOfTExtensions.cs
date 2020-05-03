@@ -17,7 +17,11 @@ namespace Spackle.Extensions
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static ReadOnlyCollection<T> AsReadOnly<T>(this IEnumerable<T> @this)
 		{
-			@this.CheckParameterForNull(nameof(@this));
+			if (@this is null)
+			{
+				throw new System.ArgumentNullException(nameof(@this));
+			}
+
 			return new ReadOnlyCollection<T>(new List<T>(@this));
 		}
 	}

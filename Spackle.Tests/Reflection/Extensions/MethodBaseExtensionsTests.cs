@@ -11,26 +11,30 @@ namespace Spackle.Tests.Reflection.Extensions
 
 		[Fact]
 		public void GetParameterTypesForNullArgument() =>
-			Assert.Throws<ArgumentNullException>(() => (null as MethodBase).GetParameterTypes());
+			Assert.Throws<ArgumentNullException>(() => (null as MethodBase)!.GetParameterTypes());
 
 		[Fact]
 		public void GetParameterTypesForMethodThatHasNoArguments() =>
 			Assert.Empty(this.GetType().GetTypeInfo()
-				.GetMethod(nameof(this.NoArguments), MethodBaseExtensionsTests.BindingValues).GetParameterTypes());
+				.GetMethod(nameof(this.NoArguments), MethodBaseExtensionsTests.BindingValues)!.GetParameterTypes());
 		
 		[Fact]
 		public void GetParameterTypesForMethodThatHasManyArguments()
 		{
 			var parameterTypes = this.GetType().GetTypeInfo()
-				.GetMethod(nameof(this.ManyArguments), MethodBaseExtensionsTests.BindingValues).GetParameterTypes();
+				.GetMethod(nameof(this.ManyArguments), MethodBaseExtensionsTests.BindingValues)!.GetParameterTypes();
 			Assert.Equal(3, parameterTypes.Length);
 			Assert.Equal(typeof(int), parameterTypes[0]);
 			Assert.Equal(typeof(string), parameterTypes[1]);
 			Assert.Equal(typeof(int), parameterTypes[2]);
 		}
 
+#pragma warning disable CA1822
 		private void NoArguments() { }
 
+#pragma warning disable CA1801
 		private void ManyArguments(int x, string y, int z) { }
+#pragma warning restore CA1801
+#pragma warning restore CA1822
 	}
 }

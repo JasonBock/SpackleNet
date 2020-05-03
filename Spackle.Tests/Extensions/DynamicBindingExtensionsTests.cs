@@ -11,17 +11,20 @@ namespace Spackle.Tests.Extensions
 		public void WithUsingExpression()
 		{
 			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>();
-			var newValue = generator.Generate<string>();
+			var original = generator.Generate<string>()!;
+			var newValue = generator.Generate<string>()!;
 
 			using var writer = new TestWriter();
 			writer.Write(original);
 
 			var builder = new StringBuilder();
 
-			using (new StringWriter(builder).With(() => writer.Writer))
+			using (var stringWriter = new StringWriter(builder))
 			{
-				writer.Write(newValue);
+				using (stringWriter.With(() => writer.Writer))
+				{
+					writer.Write(newValue);
+				}
 			}
 
 			Assert.Equal(newValue, builder.ToString());
@@ -32,18 +35,21 @@ namespace Spackle.Tests.Extensions
 		public void WithUsingFuncAndAction()
 		{
 			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>();
-			var newValue = generator.Generate<string>();
+			var original = generator.Generate<string>()!;
+			var newValue = generator.Generate<string>()!;
 
 			using var writer = new TestWriter();
 			writer.Write(original);
 
 			var builder = new StringBuilder();
 
-			using (new StringWriter(builder).With(
-				() => writer.Writer, (value) => writer.Writer = value))
+			using (var stringWriter = new StringWriter(builder))
 			{
-				writer.Write(newValue);
+				using (stringWriter.With(
+					() => writer.Writer, (value) => writer.Writer = value))
+				{
+					writer.Write(newValue);
+				}
 			}
 
 			Assert.Equal(newValue, builder.ToString());

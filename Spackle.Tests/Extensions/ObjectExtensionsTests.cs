@@ -7,36 +7,12 @@ namespace Spackle.Tests.Extensions
 	public sealed class ObjectExtensionsTests 
 	{
 		[Fact]
-		public void CheckNonNullParameterForNull() =>
-			new object().CheckParameterForNull("o");
-
-		[Fact]
-		public void CheckNonNullParameterForNullWithMessage() =>
-			new object().CheckParameterForNull("o", "message");
-
-		[Fact]
-		public void CheckNonNullValue() =>
-			Assert.False(new object().IsNull());
-
-		[Fact]
-		public void CheckNullParameterForNull() =>
-			Assert.Throws<ArgumentNullException>(() => (null as object).CheckParameterForNull("o"));
-
-		[Fact]
-		public void CheckNullParameterForNullWithMessage() =>
-			Assert.Throws<ArgumentNullException>(() => (null as object).CheckParameterForNull("o", "message"));
-
-		[Fact]
-		public void CheckNullValue() =>
-			Assert.True((null as object).IsNull());
-
-		[Fact]
 		public void HasAttributeWithNullThis() =>
-			Assert.Throws<ArgumentNullException>(() => (null as object).HasAttribute(typeof(ClassAttribute), false));
+			Assert.Throws<ArgumentNullException>(() => (null as object)!.HasAttribute(typeof(ClassAttribute), false));
 
 		[Fact]
 		public void HasAttributeWithNullArgument() =>
-			Assert.Throws<ArgumentNullException>(() => this.HasAttribute(null, false));
+			Assert.Throws<ArgumentNullException>(() => this.HasAttribute(null!, false));
 
 		[Fact]
 		public void HasAttributeForExistingAttribute() =>

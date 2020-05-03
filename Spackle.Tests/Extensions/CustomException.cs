@@ -17,6 +17,6 @@ namespace Spackle.Tests.Extensions
 			: base(message, innerException)
 		{ }
 
-		public string Value { get; set; }
+		public string? Value { get; set; }
 	}
 }
