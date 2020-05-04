@@ -1,20 +1,20 @@
-﻿using Spackle.Extensions;
+﻿using NUnit.Framework;
+using Spackle.Extensions;
 using System;
-using Xunit;
 
 namespace Spackle.Tests.Extensions
 {
-	public sealed class EnumExtensionsTests
+	public static class EnumExtensionsTests
 	{
 		private const string Name = "ValueThatHasDescription";
 
-		[Fact]
-		public void GetName() =>
-			Assert.Equal(EnumExtensionsTests.Name, 
+		[Test]
+		public static void GetName() =>
+			Assert.AreEqual(EnumExtensionsTests.Name, 
 				EnumExtensionsTests.TestEnum.ValueThatHasDescription.GetName());
 
-		[Fact]
-		public void GetNameForValueThatIsNotAnEnum() =>
+		[Test]
+		public static void GetNameForValueThatIsNotAnEnum() =>
 			Assert.Throws<ArgumentException>(() => Guid.NewGuid().GetName());
 
 		private enum TestEnum

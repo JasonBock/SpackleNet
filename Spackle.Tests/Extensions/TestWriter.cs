@@ -3,7 +3,8 @@ using System.IO;
 
 namespace Spackle.Tests.Extensions
 {
-	public sealed class TestWriter : IDisposable
+	public sealed class TestWriter 
+		: IDisposable
 	{
 		public TestWriter() =>
 			this.Writer = new StringWriter();

@@ -1,84 +1,84 @@
-﻿using Spackle.Extensions;
+﻿using NUnit.Framework;
+using Spackle.Extensions;
 using System;
-using Xunit;
 
 namespace Spackle.Tests.Extensions
 {
-	public sealed class ActionExtensionsTests
+	public static class ActionExtensionsTests
 	{
-		[Fact]
-		public void TimeAction() =>
+		[Test]
+		public static void TimeAction() =>
 			Assert.True(new Action(() =>
 			{
 				Guid.NewGuid();
 			}).Time().TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithOneParameter() =>
+		[Test]
+		public static void TimeActionWithOneParameter() =>
 			Assert.True(new Action<int>(
 			(arg1) =>
 			{
 				var x = arg1;
 			}).Time(0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithTwoParameters() =>
+		[Test]
+		public static void TimeActionWithTwoParameters() =>
 			Assert.True(new Action<int, int>(
 			(arg1, arg2) =>
 			{
 				var x = arg1 + arg2;
 			}).Time(0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithThreeParameters() =>
+		[Test]
+		public static void TimeActionWithThreeParameters() =>
 			Assert.True(new Action<int, int, int>(
 			(arg1, arg2, arg3) =>
 			{
 				var x = arg1 + arg2 + arg3;
 			}).Time(0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithFourParameters() =>
+		[Test]
+		public static void TimeActionWithFourParameters() =>
 			Assert.True(new Action<int, int, int, int>(
 			(arg1, arg2, arg3, arg4) =>
 			{
 				var x = arg1 + arg2 + arg3 + arg4;
 			}).Time(0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithFiveParameters() =>
+		[Test]
+		public static void TimeActionWithFiveParameters() =>
 			Assert.True(new Action<int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5) =>
 			{
 				var x = arg1 + arg2 + arg3 + arg4 + arg5;
 			}).Time(0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithSixParameters() =>
+		[Test]
+		public static void TimeActionWithSixParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6) =>
 			{
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6;
 			}).Time(0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithSevenParameters() =>
+		[Test]
+		public static void TimeActionWithSevenParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6, arg7) =>
 			{
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7;
 			}).Time(0, 0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithEightParameters() =>
+		[Test]
+		public static void TimeActionWithEightParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) =>
 			{
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8;
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithNineParameters() =>
+		[Test]
+		public static void TimeActionWithNineParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 				arg9) =>
@@ -87,8 +87,8 @@ namespace Spackle.Tests.Extensions
 					arg9;
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithTenParameters() =>
+		[Test]
+		public static void TimeActionWithTenParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 				arg9, arg10) =>
@@ -97,8 +97,8 @@ namespace Spackle.Tests.Extensions
 					arg9 + arg10;
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithElevenParameters() =>
+		[Test]
+		public static void TimeActionWithElevenParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,
 				arg9, arg10, arg11) =>
@@ -107,8 +107,8 @@ namespace Spackle.Tests.Extensions
 					arg9 + arg10 + arg11;
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithTwelveParameters() =>
+		[Test]
+		public static void TimeActionWithTwelveParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int, int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,
 				arg9, arg10, arg11, arg12) =>
@@ -117,8 +117,8 @@ namespace Spackle.Tests.Extensions
 					arg9 + arg10 + arg11 + arg12;
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithThirteenParameters() =>
+		[Test]
+		public static void TimeActionWithThirteenParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int, int, int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,
 				arg9, arg10, arg11, arg12, arg13) =>
@@ -127,8 +127,8 @@ namespace Spackle.Tests.Extensions
 					arg9 + arg10 + arg11 + arg12 + arg13;
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithFourteenParameters() =>
+		[Test]
+		public static void TimeActionWithFourteenParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,
 				arg9, arg10, arg11, arg12, arg13, arg14) =>
@@ -137,8 +137,8 @@ namespace Spackle.Tests.Extensions
 					arg9 + arg10 + arg11 + arg12 + arg13 + arg14;
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithFifteenParameters() =>
+		[Test]
+		public static void TimeActionWithFifteenParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,
 				arg9, arg10, arg11, arg12, arg13, arg14, arg15) =>
@@ -147,8 +147,8 @@ namespace Spackle.Tests.Extensions
 					arg9 + arg10 + arg11 + arg12 + arg13 + arg14 + arg15;
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeActionWithSixteenParameters() =>
+		[Test]
+		public static void TimeActionWithSixteenParameters() =>
 			Assert.True(new Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(
 			(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,
 				arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16) =>
@@ -157,79 +157,79 @@ namespace Spackle.Tests.Extensions
 					arg9 + arg10 + arg11 + arg12 + arg13 + arg14 + arg15 + arg16;
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).TotalMilliseconds >= 0);
 
-		[Fact]
-		public void TimeNullAction() =>
+		[Test]
+		public static void TimeNullAction() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action)!.Time());
 
-		[Fact]
-		public void TimeNullActionWithOneParameter() =>
+		[Test]
+		public static void TimeNullActionWithOneParameter() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int>)!.Time(0));
 
-		[Fact]
-		public void TimeNullActionWithTwoParameters() =>
+		[Test]
+		public static void TimeNullActionWithTwoParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int>)!.Time(0, 0));
 
-		[Fact]
-		public void TimeNullActionWithThreeParameters() =>
+		[Test]
+		public static void TimeNullActionWithThreeParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int>)!.Time(0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithFourParameters() =>
+		[Test]
+		public static void TimeNullActionWithFourParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int>)!.Time(0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithFiveParameters() =>
+		[Test]
+		public static void TimeNullActionWithFiveParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int>)!.Time(0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithSixParameters() =>
+		[Test]
+		public static void TimeNullActionWithSixParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int>)!.Time(0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithSevenParameters() =>
+		[Test]
+		public static void TimeNullActionWithSevenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int>)!.Time(0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithEightParameters() =>
+		[Test]
+		public static void TimeNullActionWithEightParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int>)!.Time(0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithNineParameters() =>
+		[Test]
+		public static void TimeNullActionWithNineParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithTenParameters() =>
+		[Test]
+		public static void TimeNullActionWithTenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithElevenParameters() =>
+		[Test]
+		public static void TimeNullActionWithElevenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithTwelveParameters() =>
+		[Test]
+		public static void TimeNullActionWithTwelveParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithThirteenParameters() =>
+		[Test]
+		public static void TimeNullActionWithThirteenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithFourteenParameters() =>
+		[Test]
+		public static void TimeNullActionWithFourteenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithFifteenParameters() =>
+		[Test]
+		public static void TimeNullActionWithFifteenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullActionWithSixteenParameters() =>
+		[Test]
+		public static void TimeNullActionWithSixteenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Action<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 	}

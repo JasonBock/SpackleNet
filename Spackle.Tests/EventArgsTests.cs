@@ -1,15 +1,15 @@
-﻿using Xunit;
+﻿using NUnit.Framework;
 
 namespace Spackle.Tests
 {
-	public sealed class EventArgsTests 
+	public static class EventArgsTests 
 	{
-		[Fact]
-		public void Create()
+		[Test]
+		public static void Create()
 		{
 			var value = new RandomObjectGenerator().Generate<string>()!;
 			var args = new EventArgs<string>(value);
-			Assert.Equal(value, args.Value);
+			Assert.AreEqual(value, args.Value);
 		}
 	}
 }

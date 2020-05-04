@@ -1,26 +1,26 @@
-﻿using Spackle.Extensions;
+﻿using NUnit.Framework;
+using Spackle.Extensions;
 using System;
-using Xunit;
 
 namespace Spackle.Tests.Extensions
 {
-	public sealed class TypeExtensionsTests 
+	public static class TypeExtensionsTests 
 	{
-		[Fact]
-		public void GetRootElementTypeFromRefArrayArray() =>
-			Assert.Equal(typeof(int), 
+		[Test]
+		public static void GetRootElementTypeFromRefArrayArray() =>
+			Assert.AreEqual(typeof(int), 
 				typeof(int).MakeArrayType().MakeByRefType().GetRootElementType());
 
-		[Fact]
-		public void GetRootElementTypeFromArray() =>
-			Assert.Equal(typeof(int), typeof(int[]).GetRootElementType());
+		[Test]
+		public static void GetRootElementTypeFromArray() =>
+			Assert.AreEqual(typeof(int), typeof(int[]).GetRootElementType());
 
-		[Fact]
-		public void GetRootElementTypeFromPrimitive() =>
-			Assert.Equal(typeof(int), typeof(int).GetRootElementType());
+		[Test]
+		public static void GetRootElementTypeFromPrimitive() =>
+			Assert.AreEqual(typeof(int), typeof(int).GetRootElementType());
 
-		[Fact]
-		public void GetRootElementTypeWithNullArgument() =>
+		[Test]
+		public static void GetRootElementTypeWithNullArgument() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Type)!.GetRootElementType());
 	}
 }

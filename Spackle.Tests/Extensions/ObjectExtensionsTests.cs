@@ -1,25 +1,25 @@
-﻿using Spackle.Extensions;
+﻿using NUnit.Framework;
+using Spackle.Extensions;
 using System;
-using Xunit;
 
 namespace Spackle.Tests.Extensions
 {
-	public sealed class ObjectExtensionsTests 
+	public static class ObjectExtensionsTests 
 	{
-		[Fact]
-		public void HasAttributeWithNullThis() =>
+		[Test]
+		public static void HasAttributeWithNullThis() =>
 			Assert.Throws<ArgumentNullException>(() => (null as object)!.HasAttribute(typeof(ClassAttribute), false));
 
-		[Fact]
-		public void HasAttributeWithNullArgument() =>
-			Assert.Throws<ArgumentNullException>(() => this.HasAttribute(null!, false));
+		[Test]
+		public static void HasAttributeWithNullArgument() =>
+			Assert.Throws<ArgumentNullException>(() => (new HasAttribute()).HasAttribute(null!, false));
 
-		[Fact]
-		public void HasAttributeForExistingAttribute() =>
+		[Test]
+		public static void HasAttributeForExistingAttribute() =>
 			Assert.True(new HasAttribute().HasAttribute(typeof(ClassAttribute), false));
 
-		[Fact]
-		public void HasAttributeForMissingAttribute() =>
+		[Test]
+		public static void HasAttributeForMissingAttribute() =>
 			Assert.False(new DoesNotHaveAttribute().HasAttribute(typeof(ClassAttribute), false));
 
 		[Class]

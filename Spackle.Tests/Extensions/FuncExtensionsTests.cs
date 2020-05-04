@@ -1,13 +1,13 @@
-﻿using Spackle.Extensions;
+﻿using NUnit.Framework;
+using Spackle.Extensions;
 using System;
-using Xunit;
 
 namespace Spackle.Tests.Extensions
 {
-	public sealed class FuncExtensionsTests
+	public static class FuncExtensionsTests
 	{
-		[Fact]
-		public void TimeFunc()
+		[Test]
+		public static void TimeFunc()
 		{
 			var (result, elapsed) = new Func<Guid>(() =>
 			{
@@ -17,8 +17,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithOneParameter()
+		[Test]
+		public static void TimeFuncWithOneParameter()
 		{
 			var (result, elapsed) = new Func<int, Guid>(
 				(arg1) =>
@@ -30,8 +30,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithTwoParameters()
+		[Test]
+		public static void TimeFuncWithTwoParameters()
 		{
 			var (result, elapsed) = new Func<int, int, Guid>(
 				(arg1, arg2) =>
@@ -43,8 +43,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithThreeParameters()
+		[Test]
+		public static void TimeFuncWithThreeParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, Guid>(
 				(arg1, arg2, arg3) =>
@@ -56,8 +56,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithFourParameters()
+		[Test]
+		public static void TimeFuncWithFourParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4) =>
@@ -69,8 +69,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithFiveParameters()
+		[Test]
+		public static void TimeFuncWithFiveParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5) =>
@@ -82,8 +82,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithSixParameters()
+		[Test]
+		public static void TimeFuncWithSixParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6) =>
@@ -95,8 +95,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithSevenParameters()
+		[Test]
+		public static void TimeFuncWithSevenParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6, arg7) =>
@@ -108,8 +108,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithEightParameters()
+		[Test]
+		public static void TimeFuncWithEightParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) =>
@@ -121,8 +121,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithNineParameters()
+		[Test]
+		public static void TimeFuncWithNineParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) =>
@@ -134,8 +134,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithTenParameters()
+		[Test]
+		public static void TimeFuncWithTenParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10) =>
@@ -147,8 +147,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithElevenParameters()
+		[Test]
+		public static void TimeFuncWithElevenParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11) =>
@@ -160,8 +160,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithTwelveParameters()
+		[Test]
+		public static void TimeFuncWithTwelveParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12) =>
@@ -173,8 +173,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithThirteenParameters()
+		[Test]
+		public static void TimeFuncWithThirteenParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13) =>
@@ -186,8 +186,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithFourteenParameters()
+		[Test]
+		public static void TimeFuncWithFourteenParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14) =>
@@ -199,8 +199,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithFifteenParameters()
+		[Test]
+		public static void TimeFuncWithFifteenParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15) =>
@@ -212,8 +212,8 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeFuncWithSixteenParameters()
+		[Test]
+		public static void TimeFuncWithSixteenParameters()
 		{
 			var (result, elapsed) = new Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>(
 				(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16) =>
@@ -225,79 +225,79 @@ namespace Spackle.Tests.Extensions
 			Assert.True(elapsed.TotalMilliseconds >= 0);
 		}
 
-		[Fact]
-		public void TimeNullFunc() =>
+		[Test]
+		public static void TimeNullFunc() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<Guid>)!.Time());
 
-		[Fact]
-		public void TimeNullFuncWithOneParameter() =>
+		[Test]
+		public static void TimeNullFuncWithOneParameter() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, Guid>)!.Time(0));
 
-		[Fact]
-		public void TimeNullFuncWithTwoParameters() =>
+		[Test]
+		public static void TimeNullFuncWithTwoParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, Guid>)!.Time(0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithThreeParameters() =>
+		[Test]
+		public static void TimeNullFuncWithThreeParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, Guid>)!.Time(0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithFourParameters() =>
+		[Test]
+		public static void TimeNullFuncWithFourParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, Guid>)!.Time(0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithFiveParameters() =>
+		[Test]
+		public static void TimeNullFuncWithFiveParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithSixParameters() =>
+		[Test]
+		public static void TimeNullFuncWithSixParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithSevenParameters() =>
+		[Test]
+		public static void TimeNullFuncWithSevenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithEightParameters() =>
+		[Test]
+		public static void TimeNullFuncWithEightParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithNineParameters() =>
+		[Test]
+		public static void TimeNullFuncWithNineParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithTenParameters() =>
+		[Test]
+		public static void TimeNullFuncWithTenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithElevenParameters() =>
+		[Test]
+		public static void TimeNullFuncWithElevenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithTwelveParameters() =>
+		[Test]
+		public static void TimeNullFuncWithTwelveParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithThirteenParameters() =>
+		[Test]
+		public static void TimeNullFuncWithThirteenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithFourteenParameters() =>
+		[Test]
+		public static void TimeNullFuncWithFourteenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithFifteenParameters() =>
+		[Test]
+		public static void TimeNullFuncWithFifteenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 
-		[Fact]
-		public void TimeNullFuncWithSixteenParameters() =>
+		[Test]
+		public static void TimeNullFuncWithSixteenParameters() =>
 			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 	}

@@ -1,14 +1,14 @@
-﻿using Spackle.Extensions;
+﻿using NUnit.Framework;
+using Spackle.Extensions;
 using System.IO;
 using System.Text;
-using Xunit;
 
 namespace Spackle.Tests.Extensions
 {
-	public sealed class DynamicBindingExtensionsTests 
+	public static class DynamicBindingExtensionsTests
 	{
-		[Fact]
-		public void WithUsingExpression()
+		[Test]
+		public static void WithUsingExpression()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<string>()!;
@@ -27,12 +27,12 @@ namespace Spackle.Tests.Extensions
 				}
 			}
 
-			Assert.Equal(newValue, builder.ToString());
-			Assert.Equal(original, writer.Writer.GetStringBuilder().ToString());
+			Assert.AreEqual(newValue, builder.ToString());
+			Assert.AreEqual(original, writer.Writer.GetStringBuilder().ToString());
 		}
 
-		[Fact]
-		public void WithUsingFuncAndAction()
+		[Test]
+		public static void WithUsingFuncAndAction()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<string>()!;
@@ -52,170 +52,170 @@ namespace Spackle.Tests.Extensions
 				}
 			}
 
-			Assert.Equal(newValue, builder.ToString());
-			Assert.Equal(original, writer.Writer.GetStringBuilder().ToString());
+			Assert.AreEqual(newValue, builder.ToString());
+			Assert.AreEqual(original, writer.Writer.GetStringBuilder().ToString());
 		}
 
-		[Fact]
-		public void BindToLocalVariable()
+		[Test]
+		public static void BindToLocalVariable()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<int>();
 			var newValue = generator.Generate<int>();
 			var binded = original;
 
-			Assert.Equal(original, binded);
+			Assert.AreEqual(original, binded);
 
 			using (binded.Bind(() => newValue))
 			{
-				Assert.Equal(newValue, binded);
+				Assert.AreEqual(newValue, binded);
 			}
 
-			Assert.Equal(original, binded);
+			Assert.AreEqual(original, binded);
 		}
 
-		[Fact]
-		public void BindToInternalInstanceField()
+		[Test]
+		public static void BindToInternalInstanceField()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<string>();
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InternalInstanceField = original };
 
-			Assert.Equal(original, binded.InternalInstanceField);
+			Assert.AreEqual(original, binded.InternalInstanceField);
 
-			using(newValue.Bind(() => binded.InternalInstanceField))
+			using (newValue.Bind(() => binded.InternalInstanceField))
 			{
-				Assert.Equal(newValue, binded.InternalInstanceField);
+				Assert.AreEqual(newValue, binded.InternalInstanceField);
 			}
 
-			Assert.Equal(original, binded.InternalInstanceField);
+			Assert.AreEqual(original, binded.InternalInstanceField);
 		}
 
-		[Fact]
-		public void BindToInternalInstanceProperty()
+		[Test]
+		public static void BindToInternalInstanceProperty()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<string>();
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InternalInstanceProperty = original };
 
-			Assert.Equal(original, binded.InternalInstanceProperty);
+			Assert.AreEqual(original, binded.InternalInstanceProperty);
 
 			using (newValue.Bind(() => binded.InternalInstanceProperty))
 			{
-				Assert.Equal(newValue, binded.InternalInstanceProperty);
+				Assert.AreEqual(newValue, binded.InternalInstanceProperty);
 			}
 
-			Assert.Equal(original, binded.InternalInstanceProperty);
+			Assert.AreEqual(original, binded.InternalInstanceProperty);
 		}
 
-		[Fact]
-		public void BindToInternalStaticField()
+		[Test]
+		public static void BindToInternalStaticField()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<string>();
 			var newValue = generator.Generate<string>();
 			Binded.InternalStaticField = original;
 
-			Assert.Equal(original, Binded.InternalStaticField);
+			Assert.AreEqual(original, Binded.InternalStaticField);
 
-			using(newValue.Bind(() => Binded.InternalStaticField))
+			using (newValue.Bind(() => Binded.InternalStaticField))
 			{
-				Assert.Equal(newValue, Binded.InternalStaticField);
+				Assert.AreEqual(newValue, Binded.InternalStaticField);
 			}
 
-			Assert.Equal(original, Binded.InternalStaticField);
+			Assert.AreEqual(original, Binded.InternalStaticField);
 		}
 
-		[Fact]
-		public void BindToInternalStaticProperty()
+		[Test]
+		public static void BindToInternalStaticProperty()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<string>();
 			var newValue = generator.Generate<string>();
 			Binded.InternalStaticProperty = original;
 
-			Assert.Equal(original, Binded.InternalStaticProperty);
+			Assert.AreEqual(original, Binded.InternalStaticProperty);
 
 			using (newValue.Bind(() => Binded.InternalStaticProperty))
 			{
-				Assert.Equal(newValue, Binded.InternalStaticProperty);
+				Assert.AreEqual(newValue, Binded.InternalStaticProperty);
 			}
 
-			Assert.Equal(original, Binded.InternalStaticProperty);
+			Assert.AreEqual(original, Binded.InternalStaticProperty);
 		}
 
-		[Fact]
-		public void BindToInstanceField()
+		[Test]
+		public static void BindToInstanceField()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<string>();
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InstanceField = original };
 
-			Assert.Equal(original, binded.InstanceField);
+			Assert.AreEqual(original, binded.InstanceField);
 
 			using (newValue.Bind(() => binded.InstanceField))
 			{
-				Assert.Equal(newValue, binded.InstanceField);
+				Assert.AreEqual(newValue, binded.InstanceField);
 			}
 
-			Assert.Equal(original, binded.InstanceField);
+			Assert.AreEqual(original, binded.InstanceField);
 		}
 
-		[Fact]
-		public void BindToInstanceProperty()
+		[Test]
+		public static void BindToInstanceProperty()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<string>();
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InstanceProperty = original };
 
-			Assert.Equal(original, binded.InstanceProperty);
+			Assert.AreEqual(original, binded.InstanceProperty);
 
 			using (newValue.Bind(() => binded.InstanceProperty))
 			{
-				Assert.Equal(newValue, binded.InstanceProperty);
+				Assert.AreEqual(newValue, binded.InstanceProperty);
 			}
 
-			Assert.Equal(original, binded.InstanceProperty);
+			Assert.AreEqual(original, binded.InstanceProperty);
 		}
 
-		[Fact]
-		public void BindToStaticField()
+		[Test]
+		public static void BindToStaticField()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<string>();
 			var newValue = generator.Generate<string>();
 			Binded.StaticField = original;
 
-			Assert.Equal(original, Binded.StaticField);
+			Assert.AreEqual(original, Binded.StaticField);
 
 			using (newValue.Bind(() => Binded.StaticField))
 			{
-				Assert.Equal(newValue, Binded.StaticField);
+				Assert.AreEqual(newValue, Binded.StaticField);
 			}
 
-			Assert.Equal(original, Binded.StaticField);
+			Assert.AreEqual(original, Binded.StaticField);
 		}
 
-		[Fact]
-		public void BindToStaticProperty()
+		[Test]
+		public static void BindToStaticProperty()
 		{
 			var generator = new RandomObjectGenerator();
 			var original = generator.Generate<string>();
 			var newValue = generator.Generate<string>();
 			Binded.StaticProperty = original;
 
-			Assert.Equal(original, Binded.StaticProperty);
+			Assert.AreEqual(original, Binded.StaticProperty);
 
 			using (newValue.Bind(() => Binded.StaticProperty))
 			{
-				Assert.Equal(newValue, Binded.StaticProperty);
+				Assert.AreEqual(newValue, Binded.StaticProperty);
 			}
 
-			Assert.Equal(original, Binded.StaticProperty);
+			Assert.AreEqual(original, Binded.StaticProperty);
 		}
 	}
 }

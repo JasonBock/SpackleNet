@@ -1,30 +1,30 @@
-﻿using Spackle.Reflection.Extensions;
+﻿using NUnit.Framework;
+using Spackle.Reflection.Extensions;
 using System;
 using System.Reflection;
-using Xunit;
 
 namespace Spackle.Tests.Reflection.Extensions
 {
-	public sealed class ICustomAttributeProviderExtensionsTests
+	public static class ICustomAttributeProviderExtensionsTests
 	{
-		[Fact]
-		public void HasAttributeWithNullThis() =>
+		[Test]
+		public static void HasAttributeWithNullThis() =>
 			Assert.Throws<ArgumentNullException>(
 				() => (null as Type)!.GetTypeInfo().HasAttribute(typeof(ClassAttribute), false));
 
-		[Fact]
-		public void HasAttributeWithNullArgument() =>
+		[Test]
+		public static void HasAttributeWithNullArgument() =>
 			Assert.Throws<ArgumentNullException>(
 				() => typeof(ICustomAttributeProviderExtensionsTests).GetTypeInfo().HasAttribute(
 					null!, false));
 
-		[Fact]
-		public void HasAttributeForExistingAttribute() =>
+		[Test]
+		public static void HasAttributeForExistingAttribute() =>
 			Assert.True(typeof(HasAttribute).GetTypeInfo().HasAttribute(
 				typeof(ClassAttribute), false));
 
-		[Fact]
-		public void HasAttributeForMissingAttribute() =>
+		[Test]
+		public static void HasAttributeForMissingAttribute() =>
 			Assert.False(typeof(DoesNotHaveAttribute).GetTypeInfo().HasAttribute(
 				typeof(ClassAttribute), false));
 
