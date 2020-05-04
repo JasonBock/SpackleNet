@@ -139,5 +139,52 @@ namespace Spackle.Tests.Extensions
 			Assert.Equal(6, range.Start);
 			Assert.Equal(3, range.End);
 		}
+
+		[Fact]
+		public static void UnionWithCurrentRangeHavingStartAndTargetHavingEnd()
+		{
+			var range = 3..6;
+			var union = range.Union(4..10)!;
+
+			Assert.Equal(3, union.Value.Start);
+			Assert.Equal(10, union.Value.End);
+		}
+
+		[Fact]
+		public static void UnionWithCurrentRangeHavingEndAndTargetHavingStart()
+		{
+			var range = 4..10;
+			var union = range.Union(3..6)!;
+
+			Assert.Equal(3, union.Value.Start);
+			Assert.Equal(10, union.Value.End);
+		}
+
+		[Fact]
+		public static void UnionWhereCurrentRangeDefinesUnion()
+		{
+			var range = 1..10;
+			var union = range.Union(3..6)!;
+
+			Assert.Equal(1, union.Value.Start);
+			Assert.Equal(10, union.Value.End);
+		}
+
+		[Fact]
+		public static void UnionWhereTargetDefinesUnion()
+		{
+			var range = 3..6;
+			var union = range.Union(1..10)!;
+
+			Assert.Equal(1, union.Value.Start);
+			Assert.Equal(10, union.Value.End);
+		}
+
+		[Fact]
+		public static void UnionWithNoCommonality()
+		{
+			var range = 3..6;
+			Assert.Null(range.Union(7..10));
+		}
 	}
 }

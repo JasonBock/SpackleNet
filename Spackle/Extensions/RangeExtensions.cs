@@ -85,5 +85,21 @@ namespace Spackle.Extensions
 
 			return ranges.ToImmutable();
 		}
+
+		public static Range? Union(this Range @this, Range target)
+		{
+			var currentRange = @this.ToAscending();
+			var targetRange = target.ToAscending();
+
+			if (currentRange.Contains(targetRange.Start) || currentRange.Contains(targetRange.End) ||
+				targetRange.Contains(currentRange.Start) || targetRange.Contains(currentRange.End))
+			{
+				var intersectionStart = currentRange.Start.Value.CompareTo(targetRange.Start.Value) >= 0 ? targetRange.Start : currentRange.Start;
+				var intersectionEnd = currentRange.End.Value.CompareTo(targetRange.End.Value) <= 0 ? targetRange.End : currentRange.End;
+				return intersectionStart..intersectionEnd;
+			}
+
+			return null;
+		}
 	}
 }
