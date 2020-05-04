@@ -66,11 +66,24 @@ namespace Spackle
 
 			var maxNumberOfDigits = (int)Math.Floor(BigInteger.Log10(max) + 1);
 			var numberOfDigits = (uint)this.Next(maxNumberOfDigits);
+
+			numberOfDigits = numberOfDigits == 0 ? 1 : numberOfDigits;
+
 			var result = this.GetBigInteger(numberOfDigits);
 
 			return result >= max ? result % max : result;
 		}
 
+		/// <summary>
+		/// Generates a <see cref="BigInteger"/> value from <paramref name="min"/> to <paramref name="max"/> exclusive.
+		/// </summary>
+		/// <param name="min">The lower limit (exclusive) to use to generate a new number.</param>
+		/// <param name="max">The upper limit (exclusive) to use to generate a new number.</param>
+		/// <returns>A new <see cref="BigInteger"/> value.</returns>
+		/// <exception cref="ArgumentException">
+		/// Thrown if <paramref name="min"/> or <paramref name="max"/> is less than or equal to zero,
+		/// or if <paramref name="min"/> is greater than or equal to <paramref name="max"/>.
+		/// </exception>
 		public BigInteger GetBigIntegerWithRange(BigInteger min, BigInteger max)
 		{
 			if (this.disposed)

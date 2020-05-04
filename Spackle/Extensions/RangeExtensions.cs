@@ -5,14 +5,33 @@ namespace Spackle.Extensions
 {
 	public static class RangeExtensions
 	{
+		/// <summary>
+		/// Determines if <paramref name="value"/> is within the range.
+		/// </summary>
+		/// <param name="this">The provided range.</param>
+		/// <param name="value">The value to check.</param>
+		/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="this"/>>, else <c>false</c>.</returns>
 		public static bool Contains(this Range @this, Index value) =>
 			@this.Contains(value.Value);
 
+		/// <summary>
+		/// Determines if <paramref name="value"/> is within the range.
+		/// </summary>
+		/// <param name="this">The provided range.</param>
+		/// <param name="value">The value to check.</param>
+		/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="this"/>>, else <c>false</c>.</returns>
 		public static bool Contains(this Range @this, int value) =>
 			@this.Start.Value < @this.End.Value ?
 				(value.CompareTo(@this.Start.Value) >= 0 && value.CompareTo(@this.End.Value) <= 0) :
 				(value.CompareTo(@this.Start.Value) <= 0 && value.CompareTo(@this.End.Value) >= 0);
 
+		/// <summary>
+		/// Gets the intersection of the current <see cref="Range" /> 
+		/// and the target <see cref="Range" />.
+		/// </summary>
+		/// <param name="target">The target <see cref="Range" />.</param>
+		/// <returns>A new <see cref="Range" /> instance that is the intersection, 
+		/// or <c>null</c> if there is no intersection.</returns>
 		public static Range? Intersect(this Range @this, Range target)
 		{
 			var currentRange = @this.ToAscending();
@@ -28,16 +47,45 @@ namespace Spackle.Extensions
 			return null;
 		}
 
+		/// <summary>
+		/// Returns a <see cref="Range" /> where <see cref="Range.Start" /> is less than
+		/// <see cref="Range.End" /> based on the values in <paramref name="this"/>
+		/// </summary>
+		/// <param name="this">The <see cref="Range" /> to put into ascending order.</param>
+		/// <returns>A new <see cref="Range"/> in ascending order.</returns>
 		public static Range ToAscending(this Range @this) =>
 			@this.Start.Value < @this.End.Value ? @this : @this.End..@this.Start;
 
+		/// <summary>
+		/// Returns a <see cref="Range" /> where <see cref="Range.End" /> is less than
+		/// <see cref="Range.Start" /> based on the values in <paramref name="this"/>
+		/// </summary>
+		/// <param name="this">The <see cref="Range" /> to put into descending order.</param>
+		/// <returns>A new <see cref="Range"/> in descending order.</returns>
 		public static Range ToDescending(this Range @this) =>
 			@this.Start.Value > @this.End.Value ? @this : @this.End..@this.Start;
 
-		// https://softwareengineering.stackexchange.com/questions/187680/algorithm-for-dividing-a-range-into-ranges-and-then-finding-which-range-a-number
+		/// <summary>
+		/// Provides an array of <see cref="Range" /> values split up
+		/// based on the <paramref name="numberOfRanges"/> value.
+		/// </summary>
+		/// <param name="this"></param>
+		/// <param name="numberOfRanges"></param>
+		/// <returns></returns>
+		/// <remarks>
+		/// A quick example of what this method does:
+		/// If the provided <see cref="Range" /> is <c>0..100</c> and
+		/// <paramref name="numberOfRanges"/> is <3>, the results are:
+		/// <code>
+		/// 0..34
+		/// 35..67
+		/// 68..100
+		/// </code>
+		/// </remarks>
 		public static ImmutableArray<Range> Partition(this Range @this, int numberOfRanges)
 		{
-			if(numberOfRanges <= 0)
+			// https://softwareengineering.stackexchange.com/questions/187680/algorithm-for-dividing-a-range-into-ranges-and-then-finding-which-range-a-number
+			if (numberOfRanges <= 0)
 			{
 				throw new ArgumentException("The number of ranges must be greater than 0.", nameof(numberOfRanges));
 			}
@@ -86,6 +134,13 @@ namespace Spackle.Extensions
 			return ranges.ToImmutable();
 		}
 
+		/// <summary>
+		/// Gets the union of the current <see cref="Range" /> 
+		/// and the target <see cref="Range" />.
+		/// </summary>
+		/// <param name="target">The target <see cref="Range" />.</param>
+		/// <returns>A new <see cref="Range" /> instance that is the union, 
+		/// or <c>null</c> if there is no intersection.</returns>
 		public static Range? Union(this Range @this, Range target)
 		{
 			var currentRange = @this.ToAscending();
