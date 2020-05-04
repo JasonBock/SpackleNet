@@ -47,6 +47,58 @@ namespace Spackle
 		}
 
 		/// <summary>
+		/// Generates a <see cref="BigInteger"/> value from 0 to <paramref name="max"/> exclusive.
+		/// </summary>
+		/// <param name="max">The upper limit (exclusive) to use to generate a new number.</param>
+		/// <returns>A new <see cref="BigInteger"/> value.</returns>
+		/// <exception cref="ArgumentException">Thrown if <paramref name="max"/> is less than or equal to zero.</exception>
+		public BigInteger GetBigIntegerWithRange(BigInteger max)
+		{
+			if (this.disposed)
+			{
+				throw new ObjectDisposedException(nameof(SecureRandom));
+			}
+
+			if(max <= BigInteger.Zero)
+			{
+				throw new ArgumentException($"Max value, {max}, must be greater than zero.", nameof(max));
+			}
+
+			var maxNumberOfDigits = (int)Math.Floor(BigInteger.Log10(max) + 1);
+			var numberOfDigits = (uint)this.Next(maxNumberOfDigits);
+			var result = this.GetBigInteger(numberOfDigits);
+
+			return result >= max ? result % max : result;
+		}
+
+		public BigInteger GetBigIntegerWithRange(BigInteger min, BigInteger max)
+		{
+			if (this.disposed)
+			{
+				throw new ObjectDisposedException(nameof(SecureRandom));
+			}
+
+			if (min <= BigInteger.Zero)
+			{
+				throw new ArgumentException($"Min value, {min}, must be greater than zero.", nameof(min));
+			}
+
+			if (max <= BigInteger.Zero)
+			{
+				throw new ArgumentException($"Max value, {max}, must be greater than zero.", nameof(max));
+			}
+
+			if (min >= max)
+			{
+				throw new ArgumentException($"Min value, {min}, must be less than the max value, {max}.", nameof(min));
+			}
+
+			var difference = max - min;
+			var delta = this.GetBigIntegerWithRange(difference);
+			return min + delta;
+		}
+
+		/// <summary>
 		/// Generates a <see cref="BigInteger"/> value with the specified number of digits.
 		/// </summary>
 		/// <param name="numberOfDigits">The number of digits in the generated number.</param>

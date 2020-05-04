@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Security.Cryptography;
 using Xunit;
 
@@ -28,6 +29,75 @@ namespace Spackle.Tests
 			using var random = new SecureRandom();
 			var value = random.GetBigInteger(length);
 			Assert.Equal((int)length, value.ToString().Length);
+		}
+
+		[Fact]
+		public void CreateBigIntegerWithRange()
+		{
+			using var random = new SecureRandom();
+			var max = BigInteger.Parse("431531631631431");
+			var value = random.GetBigIntegerWithRange(max);
+
+			Assert.True(value < max);
+		}
+
+		[Fact]
+		public void CreateBigIntegerWithRangeWithIncorrectMaxValue()
+		{
+			using var random = new SecureRandom();
+			Assert.Throws<ArgumentException>(() => random.GetBigIntegerWithRange(BigInteger.Zero));
+		}
+
+		[Fact]
+		public void CreateBigIntegerWithRangeAfterDisposing()
+		{
+			SecureRandom random;
+
+			using (random = new SecureRandom()) { }
+
+			Assert.Throws<ObjectDisposedException>(() => random.GetBigIntegerWithRange(3));
+		}
+
+		[Fact]
+		public void GetBigIntegerWithMinAndMaxValues()
+		{
+			var min = new BigInteger(4500);
+			var max = new BigInteger(5000);
+			using var random = new SecureRandom();
+			var value = random.GetBigIntegerWithRange(min, max);
+
+			Assert.True(value >= min && value < max);
+		}
+
+		[Fact]
+		public void GetBigIntegerWithMinAndMaxValuesWithMinGreaterThanMax()
+		{
+			using var random = new SecureRandom();
+			Assert.Throws<ArgumentException>("min", () => random.GetBigIntegerWithRange(4, 3));
+		}
+
+		[Fact]
+		public void GetBigIntegerWithMinAndMaxValuesWithMaxLessThanOne()
+		{
+			using var random = new SecureRandom();
+			Assert.Throws<ArgumentException>("max", () => random.GetBigIntegerWithRange(4, 0));
+		}
+
+		[Fact]
+		public void GetBigIntegerWithMinAndMaxValuesWithMinLessThanOne()
+		{
+			using var random = new SecureRandom();
+			Assert.Throws<ArgumentException>("min", () => random.GetBigIntegerWithRange(0, 4));
+		}
+
+		[Fact]
+		public void GetBigIntegerWithMinAndMaxValuesAfterDisposing()
+		{
+			SecureRandom random;
+
+			using (random = new SecureRandom()) { }
+
+			Assert.Throws<ObjectDisposedException>(() => random.GetBigIntegerWithRange(3, 4));
 		}
 
 		[Fact]
