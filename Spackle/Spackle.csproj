@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <Copyright>Copyright © 2020</Copyright>
     <Description>An assembly that contains utilities and extension methods to augment .NET development.</Description>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -9,13 +10,12 @@
     <PackageLicenseUrl>https://github.com/JasonBock/SpackleNet/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
-    <PackageVersion>9.1.0</PackageVersion>
+    <PackageVersion>$(Version)</PackageVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <RepositoryUrl>https://github.com/jasonbock/spacklenet</RepositoryUrl>
     <RootNamespace>Spackle</RootNamespace>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>9.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Collections.Immutable" Version="1.7.0" />

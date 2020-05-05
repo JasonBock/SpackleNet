@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>9.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Extensions\EnumExtensionsTests.cs~RF1eab6333.TMP" />
