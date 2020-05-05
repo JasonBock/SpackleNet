@@ -12,8 +12,8 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
 			items.Rotate(7, RotateDirection.Negative);
-			Assert.AreEqual(
-				new List<string> { "h", "i", "j", "a", "b", "c", "d", "e", "f", "g" }, items);
+			Assert.That(items,
+				Is.EquivalentTo(new List<string> { "h", "i", "j", "a", "b", "c", "d", "e", "f", "g" }));
 		}
 
 		[Test]
@@ -21,8 +21,8 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i" };
 			items.Rotate(6, RotateDirection.Negative);
-			Assert.AreEqual(
-				new List<string> { "g", "h", "i", "a", "b", "c", "d", "e", "f" }, items);
+			Assert.That(items,
+				Is.EquivalentTo(new List<string> { "g", "h", "i", "a", "b", "c", "d", "e", "f" }));
 		}
 
 		[Test]
@@ -30,8 +30,8 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
 			items.Rotate(7, RotateDirection.Positive);
-			Assert.AreEqual(
-				new List<string> { "d", "e", "f", "g", "h", "i", "j", "a", "b", "c" }, items);
+			Assert.That(items,
+				Is.EquivalentTo(new List<string> { "d", "e", "f", "g", "h", "i", "j", "a", "b", "c" }));
 		}
 
 		[Test]
@@ -39,8 +39,8 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i" };
 			items.Rotate(3, RotateDirection.Positive);
-			Assert.AreEqual(
-				new List<string> { "g", "h", "i", "a", "b", "c", "d", "e", "f" }, items);
+			Assert.That(items,
+				Is.EquivalentTo(new List<string> { "g", "h", "i", "a", "b", "c", "d", "e", "f" }));
 		}
 
 		[Test]
@@ -48,8 +48,8 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a" };
 			items.Rotate(1, RotateDirection.Positive);
-			Assert.AreEqual(
-				new List<string> { "a" }, items);
+			Assert.That(items,
+				Is.EquivalentTo(new List<string> { "a" }));
 		}
 
 		[Test]
@@ -57,29 +57,29 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
 			items.Rotate(10, RotateDirection.Positive);
-			Assert.AreEqual(
-				new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" }, items);
+			Assert.That(items,
+				Is.EquivalentTo(new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" }));
 		}
 
 		[Test]
 		public static void RotateWithPositionsGreaterThanItemsCount()
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i" };
-			Assert.Throws<ArgumentException>(() => items.Rotate(items.Count + 5, RotateDirection.Positive));
+			Assert.That(() => items.Rotate(items.Count + 5, RotateDirection.Positive), Throws.TypeOf<ArgumentException>());
 		}
 
 		[Test]
 		public static void RotateWithZeroPositions()
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i" };
-			Assert.Throws<ArgumentException>(() => items.Rotate(0, RotateDirection.Positive));
+			Assert.That(() => items.Rotate(0, RotateDirection.Positive), Throws.TypeOf<ArgumentException>());
 		}
 
 		[Test]
 		public static void RotateWithNullArgument()
 		{
 			IList<string> items = null!;
-			Assert.Throws<ArgumentNullException>(() => items.Rotate(3, RotateDirection.Positive));
+			Assert.That(() => items.Rotate(3, RotateDirection.Positive), Throws.TypeOf<ArgumentNullException>());
 		}
 
 		[Test]
@@ -93,14 +93,14 @@ namespace Spackle.Tests.Extensions
 		public static void ShuffleWithNullList()
 		{
 			IList<string> items = null!;
-			Assert.Throws<ArgumentNullException>(() => items!.Shuffle());
+			Assert.That(() => items!.Shuffle(), Throws.TypeOf<ArgumentNullException>());
 		}
 
 		[Test]
 		public static void ShuffleWithNullRandomGenerator()
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
-			Assert.Throws<ArgumentNullException>(() => items.Shuffle(null!));
+			Assert.That(() => items.Shuffle(null!), Throws.TypeOf<ArgumentNullException>());
 		}
 
 		[Test]
@@ -108,8 +108,8 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
 			items.Shuffle(new MockSecureRandomForShuffle());
-
-			Assert.AreEqual(new List<int> { 7, 5, 4, 3, 1, 8, 2, 6 }, items);
+			Assert.That(items,
+				Is.EquivalentTo(new List<int> { 7, 5, 4, 3, 1, 8, 2, 6 }));
 		}
 
 		[Test]
@@ -117,8 +117,8 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
 			items.Swap(2, 4);
-			Assert.AreEqual(
-				new List<string> { "a", "b", "e", "d", "c" }, items);
+			Assert.That(items,
+				Is.EquivalentTo(new List<string> { "a", "b", "e", "d", "c" }));
 		}
 
 		[Test]
@@ -126,43 +126,43 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
 			items.Swap(2, 2);
-			Assert.AreEqual(
-				new List<string> { "a", "b", "c", "d", "e" }, items);
+			Assert.That(items,
+				Is.EquivalentTo(new List<string> { "a", "b", "c", "d", "e" }));
 		}
 
 		[Test]
 		public static void SwapWithNullArgument()
 		{
 			IList<string> items = null!;
-			Assert.Throws<ArgumentNullException>(() => items.Swap(2, 4));
+			Assert.That(() => items.Swap(2, 4), Throws.TypeOf<ArgumentNullException>());
 		}
 
 		[Test]
 		public static void SwapWithXPositionTooHigh()
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
-			Assert.Throws<ArgumentOutOfRangeException>(() => items.Swap(15, 4));
+			Assert.That(() => items.Swap(15, 4), Throws.TypeOf<ArgumentOutOfRangeException>());
 		}
 
 		[Test]
 		public static void SwapWithXPositionTooLow()
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
-			Assert.Throws<ArgumentOutOfRangeException>(() => items.Swap(-2, 4));
+			Assert.That(() => items.Swap(-2, 4), Throws.TypeOf<ArgumentOutOfRangeException>());
 		}
 
 		[Test]
 		public static void SwapWithYPositionTooHigh()
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
-			Assert.Throws<ArgumentOutOfRangeException>(() => items.Swap(2, 44));
+			Assert.That(() => items.Swap(2, 44), Throws.TypeOf<ArgumentOutOfRangeException>());
 		}
 
 		[Test]
 		public static void SwapWithYPositionTooLow()
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
-			Assert.Throws<ArgumentOutOfRangeException>(() => items.Swap(2, -4));
+			Assert.That(() => items.Swap(2, -4), Throws.TypeOf<ArgumentOutOfRangeException>());
 		}
 	}
 }

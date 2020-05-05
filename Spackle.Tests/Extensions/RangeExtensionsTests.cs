@@ -11,7 +11,7 @@ namespace Spackle.Tests.Extensions
 		[TestCase(5, 0, 3, true)]
 		[TestCase(5, 0, 7, false)]
 		public static void Contains(int start, int end, int value, bool expectedValue) => 
-			Assert.AreEqual(expectedValue, (start..end).Contains(value));
+			Assert.That((start..end).Contains(value), Is.EqualTo(expectedValue));
 
 		[Test]
 		public static void Intersection()
@@ -19,8 +19,11 @@ namespace Spackle.Tests.Extensions
 			var range = 3..6;
 			var intersection = range.Intersect(5..8)!;
 
-			Assert.AreEqual(5, intersection.Value.Start);
-			Assert.AreEqual(6, intersection.Value.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(intersection.Value.Start.Value, Is.EqualTo(5), nameof(intersection.Value.Start));
+				Assert.That(intersection.Value.End.Value, Is.EqualTo(6), nameof(intersection.Value.End));
+			});
 		}
 
 		[Test]
@@ -29,13 +32,16 @@ namespace Spackle.Tests.Extensions
 			var range = 5..8;
 			var intersection = range.Intersect(3..6)!;
 
-			Assert.AreEqual(5, intersection.Value.Start);
-			Assert.AreEqual(6, intersection.Value.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(intersection.Value.Start.Value, Is.EqualTo(5), nameof(intersection.Value.Start));
+				Assert.That(intersection.Value.End.Value, Is.EqualTo(6), nameof(intersection.Value.End));
+			});
 		}
 
 		[Test]
 		public static void IntersectionWithNoIntersection() => 
-			Assert.Null((3..6).Intersect(7..8));
+			Assert.That((3..6).Intersect(7..8), Is.Null);
 
 		[Test]
 		public static void IntersectionWithEndAndStartEqual()
@@ -43,8 +49,11 @@ namespace Spackle.Tests.Extensions
 			var range = 3..6;
 			var intersection = range.Intersect(6..8)!;
 
-			Assert.AreEqual(6, intersection.Value.Start);
-			Assert.AreEqual(6, intersection.Value.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(intersection.Value.Start.Value, Is.EqualTo(6), nameof(intersection.Value.Start));
+				Assert.That(intersection.Value.End.Value, Is.EqualTo(6), nameof(intersection.Value.End));
+			});
 		}
 
 		[Test]
@@ -53,22 +62,25 @@ namespace Spackle.Tests.Extensions
 			var range = 5..5000;
 			var partitions = range.Partition(5);
 
-			Assert.AreEqual(5, partitions.Length);
+			Assert.Multiple(() =>
+			{
+				Assert.That(partitions.Length, Is.EqualTo(5), nameof(partitions.Length));
 
-			Assert.AreEqual(5, partitions[0].Start);
-			Assert.AreEqual(1004, partitions[0].End);
+				Assert.That(partitions[0].Start.Value, Is.EqualTo(5), "partitions[0].Start");
+				Assert.That(partitions[0].End.Value, Is.EqualTo(1004), "partitions[0].End");
 
-			Assert.AreEqual(1005, partitions[1].Start);
-			Assert.AreEqual(2003, partitions[1].End);
+				Assert.That(partitions[1].Start.Value, Is.EqualTo(1005), "partitions[1].Start");
+				Assert.That(partitions[1].End.Value, Is.EqualTo(2003), "partitions[1].End");
 
-			Assert.AreEqual(2004, partitions[2].Start);
-			Assert.AreEqual(3002, partitions[2].End);
+				Assert.That(partitions[2].Start.Value, Is.EqualTo(2004), "partitions[2].Start");
+				Assert.That(partitions[2].End.Value, Is.EqualTo(3002), "partitions[2].End");
 
-			Assert.AreEqual(3003, partitions[3].Start);
-			Assert.AreEqual(4001, partitions[3].End);
+				Assert.That(partitions[3].Start.Value, Is.EqualTo(3003), "partitions[3].Start");
+				Assert.That(partitions[3].End.Value, Is.EqualTo(4001), "partitions[3].End");
 
-			Assert.AreEqual(4002, partitions[4].Start);
-			Assert.AreEqual(5000, partitions[4].End);
+				Assert.That(partitions[4].Start.Value, Is.EqualTo(4002), "partitions[4].Start");
+				Assert.That(partitions[4].End.Value, Is.EqualTo(5000), "partitions[4].End");
+			});
 		}
 
 		[Test]
@@ -77,39 +89,45 @@ namespace Spackle.Tests.Extensions
 			var range = 5000..5;
 			var partitions = range.Partition(5);
 
-			Assert.AreEqual(5, partitions.Length);
+			Assert.Multiple(() =>
+			{
+				Assert.That(partitions.Length, Is.EqualTo(5), nameof(partitions.Length));
 
-			Assert.AreEqual(5000, partitions[0].Start);
-			Assert.AreEqual(4002, partitions[0].End);
+				Assert.That(partitions[0].Start.Value, Is.EqualTo(5000), "partitions[0].Start");
+				Assert.That(partitions[0].End.Value, Is.EqualTo(4002), "partitions[0].End");
 
-			Assert.AreEqual(4001, partitions[1].Start);
-			Assert.AreEqual(3003, partitions[1].End);
+				Assert.That(partitions[1].Start.Value, Is.EqualTo(4001), "partitions[1].Start");
+				Assert.That(partitions[1].End.Value, Is.EqualTo(3003), "partitions[1].End");
 
-			Assert.AreEqual(3002, partitions[2].Start);
-			Assert.AreEqual(2004, partitions[2].End);
+				Assert.That(partitions[2].Start.Value, Is.EqualTo(3002), "partitions[2].Start");
+				Assert.That(partitions[2].End.Value, Is.EqualTo(2004), "partitions[2].End");
 
-			Assert.AreEqual(2003, partitions[3].Start);
-			Assert.AreEqual(1005, partitions[3].End);
+				Assert.That(partitions[3].Start.Value, Is.EqualTo(2003), "partitions[3].Start");
+				Assert.That(partitions[3].End.Value, Is.EqualTo(1005), "partitions[3].End");
 
-			Assert.AreEqual(1004, partitions[4].Start);
-			Assert.AreEqual(5, partitions[4].End);
+				Assert.That(partitions[4].Start.Value, Is.EqualTo(1004), "partitions[4].Start");
+				Assert.That(partitions[4].End.Value, Is.EqualTo(5), "partitions[4].End");
+			});
 		}
 
 		[Test]
 		public static void PartitionWithInvalidNumberOfRanges() => 
-			Assert.Throws<ArgumentException>(() => (1..2).Partition(0));
+			Assert.That(() => (1..2).Partition(0), Throws.TypeOf<ArgumentException>());
 
 		[Test]
 		public static void PartitionWithEqualStartAndEndRangeValues() =>
-			Assert.Throws<ArgumentException>(() => (1..1).Partition(3));
+			Assert.That(() => (1..1).Partition(3), Throws.TypeOf<ArgumentException>());
 
 		[Test]
 		public static void ToAscendingNoChange()
 		{
 			var range = (3..6).ToAscending();
 
-			Assert.AreEqual(3, range.Start);
-			Assert.AreEqual(6, range.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(range.Start.Value, Is.EqualTo(3), nameof(range.Start));
+				Assert.That(range.End.Value, Is.EqualTo(6), nameof(range.End));
+			});
 		}
 
 		[Test]
@@ -117,8 +135,11 @@ namespace Spackle.Tests.Extensions
 		{
 			var range = (6..3).ToAscending();
 
-			Assert.AreEqual(3, range.Start);
-			Assert.AreEqual(6, range.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(range.Start.Value, Is.EqualTo(3), nameof(range.Start));
+				Assert.That(range.End.Value, Is.EqualTo(6), nameof(range.End));
+			});
 		}
 
 		[Test]
@@ -126,8 +147,11 @@ namespace Spackle.Tests.Extensions
 		{
 			var range = (6..3).ToDescending();
 
-			Assert.AreEqual(6, range.Start);
-			Assert.AreEqual(3, range.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(range.Start.Value, Is.EqualTo(6), nameof(range.Start));
+				Assert.That(range.End.Value, Is.EqualTo(3), nameof(range.End));
+			});
 		}
 
 		[Test]
@@ -135,8 +159,11 @@ namespace Spackle.Tests.Extensions
 		{
 			var range = (3..6).ToDescending();
 
-			Assert.AreEqual(6, range.Start);
-			Assert.AreEqual(3, range.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(range.Start.Value, Is.EqualTo(6), nameof(range.Start));
+				Assert.That(range.End.Value, Is.EqualTo(3), nameof(range.End));
+			});
 		}
 
 		[Test]
@@ -145,8 +172,11 @@ namespace Spackle.Tests.Extensions
 			var range = 3..6;
 			var union = range.Union(4..10)!;
 
-			Assert.AreEqual(3, union.Value.Start);
-			Assert.AreEqual(10, union.Value.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(union.Value.Start.Value, Is.EqualTo(3), nameof(union.Value.Start));
+				Assert.That(union.Value.End.Value, Is.EqualTo(10), nameof(union.Value.End));
+			});
 		}
 
 		[Test]
@@ -155,8 +185,11 @@ namespace Spackle.Tests.Extensions
 			var range = 4..10;
 			var union = range.Union(3..6)!;
 
-			Assert.AreEqual(3, union.Value.Start);
-			Assert.AreEqual(10, union.Value.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(union.Value.Start.Value, Is.EqualTo(3), nameof(union.Value.Start));
+				Assert.That(union.Value.End.Value, Is.EqualTo(10), nameof(union.Value.End));
+			});
 		}
 
 		[Test]
@@ -165,8 +198,11 @@ namespace Spackle.Tests.Extensions
 			var range = 1..10;
 			var union = range.Union(3..6)!;
 
-			Assert.AreEqual(1, union.Value.Start);
-			Assert.AreEqual(10, union.Value.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(union.Value.Start.Value, Is.EqualTo(1), nameof(union.Value.Start));
+				Assert.That(union.Value.End.Value, Is.EqualTo(10), nameof(union.Value.End));
+			});
 		}
 
 		[Test]
@@ -175,15 +211,18 @@ namespace Spackle.Tests.Extensions
 			var range = 3..6;
 			var union = range.Union(1..10)!;
 
-			Assert.AreEqual(1, union.Value.Start);
-			Assert.AreEqual(10, union.Value.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(union.Value.Start.Value, Is.EqualTo(1), nameof(union.Value.Start));
+				Assert.That(union.Value.End.Value, Is.EqualTo(10), nameof(union.Value.End));
+			});
 		}
 
 		[Test]
 		public static void UnionWithNoCommonality()
 		{
 			var range = 3..6;
-			Assert.Null(range.Union(7..10));
+			Assert.That(range.Union(7..10), Is.Null);
 		}
 	}
 }

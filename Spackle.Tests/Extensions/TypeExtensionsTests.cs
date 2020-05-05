@@ -8,19 +8,21 @@ namespace Spackle.Tests.Extensions
 	{
 		[Test]
 		public static void GetRootElementTypeFromRefArrayArray() =>
-			Assert.AreEqual(typeof(int), 
-				typeof(int).MakeArrayType().MakeByRefType().GetRootElementType());
+			Assert.That(typeof(int).MakeArrayType().MakeByRefType().GetRootElementType(),
+				Is.EqualTo(typeof(int)));
 
 		[Test]
 		public static void GetRootElementTypeFromArray() =>
-			Assert.AreEqual(typeof(int), typeof(int[]).GetRootElementType());
+			Assert.That(typeof(int[]).GetRootElementType(),
+				Is.EqualTo(typeof(int)));
 
 		[Test]
 		public static void GetRootElementTypeFromPrimitive() =>
-			Assert.AreEqual(typeof(int), typeof(int).GetRootElementType());
+			Assert.That(typeof(int).GetRootElementType(),
+				Is.EqualTo(typeof(int)));
 
 		[Test]
 		public static void GetRootElementTypeWithNullArgument() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Type)!.GetRootElementType());
+			Assert.That(() => (null as Type)!.GetRootElementType(), Throws.TypeOf<ArgumentNullException>());
 	}
 }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace Spackle.Tests
 {
-	internal sealed class MockRandomNumberGeneratorForGetByteValues : RandomNumberGenerator
+	internal sealed class MockRandomNumberGeneratorForGetByteValues 
+		: RandomNumberGenerator
 	{
 		internal MockRandomNumberGeneratorForGetByteValues(ValueGeneration values)
 			: base()

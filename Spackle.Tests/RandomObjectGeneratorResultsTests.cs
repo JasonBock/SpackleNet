@@ -12,8 +12,12 @@ namespace Spackle.Tests
 			var value = generator.Generate<object>();
 
 			var result = new RandomObjectGeneratorResults(handled, value);
-			Assert.AreEqual(handled, result.Handled);
-			Assert.Same(value, result.Value);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result.Handled, Is.EqualTo(handled), nameof(result.Handled));
+				Assert.That(result.Value, Is.SameAs(value), nameof(result.Value));
+			});
 		}
 	}
 }

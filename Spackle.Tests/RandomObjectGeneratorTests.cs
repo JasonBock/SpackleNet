@@ -10,11 +10,11 @@ namespace Spackle.Tests
 	{
 		[Test]
 		public static void CreateWithNullGenerators() =>
-			Assert.Throws<ArgumentNullException>(() => new RandomObjectGenerator(new SecureRandom(), null!));
+			Assert.That(() => new RandomObjectGenerator(new SecureRandom(), null!), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void CreateWithNullRandom() =>
-			Assert.Throws<ArgumentNullException>(() => new RandomObjectGenerator(null!, new Dictionary<Type, Func<RandomObjectGeneratorResults>>()));
+			Assert.That(() => new RandomObjectGenerator(null!, new Dictionary<Type, Func<RandomObjectGeneratorResults>>()), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void GenerateAndHandleType()
@@ -34,7 +34,7 @@ namespace Spackle.Tests
 
 			var result = new RandomObjectGenerator(generators).Generate<TypedArgument<ChildClass>>()!;
 
-			Assert.AreEqual(value, result.Value.Value);
+			Assert.That(result.Value.Value, Is.EqualTo(value));
 		}
 
 		[Test]
@@ -53,7 +53,7 @@ namespace Spackle.Tests
 			var result = new RandomObjectGenerator(new MockedRandom(buffer), generators)
 				.Generate<TypedArgument<ChildClass>>()!;
 
-			Assert.AreEqual(2, result.Value.Value);
+			Assert.That(result.Value.Value, Is.EqualTo(2));
 		}
 
 		[Test]
@@ -72,16 +72,16 @@ namespace Spackle.Tests
 			var result = new RandomObjectGenerator(new MockedRandom(buffer), generators)
 				.Generate<TypedArgument<ChildClass>>()!;
 
-			Assert.AreEqual(2, result.Value.Value);
+			Assert.That(result.Value.Value, Is.EqualTo(2));
 		}
 
 		[Test]
 		public static void GenerateAndHandleSpecificTypeWithNoGeneratorFunctionProvidedThatActivatorCreateInstanceCanCreate() =>
-			Assert.NotNull(new RandomObjectGenerator().Generate<ChildClass>());
+			Assert.That(new RandomObjectGenerator().Generate<ChildClass>(), Is.Not.Null);
 
 		[Test]
 		public static void GenerateAndHandleSpecificTypeWithNoGeneratorFunctionProvidedThatActivatorCreateInstanceCannotCreate() =>
-			Assert.Throws<NotSupportedException>(() => new RandomObjectGenerator().Generate<IList<string>>());
+			Assert.That(() => new RandomObjectGenerator().Generate<IList<string>>(), Throws.TypeOf<NotSupportedException>());
 
 		[Test]
 		public static void GenerateAndHandleSpecificTypeWithGeneratorFunctionProvidedThatActivatorCreateInstanceCannotCreate()
@@ -95,7 +95,8 @@ namespace Spackle.Tests
 					}
 				}
 			};
-			Assert.NotNull(new RandomObjectGenerator(generators).Generate<IList<string>>());
+
+			Assert.That(new RandomObjectGenerator(generators).Generate<IList<string>>(), Is.Not.Null);
 		}
 
 		[Test]
@@ -105,8 +106,12 @@ namespace Spackle.Tests
 			var random = new MockedRandom(buffer);
 
 			var result = new RandomObjectGenerator(random).Generate<int[]>()!;
-			Assert.Single(result);
-			Assert.AreEqual(33554432, result[0]);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result.Length, Is.EqualTo(1), nameof(result.Length));
+				Assert.That(result[0], Is.EqualTo(33554432), "result[0]");
+			});
 		}
 
 		[Test]
@@ -116,7 +121,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(value);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<bool>>()!;
-			Assert.True(result.Value);
+			Assert.That(result.Value, Is.True);
 		}
 
 		[Test]
@@ -126,7 +131,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(value);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<double>>()!;
-			Assert.AreEqual(value, result.Value);
+			Assert.That(result.Value, Is.EqualTo(value));
 		}
 
 		[Test]
@@ -136,7 +141,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(value);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<LotsOfValue>>()!;
-			Assert.AreEqual(LotsOfValue.Five, result.Value);
+			Assert.That(result.Value, Is.EqualTo(LotsOfValue.Five));
 		}
 
 		[Test]
@@ -146,7 +151,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<byte>>()!;
-			Assert.AreEqual(2, result.Value);
+			Assert.That(result.Value, Is.EqualTo(2));
 		}
 
 		[Test]
@@ -157,7 +162,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(value);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<float>>()!;
-			Assert.AreEqual(expectedResult, result.Value);
+			Assert.That(result.Value, Is.EqualTo(expectedResult));
 		}
 
 		[Test]
@@ -167,7 +172,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<short>>()!;
-			Assert.AreEqual(512, result.Value);
+			Assert.That(result.Value, Is.EqualTo(512));
 		}
 
 		[Test]
@@ -177,7 +182,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<ushort>>()!;
-			Assert.AreEqual(512, result.Value);
+			Assert.That(result.Value, Is.EqualTo(512));
 		}
 
 		[Test]
@@ -187,7 +192,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<int>>()!;
-			Assert.AreEqual(33554432, result.Value);
+			Assert.That(result.Value, Is.EqualTo(33554432));
 		}
 
 		[Test]
@@ -197,7 +202,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<uint>>()!;
-			Assert.AreEqual((uint)33554432, result.Value);
+			Assert.That(result.Value, Is.EqualTo((uint)33554432));
 		}
 
 		[Test]
@@ -207,7 +212,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<long>>()!;
-			Assert.AreEqual(144115188075855872, result.Value);
+			Assert.That(result.Value, Is.EqualTo(144115188075855872));
 		}
 
 		[Test]
@@ -217,7 +222,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<ulong>>()!;
-			Assert.AreEqual((ulong)144115188075855872, result.Value);
+			Assert.That(result.Value, Is.EqualTo((ulong)144115188075855872));
 		}
 
 		[Test]
@@ -227,7 +232,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(value);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<decimal>>()!;
-			Assert.AreEqual(new decimal(value), result.Value);
+			Assert.That(result.Value, Is.EqualTo(new decimal(value)));
 		}
 
 		[Test]
@@ -237,7 +242,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<char>>()!;
-			Assert.AreEqual('X', result.Value);
+			Assert.That(result.Value, Is.EqualTo('X'));
 		}
 
 		[Test]
@@ -247,14 +252,14 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<IPAddress>>()!;
-			Assert.AreEqual("11.22.33.44", result.Value.ToString());
+			Assert.That(result.Value.ToString(), Is.EqualTo("11.22.33.44"));
 		}
 
 		[Test]
 		public static void GenerateForDataTimeArgument()
 		{
 			var result = new RandomObjectGenerator().Generate<TypedArgument<DateTime>>()!;
-			Assert.True(new Range<DateTime>(DateTime.MinValue, DateTime.MaxValue).Contains(result.Value));
+			Assert.That(new Range<DateTime>(DateTime.MinValue, DateTime.MaxValue).Contains(result.Value), Is.True);
 		}
 
 		[Test]
@@ -268,31 +273,35 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(timeSpanValues);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<TimeSpan>>()!;
-			Assert.AreEqual(5, result.Value.Days);
-			Assert.AreEqual(12, result.Value.Hours);
-			Assert.AreEqual(30, result.Value.Minutes);
-			Assert.AreEqual(45, result.Value.Seconds);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result.Value.Days, Is.EqualTo(5), nameof(result.Value.Days));
+				Assert.That(result.Value.Hours, Is.EqualTo(12), nameof(result.Value.Hours));
+				Assert.That(result.Value.Minutes, Is.EqualTo(30), nameof(result.Value.Minutes));
+				Assert.That(result.Value.Seconds, Is.EqualTo(45), nameof(result.Value.Seconds));
+			});
 		}
 
 		[Test]
 		public static void GenerateForGuidArgument()
 		{
 			var result = new RandomObjectGenerator().Generate<TypedArgument<Guid>>()!;
-			Assert.NotEqual(Guid.Empty, result.Value);
+			Assert.That(result.Value, Is.Not.EqualTo(Guid.Empty));
 		}
 
 		[Test]
 		public static void GenerateForStringArgument()
 		{
 			var result = new RandomObjectGenerator().Generate<TypedArgument<string>>()!;
-			Assert.False(string.IsNullOrWhiteSpace(result.Value));
+			Assert.That(string.IsNullOrWhiteSpace(result.Value), Is.False);
 		}
 
 		[Test]
 		public static void GenerateForUriArgument()
 		{
 			var result = new RandomObjectGenerator().Generate<TypedArgument<Uri>>()!;
-			Assert.AreEqual("http", result.Value.Scheme);
+			Assert.That(result.Value.Scheme, Is.EqualTo("http"));
 		}
 
 		[Test]
@@ -302,8 +311,12 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<ReadOnlyCollection<int>>>()!;
-			Assert.Single(result.Value);
-			Assert.AreEqual(33554432, result.Value[0]);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result.Value.Count, Is.EqualTo(1), nameof(result.Value.Count));
+				Assert.That(result.Value[0], Is.EqualTo(33554432), "result.Value[0]");
+			});
 		}
 
 		[Test]
@@ -313,7 +326,7 @@ namespace Spackle.Tests
 
 			var random = new MockedRandom(buffer);
 			var result = new RandomObjectGenerator(random).Generate<TypedArgument<ChildClass>>()!;
-			Assert.AreEqual(33554432, result.Value.Value);
+			Assert.That(result.Value.Value, Is.EqualTo(33554432));
 		}
 
 		[Test]
@@ -325,7 +338,7 @@ namespace Spackle.Tests
 			var random = new MockedRandom(excludedBuffer, buffer);
 			var result = new RandomObjectGenerator(random).Generate<int>(
 				new HashSet<int>() { 2 });
-			Assert.AreEqual(33554432, result);
+			Assert.That(result, Is.EqualTo(33554432));
 		}
 
 		[Test]
@@ -352,23 +365,25 @@ namespace Spackle.Tests
 			var result = new RandomObjectGenerator(generators).Generate<int>(
 				new HashSet<int>() { 2 });
 
-			Assert.AreEqual(1, result);
+			Assert.That(result, Is.EqualTo(1));
 		}
 
 		[Test]
 		public static void GenerateWithNoArgumentConstructor()
 		{
 			var result = new RandomObjectGenerator().Generate<NoArgumentConstructor>();
-			Assert.NotNull(result);
+			Assert.That(result, Is.Not.Null);
 		}
 
 		[Test]
 		public static void GenerateWithNoPublicConstructors() =>
-			Assert.Throws<NotSupportedException>(() => new RandomObjectGenerator().Generate<NoPublicConstructors>());
+			Assert.That(() => new RandomObjectGenerator().Generate<NoPublicConstructors>(),
+				Throws.TypeOf<NotSupportedException>());
 
 		[Test]
 		public static void GenerateWithNullExcludedValues() =>
-			Assert.Throws<ArgumentNullException>(() => new RandomObjectGenerator().Generate<int>(null!));
+			Assert.That(() => new RandomObjectGenerator().Generate<int>(null!),
+				Throws.TypeOf<ArgumentNullException>());
 
 		private sealed class MockedRandom
 			: Random

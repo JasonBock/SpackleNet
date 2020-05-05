@@ -9,24 +9,25 @@ namespace Spackle.Tests.Reflection.Extensions
 	{
 		[Test]
 		public static void HasAttributeWithNullThis() =>
-			Assert.Throws<ArgumentNullException>(
-				() => (null as Type)!.GetTypeInfo().HasAttribute(typeof(ClassAttribute), false));
+			Assert.That(
+				() => (null as Type)!.GetTypeInfo().HasAttribute(typeof(ClassAttribute), false),
+					Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void HasAttributeWithNullArgument() =>
-			Assert.Throws<ArgumentNullException>(
-				() => typeof(ICustomAttributeProviderExtensionsTests).GetTypeInfo().HasAttribute(
-					null!, false));
+			Assert.That(
+				() => typeof(ICustomAttributeProviderExtensionsTests).GetTypeInfo().HasAttribute(null!, false),
+					Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void HasAttributeForExistingAttribute() =>
-			Assert.True(typeof(HasAttribute).GetTypeInfo().HasAttribute(
-				typeof(ClassAttribute), false));
+			Assert.That(typeof(HasAttribute).GetTypeInfo().HasAttribute(typeof(ClassAttribute), false),
+				Is.True);
 
 		[Test]
 		public static void HasAttributeForMissingAttribute() =>
-			Assert.False(typeof(DoesNotHaveAttribute).GetTypeInfo().HasAttribute(
-				typeof(ClassAttribute), false));
+			Assert.That(typeof(DoesNotHaveAttribute).GetTypeInfo().HasAttribute(typeof(ClassAttribute), false),
+				Is.False);
 
 #pragma warning disable CA1812
 		[Class]

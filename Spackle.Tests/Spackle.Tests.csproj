@@ -4,6 +4,11 @@
     <Version>9.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Extensions\EnumExtensionsTests.cs~RF1eab6333.TMP" />
+    <None Remove="Extensions\TestWriter.cs~RF1eb288e9.TMP" />
+    <None Remove="RandomObjectGeneratorResultsTests.cs~RF1eb46097.TMP" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="System.Collections.Immutable" Version="1.7.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />

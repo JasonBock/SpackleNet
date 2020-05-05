@@ -11,13 +11,17 @@ namespace Spackle.Tests.Extensions
 		public static void Create()
 		{
 			var collection = new HashSet<string> { "A", "B", "A" }.AsReadOnly();
-			Assert.AreEqual(2, collection.Count);
-			Assert.Contains("A", collection);
-			Assert.Contains("B", collection);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(collection.Count, Is.EqualTo(2), nameof(collection.Count));
+				Assert.That(collection, Contains.Item("A"));
+				Assert.That(collection, Contains.Item("B"));
+			});
 		}
 
 		[Test]
 		public static void CreateWithNullArgument() =>
-			Assert.Throws<ArgumentNullException>(() => (null as HashSet<string>)!.AsReadOnly());
+			Assert.That(() => (null as HashSet<string>)!.AsReadOnly(), Throws.TypeOf<ArgumentNullException>());
 	}
 }

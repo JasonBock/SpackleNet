@@ -8,19 +8,19 @@ namespace Spackle.Tests.Extensions
 	{
 		[Test]
 		public static void HasAttributeWithNullThis() =>
-			Assert.Throws<ArgumentNullException>(() => (null as object)!.HasAttribute(typeof(ClassAttribute), false));
+			Assert.That(() => (null as object)!.HasAttribute(typeof(ClassAttribute), false), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void HasAttributeWithNullArgument() =>
-			Assert.Throws<ArgumentNullException>(() => (new HasAttribute()).HasAttribute(null!, false));
+			Assert.That(() => (new HasAttribute()).HasAttribute(null!, false), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void HasAttributeForExistingAttribute() =>
-			Assert.True(new HasAttribute().HasAttribute(typeof(ClassAttribute), false));
+			Assert.That(new HasAttribute().HasAttribute(typeof(ClassAttribute), false), Is.True);
 
 		[Test]
 		public static void HasAttributeForMissingAttribute() =>
-			Assert.False(new DoesNotHaveAttribute().HasAttribute(typeof(ClassAttribute), false));
+			Assert.That(new DoesNotHaveAttribute().HasAttribute(typeof(ClassAttribute), false), Is.False);
 
 		[Class]
 		private sealed class HasAttribute { }

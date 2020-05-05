@@ -10,12 +10,12 @@ namespace Spackle.Tests.Extensions
 
 		[Test]
 		public static void GetName() =>
-			Assert.AreEqual(EnumExtensionsTests.Name, 
-				EnumExtensionsTests.TestEnum.ValueThatHasDescription.GetName());
+			Assert.That(EnumExtensionsTests.TestEnum.ValueThatHasDescription.GetName(),
+				Is.EqualTo(EnumExtensionsTests.Name));
 
 		[Test]
 		public static void GetNameForValueThatIsNotAnEnum() =>
-			Assert.Throws<ArgumentException>(() => Guid.NewGuid().GetName());
+			Assert.That(() => Guid.NewGuid().GetName(), Throws.TypeOf<ArgumentException>());
 
 		private enum TestEnum
 		{

@@ -12,22 +12,25 @@ namespace Spackle.Tests
 			var rangeB = new Range<int>(2, 2);
 			var rangeC = new Range<int>(1, 1);
 
-			Assert.NotEqual(rangeA, rangeB);
-			Assert.AreEqual(rangeA, rangeC);
-			Assert.NotEqual(rangeB, rangeC);
+			Assert.Multiple(() =>
+			{
+				Assert.That(rangeB, Is.Not.EqualTo(rangeA));
+				Assert.That(rangeC, Is.EqualTo(rangeA));
+				Assert.That(rangeC, Is.Not.EqualTo(rangeB));
 
-#pragma warning disable 1718
-			Assert.True(rangeA == rangeA);
-#pragma warning restore 1718
-			Assert.False(rangeA == rangeB);
-			Assert.True(rangeA == rangeC);
-			Assert.False(rangeB == rangeC);
-			Assert.False((null as Range<int>)! == rangeA);
-			Assert.False(rangeA == (null as Range<int>)!);
+#pragma warning disable CS1718 // Comparison made to same variable
+				Assert.That(rangeA == rangeA, Is.True);
+#pragma warning restore CS1718 // Comparison made to same variable
+				Assert.That(rangeA == rangeB, Is.False);
+				Assert.That(rangeA == rangeC, Is.True);
+				Assert.That(rangeB == rangeC, Is.False);
+				Assert.That((null as Range<int>)! == rangeA, Is.False);
+				Assert.That(rangeA == (null as Range<int>)!, Is.False);
 
-			Assert.True(rangeA != rangeB);
-			Assert.False(rangeA != rangeC);
-			Assert.True(rangeB != rangeC);
+				Assert.That(rangeA != rangeB, Is.True);
+				Assert.That(rangeA != rangeC, Is.False);
+				Assert.That(rangeB != rangeC, Is.True);
+			});
 		}
 
 		[Test]
@@ -37,152 +40,197 @@ namespace Spackle.Tests
 			var rangeB = new Range<int>(1, 2);
 			var rangeC = new Range<int>(1, 1);
 
-			Assert.False(rangeA.GetHashCode() == rangeB.GetHashCode());
-			Assert.True(rangeA.GetHashCode() == rangeC.GetHashCode());
+			Assert.Multiple(() =>
+			{
+				Assert.That(rangeB.GetHashCode(), Is.Not.EqualTo(rangeA.GetHashCode()));
+				Assert.That(rangeC.GetHashCode(), Is.EqualTo(rangeA.GetHashCode()));
+			});
 		}
 
 		[Test]
 		public static void CheckContainment()
 		{
 			var range = new Range<int>(3, 10);
-			Assert.True(range.Contains(5));
-			Assert.True(range.Contains(3));
-			Assert.True(range.Contains(10));
-			Assert.False(range.Contains(-3));
-			Assert.False(range.Contains(20));
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(range.Contains(5), Is.True);
+				Assert.That(range.Contains(3), Is.True);
+				Assert.That(range.Contains(10), Is.True);
+				Assert.That(range.Contains(-3), Is.False);
+				Assert.That(range.Contains(20), Is.False);
+			});
 		}
 
 		[Test]
 		public static void CreateRangeWithStartLessThanEnd()
 		{
 			var range = new Range<int>(-3, 4);
-			Assert.AreEqual(-3, range.Start);
-			Assert.AreEqual(4, range.End);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(range.Start, Is.EqualTo(-3), nameof(range.Start));
+				Assert.That(range.End, Is.EqualTo(4), nameof(range.End));
+			});
 		}
 
 		[Test]
 		public static void CreateRangeWithEndLessThanStart()
 		{
 			var range = new Range<int>(3, -4);
-			Assert.AreEqual(-4, range.Start);
-			Assert.AreEqual(3, range.End);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(range.Start, Is.EqualTo(-4), nameof(range.Start));
+				Assert.That(range.End, Is.EqualTo(3), nameof(range.End));
+			});
 		}
 
 		[Test]
 		public static void CheckToString()
 		{
 			var range = new Range<int>(3, 4);
-			Assert.AreEqual("(3,4)", range.ToString());
+			Assert.That(range.ToString(), Is.EqualTo("(3,4)"));
 		}
 		
 		[Test]
 		public static void CreateRangeWithEndEqualingStart()
 		{
 			var range = new Range<int>(3, 3);
-			Assert.AreEqual(3, range.Start);
-			Assert.AreEqual(3, range.End);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(range.Start, Is.EqualTo(3), nameof(range.Start));
+				Assert.That(range.End, Is.EqualTo(3), nameof(range.End));
+			});
 		}
 
 		[Test]
 		public static void GetIntersection()
 		{
 			var range = new Range<int>(3, 6);
-			var intersection = range.Intersect(new Range<int>(5, 8));
+			var intersection = range.Intersect(new Range<int>(5, 8))!;
 
-			Assert.AreEqual(5, intersection!.Start);
-			Assert.AreEqual(6, intersection.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(intersection.Start, Is.EqualTo(5), nameof(intersection.Start));
+				Assert.That(intersection.End, Is.EqualTo(6), nameof(intersection.End));
+			});
 		}
 
 		[Test]
 		public static void GetIntersectionWithStartAndEndValues()
 		{
 			var range = new Range<int>(3, 6);
-			var intersection = range.Intersect(5, 8);
+			var intersection = range.Intersect(5, 8)!;
 
-			Assert.AreEqual(5, intersection!.Start);
-			Assert.AreEqual(6, intersection.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(intersection.Start, Is.EqualTo(5), nameof(intersection.Start));
+				Assert.That(intersection.End, Is.EqualTo(6), nameof(intersection.End));
+			});
 		}
 
 		[Test]
 		public static void GetIntersectionWithRangesReversed()
 		{
 			var range = new Range<int>(5, 8);
-			var intersection = range.Intersect(new Range<int>(3, 6));
+			var intersection = range.Intersect(new Range<int>(3, 6))!;
 
-			Assert.AreEqual(5, intersection!.Start);
-			Assert.AreEqual(6, intersection.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(intersection.Start, Is.EqualTo(5), nameof(intersection.Start));
+				Assert.That(intersection.End, Is.EqualTo(6), nameof(intersection.End));
+			});
 		}
 
 		[Test]
 		public static void GetIntersectionWithNoIntersection()
 		{
 			var range = new Range<int>(3, 6);
-			Assert.Null(range.Intersect(new Range<int>(7, 8)));
+			Assert.That(range.Intersect(new Range<int>(7, 8)), Is.Null);
 		}
 
 		[Test]
 		public static void GetIntersectionWithEndAndStartEqual()
 		{
 			var range = new Range<int>(3, 6);
-			var intersection = range.Intersect(new Range<int>(6, 8));
+			var intersection = range.Intersect(new Range<int>(6, 8))!;
 
-			Assert.AreEqual(6, intersection!.Start);
-			Assert.AreEqual(6, intersection.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(intersection.Start, Is.EqualTo(6), nameof(intersection.Start));
+				Assert.That(intersection.End, Is.EqualTo(6), nameof(intersection.End));
+			});
 		}
 
 		[Test]
 		public static void GetIntersectionWithNullArgument() =>
-			Assert.Throws<ArgumentNullException>(() => new Range<int>(1, 3).Intersect(null!));
+			Assert.That(() => new Range<int>(1, 3).Intersect(null!),
+				Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void GetUnionWithCurrentRangeHavingStartAndTargetHavingEnd()
 		{
 			var range = new Range<int>(3, 6);
-			var union = range.Union(new Range<int>(4, 10));
+			var union = range.Union(new Range<int>(4, 10))!;
 
-			Assert.AreEqual(3, union!.Start);
-			Assert.AreEqual(10, union.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(union.Start, Is.EqualTo(3), nameof(union.Start));
+				Assert.That(union.End, Is.EqualTo(10), nameof(union.End));
+			});
 		}
 
 		[Test]
 		public static void GetUnionWithCurrentRangeHavingEndAndTargetHavingStart()
 		{
 			var range = new Range<int>(4, 10);
-			var union = range.Union(new Range<int>(3, 6));
+			var union = range.Union(new Range<int>(3, 6))!;
 
-			Assert.AreEqual(3, union!.Start);
-			Assert.AreEqual(10, union.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(union.Start, Is.EqualTo(3), nameof(union.Start));
+				Assert.That(union.End, Is.EqualTo(10), nameof(union.End));
+			});
 		}
 
 		[Test]
 		public static void GetUnionWhereCurrentRangeDefinesUnion()
 		{
 			var range = new Range<int>(1, 10);
-			var union = range.Union(new Range<int>(3, 6));
+			var union = range.Union(new Range<int>(3, 6))!;
 
-			Assert.AreEqual(1, union!.Start);
-			Assert.AreEqual(10, union.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(union.Start, Is.EqualTo(1), nameof(union.Start));
+				Assert.That(union.End, Is.EqualTo(10), nameof(union.End));
+			});
 		}
 
 		[Test]
 		public static void GetUnionWhereTargetDefinesUnion()
 		{
 			var range = new Range<int>(3, 6);
-			var union = range.Union(new Range<int>(1, 10));
+			var union = range.Union(new Range<int>(1, 10))!;
 
-			Assert.AreEqual(1, union!.Start);
-			Assert.AreEqual(10, union.End);
+			Assert.Multiple(() =>
+			{
+				Assert.That(union.Start, Is.EqualTo(1), nameof(union.Start));
+				Assert.That(union.End, Is.EqualTo(10), nameof(union.End));
+			});
 		}
 
 		[Test]
 		public static void GetUnionWithNoCommonality()
 		{
 			var range = new Range<int>(3, 6);
-			Assert.Null(range.Union(new Range<int>(7, 10)));
+			Assert.That(range.Union(new Range<int>(7, 10)), Is.Null);
 		}
 
 		[Test]
 		public static void GetUnionWithNullArgument() =>
-			Assert.Throws<ArgumentNullException>(() => new Range<int>(1, 3).Union(null!));
+			Assert.That(() => new Range<int>(1, 3).Union(null!),
+				Throws.TypeOf<ArgumentNullException>());
 	}
 }

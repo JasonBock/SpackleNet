@@ -25,10 +25,13 @@ namespace Spackle.Tests.Extensions
 				e.Print(writer);
 				var content = writer.GetStringBuilder().ToString();
 
-				Assert.Contains("Type Name: System.NotImplementedException", content);
-				Assert.Contains("Source: Spackle.Tests", content);
-				Assert.DoesNotContain("Data:", content);
-				Assert.DoesNotContain("Custom Properties:", content);
+				Assert.Multiple(() =>
+				{
+					Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
+					Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
+					Assert.That(content, Does.Not.Contain("Data:"));
+					Assert.That(content, Does.Not.Contain("Custom Properties:"));
+				});
 			}
 		}
 
@@ -40,10 +43,13 @@ namespace Spackle.Tests.Extensions
 			exception.Print(writer);
 			var content = writer.GetStringBuilder().ToString();
 
-			Assert.Contains("Type Name: System.NotSupportedException", content);
-			Assert.Contains("Source: ", content);
-			Assert.DoesNotContain("Data:", content);
-			Assert.DoesNotContain("Custom Properties:", content);
+			Assert.Multiple(() =>
+			{
+				Assert.That(content, Contains.Substring("Type Name: System.NotSupportedException"));
+				Assert.That(content, Contains.Substring("Source: "));
+				Assert.That(content, Does.Not.Contain("Data:"));
+				Assert.That(content, Does.Not.Contain("Custom Properties:"));
+			});
 		}
 
 		[Test]
@@ -65,10 +71,13 @@ namespace Spackle.Tests.Extensions
 					e.Print();
 					var content = writer.GetStringBuilder().ToString();
 
-					Assert.Contains("Type Name: System.NotImplementedException", content);
-					Assert.Contains("Source: Spackle.Tests", content);
-					Assert.DoesNotContain("Data:", content);
-					Assert.DoesNotContain("Custom Properties:", content);
+					Assert.Multiple(() =>
+					{
+						Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
+						Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
+						Assert.That(content, Does.Not.Contain("Data:"));
+						Assert.That(content, Does.Not.Contain("Custom Properties:"));
+					});
 				}
 				finally
 				{
@@ -96,10 +105,13 @@ namespace Spackle.Tests.Extensions
 				e.Print(writer);
 				var content = writer.GetStringBuilder().ToString();
 
-				Assert.Contains("Type Name: System.NotImplementedException", content);
-				Assert.Contains("Source: Anonymously Hosted DynamicMethods Assembly", content);
-				Assert.DoesNotContain("Data:", content);
-				Assert.DoesNotContain("Custom Properties:", content);
+				Assert.Multiple(() =>
+				{
+					Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
+					Assert.That(content, Contains.Substring("Source: Anonymously Hosted DynamicMethods Assembly"));
+					Assert.That(content, Does.Not.Contain("Data:"));
+					Assert.That(content, Does.Not.Contain("Custom Properties:"));
+				});
 			}
 		}
 
@@ -120,12 +132,14 @@ namespace Spackle.Tests.Extensions
 				e.Print(writer);
 				var content = writer.GetStringBuilder().ToString();
 
-				Assert.Contains("Type Name: System.NotImplementedException", content);
-				Assert.Contains("Source: Spackle.Tests", content);
-				Assert.Contains("Data:", content);
-				Assert.Contains(string.Format(CultureInfo.CurrentCulture,
-					"Key: {0}, Value: null", key), content);
-				Assert.DoesNotContain("Custom Properties:", content);
+				Assert.Multiple(() =>
+				{
+					Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
+					Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
+					Assert.That(content, Contains.Substring("Data:"));
+					Assert.That(content, Contains.Substring($"Key: {key}, Value: null"));
+					Assert.That(content, Does.Not.Contain("Custom Properties:"));
+				});
 			}
 		}
 
@@ -143,20 +157,23 @@ namespace Spackle.Tests.Extensions
 				e.Print(writer);
 				var content = writer.GetStringBuilder().ToString();
 
-				Assert.Contains("Type Name: System.NotImplementedException", content);
-				Assert.Contains("Source: Spackle.Tests", content);
-				Assert.DoesNotContain("Data:", content);
-				Assert.DoesNotContain("Custom Properties:", content);
+				Assert.Multiple(() =>
+				{
+					Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
+					Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
+					Assert.That(content, Does.Not.Contain("Data:"));
+					Assert.That(content, Does.Not.Contain("Custom Properties:"));
+				});
 			}
 		}
 
 		[Test]
 		public static void FormatWithNullException() =>
-			Assert.Throws<ArgumentNullException>(() => (null as NotImplementedException)!.Print());
+			Assert.That(() => (null as NotImplementedException)!.Print(), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void FormatWithNullWriter() =>
-			Assert.Throws<ArgumentNullException>(() => new NotImplementedException().Print(null!));
+			Assert.That(() => new NotImplementedException().Print(null!), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void FormatWithInnerException()
@@ -172,14 +189,16 @@ namespace Spackle.Tests.Extensions
 				e.Print(writer);
 				var content = writer.GetStringBuilder().ToString();
 
-				Assert.Contains("Type Name: System.NotImplementedException", content);
-				Assert.Contains("Type Name: System.NotSupportedException", content);
-				Assert.Contains("Source: Spackle.Tests", content);
-				Assert.DoesNotContain("Data:", content);
-				Assert.DoesNotContain("Custom Properties:", content);
+				Assert.Multiple(() =>
+				{
+					Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
+					Assert.That(content, Contains.Substring("Type Name: System.NotSupportedException"));
+					Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
+					Assert.That(content, Does.Not.Contain("Data:"));
+					Assert.That(content, Does.Not.Contain("Custom Properties:"));
+				});
 			}
 		}
-
 
 		[Test]
 		public static void FormatWithData()
@@ -195,12 +214,15 @@ namespace Spackle.Tests.Extensions
 				e.Print(writer);
 				var content = writer.GetStringBuilder().ToString();
 
-				Assert.Contains("Type Name: System.NotImplementedException", content);
-				Assert.Contains("Source: Spackle.Tests", content);
-				Assert.Contains("Data:", content);
-				Assert.Contains("Key: This, Value: That", content);
-				Assert.Contains("Key: And, Value: 33", content);
-				Assert.DoesNotContain("Custom Properties:", content);
+				Assert.Multiple(() =>
+				{
+					Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
+					Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
+					Assert.That(content, Contains.Substring("Data:"));
+					Assert.That(content, Contains.Substring("Key: This, Value: That"));
+					Assert.That(content, Contains.Substring("Key: And, Value: 33"));
+					Assert.That(content, Does.Not.Contain("Custom Properties:"));
+				});
 			}
 		}
 
@@ -218,12 +240,15 @@ namespace Spackle.Tests.Extensions
 				e.Print(writer);
 				var content = writer.GetStringBuilder().ToString();
 
-				Assert.Contains("Type Name: Spackle.Tests.Extensions.CustomException", content);
-				Assert.Contains("Source: Spackle.Tests", content);
-				Assert.DoesNotContain("Data:", content);
-				Assert.Contains("Message: some message", content);
-				Assert.Contains("Custom Properties (1):", content);
-				Assert.Contains("Value = custom", content);
+				Assert.Multiple(() =>
+				{
+					Assert.That(content, Contains.Substring("Type Name: Spackle.Tests.Extensions.CustomException"));
+					Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
+					Assert.That(content, Contains.Substring("Message: some message"));
+					Assert.That(content, Contains.Substring("Custom Properties (1):"));
+					Assert.That(content, Contains.Substring("Value = custom"));
+					Assert.That(content, Does.Not.Contain("Data:"));
+				});
 			}
 		}
 

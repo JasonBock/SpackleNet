@@ -11,12 +11,12 @@ namespace Spackle.Tests.Extensions
 		{
 			const string Site = "http://www.goodsite.com";
 
-			Assert.AreEqual(new Uri(Site), Site.AsUri());
+			Assert.That(Site.AsUri(), Is.EqualTo(new Uri(Site)));
 		}
 
 		[Test]
 		public static void AsUriWithNull() =>
-			Assert.Throws<ArgumentNullException>(() => (null as string)!.AsUri());
+			Assert.That(() => (null as string)!.AsUri(), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TryAsUri()
@@ -25,8 +25,11 @@ namespace Spackle.Tests.Extensions
 
 			var success = Site.TryAsUri(out var result);
 
-			Assert.True(success);
-			Assert.AreEqual(new Uri(Site), result);
+			Assert.Multiple(() =>
+			{
+				Assert.That(success, Is.True);
+				Assert.That(result, Is.EqualTo(new Uri(Site)));
+			});
 		}
 
 		[Test]
@@ -34,7 +37,7 @@ namespace Spackle.Tests.Extensions
 		{
 			const string Site = "this is not a Uri";
 			var success = Site.TryAsUri(out _);
-			Assert.False(success);
+			Assert.That(success, Is.False);
 		}
 	}
 }

@@ -13,8 +13,12 @@ namespace Spackle.Tests.Extensions
 			{
 				return Guid.NewGuid();
 			}).Time();
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -26,8 +30,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1;
 				return Guid.NewGuid();
 			}).Time(0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -39,8 +47,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2;
 				return Guid.NewGuid();
 			}).Time(0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -52,8 +64,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2 + arg3;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -65,8 +81,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2 + arg3 + arg4;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -78,8 +98,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2 + arg3 + arg4 + arg5;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -91,8 +115,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -104,8 +132,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -117,8 +149,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -130,8 +166,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -143,8 +183,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -156,8 +200,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -169,8 +217,12 @@ namespace Spackle.Tests.Extensions
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -182,8 +234,12 @@ namespace Spackle.Tests.Extensions
 					var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12 + arg13;
 					return Guid.NewGuid();
 				}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -195,8 +251,12 @@ namespace Spackle.Tests.Extensions
 					var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12 + arg13 + arg14;
 					return Guid.NewGuid();
 				}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -208,8 +268,12 @@ namespace Spackle.Tests.Extensions
 					var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12 + arg13 + arg14 + arg15;
 					return Guid.NewGuid();
 				}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
@@ -221,84 +285,88 @@ namespace Spackle.Tests.Extensions
 					var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12 + arg13 + arg14 + arg15 + arg16;
 					return Guid.NewGuid();
 				}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			Assert.NotEqual(Guid.Empty, result);
-			Assert.True(elapsed.TotalMilliseconds >= 0);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
+				Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
+			});
 		}
 
 		[Test]
 		public static void TimeNullFunc() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<Guid>)!.Time());
+			Assert.That(() => (null as Func<Guid>)!.Time(), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithOneParameter() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, Guid>)!.Time(0));
+			Assert.That(() => (null as Func<int, Guid>)!.Time(0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithTwoParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, Guid>)!.Time(0, 0));
+			Assert.That(() => (null as Func<int, int, Guid>)!.Time(0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithThreeParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, Guid>)!.Time(0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, Guid>)!.Time(0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithFourParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, Guid>)!.Time(0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, Guid>)!.Time(0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithFiveParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithSixParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithSevenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithEightParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, int, int, Guid>)!.Time(0, 0, 0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithNineParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, Guid>)!.Time(
-				0, 0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, int, int, int, Guid>)!.Time(
+				0, 0, 0, 0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithTenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithElevenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithTwelveParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithThirteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithFourteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithFifteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 
 		[Test]
 		public static void TimeNullFuncWithSixteenParameters() =>
-			Assert.Throws<ArgumentNullException>(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			Assert.That(() => (null as Func<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, Guid>)!.Time(
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), Throws.TypeOf<ArgumentNullException>());
 	}
 }

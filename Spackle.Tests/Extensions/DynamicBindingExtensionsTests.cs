@@ -27,8 +27,11 @@ namespace Spackle.Tests.Extensions
 				}
 			}
 
-			Assert.AreEqual(newValue, builder.ToString());
-			Assert.AreEqual(original, writer.Writer.GetStringBuilder().ToString());
+			Assert.Multiple(() =>
+			{
+				Assert.That(builder.ToString(), Is.EqualTo(newValue), nameof(builder));
+				Assert.That(writer.Writer.GetStringBuilder().ToString(), Is.EqualTo(original), nameof(writer));
+			});
 		}
 
 		[Test]
@@ -52,8 +55,11 @@ namespace Spackle.Tests.Extensions
 				}
 			}
 
-			Assert.AreEqual(newValue, builder.ToString());
-			Assert.AreEqual(original, writer.Writer.GetStringBuilder().ToString());
+			Assert.Multiple(() =>
+			{
+				Assert.That(builder.ToString(), Is.EqualTo(newValue), nameof(builder));
+				Assert.That(writer.Writer.GetStringBuilder().ToString(), Is.EqualTo(original), nameof(writer));
+			});
 		}
 
 		[Test]
@@ -64,14 +70,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<int>();
 			var binded = original;
 
-			Assert.AreEqual(original, binded);
-
-			using (binded.Bind(() => newValue))
+			Assert.Multiple(() =>
 			{
-				Assert.AreEqual(newValue, binded);
-			}
+				Assert.That(binded, Is.EqualTo(original));
 
-			Assert.AreEqual(original, binded);
+				using (binded.Bind(() => newValue))
+				{
+					Assert.That(binded, Is.EqualTo(newValue));
+				}
+
+				Assert.That(binded, Is.EqualTo(original));
+			});
 		}
 
 		[Test]
@@ -82,14 +91,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InternalInstanceField = original };
 
-			Assert.AreEqual(original, binded.InternalInstanceField);
-
-			using (newValue.Bind(() => binded.InternalInstanceField))
+			Assert.Multiple(() =>
 			{
-				Assert.AreEqual(newValue, binded.InternalInstanceField);
-			}
+				Assert.That(binded.InternalInstanceField, Is.EqualTo(original));
 
-			Assert.AreEqual(original, binded.InternalInstanceField);
+				using (newValue.Bind(() => binded.InternalInstanceField))
+				{
+					Assert.That(binded.InternalInstanceField, Is.EqualTo(newValue));
+				}
+
+				Assert.That(binded.InternalInstanceField, Is.EqualTo(original));
+			});
 		}
 
 		[Test]
@@ -100,14 +112,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InternalInstanceProperty = original };
 
-			Assert.AreEqual(original, binded.InternalInstanceProperty);
-
-			using (newValue.Bind(() => binded.InternalInstanceProperty))
+			Assert.Multiple(() =>
 			{
-				Assert.AreEqual(newValue, binded.InternalInstanceProperty);
-			}
+				Assert.That(binded.InternalInstanceProperty, Is.EqualTo(original));
 
-			Assert.AreEqual(original, binded.InternalInstanceProperty);
+				using (newValue.Bind(() => binded.InternalInstanceProperty))
+				{
+					Assert.That(binded.InternalInstanceProperty, Is.EqualTo(newValue));
+				}
+
+				Assert.That(binded.InternalInstanceProperty, Is.EqualTo(original));
+			});
 		}
 
 		[Test]
@@ -118,14 +133,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			Binded.InternalStaticField = original;
 
-			Assert.AreEqual(original, Binded.InternalStaticField);
-
-			using (newValue.Bind(() => Binded.InternalStaticField))
+			Assert.Multiple(() =>
 			{
-				Assert.AreEqual(newValue, Binded.InternalStaticField);
-			}
+				Assert.That(Binded.InternalStaticField, Is.EqualTo(original));
 
-			Assert.AreEqual(original, Binded.InternalStaticField);
+				using (newValue.Bind(() => Binded.InternalStaticField))
+				{
+					Assert.That(Binded.InternalStaticField, Is.EqualTo(newValue));
+				}
+
+				Assert.That(Binded.InternalStaticField, Is.EqualTo(original));
+			});
 		}
 
 		[Test]
@@ -136,14 +154,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			Binded.InternalStaticProperty = original;
 
-			Assert.AreEqual(original, Binded.InternalStaticProperty);
-
-			using (newValue.Bind(() => Binded.InternalStaticProperty))
+			Assert.Multiple(() =>
 			{
-				Assert.AreEqual(newValue, Binded.InternalStaticProperty);
-			}
+				Assert.That(Binded.InternalStaticProperty, Is.EqualTo(original));
 
-			Assert.AreEqual(original, Binded.InternalStaticProperty);
+				using (newValue.Bind(() => Binded.InternalStaticProperty))
+				{
+					Assert.That(Binded.InternalStaticProperty, Is.EqualTo(newValue));
+				}
+
+				Assert.That(Binded.InternalStaticProperty, Is.EqualTo(original));
+			});
 		}
 
 		[Test]
@@ -154,14 +175,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InstanceField = original };
 
-			Assert.AreEqual(original, binded.InstanceField);
-
-			using (newValue.Bind(() => binded.InstanceField))
+			Assert.Multiple(() =>
 			{
-				Assert.AreEqual(newValue, binded.InstanceField);
-			}
+				Assert.That(binded.InstanceField, Is.EqualTo(original));
 
-			Assert.AreEqual(original, binded.InstanceField);
+				using (newValue.Bind(() => binded.InstanceField))
+				{
+					Assert.That(binded.InstanceField, Is.EqualTo(newValue));
+				}
+
+				Assert.That(binded.InstanceField, Is.EqualTo(original));
+			});
 		}
 
 		[Test]
@@ -172,14 +196,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			var binded = new Binded { InstanceProperty = original };
 
-			Assert.AreEqual(original, binded.InstanceProperty);
-
-			using (newValue.Bind(() => binded.InstanceProperty))
+			Assert.Multiple(() =>
 			{
-				Assert.AreEqual(newValue, binded.InstanceProperty);
-			}
+				Assert.That(binded.InstanceProperty, Is.EqualTo(original));
 
-			Assert.AreEqual(original, binded.InstanceProperty);
+				using (newValue.Bind(() => binded.InstanceProperty))
+				{
+					Assert.That(binded.InstanceProperty, Is.EqualTo(newValue));
+				}
+
+				Assert.That(binded.InstanceProperty, Is.EqualTo(original));
+			});
 		}
 
 		[Test]
@@ -190,14 +217,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			Binded.StaticField = original;
 
-			Assert.AreEqual(original, Binded.StaticField);
-
-			using (newValue.Bind(() => Binded.StaticField))
+			Assert.Multiple(() =>
 			{
-				Assert.AreEqual(newValue, Binded.StaticField);
-			}
+				Assert.That(Binded.StaticField, Is.EqualTo(original));
 
-			Assert.AreEqual(original, Binded.StaticField);
+				using (newValue.Bind(() => Binded.StaticField))
+				{
+					Assert.That(Binded.StaticField, Is.EqualTo(newValue));
+				}
+
+				Assert.That(Binded.StaticField, Is.EqualTo(original));
+			});
 		}
 
 		[Test]
@@ -208,14 +238,17 @@ namespace Spackle.Tests.Extensions
 			var newValue = generator.Generate<string>();
 			Binded.StaticProperty = original;
 
-			Assert.AreEqual(original, Binded.StaticProperty);
-
-			using (newValue.Bind(() => Binded.StaticProperty))
+			Assert.Multiple(() =>
 			{
-				Assert.AreEqual(newValue, Binded.StaticProperty);
-			}
+				Assert.That(Binded.StaticProperty, Is.EqualTo(original));
 
-			Assert.AreEqual(original, Binded.StaticProperty);
+				using (newValue.Bind(() => Binded.StaticProperty))
+				{
+					Assert.That(Binded.StaticProperty, Is.EqualTo(newValue));
+				}
+
+				Assert.That(Binded.StaticProperty, Is.EqualTo(original));
+			});
 		}
 	}
 }
