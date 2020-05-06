@@ -11,7 +11,7 @@ namespace Spackle
 	/// Combines the security of <see cref="RandomNumberGenerator"/>
 	/// with the simple interface of <see cref="Random"/>.
 	/// </summary>
-	public sealed class SecureRandom 
+	public class SecureRandom
 		: Random, IDisposable
 	{
 		private const string ErrorTooManyUniqueElements = "Cannot create the number of unique elements requested - maximum allowed is {0}.";
@@ -30,7 +30,7 @@ namespace Spackle
 		/// </summary>
 		/// <param name="generator">The <see cref="RandomNumberGenerator"/> to use.</param>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="generator"/> is <c>null</c>.</exception>
-		public SecureRandom(RandomNumberGenerator generator) => 
+		public SecureRandom(RandomNumberGenerator generator) =>
 			this.Generator = generator ?? throw new ArgumentNullException(nameof(generator));
 
 		/// <summary>
@@ -38,11 +38,20 @@ namespace Spackle
 		/// </summary>
 		public void Dispose()
 		{
+			this.Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
 			if (!this.disposed)
 			{
-				this.Generator.Dispose();
+				if(disposing)
+				{
+					this.Generator.Dispose();
+				}
+
 				this.disposed = true;
-				GC.SuppressFinalize(this);
 			}
 		}
 
@@ -59,7 +68,7 @@ namespace Spackle
 				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
-			if(max <= BigInteger.Zero)
+			if (max <= BigInteger.Zero)
 			{
 				throw new ArgumentException($"Max value, {max}, must be greater than zero.", nameof(max));
 			}
