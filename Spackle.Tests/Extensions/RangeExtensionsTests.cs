@@ -57,6 +57,64 @@ namespace Spackle.Tests.Extensions
 		}
 
 		[Test]
+		public static void PartitionWithEvenDistribution()
+		{
+			var range = 0..1000;
+			var partitions = range.Partition(4);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(partitions.Length, Is.EqualTo(4), nameof(partitions.Length));
+
+				Assert.That(partitions[0].Start.Value, Is.EqualTo(0), "partitions[0].Start");
+				Assert.That(partitions[0].End.Value, Is.EqualTo(250), "partitions[0].End");
+
+				Assert.That(partitions[1].Start.Value, Is.EqualTo(250), "partitions[1].Start");
+				Assert.That(partitions[1].End.Value, Is.EqualTo(500), "partitions[1].End");
+
+				Assert.That(partitions[2].Start.Value, Is.EqualTo(500), "partitions[2].Start");
+				Assert.That(partitions[2].End.Value, Is.EqualTo(750), "partitions[2].End");
+
+				Assert.That(partitions[3].Start.Value, Is.EqualTo(750), "partitions[3].Start");
+				Assert.That(partitions[3].End.Value, Is.EqualTo(1000), "partitions[3].End");
+			});
+		}
+
+		[Test]
+		public static void PartitionWithUnevenDistribution()
+		{
+			var range = 1..50000;
+			var partitions = range.Partition(7);
+
+			Assert.Multiple(() =>
+			{
+				Assert.That(partitions.Length, Is.EqualTo(7), nameof(partitions.Length));
+
+				Assert.That(partitions[0].Start.Value, Is.EqualTo(1), "partitions[0].Start");
+				Assert.That(partitions[0].End.Value, Is.EqualTo(7144), "partitions[0].End");
+
+				Assert.That(partitions[1].Start.Value, Is.EqualTo(7144), "partitions[1].Start");
+				Assert.That(partitions[1].End.Value, Is.EqualTo(14287), "partitions[1].End");
+
+				Assert.That(partitions[2].Start.Value, Is.EqualTo(14287), "partitions[2].Start");
+				Assert.That(partitions[2].End.Value, Is.EqualTo(21430), "partitions[2].End");
+
+				Assert.That(partitions[3].Start.Value, Is.EqualTo(21430), "partitions[3].Start");
+				Assert.That(partitions[3].End.Value, Is.EqualTo(28573), "partitions[3].End");
+
+				Assert.That(partitions[4].Start.Value, Is.EqualTo(28573), "partitions[4].Start");
+				Assert.That(partitions[4].End.Value, Is.EqualTo(35716), "partitions[4].End");
+
+				Assert.That(partitions[5].Start.Value, Is.EqualTo(35716), "partitions[5].Start");
+				Assert.That(partitions[5].End.Value, Is.EqualTo(42858), "partitions[5].End");
+
+				Assert.That(partitions[6].Start.Value, Is.EqualTo(42858), "partitions[6].Start");
+				Assert.That(partitions[6].End.Value, Is.EqualTo(50000), "partitions[6].End");
+			});
+		}
+
+
+		[Test]
 		public static void PartitionWithAscendingRange()
 		{
 			var range = 5..5000;
@@ -69,16 +127,16 @@ namespace Spackle.Tests.Extensions
 				Assert.That(partitions[0].Start.Value, Is.EqualTo(5), "partitions[0].Start");
 				Assert.That(partitions[0].End.Value, Is.EqualTo(1004), "partitions[0].End");
 
-				Assert.That(partitions[1].Start.Value, Is.EqualTo(1005), "partitions[1].Start");
+				Assert.That(partitions[1].Start.Value, Is.EqualTo(1004), "partitions[1].Start");
 				Assert.That(partitions[1].End.Value, Is.EqualTo(2003), "partitions[1].End");
 
-				Assert.That(partitions[2].Start.Value, Is.EqualTo(2004), "partitions[2].Start");
+				Assert.That(partitions[2].Start.Value, Is.EqualTo(2003), "partitions[2].Start");
 				Assert.That(partitions[2].End.Value, Is.EqualTo(3002), "partitions[2].End");
 
-				Assert.That(partitions[3].Start.Value, Is.EqualTo(3003), "partitions[3].Start");
+				Assert.That(partitions[3].Start.Value, Is.EqualTo(3002), "partitions[3].Start");
 				Assert.That(partitions[3].End.Value, Is.EqualTo(4001), "partitions[3].End");
 
-				Assert.That(partitions[4].Start.Value, Is.EqualTo(4002), "partitions[4].Start");
+				Assert.That(partitions[4].Start.Value, Is.EqualTo(4001), "partitions[4].Start");
 				Assert.That(partitions[4].End.Value, Is.EqualTo(5000), "partitions[4].End");
 			});
 		}
@@ -94,16 +152,16 @@ namespace Spackle.Tests.Extensions
 				Assert.That(partitions.Length, Is.EqualTo(5), nameof(partitions.Length));
 
 				Assert.That(partitions[0].Start.Value, Is.EqualTo(5000), "partitions[0].Start");
-				Assert.That(partitions[0].End.Value, Is.EqualTo(4002), "partitions[0].End");
+				Assert.That(partitions[0].End.Value, Is.EqualTo(4001), "partitions[0].End");
 
 				Assert.That(partitions[1].Start.Value, Is.EqualTo(4001), "partitions[1].Start");
-				Assert.That(partitions[1].End.Value, Is.EqualTo(3003), "partitions[1].End");
+				Assert.That(partitions[1].End.Value, Is.EqualTo(3002), "partitions[1].End");
 
 				Assert.That(partitions[2].Start.Value, Is.EqualTo(3002), "partitions[2].Start");
-				Assert.That(partitions[2].End.Value, Is.EqualTo(2004), "partitions[2].End");
+				Assert.That(partitions[2].End.Value, Is.EqualTo(2003), "partitions[2].End");
 
 				Assert.That(partitions[3].Start.Value, Is.EqualTo(2003), "partitions[3].Start");
-				Assert.That(partitions[3].End.Value, Is.EqualTo(1005), "partitions[3].End");
+				Assert.That(partitions[3].End.Value, Is.EqualTo(1004), "partitions[3].End");
 
 				Assert.That(partitions[4].Start.Value, Is.EqualTo(1004), "partitions[4].Start");
 				Assert.That(partitions[4].End.Value, Is.EqualTo(5), "partitions[4].End");

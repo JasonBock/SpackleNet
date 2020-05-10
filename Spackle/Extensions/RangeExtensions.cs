@@ -78,8 +78,8 @@ namespace Spackle.Extensions
 		/// <paramref name="numberOfRanges"/> is <3>, the results are:
 		/// <code>
 		/// 0..34
-		/// 35..67
-		/// 68..100
+		/// 34..67
+		/// 67..100
 		/// </code>
 		/// </remarks>
 		public static ImmutableArray<Range> Partition(this Range @this, int numberOfRanges)
@@ -99,34 +99,32 @@ namespace Spackle.Extensions
 
 			if(shouldReverse)
 			{
-				@this = @this.End..@this.Start;
+				@this = @this.ToAscending();
 			}
 
-			var highestLength = (@this.End.Value - @this.Start.Value + 1) / numberOfRanges;
-			var bucketSizes = new int[numberOfRanges];
-			Array.Fill(bucketSizes, highestLength);
+			var rangeSize = @this.End.Value - @this.Start.Value;
+			var minimalPartitionRangeSize = rangeSize / numberOfRanges;
+			var remainder = rangeSize % numberOfRanges;
 
-			var surplus = (@this.End.Value - @this.Start.Value + 1) % numberOfRanges;
-			var surplusIndex = 0;
-
-			while (surplus > 0)
-			{
-				bucketSizes[surplusIndex]++;
-				surplusIndex = (surplusIndex++) % numberOfRanges;
-				surplus--;
-			}
-
-			var ranges = ImmutableArray.CreateBuilder<Range>();
+			var ranges = ImmutableArray.CreateBuilder<Range>(numberOfRanges);
 
 			var k = @this.Start.Value;
 
 			for (var i = 0; i < numberOfRanges; i++)
 			{
-				ranges.Add(shouldReverse ? new Range(k + bucketSizes[i] - 1, k) : new Range(k, k + bucketSizes[i] - 1));
-				k += bucketSizes[i];
+				var partitionRange = k..(k + minimalPartitionRangeSize + (remainder > 0 ? 1 : 0));
+				k = partitionRange.End.Value;
+				remainder = remainder > 0 ? --remainder : 0;
+
+				if (shouldReverse)
+				{
+					partitionRange = partitionRange.ToDescending();
+				}
+
+				ranges.Add(partitionRange);
 			}
 
-			if(shouldReverse)
+			if (shouldReverse)
 			{
 				ranges.Reverse();
 			}
