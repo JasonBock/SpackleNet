@@ -95,6 +95,14 @@ namespace Spackle.Extensions
 				throw new ArgumentException($"The start and end values, {@this.Start.Value}, are the same.", nameof(@this));
 			}
 
+			var rangeDifference = Math.Abs(@this.Start.Value - @this.End.Value);
+
+			if (rangeDifference < numberOfRanges)
+			{
+				throw new ArgumentException(
+					$"The number of ranges, {numberOfRanges}, must be greater than or equal to the range difference, {rangeDifference}.", nameof(@this));
+			}
+
 			var shouldReverse = @this.Start.Value > @this.End.Value;
 
 			if(shouldReverse)
@@ -102,9 +110,8 @@ namespace Spackle.Extensions
 				@this = @this.ToAscending();
 			}
 
-			var rangeSize = @this.End.Value - @this.Start.Value;
-			var minimalPartitionRangeSize = rangeSize / numberOfRanges;
-			var remainder = rangeSize % numberOfRanges;
+			var minimalPartitionRangeSize = rangeDifference / numberOfRanges;
+			var remainder = rangeDifference % numberOfRanges;
 
 			var ranges = ImmutableArray.CreateBuilder<Range>(numberOfRanges);
 

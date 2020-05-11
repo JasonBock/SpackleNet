@@ -169,6 +169,10 @@ namespace Spackle.Tests.Extensions
 		}
 
 		[Test]
+		public static void PartitionWhenNumberOfRangesIsGreaterThanRangeDifference() =>
+			Assert.That(() => (1..5).Partition(7), Throws.TypeOf<ArgumentException>());
+
+		[Test]
 		public static void PartitionWithInvalidNumberOfRanges() => 
 			Assert.That(() => (1..2).Partition(0), Throws.TypeOf<ArgumentException>());
 
