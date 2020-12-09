@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Spackle.Extensions
@@ -15,14 +16,14 @@ namespace Spackle.Extensions
 		/// <param name="this">The enumeration to transform.</param>
 		/// <returns>A <see cref="ReadOnlyCollection&lt;T&gt;" /> object.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static ReadOnlyCollection<T> AsReadOnly<T>(this IEnumerable<T> @this)
+		public static ReadOnlyCollection<T> AsReadOnly<T>(this IEnumerable<T> self)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new System.ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
-			return new ReadOnlyCollection<T>(new List<T>(@this));
+			return new ReadOnlyCollection<T>(new List<T>(self));
 		}
 	}
 }

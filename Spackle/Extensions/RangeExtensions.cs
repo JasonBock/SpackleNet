@@ -11,8 +11,8 @@ namespace Spackle.Extensions
 		/// <param name="this">The provided range.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="this"/>>, else <c>false</c>.</returns>
-		public static bool Contains(this Range @this, Index value) =>
-			@this.Contains(value.Value);
+		public static bool Contains(this Range self, Index value) =>
+			self.Contains(value.Value);
 
 		/// <summary>
 		/// Determines if <paramref name="value"/> is within the range.
@@ -20,10 +20,10 @@ namespace Spackle.Extensions
 		/// <param name="this">The provided range.</param>
 		/// <param name="value">The value to check.</param>
 		/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="this"/>>, else <c>false</c>.</returns>
-		public static bool Contains(this Range @this, int value) =>
-			@this.Start.Value < @this.End.Value ?
-				(value.CompareTo(@this.Start.Value) >= 0 && value.CompareTo(@this.End.Value) <= 0) :
-				(value.CompareTo(@this.Start.Value) <= 0 && value.CompareTo(@this.End.Value) >= 0);
+		public static bool Contains(this Range self, int value) =>
+			self.Start.Value < self.End.Value ?
+				(value.CompareTo(self.Start.Value) >= 0 && value.CompareTo(self.End.Value) <= 0) :
+				(value.CompareTo(self.Start.Value) <= 0 && value.CompareTo(self.End.Value) >= 0);
 
 		/// <summary>
 		/// Gets the intersection of the current <see cref="Range" /> 
@@ -32,9 +32,9 @@ namespace Spackle.Extensions
 		/// <param name="target">The target <see cref="Range" />.</param>
 		/// <returns>A new <see cref="Range" /> instance that is the intersection, 
 		/// or <c>null</c> if there is no intersection.</returns>
-		public static Range? Intersect(this Range @this, Range target)
+		public static Range? Intersect(this Range self, Range target)
 		{
-			var currentRange = @this.ToAscending();
+			var currentRange = self.ToAscending();
 			var targetRange = target.ToAscending();
 
 			if (currentRange.Contains(target.Start) || currentRange.Contains(target.End))
@@ -53,8 +53,8 @@ namespace Spackle.Extensions
 		/// </summary>
 		/// <param name="this">The <see cref="Range" /> to put into ascending order.</param>
 		/// <returns>A new <see cref="Range"/> in ascending order.</returns>
-		public static Range ToAscending(this Range @this) =>
-			@this.Start.Value < @this.End.Value ? @this : @this.End..@this.Start;
+		public static Range ToAscending(this Range self) =>
+			self.Start.Value < self.End.Value ? self : self.End..self.Start;
 
 		/// <summary>
 		/// Returns a <see cref="Range" /> where <see cref="Range.End" /> is less than
@@ -62,8 +62,8 @@ namespace Spackle.Extensions
 		/// </summary>
 		/// <param name="this">The <see cref="Range" /> to put into descending order.</param>
 		/// <returns>A new <see cref="Range"/> in descending order.</returns>
-		public static Range ToDescending(this Range @this) =>
-			@this.Start.Value > @this.End.Value ? @this : @this.End..@this.Start;
+		public static Range ToDescending(this Range self) =>
+			self.Start.Value > self.End.Value ? self : self.End..self.Start;
 
 		/// <summary>
 		/// Provides an array of <see cref="Range" /> values split up
@@ -82,7 +82,7 @@ namespace Spackle.Extensions
 		/// 67..100
 		/// </code>
 		/// </remarks>
-		public static ImmutableArray<Range> Partition(this Range @this, int numberOfRanges)
+		public static ImmutableArray<Range> Partition(this Range self, int numberOfRanges)
 		{
 			// https://softwareengineering.stackexchange.com/questions/187680/algorithm-for-dividing-a-range-into-ranges-and-then-finding-which-range-a-number
 			if (numberOfRanges <= 0)
@@ -90,24 +90,24 @@ namespace Spackle.Extensions
 				throw new ArgumentException("The number of ranges must be greater than 0.", nameof(numberOfRanges));
 			}
 
-			if(@this.Start.Value == @this.End.Value)
+			if(self.Start.Value == self.End.Value)
 			{
-				throw new ArgumentException($"The start and end values, {@this.Start.Value}, are the same.", nameof(@this));
+				throw new ArgumentException($"The start and end values, {self.Start.Value}, are the same.", nameof(self));
 			}
 
-			var rangeDifference = Math.Abs(@this.Start.Value - @this.End.Value);
+			var rangeDifference = Math.Abs(self.Start.Value - self.End.Value);
 
 			if (rangeDifference < numberOfRanges)
 			{
 				throw new ArgumentException(
-					$"The number of ranges, {numberOfRanges}, must be greater than or equal to the range difference, {rangeDifference}.", nameof(@this));
+					$"The number of ranges, {numberOfRanges}, must be greater than or equal to the range difference, {rangeDifference}.", nameof(self));
 			}
 
-			var shouldReverse = @this.Start.Value > @this.End.Value;
+			var shouldReverse = self.Start.Value > self.End.Value;
 
 			if(shouldReverse)
 			{
-				@this = @this.ToAscending();
+				self = self.ToAscending();
 			}
 
 			var minimalPartitionRangeSize = rangeDifference / numberOfRanges;
@@ -115,7 +115,7 @@ namespace Spackle.Extensions
 
 			var ranges = ImmutableArray.CreateBuilder<Range>(numberOfRanges);
 
-			var k = @this.Start.Value;
+			var k = self.Start.Value;
 
 			for (var i = 0; i < numberOfRanges; i++)
 			{
@@ -146,9 +146,9 @@ namespace Spackle.Extensions
 		/// <param name="target">The target <see cref="Range" />.</param>
 		/// <returns>A new <see cref="Range" /> instance that is the union, 
 		/// or <c>null</c> if there is no intersection.</returns>
-		public static Range? Union(this Range @this, Range target)
+		public static Range? Union(this Range self, Range target)
 		{
-			var currentRange = @this.ToAscending();
+			var currentRange = self.ToAscending();
 			var targetRange = target.ToAscending();
 
 			if (currentRange.Contains(targetRange.Start) || currentRange.Contains(targetRange.End) ||

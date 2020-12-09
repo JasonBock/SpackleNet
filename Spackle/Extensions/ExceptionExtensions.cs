@@ -25,8 +25,8 @@ namespace Spackle.Extensions
 		/// </summary>
 		/// <param name="this">The <see cref="Exception"/> to print.</param>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static void Print(this Exception @this) =>
-			@this.Print(Console.Out);
+		public static void Print(this Exception self) =>
+			self.Print(Console.Out);
 
 		/// <summary>
 		/// Prints the contents of <paramref name="this"/> to the given <see cref="TextWriter"/>.
@@ -36,11 +36,11 @@ namespace Spackle.Extensions
 		/// <exception cref="ArgumentNullException">
 		/// Thrown if either <paramref name="this"/> or <paramref name="writer"/> is <c>null</c>.
 		/// </exception>
-		public static void Print(this Exception @this, TextWriter writer)
+		public static void Print(this Exception self, TextWriter writer)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			if (writer is null)
@@ -48,33 +48,33 @@ namespace Spackle.Extensions
 				throw new ArgumentNullException(nameof(writer));
 			}
 
-			writer.WriteLine($"Type Name: {@this.GetType().FullName}");
-			writer.WriteLine($"\tSource: {@this.Source}");
-			@this.AddTargetSite(writer);
-			writer.WriteLine($"\tMessage: {@this.Message}");
-			writer.WriteLine($"\tHelpLink: {@this.HelpLink}");
+			writer.WriteLine($"Type Name: {self.GetType().FullName}");
+			writer.WriteLine($"\tSource: {self.Source}");
+			self.AddTargetSite(writer);
+			writer.WriteLine($"\tMessage: {self.Message}");
+			writer.WriteLine($"\tHelpLink: {self.HelpLink}");
 
-			@this.PrintCustomProperties(writer);
-			@this.PrintStackTrace(writer);
-			@this.PrintData(writer);
+			self.PrintCustomProperties(writer);
+			self.PrintStackTrace(writer);
+			self.PrintData(writer);
 
-			if (@this.InnerException is not null)
+			if (self.InnerException is not null)
 			{
 				writer.WriteLine();
-				@this.InnerException.Print(writer);
+				self.InnerException.Print(writer);
 			}
 		}
 
-		static partial void AddTargetSite(this Exception @this, TextWriter writer);
+		static partial void AddTargetSite(this Exception self, TextWriter writer);
 
-		private static void PrintCustomProperties(this Exception @this, TextWriter writer)
+		private static void PrintCustomProperties(this Exception self, TextWriter writer)
 		{
 			var baseType = typeof(Exception);
 
 			var properties =
-				(from property in @this.GetType().GetTypeInfo().GetProperties(
+				(from property in self.GetType().GetTypeInfo().GetProperties(
 					BindingFlags.Instance | BindingFlags.Public)
-				 where baseType.GetTypeInfo().GetProperty(property.Name) == null
+				 where baseType.GetTypeInfo().GetProperty(property.Name) is null
 				 where property.CanRead
 				 where property.GetGetMethod() is not null
 				 select property).ToList();
@@ -86,19 +86,19 @@ namespace Spackle.Extensions
 
 				foreach (var property in properties)
 				{
-					writer.WriteLine($"\t\t{property.Name} = {property.GetValue(@this, null)}");
+					writer.WriteLine($"\t\t{property.Name} = {property.GetValue(self, null)}");
 				}
 			}
 		}
 
-		private static void PrintData(this Exception @this, TextWriter writer)
+		private static void PrintData(this Exception self, TextWriter writer)
 		{
-			if (@this.Data.Count > 0)
+			if (self.Data.Count > 0)
 			{
 				writer.WriteLine();
 				writer.WriteLine("\tData:");
 
-				foreach (DictionaryEntry dataPair in @this.Data)
+				foreach (DictionaryEntry dataPair in self.Data)
 				{
 					var value = dataPair.Value is not null ? dataPair.Value.ToString() :
 						ExceptionExtensions.Null;
@@ -108,6 +108,6 @@ namespace Spackle.Extensions
 			}
 		}
 
-		static partial void PrintStackTrace(this Exception @this, TextWriter writer);
+		static partial void PrintStackTrace(this Exception self, TextWriter writer);
 	}
 }

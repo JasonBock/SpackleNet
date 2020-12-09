@@ -14,15 +14,15 @@ namespace Spackle.Extensions
 		/// <param name="this">The <see cref="Action"/> to time.</param>
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static TimeSpan Time(this Action @this)
+		public static TimeSpan Time(this Action self)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this();
+			self();
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -35,15 +35,15 @@ namespace Spackle.Extensions
 		/// <param name="obj">The parameter for <paramref name="this"/>.</param>
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static TimeSpan Time<T>(this Action<T> @this, T obj)
+		public static TimeSpan Time<T>(this Action<T> self, T obj)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(obj);
+			self(obj);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -58,15 +58,15 @@ namespace Spackle.Extensions
 		/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static TimeSpan Time<T1, T2>(this Action<T1, T2> @this, T1 arg1, T2 arg2)
+		public static TimeSpan Time<T1, T2>(this Action<T1, T2> self, T1 arg1, T2 arg2)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2);
+			self(arg1, arg2);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -83,15 +83,15 @@ namespace Spackle.Extensions
 		/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static TimeSpan Time<T1, T2, T3>(this Action<T1, T2, T3> @this, T1 arg1, T2 arg2, T3 arg3)
+		public static TimeSpan Time<T1, T2, T3>(this Action<T1, T2, T3> self, T1 arg1, T2 arg2, T3 arg3)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3);
+			self(arg1, arg2, arg3);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -110,15 +110,15 @@ namespace Spackle.Extensions
 		/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static TimeSpan Time<T1, T2, T3, T4>(this Action<T1, T2, T3, T4> @this, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
+		public static TimeSpan Time<T1, T2, T3, T4>(this Action<T1, T2, T3, T4> self, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4);
+			self(arg1, arg2, arg3, arg4);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -140,16 +140,16 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5>(
-		  this Action<T1, T2, T3, T4, T5> @this,
+		  this Action<T1, T2, T3, T4, T5> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5);
+			self(arg1, arg2, arg3, arg4, arg5);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -173,16 +173,16 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6>(
-		  this Action<T1, T2, T3, T4, T5, T6> @this,
+		  this Action<T1, T2, T3, T4, T5, T6> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6);
+			self(arg1, arg2, arg3, arg4, arg5, arg6);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -208,16 +208,16 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7>(
-		  this Action<T1, T2, T3, T4, T5, T6, T7> @this,
+		  this Action<T1, T2, T3, T4, T5, T6, T7> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+			self(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -245,16 +245,16 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8>(
-		  this Action<T1, T2, T3, T4, T5, T6, T7, T8> @this,
+		  this Action<T1, T2, T3, T4, T5, T6, T7, T8> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+			self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -284,17 +284,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
-		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> @this,
+		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+			self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -326,17 +326,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
-		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> @this,
+		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+			self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -370,17 +370,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
-		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> @this,
+		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
+			self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -416,17 +416,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
-		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> @this,
+		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);
+			self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -464,17 +464,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
-		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> @this,
+		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13);
+			self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -514,17 +514,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
-		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> @this,
+		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
+			self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -566,17 +566,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
-		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> @this,
+		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15);
+			self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15);
 			watch.Stop();
 			return watch.Elapsed;
 		}
@@ -620,17 +620,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(
-		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> @this,
+		  this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15, T16 arg16)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			@this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
+			self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
 			watch.Stop();
 			return watch.Elapsed;
 		}

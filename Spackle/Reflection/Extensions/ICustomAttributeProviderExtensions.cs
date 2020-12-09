@@ -19,11 +19,11 @@ namespace Spackle.Reflection.Extensions
 		/// <exception cref="ArgumentNullException">
 		/// Thrown if either <paramref name="this"/> or <paramref name="attributeType"/> is <c>null</c>.
 		/// </exception>
-		public static bool HasAttribute(this ICustomAttributeProvider @this, Type attributeType, bool inherit)
+		public static bool HasAttribute(this ICustomAttributeProvider self, Type attributeType, bool inherit)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			if (attributeType is null)
@@ -31,8 +31,8 @@ namespace Spackle.Reflection.Extensions
 				throw new ArgumentNullException(nameof(attributeType));
 			}
 
-			return (from attribute in @this.GetCustomAttributes(attributeType, inherit)
-					  where attributeType.GetTypeInfo().IsAssignableFrom(attribute.GetType())
+			return (from attribute in self.GetCustomAttributes(attributeType, inherit)
+					  where attributeType.IsAssignableFrom(attribute.GetType())
 					  select attribute).Any();
 		}
 	}

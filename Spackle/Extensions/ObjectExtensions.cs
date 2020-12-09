@@ -19,15 +19,15 @@ namespace Spackle.Extensions
 		/// <exception cref="ArgumentNullException">
 		/// Thrown if <paramref name="this"/> is <c>null</c>.
 		/// </exception>
-		public static bool HasAttribute(this object @this, Type attributeType, bool inherit)
+		public static bool HasAttribute(this object self, Type attributeType, bool inherit)
 		{
-			if(@this is null)
+			if(self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			return ICustomAttributeProviderExtensions.HasAttribute(
-				@this.GetType().GetTypeInfo(), attributeType, inherit);
+				self.GetType().GetTypeInfo(), attributeType, inherit);
 		}
 	}
 }

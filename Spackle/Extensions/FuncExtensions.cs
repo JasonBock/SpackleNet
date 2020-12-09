@@ -15,15 +15,15 @@ namespace Spackle.Extensions
 		/// <param name="this">The <see cref="Func"/> to time.</param>
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static (TResult, TimeSpan) Time<TResult>(this Func<TResult> @this)
+		public static (TResult, TimeSpan) Time<TResult>(this Func<TResult> self)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this();
+			var result = self();
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -37,15 +37,15 @@ namespace Spackle.Extensions
 		/// <param name="obj">The parameter for <paramref name="this"/>.</param>
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static (TResult, TimeSpan) Time<T, TResult>(this Func<T, TResult> @this, T obj)
+		public static (TResult, TimeSpan) Time<T, TResult>(this Func<T, TResult> self, T obj)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(obj);
+			var result = self(obj);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -61,15 +61,15 @@ namespace Spackle.Extensions
 		/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static (TResult, TimeSpan) Time<T1, T2, TResult>(this Func<T1, T2, TResult> @this, T1 arg1, T2 arg2)
+		public static (TResult, TimeSpan) Time<T1, T2, TResult>(this Func<T1, T2, TResult> self, T1 arg1, T2 arg2)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2);
+			var result = self(arg1, arg2);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -87,15 +87,15 @@ namespace Spackle.Extensions
 		/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static (TResult, TimeSpan) Time<T1, T2, T3, TResult>(this Func<T1, T2, T3, TResult> @this, T1 arg1, T2 arg2, T3 arg3)
+		public static (TResult, TimeSpan) Time<T1, T2, T3, TResult>(this Func<T1, T2, T3, TResult> self, T1 arg1, T2 arg2, T3 arg3)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3);
+			var result = self(arg1, arg2, arg3);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -115,15 +115,15 @@ namespace Spackle.Extensions
 		/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
-		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, TResult>(this Func<T1, T2, T3, T4, TResult> @this, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
+		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, TResult>(this Func<T1, T2, T3, T4, TResult> self, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4);
+			var result = self(arg1, arg2, arg3, arg4);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -146,16 +146,16 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, TResult>(
-		  this Func<T1, T2, T3, T4, T5, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5);
+			var result = self(arg1, arg2, arg3, arg4, arg5);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -180,16 +180,16 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -216,16 +216,16 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, T7, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, T7, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -254,16 +254,16 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -294,17 +294,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -337,17 +337,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -382,17 +382,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -429,17 +429,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -478,17 +478,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -529,17 +529,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -582,17 +582,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}
@@ -637,17 +637,17 @@ namespace Spackle.Extensions
 		/// <returns>A <see cref="(TResult, TimeSpan)"/> object that contains the result and the time it took to run <paramref name="this"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
 		public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TResult>(
-		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TResult> @this,
+		  this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TResult> self,
 		  T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
 		  T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15, T16 arg16)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			var watch = Stopwatch.StartNew();
-			var result = @this(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
+			var result = self(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
 			watch.Stop();
 			return (result, watch.Elapsed);
 		}

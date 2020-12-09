@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <AssemblyName>Spackle</AssemblyName>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <Copyright>Copyright © 2020</Copyright>
     <Description>An assembly that contains utilities and extension methods to augment .NET development.</Description>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>Spackle</PackageId>
-    <PackageLicenseUrl>https://github.com/JasonBock/SpackleNet/blob/master/LICENSE.md</PackageLicenseUrl>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageVersion>$(Version)</PackageVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <RepositoryUrl>https://github.com/jasonbock/spacklenet</RepositoryUrl>
@@ -20,5 +20,8 @@
   <ItemGroup>
     <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE.md" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>

@@ -39,30 +39,30 @@ namespace Spackle.Extensions
 		/// <remarks>
 		/// This code is based on the work presented here: http://eli.thegreenplace.net/2008/08/29/space-efficient-list-rotation/.
 		/// </remarks>
-		public static void Rotate<T>(this IList<T> @this, int positions, RotateDirection direction)
+		public static void Rotate<T>(this IList<T> self, int positions, RotateDirection direction)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
-			var itemsCount = @this.Count;
+			var itemsCount = self.Count;
 			
 			if(positions <= 0 || positions > itemsCount)
 			{
 				throw new ArgumentException(IListOfTExtensions.ErrorOutOfPosition, nameof(positions));
 			}
 
-			if(@this.Count > 1 && positions % itemsCount != 0)
+			if(self.Count > 1 && positions % itemsCount != 0)
 			{
 				if(direction == RotateDirection.Positive)
 				{
-					positions = @this.Count - positions;
+					positions = self.Count - positions;
 				}
 
 				for(var i = 0; i < IListOfTExtensions.GCD(positions, itemsCount); i++)
 				{
-					var value = @this[i];
+					var value = self[i];
 					var j = i;
 					
 					while(true)
@@ -74,11 +74,11 @@ namespace Spackle.Extensions
 							break;
 						}
 						
-						@this[j] = @this[k];
+						self[j] = self[k];
 						j = k;
 					}
 					
-					@this[j] = value;
+					self[j] = value;
 				}
 			}
 		}
@@ -93,15 +93,15 @@ namespace Spackle.Extensions
 		/// The implementation of <c>Shuffle</c> uses the Fisher–Yates shuffle, as implemented by Durstenfeld - 
 		/// see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle for details on this implementation.
 		/// </remarks>
-		public static void Shuffle<T>(this IList<T> @this)
+		public static void Shuffle<T>(this IList<T> self)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			using var random = new SecureRandom();
-			@this.Shuffle(random);
+			self.Shuffle(random);
 		}
 
 		/// <summary>
@@ -115,11 +115,11 @@ namespace Spackle.Extensions
 		/// The implementation of <c>Shuffle</c> uses the Fisher–Yates shuffle, as implemented by Durstenfeld - 
 		/// see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle for details on this implementation.
 		/// </remarks>
-		public static void Shuffle<T>(this IList<T> @this, Random random)
+		public static void Shuffle<T>(this IList<T> self, Random random)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			if (random is null)
@@ -127,13 +127,13 @@ namespace Spackle.Extensions
 				throw new ArgumentNullException(nameof(random));
 			}
 
-			var length = @this.Count;
+			var length = self.Count;
 			
 			while(length > 1)
 			{
 				length--;
 				var nextIndex = random.Next(length + 1);
-				@this.Swap(nextIndex, length);
+				self.Swap(nextIndex, length);
 			}
 		}
 		
@@ -150,18 +150,18 @@ namespace Spackle.Extensions
 		/// <remarks>
 		/// If <paramref name="x"/> and <paramref name="y"/> are equal, nothing is done to the given list.
 		/// </remarks>
-		public static void Swap<T>(this IList<T> @this, int x, int y)
+		public static void Swap<T>(this IList<T> self, int x, int y)
 		{
-			if (@this is null)
+			if (self is null)
 			{
-				throw new ArgumentNullException(nameof(@this));
+				throw new ArgumentNullException(nameof(self));
 			}
 
 			if(x != y)
 			{
-				var xValue = @this[x];
-				@this[x] = @this[y];
-				@this[y] = xValue;
+				var xValue = self[x];
+				self[x] = self[y];
+				self[y] = xValue;
 			}
 		}
 	}

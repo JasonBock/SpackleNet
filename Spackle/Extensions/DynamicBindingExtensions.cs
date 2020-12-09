@@ -58,7 +58,7 @@ namespace Spackle.Extensions
 
 			if (location.Member is FieldInfo field)
 			{
-				if (inst == null)
+				if (inst is null)
 				{
 					inst = Expression.Constant(null, field.DeclaringType!);
 				}
@@ -121,7 +121,7 @@ namespace Spackle.Extensions
 
 				if (this.dispose)
 				{
-					if(this.current is { })
+					if(this.current is not null)
 					{
 						((IDisposable)this.current).Dispose();
 					}

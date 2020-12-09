@@ -3,11 +3,6 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Extensions\EnumExtensionsTests.cs~RF1eab6333.TMP" />
-    <None Remove="Extensions\TestWriter.cs~RF1eb288e9.TMP" />
-    <None Remove="RandomObjectGeneratorResultsTests.cs~RF1eb46097.TMP" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />

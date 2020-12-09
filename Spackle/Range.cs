@@ -83,7 +83,7 @@ namespace Spackle
 		{
 			var areEqual = false;
 
-			if(other is { })
+			if(other is not null)
 			{
 				areEqual = this.Start.CompareTo(other.Start) == 0 &&
 					this.End.CompareTo(other.End) == 0;
