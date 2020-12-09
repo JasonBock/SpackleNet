@@ -98,9 +98,7 @@ namespace Spackle.Extensions
 				writer.WriteLine();
 				writer.WriteLine("\tData:");
 
-#pragma warning disable IDE0007 // Use implicit type
 				foreach (DictionaryEntry dataPair in @this.Data)
-#pragma warning restore IDE0007 // Use implicit type
 				{
 					var value = dataPair.Value is not null ? dataPair.Value.ToString() :
 						ExceptionExtensions.Null;
