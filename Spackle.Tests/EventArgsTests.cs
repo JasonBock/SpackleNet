@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 
 namespace Spackle.Tests
 {
@@ -7,7 +8,7 @@ namespace Spackle.Tests
 		[Test]
 		public static void Create()
 		{
-			var value = new RandomObjectGenerator().Generate<string>()!;
+			var value = Guid.NewGuid().ToString();
 			var args = new EventArgs<string>(value);
 			Assert.That(args.Value, Is.EqualTo(value));
 		}

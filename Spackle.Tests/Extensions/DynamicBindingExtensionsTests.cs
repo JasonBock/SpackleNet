@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Spackle.Extensions;
+using System;
 using System.IO;
 using System.Text;
 
@@ -10,9 +11,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void WithUsingExpression()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>()!;
-			var newValue = generator.Generate<string>()!;
+			var original = Guid.NewGuid().ToString();
+			var newValue = Guid.NewGuid().ToString();
 
 			using var writer = new TestWriter();
 			writer.Write(original);
@@ -37,9 +37,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void WithUsingFuncAndAction()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>()!;
-			var newValue = generator.Generate<string>()!;
+			var original = Guid.NewGuid().ToString();
+			var newValue = Guid.NewGuid().ToString();
 
 			using var writer = new TestWriter();
 			writer.Write(original);
@@ -65,9 +64,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void BindToLocalVariable()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<int>();
-			var newValue = generator.Generate<int>();
+			var original = new SecureRandom().Next();
+			var newValue = new SecureRandom().Next();
 			var binded = original;
 
 			Assert.Multiple(() =>
@@ -86,9 +84,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void BindToInternalInstanceField()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>();
-			var newValue = generator.Generate<string>();
+			var original = Guid.NewGuid().ToString();
+			var newValue = Guid.NewGuid().ToString();
 			var binded = new Binded { InternalInstanceField = original };
 
 			Assert.Multiple(() =>
@@ -107,9 +104,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void BindToInternalInstanceProperty()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>();
-			var newValue = generator.Generate<string>();
+			var original = Guid.NewGuid().ToString();
+			var newValue = Guid.NewGuid().ToString();
 			var binded = new Binded { InternalInstanceProperty = original };
 
 			Assert.Multiple(() =>
@@ -128,9 +124,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void BindToInternalStaticField()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>();
-			var newValue = generator.Generate<string>();
+			var original = Guid.NewGuid().ToString();
+			var newValue = Guid.NewGuid().ToString();
 			Binded.InternalStaticField = original;
 
 			Assert.Multiple(() =>
@@ -149,9 +144,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void BindToInternalStaticProperty()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>();
-			var newValue = generator.Generate<string>();
+			var original = Guid.NewGuid().ToString();
+			var newValue = Guid.NewGuid().ToString();
 			Binded.InternalStaticProperty = original;
 
 			Assert.Multiple(() =>
@@ -170,9 +164,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void BindToInstanceField()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>();
-			var newValue = generator.Generate<string>();
+			var original = Guid.NewGuid().ToString();
+			var newValue = Guid.NewGuid().ToString();
 			var binded = new Binded { InstanceField = original };
 
 			Assert.Multiple(() =>
@@ -191,9 +184,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void BindToInstanceProperty()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>();
-			var newValue = generator.Generate<string>();
+			var original = Guid.NewGuid().ToString();
+			var newValue = Guid.NewGuid().ToString();
 			var binded = new Binded { InstanceProperty = original };
 
 			Assert.Multiple(() =>
@@ -212,9 +204,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void BindToStaticField()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>();
-			var newValue = generator.Generate<string>();
+			var original = Guid.NewGuid().ToString();
+			var newValue = Guid.NewGuid().ToString();
 			Binded.StaticField = original;
 
 			Assert.Multiple(() =>
@@ -233,9 +224,8 @@ namespace Spackle.Tests.Extensions
 		[Test]
 		public static void BindToStaticProperty()
 		{
-			var generator = new RandomObjectGenerator();
-			var original = generator.Generate<string>();
-			var newValue = generator.Generate<string>();
+			var original = Guid.NewGuid().ToString();
+			var newValue = Guid.NewGuid().ToString();
 			Binded.StaticProperty = original;
 
 			Assert.Multiple(() =>
