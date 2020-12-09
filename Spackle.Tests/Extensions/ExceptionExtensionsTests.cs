@@ -91,7 +91,7 @@ namespace Spackle.Tests.Extensions
 		{
 			try
 			{
-				var exceptionConstructor = typeof(NotImplementedException).GetTypeInfo().GetConstructor(Type.EmptyTypes);
+				var exceptionConstructor = typeof(NotImplementedException).GetTypeInfo().GetConstructor(Type.EmptyTypes)!;
 				var action = (Action)Expression.Lambda(
 					Expression.Throw(Expression.New(exceptionConstructor))).Compile();
 

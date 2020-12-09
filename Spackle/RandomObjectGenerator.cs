@@ -26,9 +26,7 @@ namespace Spackle
 		/// Creates a new <see cref="RandomObjectGenerator"/> instance.
 		/// </summary>
 		public RandomObjectGenerator()
-#pragma warning disable CA2000 // Dispose objects before losing scope
 			: this(new SecureRandom(), new Dictionary<Type, Func<RandomObjectGeneratorResults>>()) { }
-#pragma warning restore CA2000 // Dispose objects before losing scope
 
 		/// <summary>
 		/// Creates a new <see cref="RandomObjectGenerator"/> instance
@@ -52,9 +50,7 @@ namespace Spackle
 		/// is <c>null</c>.
 		/// </exception>
 		public RandomObjectGenerator(Dictionary<Type, Func<RandomObjectGeneratorResults>> generators)
-#pragma warning disable CA2000 // Dispose objects before losing scope
 			: this(new SecureRandom(), generators) { }
-#pragma warning restore CA2000 // Dispose objects before losing scope
 
 		/// <summary>
 		/// Creates a new <see cref="RandomObjectGenerator"/> instance
@@ -148,7 +144,7 @@ namespace Spackle
 		private object GetEnumerationValue(Type target)
 		{
 			var values = Enum.GetValues(target);
-			return values.GetValue(this.random.Next(values.Length));
+			return values.GetValue(this.random.Next(values.Length))!;
 		}
 
 		private RandomObjectGeneratorResults GetHandledValue(Type target)
@@ -255,12 +251,12 @@ namespace Spackle
 				typeof(ReadOnlyCollection<>).GetTypeInfo().IsAssignableFrom(target.GetGenericTypeDefinition()))
 			{
 				var collectionType = target.GetTypeInfo().GetGenericArguments()[0];
-				var collection = Activator.CreateInstance(typeof(List<>).MakeGenericType(new Type[] { collectionType }));
+				var collection = Activator.CreateInstance(typeof(List<>).MakeGenericType(new Type[] { collectionType }))!;
 
-				var addMethod = collection.GetType().GetTypeInfo().GetMethod(nameof(ICollection<int>.Add));
+				var addMethod = collection.GetType().GetTypeInfo().GetMethod(nameof(ICollection<int>.Add))!;
 				addMethod.Invoke(collection, new object?[] { this.Generate(collectionType) });
 
-				var asReadOnly = collection.GetType().GetTypeInfo().GetMethod(nameof(List<int>.AsReadOnly));
+				var asReadOnly = collection.GetType().GetTypeInfo().GetMethod(nameof(List<int>.AsReadOnly))!;
 
 				result = new RandomObjectGeneratorResults(true, asReadOnly.Invoke(collection, null));
 			}

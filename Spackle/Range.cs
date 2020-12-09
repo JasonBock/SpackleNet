@@ -85,10 +85,8 @@ namespace Spackle
 
 			if(other is { })
 			{
-#pragma warning disable CA1062 // Validate arguments of public methods
 				areEqual = this.Start.CompareTo(other.Start) == 0 &&
 					this.End.CompareTo(other.End) == 0;
-#pragma warning restore CA1062 // Validate arguments of public methods
 			}
 
 			return areEqual;
@@ -101,7 +99,7 @@ namespace Spackle
 		/// <param name="obj">An <see cref="Object" />.</param>
 		/// <returns><b>true</b> if <paramref name="obj"/> is a <see cref="Range&lt;T&gt;" /> and its value 
 		/// is the same as this instance; otherwise, <b>false</b>.</returns>
-		public override bool Equals(object obj) => this.Equals(obj as Range<T>);
+		public override bool Equals(object? obj) => this.Equals(obj as Range<T>);
 
 		/// <summary>
 		/// Returns the hash code for this <see cref="Range&lt;T&gt;" />.

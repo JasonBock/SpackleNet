@@ -10,12 +10,16 @@ namespace Spackle.Tests.Extensions
 
 		[Test]
 		public static void GetName() =>
+#pragma warning disable CS0618 // Type or member is obsolete
 			Assert.That(EnumExtensionsTests.TestEnum.ValueThatHasDescription.GetName(),
+#pragma warning restore CS0618 // Type or member is obsolete
 				Is.EqualTo(EnumExtensionsTests.Name));
 
 		[Test]
 		public static void GetNameForValueThatIsNotAnEnum() =>
+#pragma warning disable CS0618 // Type or member is obsolete
 			Assert.That(() => Guid.NewGuid().GetName(), Throws.TypeOf<ArgumentException>());
+#pragma warning restore CS0618 // Type or member is obsolete
 
 		private enum TestEnum
 		{

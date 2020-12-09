@@ -408,7 +408,7 @@ namespace Spackle.Tests
 
 			public override void NextBytes(byte[] buffer)
 			{
-				if (this.ExcludedBuffer != null && !this.HasExcludedValueBeenAskedFor)
+				if (this.ExcludedBuffer is not null && !this.HasExcludedValueBeenAskedFor)
 				{
 					this.HasExcludedValueBeenAskedFor = true;
 					Array.Copy(this.ExcludedBuffer, buffer, this.ExcludedBuffer.Length);
@@ -422,7 +422,7 @@ namespace Spackle.Tests
 			public override int Next(int maxValue) => this.IntegerValue;
 
 			public override int Next(int minValue, int maxValue) =>
-				this.TimeSpanValues != null ?
+				this.TimeSpanValues is not null ?
 					this.TimeSpanValues.Pop() : this.IntegerValue;
 
 			public override double NextDouble() => this.DoubleValue;

@@ -58,7 +58,7 @@ namespace Spackle.Extensions
 			@this.PrintStackTrace(writer);
 			@this.PrintData(writer);
 
-			if (@this.InnerException != null)
+			if (@this.InnerException is not null)
 			{
 				writer.WriteLine();
 				@this.InnerException.Print(writer);
@@ -76,7 +76,7 @@ namespace Spackle.Extensions
 					BindingFlags.Instance | BindingFlags.Public)
 				 where baseType.GetTypeInfo().GetProperty(property.Name) == null
 				 where property.CanRead
-				 where property.GetGetMethod() != null
+				 where property.GetGetMethod() is not null
 				 select property).ToList();
 
 			if (properties.Count > 0)
@@ -102,7 +102,7 @@ namespace Spackle.Extensions
 				foreach (DictionaryEntry dataPair in @this.Data)
 #pragma warning restore IDE0007 // Use implicit type
 				{
-					var value = dataPair.Value != null ? dataPair.Value.ToString() :
+					var value = dataPair.Value is not null ? dataPair.Value.ToString() :
 						ExceptionExtensions.Null;
 
 					writer.WriteLine($"\t\tKey: {dataPair.Key}, Value: {value}");
