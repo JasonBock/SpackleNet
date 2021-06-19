@@ -18,18 +18,15 @@ namespace Spackle.Tests
 				Assert.That(rangeC, Is.EqualTo(rangeA));
 				Assert.That(rangeC, Is.Not.EqualTo(rangeB));
 
-#pragma warning disable CS1718 // Comparison made to same variable
-				Assert.That(rangeA == rangeA, Is.True);
-#pragma warning restore CS1718 // Comparison made to same variable
-				Assert.That(rangeA == rangeB, Is.False);
-				Assert.That(rangeA == rangeC, Is.True);
-				Assert.That(rangeB == rangeC, Is.False);
-				Assert.That((null as Range<int>)! == rangeA, Is.False);
-				Assert.That(rangeA == (null as Range<int>)!, Is.False);
+				Assert.That(rangeA, Is.Not.EqualTo(rangeB));
+				Assert.That(rangeA, Is.EqualTo(rangeC));
+				Assert.That(rangeB, Is.Not.EqualTo(rangeC));
+				Assert.That((null as Range<int>)!, Is.Not.EqualTo(rangeA));
+				Assert.That(rangeA, Is.Not.EqualTo((null as Range<int>)!));
 
-				Assert.That(rangeA != rangeB, Is.True);
-				Assert.That(rangeA != rangeC, Is.False);
-				Assert.That(rangeB != rangeC, Is.True);
+				Assert.That(rangeA, Is.Not.EqualTo(rangeB));
+				Assert.That(rangeA, Is.EqualTo(rangeC));
+				Assert.That(rangeB, Is.Not.EqualTo(rangeC));
 			});
 		}
 

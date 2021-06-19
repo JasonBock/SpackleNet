@@ -17,7 +17,7 @@ namespace Spackle.Tests.Extensions
 			try
 			{
 				ExceptionExtensionsTests.Throw();
-				Assert.True(false);
+				Assert.Fail();
 			}
 			catch (NotImplementedException e)
 			{
@@ -58,7 +58,7 @@ namespace Spackle.Tests.Extensions
 			try
 			{
 				ExceptionExtensionsTests.Throw();
-				Assert.True(false);
+				Assert.Fail();
 			}
 			catch (NotImplementedException e)
 			{
@@ -97,7 +97,7 @@ namespace Spackle.Tests.Extensions
 
 				action();
 
-				Assert.True(false);
+				Assert.Fail();
 			}
 			catch (NotImplementedException e)
 			{
@@ -149,7 +149,7 @@ namespace Spackle.Tests.Extensions
 			try
 			{
 				ExceptionExtensionsTests.ThrowWithMethodThatHasArguments(1, new object());
-				Assert.True(false);
+				Assert.Fail();
 			}
 			catch (NotImplementedException e)
 			{
@@ -181,7 +181,7 @@ namespace Spackle.Tests.Extensions
 			try
 			{
 				ExceptionExtensionsTests.ThrowWithInnerException();
-				Assert.True(false);
+				Assert.Fail();
 			}
 			catch (NotImplementedException e)
 			{
@@ -206,7 +206,7 @@ namespace Spackle.Tests.Extensions
 			try
 			{
 				ExceptionExtensionsTests.ThrowWithData();
-				Assert.True(false);
+				Assert.Fail();
 			}
 			catch (NotImplementedException e)
 			{
@@ -232,7 +232,7 @@ namespace Spackle.Tests.Extensions
 			try
 			{
 				ExceptionExtensionsTests.ThrowWithCustomProperties();
-				Assert.True(false);
+				Assert.Fail();
 			}
 			catch (CustomException e)
 			{

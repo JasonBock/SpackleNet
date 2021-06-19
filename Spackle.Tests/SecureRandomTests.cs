@@ -37,7 +37,7 @@ namespace Spackle.Tests
 			var max = BigInteger.Parse("431531631631431");
 			var value = random.GetBigIntegerWithRange(max);
 
-			Assert.That(value < max, Is.True);
+			Assert.That(value, Is.LessThan(max));
 		}
 
 		[Test]
