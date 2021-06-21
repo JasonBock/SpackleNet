@@ -9,7 +9,7 @@ namespace Spackle.Tests
 	public static class SecureRandomTests
 	{
 		[Test]
-		public static void CreateBigIntegerWithZeroLength()
+		public static void GetBigIntegerWithZeroLength()
 		{
 			using var random = new SecureRandom();
 			Assert.That(() => random.GetBigInteger(0), Throws.TypeOf<ArgumentException>());
@@ -23,7 +23,7 @@ namespace Spackle.Tests
 		[TestCase(20ul)]
 		[TestCase(50ul)]
 		[TestCase(100ul)]
-		public static void CreateBigIntegerWithSpecifiedLength(ulong length)
+		public static void GetBigIntegerWithSpecifiedLength(ulong length)
 		{
 			using var random = new SecureRandom();
 			var value = random.GetBigInteger(length);
@@ -31,7 +31,7 @@ namespace Spackle.Tests
 		}
 
 		[Test]
-		public static void CreateBigIntegerWithRange()
+		public static void GetBigIntegerWithRange()
 		{
 			using var random = new SecureRandom();
 			var max = BigInteger.Parse("431531631631431");
@@ -41,14 +41,25 @@ namespace Spackle.Tests
 		}
 
 		[Test]
-		public static void CreateBigIntegerWithRangeWithIncorrectMaxValue()
+		public static void GetBigIntegerWithRangeWithZero()
 		{
 			using var random = new SecureRandom();
-			Assert.That(() => random.GetBigIntegerWithRange(BigInteger.Zero), Throws.TypeOf<ArgumentException>());
+			Assert.That(() => random.GetBigIntegerWithRange(BigInteger.Zero), 
+				Throws.TypeOf<ArgumentException>()
+					.And.Message.EqualTo("Max value, 0, must be greater than zero. (Parameter 'max')"));
 		}
 
 		[Test]
-		public static void CreateBigIntegerWithRangeAfterDisposing()
+		public static void GetBigIntegerWithRangeWithNegativeValue()
+		{
+			using var random = new SecureRandom();
+			Assert.That(() => random.GetBigIntegerWithRange(-3), 
+				Throws.TypeOf<ArgumentException>()
+					.And.Message.EqualTo("Max value, -3, must be greater than zero. (Parameter 'max')"));
+		}
+
+		[Test]
+		public static void GetBigIntegerWithRangeAfterDisposing()
 		{
 			SecureRandom random;
 
@@ -120,6 +131,14 @@ namespace Spackle.Tests
 		[Test]
 		public static void CreateGeneratorWithNullProvider() =>
 			Assert.That(() => new SecureRandom(null!), Throws.TypeOf<ArgumentNullException>());
+
+		[Test]
+		public static void DisposeGenerator()
+		{
+			var generator = new MyGenerator();
+			using (var random = new SecureRandom(generator)) { }
+			Assert.That(generator.DisposeCount, Is.EqualTo(1));
+		}
 
 		[Test]
 		public static void GenerateIntegerWithNegativeUpperBound()
@@ -513,8 +532,12 @@ namespace Spackle.Tests
 		private sealed class MyGenerator
 			: RandomNumberGenerator
 		{
+			protected override void Dispose(bool disposing) => this.DisposeCount++;
+
 			public override void GetBytes(byte[] data) =>
 				throw new NotImplementedException();
+
+			public int DisposeCount { get; private set; }
 		}
 	}
 }

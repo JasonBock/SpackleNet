@@ -22,7 +22,7 @@ namespace Spackle
 		public Range(T start, T end)
 			: base()
 		{
-			if(start.CompareTo(end) <= 0)
+			if(start.CompareTo(end) < 0)
 			{
 				(this.Start, this.End) = (start, end);
 			}

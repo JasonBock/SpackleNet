@@ -12,8 +12,7 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
 			items.Rotate(7, RotateDirection.Negative);
-			Assert.That(items,
-				Is.EquivalentTo(new List<string> { "h", "i", "j", "a", "b", "c", "d", "e", "f", "g" }));
+			Assert.That(items, Is.EqualTo(new List<string> { "h", "i", "j", "a", "b", "c", "d", "e", "f", "g" }));
 		}
 
 		[Test]
@@ -21,8 +20,7 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i" };
 			items.Rotate(6, RotateDirection.Negative);
-			Assert.That(items,
-				Is.EquivalentTo(new List<string> { "g", "h", "i", "a", "b", "c", "d", "e", "f" }));
+			Assert.That(items, Is.EqualTo(new List<string> { "g", "h", "i", "a", "b", "c", "d", "e", "f" }));
 		}
 
 		[Test]
@@ -30,8 +28,7 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
 			items.Rotate(7, RotateDirection.Positive);
-			Assert.That(items,
-				Is.EquivalentTo(new List<string> { "d", "e", "f", "g", "h", "i", "j", "a", "b", "c" }));
+			Assert.That(items, Is.EqualTo(new List<string> { "d", "e", "f", "g", "h", "i", "j", "a", "b", "c" }));
 		}
 
 		[Test]
@@ -39,8 +36,7 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i" };
 			items.Rotate(3, RotateDirection.Positive);
-			Assert.That(items,
-				Is.EquivalentTo(new List<string> { "g", "h", "i", "a", "b", "c", "d", "e", "f" }));
+			Assert.That(items, Is.EqualTo(new List<string> { "g", "h", "i", "a", "b", "c", "d", "e", "f" }));
 		}
 
 		[Test]
@@ -48,8 +44,7 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a" };
 			items.Rotate(1, RotateDirection.Positive);
-			Assert.That(items,
-				Is.EquivalentTo(new List<string> { "a" }));
+			Assert.That(items, Is.EqualTo(new List<string> { "a" }));
 		}
 
 		[Test]
@@ -57,8 +52,7 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
 			items.Rotate(10, RotateDirection.Positive);
-			Assert.That(items,
-				Is.EquivalentTo(new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" }));
+			Assert.That(items, Is.EqualTo(new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" }));
 		}
 
 		[Test]
@@ -87,6 +81,7 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
 			items.Shuffle();
+			Assert.That(items, Is.EquivalentTo(new List<string> { "a", "b", "c", "d", "e" }));
 		}
 
 		[Test]
@@ -108,8 +103,8 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
 			items.Shuffle(new MockSecureRandomForShuffle());
-			Assert.That(items,
-				Is.EquivalentTo(new List<int> { 7, 5, 4, 3, 1, 8, 2, 6 }));
+			Assert.That(items, 
+				Is.EqualTo(new List<int> { 7, 5, 4, 3, 1, 8, 2, 6 }));
 		}
 
 		[Test]
@@ -117,8 +112,7 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
 			items.Swap(2, 4);
-			Assert.That(items,
-				Is.EquivalentTo(new List<string> { "a", "b", "e", "d", "c" }));
+			Assert.That(items, Is.EqualTo(new List<string> { "a", "b", "e", "d", "c" }));
 		}
 
 		[Test]
@@ -126,8 +120,7 @@ namespace Spackle.Tests.Extensions
 		{
 			var items = new List<string> { "a", "b", "c", "d", "e" };
 			items.Swap(2, 2);
-			Assert.That(items,
-				Is.EquivalentTo(new List<string> { "a", "b", "c", "d", "e" }));
+			Assert.That(items, Is.EqualTo(new List<string> { "a", "b", "c", "d", "e" }));
 		}
 
 		[Test]

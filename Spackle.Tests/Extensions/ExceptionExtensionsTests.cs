@@ -29,6 +29,7 @@ namespace Spackle.Tests.Extensions
 				{
 					Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
 					Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
+					Assert.That(content, Contains.Substring("https://help.com"));
 					Assert.That(content, Does.Not.Contain("Data:"));
 					Assert.That(content, Does.Not.Contain("Custom Properties:"));
 				});
@@ -252,8 +253,26 @@ namespace Spackle.Tests.Extensions
 			}
 		}
 
+		[Test]
+		public static void FormatWithNoCustomProperties()
+		{
+			try
+			{
+				ExceptionExtensionsTests.Throw();
+				Assert.Fail();
+			}
+			catch (NotImplementedException e)
+			{
+				using var writer = new StringWriter(CultureInfo.CurrentCulture);
+				e.Print(writer);
+				var content = writer.GetStringBuilder().ToString();
+
+				Assert.That(content, Does.Not.Contain("Custom Properties"));
+			}
+		}
+
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		private static void Throw() => throw new NotImplementedException();
+		private static void Throw() => throw new NotImplementedException() { HelpLink = "https://help.com" };
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		private static void ThrowWithMethodThatHasArguments(int a, object b) =>
