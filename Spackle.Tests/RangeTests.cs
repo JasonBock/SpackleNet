@@ -14,6 +14,12 @@ namespace Spackle.Tests
 
 			Assert.Multiple(() =>
 			{
+#pragma warning disable NUnit2010 // Use EqualConstraint for better assertion messages in case of failure
+				Assert.That(rangeB == rangeA, Is.False);
+				Assert.That(rangeB != rangeA, Is.True);
+				Assert.That(rangeC == rangeA, Is.True);
+				Assert.That(rangeC != rangeA, Is.False);
+
 				Assert.That(rangeB, Is.Not.EqualTo(rangeA));
 				Assert.That(rangeC, Is.EqualTo(rangeA));
 				Assert.That(rangeC, Is.Not.EqualTo(rangeB));
@@ -27,6 +33,7 @@ namespace Spackle.Tests
 				Assert.That(rangeA, Is.Not.EqualTo(rangeB));
 				Assert.That(rangeA, Is.EqualTo(rangeC));
 				Assert.That(rangeB, Is.Not.EqualTo(rangeC));
+#pragma warning restore NUnit2010 // Use EqualConstraint for better assertion messages in case of failure
 			});
 		}
 

@@ -12,7 +12,9 @@ namespace Spackle.Tests
 		public static void GetBigIntegerWithZeroLength()
 		{
 			using var random = new SecureRandom();
-			Assert.That(() => random.GetBigInteger(0), Throws.TypeOf<ArgumentException>());
+			Assert.That(() => random.GetBigInteger(0), 
+				Throws.TypeOf<ArgumentException>()
+					.And.Message.EqualTo("The number of digits cannot be zero. (Parameter 'numberOfDigits')"));
 		}
 
 		[TestCase(1ul)]
@@ -84,7 +86,8 @@ namespace Spackle.Tests
 		{
 			using var random = new SecureRandom();
 			Assert.That(() => random.GetBigIntegerWithRange(4, 3),
-				Throws.TypeOf<ArgumentException>().And.Message.Contains("min"));
+				Throws.TypeOf<ArgumentException>()
+					.And.Message.Contains("Min value, 4, must be less than the max value, 3. (Parameter 'min')"));
 		}
 
 		[Test]
@@ -92,7 +95,8 @@ namespace Spackle.Tests
 		{
 			using var random = new SecureRandom();
 			Assert.That(() => random.GetBigIntegerWithRange(4, 0),
-				Throws.TypeOf<ArgumentException>().And.Message.Contains("max"));
+				Throws.TypeOf<ArgumentException>()
+					.And.Message.Contains("Max value, 0, must be greater than zero. (Parameter 'max')"));
 		}
 
 		[Test]
@@ -100,7 +104,8 @@ namespace Spackle.Tests
 		{
 			using var random = new SecureRandom();
 			Assert.That(() => random.GetBigIntegerWithRange(0, 4),
-				Throws.TypeOf<ArgumentException>().And.Message.Contains("min"));
+				Throws.TypeOf<ArgumentException>()
+					.And.Message.Contains("Min value, 0, must be greater than zero. (Parameter 'min')"));
 		}
 
 		[Test]
@@ -174,6 +179,15 @@ namespace Spackle.Tests
 					Assert.That(x, Is.LessThan(Max));
 				});
 			}
+		}
+
+		[Test]
+		public static void GenerateIntegerWithNegativeMaxValue()
+		{
+			using var random = new SecureRandom();
+			Assert.That(() => random.Next(-1), 
+				Throws.TypeOf<ArgumentException>()
+					.And.Message.EqualTo("maxValue must be greater than or equal to zero. (Parameter 'maxValue')"));
 		}
 
 		[Test]
@@ -252,7 +266,9 @@ namespace Spackle.Tests
 			using var random = new SecureRandom();
 			const int Max = -25;
 			const int Min = 25;
-			Assert.That(() => random.Next(Min, Max), Throws.TypeOf<ArgumentException>());
+			Assert.That(() => random.Next(Min, Max), 
+				Throws.TypeOf<ArgumentException>()
+					.And.Message.EqualTo("maxValue must be greater than minValue. (Parameter 'maxValue')"));
 		}
 
 		[Test]
@@ -310,11 +326,12 @@ namespace Spackle.Tests
 			Assert.That(() => random.NextBytes(null!), Throws.TypeOf<ArgumentNullException>());
 		}
 
-		[Test]
-		public static void GenerateBoolean()
+		[TestCase(true)]
+		[TestCase(false)]
+		public static void GenerateBoolean(bool value)
 		{
-			using var random = new SecureRandom();
-			_ = random.NextBoolean();
+			using var random = new SecureRandom(new MockBoolGenerator(value));
+			Assert.That(random.NextBoolean(), Is.EqualTo(value));
 		}
 
 		[Test]
@@ -538,6 +555,21 @@ namespace Spackle.Tests
 				throw new NotImplementedException();
 
 			public int DisposeCount { get; private set; }
+		}
+
+		private sealed class MockBoolGenerator
+			: RandomNumberGenerator
+		{
+			private readonly bool value;
+
+			public MockBoolGenerator(bool value) => this.value = value;
+
+			public override void GetBytes(byte[] data)
+			{
+				var stuff0 = BitConverter.GetBytes(0u);
+				var stuff1 = BitConverter.GetBytes(1u);
+				data[0] = BitConverter.GetBytes(this.value)[0];
+			}
 		}
 	}
 }

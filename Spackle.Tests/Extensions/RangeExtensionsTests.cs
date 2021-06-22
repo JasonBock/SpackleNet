@@ -170,15 +170,18 @@ namespace Spackle.Tests.Extensions
 
 		[Test]
 		public static void PartitionWhenNumberOfRangesIsGreaterThanRangeDifference() =>
-			Assert.That(() => (1..5).Partition(7), Throws.TypeOf<ArgumentException>());
+			Assert.That(() => (1..5).Partition(7), Throws.TypeOf<ArgumentException>()
+				.And.Message.EqualTo("The number of ranges, 7, must be greater than or equal to the range difference, 4. (Parameter 'self')"));
 
 		[Test]
 		public static void PartitionWithInvalidNumberOfRanges() => 
-			Assert.That(() => (1..2).Partition(0), Throws.TypeOf<ArgumentException>());
+			Assert.That(() => (1..2).Partition(0), Throws.TypeOf<ArgumentException>()
+				.And.Message.EqualTo("The number of ranges must be greater than 0. (Parameter 'numberOfRanges')"));
 
 		[Test]
 		public static void PartitionWithEqualStartAndEndRangeValues() =>
-			Assert.That(() => (1..1).Partition(3), Throws.TypeOf<ArgumentException>());
+			Assert.That(() => (1..1).Partition(3), Throws.TypeOf<ArgumentException>()
+				.And.Message.EqualTo("The start and end values, 1, are the same. (Parameter 'self')"));
 
 		[Test]
 		public static void ToAscendingNoChange()

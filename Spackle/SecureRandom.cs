@@ -462,7 +462,7 @@ namespace Spackle
 				throw new ObjectDisposedException(nameof(SecureRandom));
 			}
 
-			return this.Next(2) == 0;
+			return this.Next(2) == 1;
 		}
 
 		/// <summary>

@@ -47,7 +47,7 @@ namespace Spackle
 				areEqual = true;
 			}
 
-			if(!(a is null) && !(b is null))
+			if(a is not null && b is not null)
 			{
 				areEqual = a.Equals(b);
 			}
