@@ -1,27 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <AssemblyName>Spackle</AssemblyName>
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <Description>An assembly that contains utilities and extension methods to augment .NET development.</Description>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <IncludeSymbols>true</IncludeSymbols>
-    <PackageId>Spackle</PackageId>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageVersion>$(Version)</PackageVersion>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <RepositoryUrl>https://github.com/jasonbock/spacklenet</RepositoryUrl>
-    <RootNamespace>Spackle</RootNamespace>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\LICENSE.md" Pack="true" PackagePath="" />
-  </ItemGroup>
+	<PropertyGroup>
+		<AssemblyName>Spackle</AssemblyName>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+		<Description>An assembly that contains utilities and extension methods to augment .NET development.</Description>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeSymbols>true</IncludeSymbols>
+		<PackageId>Spackle</PackageId>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageVersion>$(Version)</PackageVersion>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<RepositoryUrl>https://github.com/jasonbock/spacklenet</RepositoryUrl>
+		<RootNamespace>Spackle</RootNamespace>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Collections.Immutable" Version="6.0.0" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\LICENSE.md" Pack="true" PackagePath="" />
+	</ItemGroup>
 </Project>

@@ -230,9 +230,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Build content directories
-Rocks.Task.TestContainer Output/
-Rocks.Task Output/
-
 # .vs directory
 .vs/

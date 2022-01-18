@@ -1,55 +1,54 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Spackle.Tests
-{
-	internal sealed class MockRandomNumberGeneratorForGetInt32Values 
-		: RandomNumberGenerator
-	{
-		internal MockRandomNumberGeneratorForGetInt32Values(ValueGeneration values)
-			: base()
-		{
-			this.Values = values;
-			this.NextValue = 1;
-		}
+namespace Spackle.Tests;
 
-		public override void GetBytes(byte[] data)
+internal sealed class MockRandomNumberGeneratorForGetInt32Values
+	: RandomNumberGenerator
+{
+	internal MockRandomNumberGeneratorForGetInt32Values(ValueGeneration values)
+		: base()
+	{
+		this.Values = values;
+		this.NextValue = 1;
+	}
+
+	public override void GetBytes(byte[] data)
+	{
+		if (this.Values == ValueGeneration.DuplicatesAllowed)
 		{
-			if (this.Values == ValueGeneration.DuplicatesAllowed)
+			using var generator = RandomNumberGenerator.Create();
+			generator.GetBytes(data);
+		}
+		else
+		{
+			if (this.MethodCallCount == 3)
 			{
-				using var generator = RandomNumberGenerator.Create();
-				generator.GetBytes(data);
+				Array.Copy(this.DuplicateNumber!, data, 0);
 			}
 			else
 			{
-				if (this.MethodCallCount == 3)
-				{
-					Array.Copy(this.DuplicateNumber!, data, 0);
-				}
-				else
-				{
-					data[0] = this.NextValue++;
-					data[1] = this.NextValue++;
-					data[2] = this.NextValue++;
-					data[3] = this.NextValue++;
-				}
-
-				if (this.MethodCallCount == 2)
-				{
-					this.DuplicateNumber = new byte[4];
-					Array.Copy(data, this.DuplicateNumber, 0);
-				}
+				data[0] = this.NextValue++;
+				data[1] = this.NextValue++;
+				data[2] = this.NextValue++;
+				data[3] = this.NextValue++;
 			}
 
-			this.MethodCallCount++;
+			if (this.MethodCallCount == 2)
+			{
+				this.DuplicateNumber = new byte[4];
+				Array.Copy(data, this.DuplicateNumber, 0);
+			}
 		}
 
-		private byte[]? DuplicateNumber { get; set; }
-
-		public int MethodCallCount { get; private set; }
-
-		private byte NextValue { get; set; }
-
-		private ValueGeneration Values { get; set; }
+		this.MethodCallCount++;
 	}
+
+	private byte[]? DuplicateNumber { get; set; }
+
+	public int MethodCallCount { get; private set; }
+
+	private byte NextValue { get; set; }
+
+	private ValueGeneration Values { get; set; }
 }
