@@ -64,7 +64,7 @@ public static class RangeExtensionsTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(partitions.Length, Is.EqualTo(4), nameof(partitions.Length));
+			Assert.That(partitions, Has.Length.EqualTo(4), nameof(partitions.Length));
 
 			Assert.That(partitions[0].Start.Value, Is.EqualTo(0), "partitions[0].Start");
 			Assert.That(partitions[0].End.Value, Is.EqualTo(250), "partitions[0].End");
@@ -88,7 +88,7 @@ public static class RangeExtensionsTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(partitions.Length, Is.EqualTo(7), nameof(partitions.Length));
+			Assert.That(partitions, Has.Length.EqualTo(7), nameof(partitions.Length));
 
 			Assert.That(partitions[0].Start.Value, Is.EqualTo(1), "partitions[0].Start");
 			Assert.That(partitions[0].End.Value, Is.EqualTo(7144), "partitions[0].End");
@@ -122,7 +122,7 @@ public static class RangeExtensionsTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(partitions.Length, Is.EqualTo(5), nameof(partitions.Length));
+			Assert.That(partitions, Has.Length.EqualTo(5), nameof(partitions.Length));
 
 			Assert.That(partitions[0].Start.Value, Is.EqualTo(5), "partitions[0].Start");
 			Assert.That(partitions[0].End.Value, Is.EqualTo(1004), "partitions[0].End");
@@ -149,7 +149,7 @@ public static class RangeExtensionsTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(partitions.Length, Is.EqualTo(5), nameof(partitions.Length));
+			Assert.That(partitions, Has.Length.EqualTo(5), nameof(partitions.Length));
 
 			Assert.That(partitions[0].Start.Value, Is.EqualTo(5000), "partitions[0].Start");
 			Assert.That(partitions[0].End.Value, Is.EqualTo(4001), "partitions[0].End");

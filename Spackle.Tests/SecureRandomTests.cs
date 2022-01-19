@@ -29,7 +29,7 @@ public static class SecureRandomTests
 	{
 		using var random = new SecureRandom();
 		var value = random.GetBigInteger(length);
-		Assert.That(value.ToString().Length, Is.EqualTo((int)length));
+		Assert.That(value.ToString(), Has.Length.EqualTo((int)length));
 	}
 
 	[Test]
@@ -391,7 +391,7 @@ public static class SecureRandomTests
 		{
 			Assert.Multiple(() =>
 			{
-				Assert.That(elements.Length, Is.EqualTo(10), nameof(elements.Length));
+				Assert.That(elements, Has.Length.EqualTo(10), nameof(elements.Length));
 
 				for (var i = 0; i < elements.Length; i++)
 				{
@@ -413,7 +413,7 @@ public static class SecureRandomTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(elements.Length, Is.EqualTo(2560), nameof(elements.Length));
+			Assert.That(elements, Has.Length.EqualTo(2560), nameof(elements.Length));
 
 			for (var i = 0; i < elements.Length; i++)
 			{
@@ -422,7 +422,7 @@ public static class SecureRandomTests
 				Assert.That(element, Is.LessThanOrEqualTo(byte.MaxValue));
 			}
 
-			Assert.That(new HashSet<byte>(elements).Count, Is.Not.EqualTo(elements.Length), nameof(HashSet<byte>.Count));
+			Assert.That(new HashSet<byte>(elements), Has.Count.Not.EqualTo(elements.Length), nameof(HashSet<byte>.Count));
 		});
 	}
 
@@ -435,7 +435,7 @@ public static class SecureRandomTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(elements.Length, Is.EqualTo(10), nameof(elements.Length));
+			Assert.That(elements, Has.Length.EqualTo(10), nameof(elements.Length));
 
 			for (var i = 0; i < elements.Length; i++)
 			{
@@ -444,7 +444,7 @@ public static class SecureRandomTests
 				Assert.That(element, Is.LessThanOrEqualTo(byte.MaxValue));
 			}
 
-			Assert.That(new HashSet<byte>(elements).Count, Is.EqualTo(elements.Length), nameof(HashSet<byte>.Count));
+			Assert.That(new HashSet<byte>(elements), Has.Count.EqualTo(elements.Length), nameof(HashSet<byte>.Count));
 			Assert.That(generator.MethodCallCount, Is.EqualTo(11), nameof(generator.MethodCallCount));
 		});
 	}
@@ -492,7 +492,7 @@ public static class SecureRandomTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(elements.Length, Is.EqualTo(8), nameof(elements.Length));
+			Assert.That(elements, Has.Length.EqualTo(8), nameof(elements.Length));
 
 			for (var i = 0; i < elements.Length; i++)
 			{
@@ -514,7 +514,7 @@ public static class SecureRandomTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(elements.Length, Is.EqualTo(8), nameof(elements.Length));
+			Assert.That(elements, Has.Length.EqualTo(8), nameof(elements.Length));
 
 			for (var i = 0; i < elements.Length; i++)
 			{
@@ -523,7 +523,7 @@ public static class SecureRandomTests
 				Assert.That(element, Is.LessThanOrEqualTo(int.MaxValue));
 			}
 
-			Assert.That(new HashSet<int>(elements).Count, Is.EqualTo(elements.Length), nameof(HashSet<int>.Count));
+			Assert.That(new HashSet<int>(elements), Has.Count.EqualTo(elements.Length), nameof(HashSet<int>.Count));
 			Assert.That(generator.MethodCallCount, Is.EqualTo(9), nameof(generator.MethodCallCount));
 		});
 	}

@@ -14,7 +14,7 @@ public static class IEnumerableOfTExtensionsTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(collection.Count, Is.EqualTo(2), nameof(collection.Count));
+			Assert.That(collection, Has.Count.EqualTo(2), nameof(collection.Count));
 			Assert.That(collection, Contains.Item("A"));
 			Assert.That(collection, Contains.Item("B"));
 		});

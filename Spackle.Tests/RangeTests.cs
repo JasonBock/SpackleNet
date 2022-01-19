@@ -15,7 +15,7 @@ public static class RangeTests
 		Assert.Multiple(() =>
 		{
 #pragma warning disable NUnit2010 // Use EqualConstraint for better assertion messages in case of failure
-		  Assert.That(rangeB == rangeA, Is.False);
+			Assert.That(rangeB == rangeA, Is.False);
 			Assert.That(rangeB != rangeA, Is.True);
 			Assert.That(rangeC == rangeA, Is.True);
 			Assert.That(rangeC != rangeA, Is.False);
@@ -34,7 +34,7 @@ public static class RangeTests
 			Assert.That(rangeA, Is.EqualTo(rangeC));
 			Assert.That(rangeB, Is.Not.EqualTo(rangeC));
 #pragma warning restore NUnit2010 // Use EqualConstraint for better assertion messages in case of failure
-	  });
+		});
 	}
 
 	[Test]
