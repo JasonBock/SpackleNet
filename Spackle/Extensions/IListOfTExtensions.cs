@@ -118,9 +118,7 @@ public static class IListOfTExtensions
 		while (length > 1)
 		{
 			length--;
-#pragma warning disable CA5394 // Do not use insecure randomness
 			var nextIndex = random.Next(length + 1);
-#pragma warning restore CA5394 // Do not use insecure randomness
 			self.Swap(nextIndex, length);
 		}
 	}
@@ -144,9 +142,7 @@ public static class IListOfTExtensions
 
 		if (x != y)
 		{
-			var xValue = self[x];
-			self[x] = self[y];
-			self[y] = xValue;
+			(self[y], self[x]) = (self[x], self[y]);
 		}
 	}
 }

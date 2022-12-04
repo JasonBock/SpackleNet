@@ -61,10 +61,7 @@ public static class DynamicBindingExtensions
 
 		if (location.Member is FieldInfo field)
 		{
-			if (inst is null)
-			{
-				inst = Expression.Constant(null, field.DeclaringType!);
-			}
+			inst ??= Expression.Constant(null, field.DeclaringType!);
 
 			body = Expression.Assign(
 				Expression.Field(
