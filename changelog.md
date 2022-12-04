@@ -9,3 +9,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Put in the `changelog.md` file (issue [#40](https://github.com/JasonBock/SpackleNet/issues/40))
+- Added the `AddPairs()` extension method for `IDictionary<,>` (issue [#39](https://github.com/JasonBock/SpackleNet/issues/39))
