@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Spackle.Extensions;
 using System;
 
 namespace Spackle.Tests;
@@ -236,4 +237,85 @@ public static class RangeTests
 	public static void GetUnionWithNullArgument() =>
 		Assert.That(() => new Range<int>(1, 3).Union(null!),
 			Throws.TypeOf<ArgumentNullException>());
+
+	[Test]
+	public static void PartitionBytesWithEvenDistribution()
+	{
+		var range = new Range<byte>(0, 199);
+		var partitions = range.Partition(4);
+
+		Assert.Multiple(() =>
+		{
+			Assert.That(partitions, Has.Length.EqualTo(4), nameof(partitions.Length));
+
+			Assert.That(partitions[0].Start, Is.EqualTo(0), "partitions[0].Start");
+			Assert.That(partitions[0].End, Is.EqualTo(49), "partitions[0].End");
+
+			Assert.That(partitions[1].Start, Is.EqualTo(50), "partitions[1].Start");
+			Assert.That(partitions[1].End, Is.EqualTo(99), "partitions[1].End");
+
+			Assert.That(partitions[2].Start, Is.EqualTo(100), "partitions[2].Start");
+			Assert.That(partitions[2].End, Is.EqualTo(149), "partitions[2].End");
+
+			Assert.That(partitions[3].Start, Is.EqualTo(150), "partitions[3].Start");
+			Assert.That(partitions[3].End, Is.EqualTo(199), "partitions[3].End");
+		});
+	}
+
+	[Test]
+	public static void PartitionWithEvenDistribution()
+	{
+		var range = new Range<int>(0, 999);
+		var partitions = range.Partition(4);
+
+		Assert.Multiple(() =>
+		{
+			Assert.That(partitions, Has.Length.EqualTo(4), nameof(partitions.Length));
+
+			Assert.That(partitions[0].Start, Is.EqualTo(0), "partitions[0].Start");
+			Assert.That(partitions[0].End, Is.EqualTo(249), "partitions[0].End");
+
+			Assert.That(partitions[1].Start, Is.EqualTo(250), "partitions[1].Start");
+			Assert.That(partitions[1].End, Is.EqualTo(499), "partitions[1].End");
+
+			Assert.That(partitions[2].Start, Is.EqualTo(500), "partitions[2].Start");
+			Assert.That(partitions[2].End, Is.EqualTo(749), "partitions[2].End");
+
+			Assert.That(partitions[3].Start, Is.EqualTo(750), "partitions[3].Start");
+			Assert.That(partitions[3].End, Is.EqualTo(999), "partitions[3].End");
+		});
+	}
+
+	[Test]
+	public static void PartitionWithUnevenDistribution()
+	{
+		var range = new Range<int>(1, 49999);
+		var partitions = range.Partition(7);
+
+		Assert.Multiple(() =>
+		{
+			Assert.That(partitions, Has.Length.EqualTo(7), nameof(partitions.Length));
+
+			Assert.That(partitions[0].Start, Is.EqualTo(1), "partitions[0].Start");
+			Assert.That(partitions[0].End, Is.EqualTo(7143), "partitions[0].End");
+
+			Assert.That(partitions[1].Start, Is.EqualTo(7144), "partitions[1].Start");
+			Assert.That(partitions[1].End, Is.EqualTo(14286), "partitions[1].End");
+
+			Assert.That(partitions[2].Start, Is.EqualTo(14287), "partitions[2].Start");
+			Assert.That(partitions[2].End, Is.EqualTo(21429), "partitions[2].End");
+
+			Assert.That(partitions[3].Start, Is.EqualTo(21430), "partitions[3].Start");
+			Assert.That(partitions[3].End, Is.EqualTo(28572), "partitions[3].End");
+
+			Assert.That(partitions[4].Start, Is.EqualTo(28573), "partitions[4].Start");
+			Assert.That(partitions[4].End, Is.EqualTo(35715), "partitions[4].End");
+
+			Assert.That(partitions[5].Start, Is.EqualTo(35716), "partitions[5].Start");
+			Assert.That(partitions[5].End, Is.EqualTo(42857), "partitions[5].End");
+
+			Assert.That(partitions[6].Start, Is.EqualTo(42858), "partitions[6].Start");
+			Assert.That(partitions[6].End, Is.EqualTo(49999), "partitions[6].End");
+		});
+	}
 }

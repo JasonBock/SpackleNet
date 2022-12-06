@@ -22,8 +22,8 @@ public static class RangeExtensions
 	/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="this"/>>, else <c>false</c>.</returns>
 	public static bool Contains(this Range self, int value) =>
 		self.Start.Value < self.End.Value ?
-			(value.CompareTo(self.Start.Value) >= 0 && value.CompareTo(self.End.Value) <= 0) :
-			(value.CompareTo(self.Start.Value) <= 0 && value.CompareTo(self.End.Value) >= 0);
+			(value >= self.Start.Value && value < self.End.Value) :
+			(value <= self.Start.Value && value > self.End.Value);
 
 	/// <summary>
 	/// Gets the intersection of the current <see cref="Range" /> 
@@ -54,7 +54,7 @@ public static class RangeExtensions
 	/// <param name="this">The <see cref="Range" /> to put into ascending order.</param>
 	/// <returns>A new <see cref="Range"/> in ascending order.</returns>
 	public static Range ToAscending(this Range self) =>
-		self.Start.Value < self.End.Value ? self : self.End..self.Start;
+		self.Start.Value < self.End.Value ? self : (self.End.Value + 1)..(self.Start.Value + 1);
 
 	/// <summary>
 	/// Returns a <see cref="Range" /> where <see cref="Range.End" /> is less than
@@ -63,7 +63,7 @@ public static class RangeExtensions
 	/// <param name="this">The <see cref="Range" /> to put into descending order.</param>
 	/// <returns>A new <see cref="Range"/> in descending order.</returns>
 	public static Range ToDescending(this Range self) =>
-		self.Start.Value > self.End.Value ? self : self.End..self.Start;
+		self.Start.Value > self.End.Value ? self : (self.End.Value - 1)..(self.Start.Value - 1);
 
 	/// <summary>
 	/// Provides an array of <see cref="Range" /> values split up

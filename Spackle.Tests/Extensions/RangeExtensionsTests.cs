@@ -6,10 +6,16 @@ namespace Spackle.Tests.Extensions;
 
 public static class RangeExtensionsTests
 {
+	[TestCase(0, 5, 0, true)]
 	[TestCase(0, 5, 3, true)]
+	[TestCase(0, 5, 4, true)]
+	[TestCase(0, 5, 5, false)]
 	[TestCase(0, 5, 7, false)]
+	[TestCase(5, 0, 0, false)]
 	[TestCase(5, 0, 3, true)]
 	[TestCase(5, 0, 7, false)]
+	[TestCase(5, 0, 4, true)]
+	[TestCase(5, 0, 5, true)]
 	public static void Contains(int start, int end, int value, bool expectedValue) =>
 		Assert.That((start..end).Contains(value), Is.EqualTo(expectedValue));
 
@@ -202,8 +208,8 @@ public static class RangeExtensionsTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(range.Start.Value, Is.EqualTo(3), nameof(range.Start));
-			Assert.That(range.End.Value, Is.EqualTo(6), nameof(range.End));
+			Assert.That(range.Start.Value, Is.EqualTo(4), nameof(range.Start));
+			Assert.That(range.End.Value, Is.EqualTo(7), nameof(range.End));
 		});
 	}
 
@@ -226,8 +232,8 @@ public static class RangeExtensionsTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(range.Start.Value, Is.EqualTo(6), nameof(range.Start));
-			Assert.That(range.End.Value, Is.EqualTo(3), nameof(range.End));
+			Assert.That(range.Start.Value, Is.EqualTo(5), nameof(range.Start));
+			Assert.That(range.End.Value, Is.EqualTo(2), nameof(range.End));
 		});
 	}
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Immutable;
+using System.Numerics;
 
 namespace Spackle;
 
@@ -8,13 +10,13 @@ namespace Spackle;
 /// <typeparam name="T">The type of the range.</typeparam>
 public sealed class Range<T>
 	: IEquatable<Range<T>>
-	where T : IComparable<T>
+	where T : IBinaryInteger<T> /* IComparable<T>*/
 {
 	/// <summary>
 	/// Creates a new <see cref="Range&lt;T&gt;"/> instance.
 	/// </summary>
-	/// <param name="start">The start of the range.</param>
-	/// <param name="end">The end of the range.</param>
+	/// <param name="start">The start of the range (inclusive).</param>
+	/// <param name="end">The end of the range (inclusive).</param>
 	/// <remarks>
 	/// If <paramref name="end"/> is less than <paramref name="start"/>,
 	/// the values are reversed.
@@ -143,6 +145,63 @@ public sealed class Range<T>
 	/// <returns>A new <see cref="Range&lt;T&gt;" /> instance that is the intersection, 
 	/// or <c>null</c> if there is no intersection.</returns>
 	public Range<T>? Intersect(T start, T end) => this.Intersect(new Range<T>(start, end));
+
+	/// <summary>
+	/// Provides an array of <see cref="Range" /> values split up
+	/// based on the <paramref name="numberOfRanges"/> value.
+	/// </summary>
+	/// <param name="this"></param>
+	/// <param name="numberOfRanges"></param>
+	/// <returns></returns>
+	/// <remarks>
+	/// A quick example of what this method does:
+	/// If the provided <see cref="Range" /> is <c>0..100</c> and
+	/// <paramref name="numberOfRanges"/> is <3>, the results are:
+	/// <code>
+	/// 0..34
+	/// 34..67
+	/// 67..100
+	/// </code>
+	/// </remarks>
+	public ImmutableArray<Range<T>> Partition(T numberOfRanges)
+	{
+		// https://softwareengineering.stackexchange.com/questions/187680/algorithm-for-dividing-a-range-into-ranges-and-then-finding-which-range-a-number
+		if (this.Start == this.End)
+		{
+			return ImmutableArray<Range<T>>.Empty;
+		}
+
+		if (numberOfRanges <= T.Zero)
+		{
+			throw new ArgumentException("The number of ranges must be greater than 0.", nameof(numberOfRanges));
+		}
+
+		var rangeDifference = this.End - this.Start + T.One;
+
+		if (rangeDifference < numberOfRanges)
+		{
+			throw new NotSupportedException(
+				$"The number of ranges, {numberOfRanges}, must be greater than or equal to the range difference, {rangeDifference}.");
+		}
+
+		var minimalPartitionRangeSize = rangeDifference / numberOfRanges;
+		var remainder = rangeDifference % numberOfRanges;
+
+		var ranges = ImmutableArray.CreateBuilder<Range<T>>();
+
+		var k = this.Start;
+
+		for (var i = T.Zero; i < numberOfRanges; i++)
+		{
+			var partitionRange = new Range<T>(k, (k + minimalPartitionRangeSize + (remainder > T.Zero ? T.One : T.Zero) - T.One));
+			k = partitionRange.End + T.One;
+			remainder = remainder > T.Zero ? --remainder : T.Zero;
+
+			ranges.Add(partitionRange);
+		}
+
+		return ranges.ToImmutable();
+	}
 
 	/// <summary>
 	/// Provides a string representation of the current <see cref="Range&lt;T&gt;"/>.
