@@ -51,19 +51,16 @@ public static class RangeTests
 		});
 	}
 
-	[Test]
-	public static void CheckContainment()
+	[TestCase(5, true)]
+	[TestCase(3, true)]
+	[TestCase(10, true)]
+	[TestCase(-3, false)]
+	[TestCase(20, false)]
+	public static void CheckContainment(int value, bool expectedResult)
 	{
 		var range = new Range<int>(3, 10);
 
-		Assert.Multiple(() =>
-		{
-			Assert.That(range.Contains(5), Is.True);
-			Assert.That(range.Contains(3), Is.True);
-			Assert.That(range.Contains(10), Is.True);
-			Assert.That(range.Contains(-3), Is.False);
-			Assert.That(range.Contains(20), Is.False);
-		});
+		Assert.That(range.Contains(value), Is.EqualTo(expectedResult));
 	}
 
 	[TestCase(4, 9, true)]

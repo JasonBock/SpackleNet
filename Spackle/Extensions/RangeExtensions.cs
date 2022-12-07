@@ -5,6 +5,11 @@ namespace Spackle.Extensions;
 
 public static class RangeExtensions
 {
+	/// <summary>
+	/// Creates a new <see cref="Range<int>" given a <see cref="Range"/>./>
+	/// </summary>
+	/// <param name="self">The <see cref="Range"/> to use.</param>
+	/// <returns>A new <see cref="Range<int>" instance.</returns>
 	public static Range<int> Create(this Range self) =>
 		new(self.Start.Value, self.End.Value);
 
@@ -14,6 +19,7 @@ public static class RangeExtensions
 	/// <param name="this">The provided range.</param>
 	/// <param name="value">The value to check.</param>
 	/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="this"/>>, else <c>false</c>.</returns>
+	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static bool Contains(this Range self, Index value) =>
 		self.Contains(value.Value);
 
@@ -23,6 +29,7 @@ public static class RangeExtensions
 	/// <param name="this">The provided range.</param>
 	/// <param name="value">The value to check.</param>
 	/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="this"/>>, else <c>false</c>.</returns>
+	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static bool Contains(this Range self, int value) =>
 		self.Start.Value < self.End.Value ?
 			(value >= self.Start.Value && value < self.End.Value) :
@@ -35,6 +42,7 @@ public static class RangeExtensions
 	/// <param name="target">The target <see cref="Range" />.</param>
 	/// <returns>A new <see cref="Range" /> instance that is the intersection, 
 	/// or <c>null</c> if there is no intersection.</returns>
+	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static Range? Intersect(this Range self, Range target)
 	{
 		var currentRange = self.ToAscending();
@@ -56,6 +64,7 @@ public static class RangeExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="Range" /> to put into ascending order.</param>
 	/// <returns>A new <see cref="Range"/> in ascending order.</returns>
+	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static Range ToAscending(this Range self) =>
 		self.Start.Value < self.End.Value ? self : (self.End.Value + 1)..(self.Start.Value + 1);
 
@@ -65,6 +74,7 @@ public static class RangeExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="Range" /> to put into descending order.</param>
 	/// <returns>A new <see cref="Range"/> in descending order.</returns>
+	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static Range ToDescending(this Range self) =>
 		self.Start.Value > self.End.Value ? self : (self.End.Value - 1)..(self.Start.Value - 1);
 
@@ -85,6 +95,7 @@ public static class RangeExtensions
 	/// 67..100
 	/// </code>
 	/// </remarks>
+	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static ImmutableArray<Range> Partition(this Range self, int numberOfRanges)
 	{
 		// https://softwareengineering.stackexchange.com/questions/187680/algorithm-for-dividing-a-range-into-ranges-and-then-finding-which-range-a-number
@@ -149,6 +160,7 @@ public static class RangeExtensions
 	/// <param name="target">The target <see cref="Range" />.</param>
 	/// <returns>A new <see cref="Range" /> instance that is the union, 
 	/// or <c>null</c> if there is no intersection.</returns>
+	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static Range? Union(this Range self, Range target)
 	{
 		var currentRange = self.ToAscending();
