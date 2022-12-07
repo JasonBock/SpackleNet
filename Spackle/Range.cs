@@ -10,7 +10,7 @@ namespace Spackle;
 /// <typeparam name="T">The type of the range.</typeparam>
 public sealed class Range<T>
 	: IEquatable<Range<T>>
-	where T : IBinaryInteger<T> /* IComparable<T>*/
+	where T : IBinaryInteger<T>
 {
 	/// <summary>
 	/// Creates a new <see cref="Range&lt;T&gt;"/> instance.
@@ -24,7 +24,7 @@ public sealed class Range<T>
 	public Range(T start, T end)
 		: base()
 	{
-		if (start.CompareTo(end) < 0)
+		if (start <= end)
 		{
 			(this.Start, this.End) = (start, end);
 		}
@@ -66,13 +66,20 @@ public sealed class Range<T>
 	public static bool operator !=(Range<T> a, Range<T> b) => !(a == b);
 
 	/// <summary>
-	/// Checks to see if the given value is within the current range (inclusive).
+	/// Checks to see if the given value is within the current range.
 	/// </summary>
 	/// <param name="value">The value to check.</param>
 	/// <returns>Returns <c>true</c> if <paramref name="value"/> is in the range; otherwise, <c>false</c>.</returns>
 	public bool Contains(T value) =>
-		value.CompareTo(this.Start) >= 0 &&
-			value.CompareTo(this.End) <= 0;
+		value >= this.Start && value <= this.End;
+
+	/// <summary>
+	/// Checks to see if the given value is within the current range.
+	/// </summary>
+	/// <param name="value">The value to check.</param>
+	/// <returns>Returns <c>true</c> if <paramref name="value"/> is in the range; otherwise, <c>false</c>.</returns>
+	public bool Contains(Range<T> value) =>
+		this.Contains(value.Start) && this.Contains(value.End);
 
 	/// <summary>
 	/// Determines whether this instance of <see cref="Range&lt;T&gt;" /> and a 
@@ -87,8 +94,8 @@ public sealed class Range<T>
 
 		if (other is not null)
 		{
-			areEqual = this.Start.CompareTo(other.Start) == 0 &&
-				this.End.CompareTo(other.End) == 0;
+			areEqual = this.Start == other.Start &&
+				this.End == other.End;
 		}
 
 		return areEqual;
@@ -128,8 +135,8 @@ public sealed class Range<T>
 
 		if (this.Contains(target.Start) || this.Contains(target.End))
 		{
-			var intersectionStart = this.Start.CompareTo(target.Start) >= 0 ? this.Start : target.Start;
-			var intersectionEnd = this.End.CompareTo(target.End) <= 0 ? this.End : target.End;
+			var intersectionStart = this.Start >= target.Start ? this.Start : target.Start;
+			var intersectionEnd = this.End <= target.End ? this.End : target.End;
 			intersection = new Range<T>(intersectionStart, intersectionEnd);
 		}
 
@@ -226,8 +233,8 @@ public sealed class Range<T>
 		if (this.Contains(target.Start) || this.Contains(target.End) ||
 			target.Contains(this.Start) || target.Contains(this.End))
 		{
-			var intersectionStart = this.Start.CompareTo(target.Start) >= 0 ? target.Start : this.Start;
-			var intersectionEnd = this.End.CompareTo(target.End) <= 0 ? target.End : this.End;
+			var intersectionStart = this.Start >= target.Start ? target.Start : this.Start;
+			var intersectionEnd = this.End <= target.End ? target.End : this.End;
 			intersection = new Range<T>(intersectionStart, intersectionEnd);
 		}
 

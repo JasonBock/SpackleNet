@@ -67,6 +67,17 @@ public static class RangeTests
 		});
 	}
 
+	[TestCase(4, 9, true)]
+	[TestCase(3, 10, true)]
+	[TestCase(0, 2, false)]
+	[TestCase(1, 4, false)]
+	[TestCase(2, 11, false)]
+	public static void CheckContainmentWithRange(int start, int end, bool expectedValue)
+	{
+		var range = new Range<int>(3, 10);
+		Assert.That(range.Contains(new Range<int>(start, end)), Is.EqualTo(expectedValue));
+	}
+
 	[Test]
 	public static void CreateRangeWithStartLessThanEnd()
 	{
