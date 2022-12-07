@@ -5,6 +5,9 @@ namespace Spackle.Extensions;
 
 public static class RangeExtensions
 {
+	public static Range<int> Create(this Range self) =>
+		new(self.Start.Value, self.End.Value);
+
 	/// <summary>
 	/// Determines if <paramref name="value"/> is within the range.
 	/// </summary>
