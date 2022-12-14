@@ -100,6 +100,19 @@ public static class RangeTests
 	}
 
 	[Test]
+	public static void Deconstruct()
+	{
+		var range = new Range<int>(3, 6);
+		var (start, end) = range;
+
+		Assert.Multiple(() =>
+		{
+			Assert.That(start, Is.EqualTo(3));
+			Assert.That(end, Is.EqualTo(6));
+		});
+	}
+
+	[Test]
 	public static void GetIntersection()
 	{
 		var range = new Range<int>(3, 6);
