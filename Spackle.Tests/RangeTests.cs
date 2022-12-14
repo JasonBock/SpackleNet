@@ -333,4 +333,17 @@ public static class RangeTests
 	public static void PartitionFloatingPointWithNonIntegralNumberOfPartitions() =>
 		Assert.That(() => new Range<float>(1.3f, 5.5f).Partition(3.1f), Throws.TypeOf<ArgumentException>()
 			.And.Message.EqualTo("The number of partitions, 3.1, must be an integral value. (Parameter 'numberOfPartitions')"));
+
+	[Test]
+	public static void Shift()
+	{
+		var range = new Range<double>(531.431, 589.1);
+		var shiftedRange = range.Shift(28.32);
+
+		Assert.Multiple(() =>
+		{
+			Assert.That(shiftedRange.Start, Is.EqualTo(559.75100000000009));
+			Assert.That(shiftedRange.End, Is.EqualTo(617.42000000000007));
+		});
+	}
 }

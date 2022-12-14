@@ -223,9 +223,18 @@ public readonly struct Range<T>
 	}
 
 	/// <summary>
+	/// Creates a new <see cref="Range<T>"/> with the start and end values
+	/// shifted the value provided in <paramref name="delta"/>.
+	/// </summary>
+	/// <param name="delta">The value to shift the start and end values iwth.</param>
+	/// <returns>A new, shifted <see cref="Range<T>"/>.</returns>
+	public Range<T> Shift(T delta) =>
+		new(this.Start + delta, this.End + delta);
+
+	/// <summary>
 	/// Provides a string representation of the current <see cref="Range<T>"/>.
 	/// </summary>
-	/// <returns>Returns a string in the format "[start,end)".</returns>
+	/// <returns>Returns a string in the format "[start, end)".</returns>
 	public override string ToString() => $"[{this.Start}, {this.End})";
 
 	/// <summary>
