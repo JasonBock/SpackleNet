@@ -226,6 +226,36 @@ public static class RangeTests
 	}
 
 	[Test]
+	public static void Parse()
+	{
+		var content = "[3, 7)";
+
+		Assert.Multiple(() =>
+		{
+			var range = Range<int>.Parse(content, CultureInfo.CurrentCulture);
+			Assert.That(range.Start, Is.EqualTo(3));
+			Assert.That(range.End, Is.EqualTo(7));
+		});
+	}
+
+	[Test]
+	public static void ParseFailingCase() =>
+		Assert.That(() => Range<int>.Parse("[3 7)", CultureInfo.CurrentCulture), Throws.TypeOf<FormatException>());
+
+	[Test]
+	public static void ParseAsSpan()
+	{
+		var content = "[3, 7)";
+
+		Assert.Multiple(() =>
+		{
+			var range = Range<int>.Parse(content.AsSpan(), CultureInfo.CurrentCulture);
+			Assert.That(range.Start, Is.EqualTo(3));
+			Assert.That(range.End, Is.EqualTo(7));
+		});
+	}
+
+	[Test]
 	public static void PartitionBinaryIntegerWithEvenDistribution()
 	{
 		var range = new Range<int>(0, 1000);
@@ -343,6 +373,32 @@ public static class RangeTests
 		Assert.Multiple(() =>
 		{
 			Assert.That(Range<int>.TryParse(content, CultureInfo.CurrentCulture, out var range), Is.True);
+			Assert.That(range.Start, Is.EqualTo(3));
+			Assert.That(range.End, Is.EqualTo(7));
+		});
+	}
+
+	[TestCase("[3, 7]")]
+	[TestCase("(3, 7)")]
+	[TestCase("[3 7)")]
+	[TestCase("[3,7)")]
+	[TestCase("3, 7)")]
+	[TestCase("[3, 7")]
+	[TestCase("[q, 7)")]
+	[TestCase("[3, q)")]
+	[TestCase("[3,)")]
+	[TestCase("[,7)")]
+	public static void TryParseFailingCases(string content) =>
+		Assert.That(Range<int>.TryParse(content, CultureInfo.CurrentCulture, out var range), Is.False);
+
+	[Test]
+	public static void TryParseAsSpan()
+	{
+		var content = "[3, 7)";
+
+		Assert.Multiple(() =>
+		{
+			Assert.That(Range<int>.TryParse(content.AsSpan(), CultureInfo.CurrentCulture, out var range), Is.True);
 			Assert.That(range.Start, Is.EqualTo(3));
 			Assert.That(range.End, Is.EqualTo(7));
 		});
