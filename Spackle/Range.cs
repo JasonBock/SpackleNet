@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 
@@ -10,7 +11,8 @@ namespace Spackle;
 /// </summary>
 /// <typeparam name="T">The type of the range.</typeparam>
 public readonly struct Range<T>
-	: IEquatable<Range<T>>
+	: IEquatable<Range<T>>, IEqualityOperators<Range<T>, Range<T>, bool>, 
+		IParsable<Range<T>>, ISpanParsable<Range<T>>
 	where T : INumber<T>
 {
 	/// <summary>
@@ -133,6 +135,23 @@ public readonly struct Range<T>
 	/// or <c>null</c> if there is no intersection.</returns>
 	public Range<T>? Intersect(T start, T end) => this.Intersect(new Range<T>(start, end));
 
+#pragma warning disable CA1000 // Do not declare static members on generic types
+	public static Range<T> Parse(string s, IFormatProvider? provider) =>
+		Range<T>.Parse(s.AsSpan(), provider);
+
+	public static Range<T> Parse(ReadOnlySpan<char> s, IFormatProvider? provider) 
+	{
+		if(Range<T>.TryParse(s, provider, out var result))
+		{
+			return result;
+		}
+		else
+		{
+			throw new FormatException($"The given value, {s}, is not in the correct format.");
+		}
+	}
+#pragma warning restore CA1000 // Do not declare static members on generic types
+
 	/// <summary>
 	/// Provides an array of <see cref="Range" /> values split up
 	/// based on the <paramref name="numberOfPartitions"/> value.
@@ -236,6 +255,36 @@ public readonly struct Range<T>
 	/// </summary>
 	/// <returns>Returns a string in the format "[start, end)".</returns>
 	public override string ToString() => $"[{this.Start}, {this.End})";
+
+#pragma warning disable CA1000 // Do not declare static members on generic types
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Range<T> result) =>
+		Range<T>.TryParse(s.AsSpan(), provider, out result);
+
+	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out Range<T> result)
+	{
+		result = default;
+
+		if(s[0] == '[' && s[^1] == ')')
+		{
+			var parts = s[1..^1];
+			var delimiter = parts.IndexOf(", ");
+
+			if (delimiter > 0)
+			{
+				var start = parts[0..delimiter];
+				var end = parts[(delimiter + 2)..];
+
+				if(T.TryParse(start, provider, out var startValue) && T.TryParse(end, provider, out var endValue))
+				{
+					result = new Range<T>(startValue, endValue);
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+#pragma warning restore CA1000 // Do not declare static members on generic types
 
 	/// <summary>
 	/// Gets the union of the current <see cref="Range<T>" /> 

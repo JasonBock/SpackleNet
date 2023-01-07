@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Globalization;
 
 namespace Spackle.Tests;
 
@@ -333,6 +334,19 @@ public static class RangeTests
 	public static void PartitionFloatingPointWithNonIntegralNumberOfPartitions() =>
 		Assert.That(() => new Range<float>(1.3f, 5.5f).Partition(3.1f), Throws.TypeOf<ArgumentException>()
 			.And.Message.EqualTo("The number of partitions, 3.1, must be an integral value. (Parameter 'numberOfPartitions')"));
+
+	[Test]
+	public static void TryParse()
+	{
+		var content = "[3, 7)";
+
+		Assert.Multiple(() =>
+		{
+			Assert.That(Range<int>.TryParse(content, CultureInfo.CurrentCulture, out var range), Is.True);
+			Assert.That(range.Start, Is.EqualTo(3));
+			Assert.That(range.End, Is.EqualTo(7));
+		});
+	}
 
 	[Test]
 	public static void Shift()

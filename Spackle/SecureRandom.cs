@@ -21,8 +21,10 @@ public class SecureRandom
 	/// <summary>
 	/// Creates a new <see cref="SecureRandom"/> instance.
 	/// </summary>
-	public SecureRandom() 
+	public SecureRandom()
+#pragma warning disable CA5394 // Do not use insecure randomness
 		: base() => this.Generator = RandomNumberGenerator.Create();
+#pragma warning restore CA5394 // Do not use insecure randomness
 
 	/// <summary>
 	/// Creates a new <see cref="SecureRandom"/> instance
