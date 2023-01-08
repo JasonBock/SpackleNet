@@ -16,6 +16,13 @@ public readonly struct Range<T>
 	where T : INumber<T>
 {
 	/// <summary>
+	/// Creates a new <see cref="Range&lt;T&gt;"/> instance,
+	/// where the start defaults to <code>T.Zero</code>
+	/// and end defaults to <code>T.One</code>.
+	/// </summary>
+	public Range() => (this.Start, this.End) = (T.Zero, T.One);
+
+	/// <summary>
 	/// Creates a new <see cref="Range&lt;T&gt;"/> instance.
 	/// </summary>
 	/// <param name="start">The start of the range (inclusive).</param>

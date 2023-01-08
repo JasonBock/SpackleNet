@@ -74,6 +74,18 @@ public static class RangeTests
 	}
 
 	[Test]
+	public static void CreateDefault()
+	{
+		var range = new Range<int>();
+
+		Assert.Multiple(() =>
+		{
+			Assert.That(range.Start, Is.EqualTo(0), nameof(range.Start));
+			Assert.That(range.End, Is.EqualTo(1), nameof(range.End));
+		});
+	}
+
+	[Test]
 	public static void CreateRangeWithStartLessThanEnd()
 	{
 		var range = new Range<int>(-3, 4);
