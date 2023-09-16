@@ -401,7 +401,7 @@ public static class RangeTests
 	[TestCase("[3,)")]
 	[TestCase("[,7)")]
 	public static void TryParseFailingCases(string content) =>
-		Assert.That(Range<int>.TryParse(content, CultureInfo.CurrentCulture, out var range), Is.False);
+		Assert.That(Range<int>.TryParse(content, CultureInfo.CurrentCulture, out var _), Is.False);
 
 	[Test]
 	public static void TryParseAsSpan()

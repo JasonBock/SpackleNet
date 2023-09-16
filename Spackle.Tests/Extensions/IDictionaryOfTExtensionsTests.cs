@@ -26,7 +26,7 @@ public static class IDictionaryOfTExtensionsTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(target.Count, Is.EqualTo(4));
+			Assert.That(target, Has.Count.EqualTo(4));
 			Assert.That(target[3], Is.EqualTo("c"));
 			Assert.That(target[4], Is.EqualTo("d"));
 		});
@@ -51,7 +51,7 @@ public static class IDictionaryOfTExtensionsTests
 
 		Assert.Multiple(() =>
 		{
-			Assert.That(target.Count, Is.EqualTo(3));
+			Assert.That(target, Has.Count.EqualTo(3));
 			Assert.That(target[3], Is.EqualTo("c"));
 		});
 	}
