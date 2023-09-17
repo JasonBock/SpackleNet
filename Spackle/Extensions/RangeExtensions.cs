@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 
 namespace Spackle.Extensions;
 
 public static class RangeExtensions
 {
 	/// <summary>
-	/// Creates a new <see cref="Range<int>" given a <see cref="Range"/>./>
+	/// Creates a new <see cref="Range{T}"/> given a <see cref="Range"/>./>
 	/// </summary>
 	/// <param name="self">The <see cref="Range"/> to use.</param>
-	/// <returns>A new <see cref="Range<int>" instance.</returns>
+	/// <returns>A new <see cref="Range{T}"/> instance.</returns>
 	public static Range<int> Create(this Range self) =>
 		new(self.Start.Value, self.End.Value);
 
 	/// <summary>
 	/// Determines if <paramref name="value"/> is within the range.
 	/// </summary>
-	/// <param name="this">The provided range.</param>
+	/// <param name="self">The provided range.</param>
 	/// <param name="value">The value to check.</param>
-	/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="this"/>>, else <c>false</c>.</returns>
+	/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="self"/>>, else <c>false</c>.</returns>
 	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static bool Contains(this Range self, Index value) =>
 		self.Contains(value.Value);
@@ -26,9 +25,9 @@ public static class RangeExtensions
 	/// <summary>
 	/// Determines if <paramref name="value"/> is within the range.
 	/// </summary>
-	/// <param name="this">The provided range.</param>
+	/// <param name="self">The provided range.</param>
 	/// <param name="value">The value to check.</param>
-	/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="this"/>>, else <c>false</c>.</returns>
+	/// <returns>Returns <c>true</c> if <paramref name="value"/> is within <paramref name="self"/>>, else <c>false</c>.</returns>
 	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static bool Contains(this Range self, int value) =>
 		self.Start.Value < self.End.Value ?
@@ -39,6 +38,7 @@ public static class RangeExtensions
 	/// Gets the intersection of the current <see cref="Range" /> 
 	/// and the target <see cref="Range" />.
 	/// </summary>
+	/// <param name="self">The provided range.</param>
 	/// <param name="target">The target <see cref="Range" />.</param>
 	/// <returns>A new <see cref="Range" /> instance that is the intersection, 
 	/// or <c>null</c> if there is no intersection.</returns>
@@ -60,9 +60,9 @@ public static class RangeExtensions
 
 	/// <summary>
 	/// Returns a <see cref="Range" /> where <see cref="Range.Start" /> is less than
-	/// <see cref="Range.End" /> based on the values in <paramref name="this"/>
+	/// <see cref="Range.End" /> based on the values in <paramref name="self"/>
 	/// </summary>
-	/// <param name="this">The <see cref="Range" /> to put into ascending order.</param>
+	/// <param name="self">The <see cref="Range" /> to put into ascending order.</param>
 	/// <returns>A new <see cref="Range"/> in ascending order.</returns>
 	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static Range ToAscending(this Range self) =>
@@ -70,9 +70,9 @@ public static class RangeExtensions
 
 	/// <summary>
 	/// Returns a <see cref="Range" /> where <see cref="Range.End" /> is less than
-	/// <see cref="Range.Start" /> based on the values in <paramref name="this"/>
+	/// <see cref="Range.Start" /> based on the values in <paramref name="self"/>
 	/// </summary>
-	/// <param name="this">The <see cref="Range" /> to put into descending order.</param>
+	/// <param name="self">The <see cref="Range" /> to put into descending order.</param>
 	/// <returns>A new <see cref="Range"/> in descending order.</returns>
 	[Obsolete("This API is no longer supported. Use Range<T> instead.", true)]
 	public static Range ToDescending(this Range self) =>
@@ -82,13 +82,13 @@ public static class RangeExtensions
 	/// Provides an array of <see cref="Range" /> values split up
 	/// based on the <paramref name="numberOfRanges"/> value.
 	/// </summary>
-	/// <param name="this"></param>
-	/// <param name="numberOfRanges"></param>
+	/// <param name="self">The <see cref="Range" /> to put into descending order.</param>
+	/// <param name="numberOfRanges">The number of ranges to make.</param>
 	/// <returns></returns>
 	/// <remarks>
 	/// A quick example of what this method does:
 	/// If the provided <see cref="Range" /> is <c>0..100</c> and
-	/// <paramref name="numberOfRanges"/> is <3>, the results are:
+	/// <paramref name="numberOfRanges"/> is <c>3</c>, the results are:
 	/// <code>
 	/// 0..34
 	/// 34..67
@@ -157,6 +157,7 @@ public static class RangeExtensions
 	/// Gets the union of the current <see cref="Range" /> 
 	/// and the target <see cref="Range" />.
 	/// </summary>
+	/// <param name="self">The <see cref="Range" /> to put into descending order.</param>
 	/// <param name="target">The target <see cref="Range" />.</param>
 	/// <returns>A new <see cref="Range" /> instance that is the union, 
 	/// or <c>null</c> if there is no intersection.</returns>

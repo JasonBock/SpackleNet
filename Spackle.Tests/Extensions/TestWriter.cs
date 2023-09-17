@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-namespace Spackle.Tests.Extensions;
+﻿namespace Spackle.Tests.Extensions;
 
 public sealed class TestWriter
 	: IDisposable

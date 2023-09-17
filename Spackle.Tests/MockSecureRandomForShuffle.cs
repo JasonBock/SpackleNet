@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spackle.Tests;
+﻿namespace Spackle.Tests;
 
 internal sealed class MockSecureRandomForShuffle
 	: Random

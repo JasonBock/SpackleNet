@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Spackle.Extensions;
+﻿namespace Spackle.Extensions;
 
 public static class IDictionaryOfTExtensions
 {

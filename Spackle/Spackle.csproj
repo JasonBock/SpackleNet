@@ -4,18 +4,19 @@
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<Description>An assembly that contains utilities and extension methods to augment .NET development.</Description>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<EnablePackageValidation>true</EnablePackageValidation>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<IncludeSymbols>true</IncludeSymbols>
 		<PackageIcon>Icon.png</PackageIcon>
 		<PackageId>Spackle</PackageId>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/JasonBock/SpackleNet</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageReleaseNotes>A changelog is available at https://github.com/JasonBock/SpackleNet/blob/main/changelog.md</PackageReleaseNotes>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<PackageTags>C# .NET utilities</PackageTags>
+		<PackageValidationBaselineVersion>12.0.0</PackageValidationBaselineVersion>
 		<PackageVersion>$(Version)</PackageVersion>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<RepositoryUrl>https://github.com/jasonbock/spacklenet</RepositoryUrl>

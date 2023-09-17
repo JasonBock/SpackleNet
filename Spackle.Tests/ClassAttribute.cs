@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spackle.Tests;
+﻿namespace Spackle.Tests;
 
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class ClassAttribute

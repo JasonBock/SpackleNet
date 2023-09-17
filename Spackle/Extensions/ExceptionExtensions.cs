@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.IO;
-using System.Linq;
+﻿using System.Collections;
 using System.Reflection;
 
 namespace Spackle.Extensions;
@@ -21,20 +18,20 @@ public static partial class ExceptionExtensions
 	public const string Unknown = "UNKNOWN";
 
 	/// <summary>
-	/// Prints the contents of <paramref name="this"/> to the console's output stream.
+	/// Prints the contents of <paramref name="self"/> to the console's output stream.
 	/// </summary>
-	/// <param name="this">The <see cref="Exception"/> to print.</param>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <param name="self">The <see cref="Exception"/> to print.</param>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static void Print(this Exception self) =>
 		self.Print(Console.Out);
 
 	/// <summary>
-	/// Prints the contents of <paramref name="this"/> to the given <see cref="TextWriter"/>.
+	/// Prints the contents of <paramref name="self"/> to the given <see cref="TextWriter"/>.
 	/// </summary>
-	/// <param name="this">The <see cref="Exception"/> to print.</param>
+	/// <param name="self">The <see cref="Exception"/> to print.</param>
 	/// <param name="writer">The <see cref="TextWriter"/> to write exception information to.</param>
 	/// <exception cref="ArgumentNullException">
-	/// Thrown if either <paramref name="this"/> or <paramref name="writer"/> is <c>null</c>.
+	/// Thrown if either <paramref name="self"/> or <paramref name="writer"/> is <c>null</c>.
 	/// </exception>
 	public static void Print(this Exception self, TextWriter writer)
 	{

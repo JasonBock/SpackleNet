@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using Spackle.Reflection.Extensions;
-using System;
 using System.Reflection;
 
 namespace Spackle.Tests.Reflection.Extensions;

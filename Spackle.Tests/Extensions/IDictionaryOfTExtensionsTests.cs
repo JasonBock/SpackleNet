@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using Spackle.Extensions;
-using System;
-using System.Collections.Generic;
 
 namespace Spackle.Tests.Extensions;
 

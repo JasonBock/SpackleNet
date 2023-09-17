@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spackle.Tests.Extensions;
+﻿namespace Spackle.Tests.Extensions;
 
 public sealed partial class CustomException
 	: Exception

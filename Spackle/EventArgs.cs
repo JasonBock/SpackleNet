@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Spackle;
+﻿namespace Spackle;
 
 /// <summary>
 /// Defines a generic version of <see cref="EventArgs"/>, which is useful with

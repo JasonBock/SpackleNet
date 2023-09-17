@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Numerics;
 
 namespace Spackle;
@@ -62,6 +60,7 @@ public readonly struct Range<T>
 	public bool Contains(T value) =>
 		value >= this.Start && value < this.End;
 
+	/// <summary>
 	/// Checks to see if the given value is within the current range.
 	/// </summary>
 	/// <param name="value">The value to check.</param>
@@ -163,13 +162,12 @@ public readonly struct Range<T>
 	/// Provides an array of <see cref="Range&lt;T&gt;" /> values split up
 	/// based on the <paramref name="numberOfPartitions"/> value.
 	/// </summary>
-	/// <param name="this"></param>
-	/// <param name="numberOfPartitions"></param>
+	/// <param name="numberOfPartitions">The number of partitions to make.</param>
 	/// <returns>An array of partitions.</returns>
 	/// <remarks>
 	/// A quick example of what this method does:
 	/// If the current range is <c>[0..100)</c> and
-	/// <paramref name="numberOfPartitions"/> is <3>, the results are:
+	/// <paramref name="numberOfPartitions"/> is <c>3</c>, the results are:
 	/// <code>
 	/// 0..34
 	/// 34..67

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Spackle.Extensions;
 
@@ -11,9 +10,9 @@ public static class ActionExtensions
 	/// <summary>
 	/// Calculates the time it takes to run a given <see cref="Action"/>.
 	/// </summary>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time(this Action self)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -24,13 +23,13 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with one parameter.
+	/// Calculates the time it takes to run a given <see cref="Action{T}"/>.
 	/// </summary>
-	/// <typeparam name="T">The type of the parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="obj">The parameter for <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T">The type of the parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="obj">The parameter for <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T>(this Action<T> self, T obj)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -41,15 +40,15 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with two parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2>(this Action<T1, T2> self, T1 arg1, T2 arg2)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -60,17 +59,17 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with three parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3>(this Action<T1, T2, T3> self, T1 arg1, T2 arg2, T3 arg3)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -81,19 +80,19 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with four parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4>(this Action<T1, T2, T3, T4> self, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -104,21 +103,21 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with five parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5>(
 		this Action<T1, T2, T3, T4, T5> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
@@ -131,23 +130,23 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with six parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6>(
 		this Action<T1, T2, T3, T4, T5, T6> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
@@ -160,25 +159,25 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with seven parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6, T7}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg7">The seventh parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7>(
 		this Action<T1, T2, T3, T4, T5, T6, T7> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
@@ -191,27 +190,27 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with eight parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6, T7, T8}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg7">The seventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg8">The eighth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8)
@@ -224,29 +223,29 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with nine parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6, T7, T8, T9}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg7">The seventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg8">The eighth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg9">The ninth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -260,31 +259,31 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with ten parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6, T7, T8, T9, T10}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg7">The seventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg8">The eighth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg9">The ninth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg10">The tenth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -298,33 +297,33 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with eleven parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg7">The seventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg8">The eighth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg9">The ninth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg10">The tenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg11">The eleventh parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg11">The eleventh parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -338,35 +337,35 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with twelve parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T12">The type of the twelfth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg7">The seventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg8">The eighth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg9">The ninth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg10">The tenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg11">The eleventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg12">The twelfth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T12">The type of the twelfth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg11">The eleventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg12">The twelfth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -380,37 +379,37 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with thirteen parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T12">The type of the twelfth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T13">The type of the thirteenth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg7">The seventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg8">The eighth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg9">The ninth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg10">The tenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg11">The eleventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg12">The twelfth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg13">The thirteenth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T12">The type of the twelfth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T13">The type of the thirteenth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg11">The eleventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg12">The twelfth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg13">The thirteenth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -424,39 +423,39 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with fourteen parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T12">The type of the twelfth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T13">The type of the thirteenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T14">The type of the fourteenth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg7">The seventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg8">The eighth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg9">The ninth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg10">The tenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg11">The eleventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg12">The twelfth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg13">The thirteenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg14">The fourteenth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T12">The type of the twelfth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T13">The type of the thirteenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T14">The type of the fourteenth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg11">The eleventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg12">The twelfth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg13">The thirteenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg14">The fourteenth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -470,41 +469,41 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with fifteen parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T12">The type of the twelfth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T13">The type of the thirteenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T14">The type of the fourteenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T15">The type of the fifteenth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg7">The seventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg8">The eighth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg9">The ninth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg10">The tenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg11">The eleventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg12">The twelfth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg13">The thirteenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg14">The fourteenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg15">The fifteenth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T12">The type of the twelfth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T13">The type of the thirteenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T14">The type of the fourteenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T15">The type of the fifteenth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg11">The eleventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg12">The twelfth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg13">The thirteenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg14">The fourteenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg15">The fifteenth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -518,43 +517,43 @@ public static class ActionExtensions
 	}
 
 	/// <summary>
-	/// Calculates the time it takes to run a given <see cref="Action"/> with sixteen parameters.
+	/// Calculates the time it takes to run a given <see cref="Action{T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16}"/>.
 	/// </summary>
-	/// <typeparam name="T1">The type of the first parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T2">The type of the second parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T3">The type of the third parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T12">The type of the twelfth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T13">The type of the thirteenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T14">The type of the fourteenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T15">The type of the fifteenth parameter to <paramref name="this"/>.</typeparam>
-	/// <typeparam name="T16">The type of the sixteenth parameter to <paramref name="this"/>.</typeparam>
-	/// <param name="this">The <see cref="Action"/> to time.</param>
-	/// <param name="arg1">The first parameter to <paramref name="this"/>.</param>
-	/// <param name="arg2">The second parameter to <paramref name="this"/>.</param>
-	/// <param name="arg3">The third parameter to <paramref name="this"/>.</param>
-	/// <param name="arg4">The fourth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg5">The fifth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg6">The sixth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg7">The seventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg8">The eighth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg9">The ninth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg10">The tenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg11">The eleventh parameter to <paramref name="this"/>.</param>
-	/// <param name="arg12">The twelfth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg13">The thirteenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg14">The fourteenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg15">The fifteenth parameter to <paramref name="this"/>.</param>
-	/// <param name="arg16">The sixteenth parameter to <paramref name="this"/>.</param>
-	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="this"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="this"/> is <c>null</c>.</exception>
+	/// <typeparam name="T1">The type of the first parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T2">The type of the second parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T3">The type of the third parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T4">The type of the fourth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T5">The type of the fifth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T6">The type of the sixth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T7">The type of the seventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T8">The type of the eighth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T9">The type of the ninth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T10">The type of the tenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T11">The type of the eleventh parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T12">The type of the twelfth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T13">The type of the thirteenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T14">The type of the fourteenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T15">The type of the fifteenth parameter to <paramref name="self"/>.</typeparam>
+	/// <typeparam name="T16">The type of the sixteenth parameter to <paramref name="self"/>.</typeparam>
+	/// <param name="self">The <see cref="Action"/> to time.</param>
+	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
+	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
+	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
+	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg11">The eleventh parameter to <paramref name="self"/>.</param>
+	/// <param name="arg12">The twelfth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg13">The thirteenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg14">The fourteenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg15">The fifteenth parameter to <paramref name="self"/>.</param>
+	/// <param name="arg16">The sixteenth parameter to <paramref name="self"/>.</param>
+	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
