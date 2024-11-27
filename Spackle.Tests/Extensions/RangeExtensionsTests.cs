@@ -3,7 +3,7 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-public static class RangeExtensionsTests
+internal static class RangeExtensionsTests
 {
 	[Test]
 	public static void CreateFromRange()

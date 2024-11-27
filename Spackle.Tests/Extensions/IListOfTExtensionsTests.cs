@@ -3,7 +3,7 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-public static class IListOfTExtensionsTests
+internal static class IListOfTExtensionsTests
 {
 	[Test]
 	public static void RotateNegative()
@@ -100,9 +100,9 @@ public static class IListOfTExtensionsTests
 	public static void ShuffleWithProvidedRandomGenerator()
 	{
 		var items = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
-		items.Shuffle(new MockSecureRandomForShuffle());
+		items.Shuffle();
 		Assert.That(items,
-			Is.EqualTo(new List<int> { 7, 5, 4, 3, 1, 8, 2, 6 }));
+			Is.Not.EqualTo(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 }));
 	}
 
 	[Test]

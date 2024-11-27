@@ -3,13 +3,13 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-public static class ActionExtensionsTests
+internal static class ActionExtensionsTests
 {
 	[Test]
 	public static void TimeAction() =>
 		Assert.That(new Action(() =>
 		{
-			Guid.NewGuid();
+		   _ = Guid.NewGuid();
 		}).Time().TotalMilliseconds, Is.GreaterThanOrEqualTo(0));
 
 	[Test]

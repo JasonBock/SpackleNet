@@ -3,7 +3,7 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-public static class ObjectExtensionsTests
+internal static class ObjectExtensionsTests
 {
 	[Test]
 	public static void HasAttributeWithNullThis() =>
@@ -11,7 +11,7 @@ public static class ObjectExtensionsTests
 
 	[Test]
 	public static void HasAttributeWithNullArgument() =>
-		Assert.That(() => (new HasAttribute()).HasAttribute(null!, false), Throws.TypeOf<ArgumentNullException>());
+		Assert.That(() => new HasAttribute().HasAttribute(null!, false), Throws.TypeOf<ArgumentNullException>());
 
 	[Test]
 	public static void HasAttributeForExistingAttribute() =>

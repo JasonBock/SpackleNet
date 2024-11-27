@@ -3,7 +3,7 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-public static class IEnumerableOfTExtensionsTests
+internal static class IEnumerableOfTExtensionsTests
 {
 	[Test]
 	public static void Create()

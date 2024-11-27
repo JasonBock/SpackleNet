@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Spackle.Tests.Reflection.Extensions;
 
-public static class ICustomAttributeProviderExtensionsTests
+internal static class ICustomAttributeProviderExtensionsTests
 {
 	[Test]
 	public static void HasAttributeWithNullThis() =>

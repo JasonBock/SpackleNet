@@ -2,7 +2,7 @@
 
 namespace Spackle.Tests;
 
-public static class EventArgsTests
+internal static class EventArgsTests
 {
 	[Test]
 	public static void Create()

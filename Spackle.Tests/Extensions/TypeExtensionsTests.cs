@@ -3,7 +3,7 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-public static class TypeExtensionsTests
+internal static class TypeExtensionsTests
 {
 	[Test]
 	public static void GetRootElementTypeFromRefArrayArray() =>

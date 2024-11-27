@@ -1,10 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-		<Compile Remove="StrykerOutput\**" />
-		<EmbeddedResource Remove="StrykerOutput\**" />
-		<None Remove="StrykerOutput\**" />
-	</ItemGroup>
-	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
 		<PackageReference Include="NUnit.Analyzers">
 			<PrivateAssets>all</PrivateAssets>

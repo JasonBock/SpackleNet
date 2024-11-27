@@ -90,8 +90,7 @@ public static class IListOfTExtensions
 	public static void Shuffle<T>(this IList<T> self)
 	{
 		ArgumentNullException.ThrowIfNull(self);
-		using var random = new SecureRandom();
-		self.Shuffle(random);
+		self.Shuffle(new SecureRandom());
 	}
 
 	/// <summary>
@@ -105,7 +104,7 @@ public static class IListOfTExtensions
 	/// The implementation of <c>Shuffle</c> uses the Fisher–Yates shuffle, as implemented by Durstenfeld - 
 	/// see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle for details on this implementation.
 	/// </remarks>
-	public static void Shuffle<T>(this IList<T> self, Random random)
+	public static void Shuffle<T>(this IList<T> self, SecureRandom random)
 	{
 		ArgumentNullException.ThrowIfNull(self);
 		ArgumentNullException.ThrowIfNull(random);
@@ -115,9 +114,7 @@ public static class IListOfTExtensions
 		while (length > 1)
 		{
 			length--;
-#pragma warning disable CA5394 // Do not use insecure randomness
 			var nextIndex = random.Next(length + 1);
-#pragma warning restore CA5394 // Do not use insecure randomness
 			self.Swap(nextIndex, length);
 		}
 	}

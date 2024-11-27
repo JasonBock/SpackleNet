@@ -1,6 +1,6 @@
 ﻿namespace Spackle.Tests.Extensions;
 
-public sealed class TestWriter
+internal sealed class TestWriter
 	: IDisposable
 {
 	public TestWriter() =>

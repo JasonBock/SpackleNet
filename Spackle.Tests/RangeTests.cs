@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Spackle.Tests;
 
-public static class RangeTests
+internal static class RangeTests
 {
 	[Test]
 	public static void CheckEquality()

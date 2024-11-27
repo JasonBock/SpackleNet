@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Spackle.Tests.Extensions;
 
-public static class DynamicBindingExtensionsTests
+internal static class DynamicBindingExtensionsTests
 {
 	[Test]
 	public static void WithUsingExpression()
@@ -62,7 +62,7 @@ public static class DynamicBindingExtensionsTests
 	[Test]
 	public static void BindToLocalVariable()
 	{
-		using var random = new SecureRandom();
+		var random = new SecureRandom();
 		var original = random.Next();
 		var newValue = random.Next();
 		var binded = original;

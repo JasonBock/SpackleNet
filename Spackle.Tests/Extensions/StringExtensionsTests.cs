@@ -3,7 +3,7 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-public static class StringExtensionsTests
+internal static class StringExtensionsTests
 {
 	[Test]
 	public static void AsUri()

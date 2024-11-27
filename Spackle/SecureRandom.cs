@@ -2,27 +2,25 @@
 using System.Globalization;
 using System.Numerics;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace Spackle;
 
 /// <summary>
-/// Combines the security of <see cref="RandomNumberGenerator"/>
-/// with the simple interface of <see cref="Random"/>.
+/// Provides random APIs backed by the security of <see cref="RandomNumberGenerator"/>.
 /// </summary>
 public class SecureRandom
-	: Random, IDisposable
 {
-	private const string ErrorTooManyUniqueElements = "Cannot create the number of unique elements requested - maximum allowed is {0}.";
+	private static readonly CompositeFormat ErrorTooManyUniqueElements = 
+		CompositeFormat.Parse("Cannot create the number of unique elements requested - maximum allowed is {0}.");
 	private const double MaxInt32Inverse = 1.0 / int.MaxValue;
 	private bool disposed;
 
 	/// <summary>
 	/// Creates a new <see cref="SecureRandom"/> instance.
 	/// </summary>
-	public SecureRandom()
-#pragma warning disable CA5394 // Do not use insecure randomness
-		: base() => this.Generator = RandomNumberGenerator.Create();
-#pragma warning restore CA5394 // Do not use insecure randomness
+	public SecureRandom() => 
+		this.Generator = RandomNumberGenerator.Create();
 
 	/// <summary>
 	/// Creates a new <see cref="SecureRandom"/> instance
@@ -32,15 +30,6 @@ public class SecureRandom
 	/// <exception cref="ArgumentNullException">Thrown if <paramref name="generator"/> is <c>null</c>.</exception>
 	public SecureRandom(RandomNumberGenerator generator) =>
 		this.Generator = generator ?? throw new ArgumentNullException(nameof(generator));
-
-	/// <summary>
-	/// Disposes the current object (i.e. dispose the wrapped <see cref="RandomNumberGenerator">generator</see>.
-	/// </summary>
-	public void Dispose()
-	{
-		this.Dispose(true);
-		GC.SuppressFinalize(this);
-	}
 
 	protected virtual void Dispose(bool disposing)
 	{
@@ -63,10 +52,7 @@ public class SecureRandom
 	/// <exception cref="ArgumentException">Thrown if <paramref name="max"/> is less than or equal to zero.</exception>
 	public BigInteger GetBigIntegerWithRange(BigInteger max)
 	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
+		ObjectDisposedException.ThrowIf(this.disposed, this);
 
 		if (max <= BigInteger.Zero)
 		{
@@ -95,10 +81,7 @@ public class SecureRandom
 	/// </exception>
 	public BigInteger GetBigIntegerWithRange(BigInteger min, BigInteger max)
 	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
+		ObjectDisposedException.ThrowIf(this.disposed, this);
 
 		if (min <= BigInteger.Zero)
 		{
@@ -128,10 +111,7 @@ public class SecureRandom
 	/// <exception cref="ArgumentException">Thrown if <paramref name="numberOfDigits"/> is zero.</exception>
 	public BigInteger GetBigInteger(ulong numberOfDigits)
 	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
+		ObjectDisposedException.ThrowIf(this.disposed, this);
 
 		if (numberOfDigits == 0)
 		{
@@ -172,18 +152,11 @@ public class SecureRandom
 			// Either reduce the size of the number or increase it 
 			// (and add in some extra randomness for the low digits)
 			// based on the delta.
-			if (delta == 0)
-			{
-				return number;
-			}
-			else if (delta > 0)
-			{
-				return number / BigInteger.Pow(new BigInteger(10), delta);
-			}
-			else
-			{
-				return number * BigInteger.Pow(new BigInteger(10), -1 * delta) + this.Next(10);
-			}
+			return delta == 0 ? 
+				number : 
+				delta > 0 ? 
+					number / BigInteger.Pow(new BigInteger(10), delta) : 
+					(number * BigInteger.Pow(new BigInteger(10), -1 * delta)) + this.Next(10);
 		}
 	}
 
@@ -211,10 +184,7 @@ public class SecureRandom
 	/// </remarks>
 	public byte[] GetByteValues(uint numberOfElements, ValueGeneration values)
 	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
+		ObjectDisposedException.ThrowIf(this.disposed, this);
 
 		if (values == ValueGeneration.UniqueValuesOnly && numberOfElements > byte.MaxValue)
 		{
@@ -259,10 +229,7 @@ public class SecureRandom
 	/// </returns>
 	public double[] GetDoubleValues(uint numberOfElements)
 	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
+		ObjectDisposedException.ThrowIf(this.disposed, this);
 
 		var elements = new double[numberOfElements];
 
@@ -326,10 +293,7 @@ public class SecureRandom
 	/// </remarks>
 	public int[] GetInt32Values(uint numberOfElements, Range range, ValueGeneration values)
 	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
+		ObjectDisposedException.ThrowIf(this.disposed, this);
 
 		if (values == ValueGeneration.UniqueValuesOnly && numberOfElements > int.MaxValue)
 		{
@@ -365,39 +329,27 @@ public class SecureRandom
 		return elements;
 	}
 
-	/// <summary>
-	/// Gets a random <see cref="int"/> value.
-	/// </summary>
-	/// <returns>
-	/// Returns a new random <see cref="int"/> value between 0 (inclusive) 
-	/// and <c>Int32.MaxValue</c> (exclusive).
-	/// </returns>
-	public override int Next()
+   /// <summary>
+   /// Gets a random <see cref="int"/> value.
+   /// </summary>
+   /// <returns>
+   /// Returns a new random <see cref="int"/> value between 0 (inclusive) 
+   /// and <c>Int32.MaxValue</c> (exclusive).
+   /// </returns>
+   public int Next() => 
+		this.Next(int.MaxValue);
+
+   /// <summary>
+   /// Gets a random <see cref="int"/> value.
+   /// </summary>
+   /// <param name="maxValue">The upper bound of the generated random number.</param>
+   /// <returns>
+   /// Returns a new random <see cref="int"/> value between 0 (inclusive) 
+   /// and <paramref name="maxValue"/> (exclusive).
+   /// </returns>
+   /// <exception cref="ArgumentException">Thrown if <paramref name="maxValue"/> is less than zero.</exception>
+   public int Next(int maxValue)
 	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
-
-		return this.Next(int.MaxValue);
-	}
-
-	/// <summary>
-	/// Gets a random <see cref="int"/> value.
-	/// </summary>
-	/// <param name="maxValue">The upper bound of the generated random number.</param>
-	/// <returns>
-	/// Returns a new random <see cref="int"/> value between 0 (inclusive) 
-	/// and <paramref name="maxValue"/> (exclusive).
-	/// </returns>
-	/// <exception cref="ArgumentException">Thrown if <paramref name="maxValue"/> is less than zero.</exception>
-	public override int Next(int maxValue)
-	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
-
 		if (maxValue < 0)
 		{
 			throw new ArgumentException($"{nameof(maxValue)} must be greater than or equal to zero.", nameof(maxValue));
@@ -420,13 +372,8 @@ public class SecureRandom
 	/// <exception cref="ArgumentException">
 	/// Thrown if <paramref name="maxValue"/> is less than <paramref name="minValue"/>.
 	/// </exception>
-	public override int Next(int minValue, int maxValue)
+	public int Next(int minValue, int maxValue)
 	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
-
 		if (maxValue < minValue)
 		{
 			throw new ArgumentException($"{nameof(maxValue)} must be greater than {nameof(minValue)}.", nameof(maxValue));
@@ -449,52 +396,31 @@ public class SecureRandom
 		return value;
 	}
 
-	/// <summary>
-	/// Gets a random <see cref="bool"/> value.
-	/// </summary>
-	/// <returns>
-	/// Returns a new random <see cref="bool"/> value.
-	/// </returns>
-	public bool NextBoolean()
-	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
+   /// <summary>
+   /// Gets a random <see cref="bool"/> value.
+   /// </summary>
+   /// <returns>
+   /// Returns a new random <see cref="bool"/> value.
+   /// </returns>
+   public bool NextBoolean() => 
+		this.Next(2) == 1;
 
-		return this.Next(2) == 1;
-	}
-
-	/// <summary>
-	/// Fills the given buffer with random bits.
-	/// </summary>
-	/// <param name="buffer">The buffer to populate.</param>
-	public override void NextBytes(byte[] buffer)
-	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
-
+   /// <summary>
+   /// Fills the given buffer with random bits.
+   /// </summary>
+   /// <param name="buffer">The buffer to populate.</param>
+   public void NextBytes(byte[] buffer) => 
 		this.Generator.GetBytes(buffer);
-	}
 
-	/// <summary>
-	/// Gets a random <see cref="double"/> number.
-	/// </summary>
-	/// <returns>A <see cref="double"/> number.</returns>
-	public override double NextDouble()
-	{
-		if (this.disposed)
-		{
-			throw new ObjectDisposedException(nameof(SecureRandom));
-		}
+   /// <summary>
+   /// Gets a random <see cref="double"/> number.
+   /// </summary>
+   /// <returns>A <see cref="double"/> number.</returns>
+   public double NextDouble() => 
+		this.Next(int.MaxValue) * MaxInt32Inverse;
 
-		return this.Next(int.MaxValue) * MaxInt32Inverse;
-	}
-
-	/// <summary>
-	/// Gets the underlying <see cref="RandomNumberGenerator"/>.
-	/// </summary>
-	public RandomNumberGenerator Generator { get; }
+   /// <summary>
+   /// Gets the underlying <see cref="RandomNumberGenerator"/>.
+   /// </summary>
+   public RandomNumberGenerator Generator { get; }
 }

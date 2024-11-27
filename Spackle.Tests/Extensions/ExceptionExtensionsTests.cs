@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace Spackle.Tests.Extensions;
 
-public static class ExceptionExtensionsTests
+internal static class ExceptionExtensionsTests
 {
 	[Test]
 	public static void Format()

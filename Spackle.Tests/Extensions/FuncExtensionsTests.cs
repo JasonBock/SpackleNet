@@ -3,15 +3,12 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-public static class FuncExtensionsTests
+internal static class FuncExtensionsTests
 {
 	[Test]
 	public static void TimeFunc()
 	{
-		var (result, elapsed) = new Func<Guid>(() =>
-		{
-			return Guid.NewGuid();
-		}).Time();
+		var (result, elapsed) = new Func<Guid>(Guid.NewGuid).Time();
 
 		Assert.Multiple(() =>
 		{

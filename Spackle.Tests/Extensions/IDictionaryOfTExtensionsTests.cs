@@ -3,7 +3,7 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-public static class IDictionaryOfTExtensionsTests
+internal static class IDictionaryOfTExtensionsTests
 {
 	[Test]
 	public static void AddPairs()
@@ -45,7 +45,7 @@ public static class IDictionaryOfTExtensionsTests
 			{ 2, "d" },
 		};
 
-		Assert.Throws<ArgumentException>(() => target.AddPairs(pairs));
+		_ = Assert.Throws<ArgumentException>(() => target.AddPairs(pairs));
 
 		Assert.Multiple(() =>
 		{
@@ -60,5 +60,5 @@ public static class IDictionaryOfTExtensionsTests
 
 	[Test]
 	public static void AddPairsWhenPairsIsNull() =>
-		Assert.Throws<ArgumentNullException>(() => new Dictionary<string, int>().AddPairs((null as IDictionary<string, int>)!));
+		Assert.Throws<ArgumentNullException>(() => new Dictionary<string, int>().AddPairs(null!));
 }

@@ -1,6 +1,6 @@
 ﻿namespace Spackle.Tests.Extensions;
 
-public sealed partial class CustomException
+internal sealed partial class CustomException
 	: Exception
 {
 	public CustomException()

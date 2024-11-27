@@ -103,9 +103,9 @@ public static class DynamicBindingExtensions
 
 	private sealed class Binder<T> : IDisposable
 	{
-		readonly bool dispose;
-		readonly T original, current;
-		readonly Action<T> setter;
+		private readonly bool dispose;
+		private readonly T original, current;
+		private readonly Action<T> setter;
 
 		public Binder(Func<T> getter, Action<T> setter, T newValue, bool dispose)
 		{

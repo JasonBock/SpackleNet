@@ -1,6 +1,6 @@
 ﻿namespace Spackle.Tests.Extensions;
 
-public sealed class Binded
+internal sealed class Binded
 {
 	internal string? InternalInstanceField;
 	internal string? InternalInstanceProperty { get; set; }

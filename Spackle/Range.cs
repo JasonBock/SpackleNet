@@ -9,7 +9,7 @@ namespace Spackle;
 /// </summary>
 /// <typeparam name="T">The type of the range.</typeparam>
 public readonly struct Range<T>
-	: IEquatable<Range<T>>, IEqualityOperators<Range<T>, Range<T>, bool>, 
+	: IEquatable<Range<T>>, IEqualityOperators<Range<T>, Range<T>, bool>,
 		IParsable<Range<T>>, ISpanParsable<Range<T>>
 	where T : INumber<T>
 {
@@ -94,15 +94,8 @@ public readonly struct Range<T>
    /// <param name="obj">An <see cref="Object" />.</param>
    /// <returns><b>true</b> if <paramref name="obj"/> is a <see cref="Range&lt;T&gt;" /> and its value 
    /// is the same as this instance; otherwise, <b>false</b>.</returns>
-   public override bool Equals(object? obj)
-   {
-		if(obj is Range<T> range)
-		{
-			return this.Equals(range);
-		}
-
-		return false;
-   }
+   public override bool Equals(object? obj) =>
+		obj is Range<T> range && this.Equals(range);
 
    /// <summary>
    /// Returns the hash code for this <see cref="Range&lt;T&gt;" />.
@@ -145,17 +138,10 @@ public readonly struct Range<T>
 	public static Range<T> Parse(string s, IFormatProvider? provider) =>
 		Range<T>.Parse(s.AsSpan(), provider);
 
-	public static Range<T> Parse(ReadOnlySpan<char> s, IFormatProvider? provider) 
-	{
-		if(Range<T>.TryParse(s, provider, out var result))
-		{
-			return result;
-		}
-		else
-		{
+	public static Range<T> Parse(ReadOnlySpan<char> s, IFormatProvider? provider) =>
+		Range<T>.TryParse(s, provider, out var result) ?
+			result :
 			throw new FormatException($"The given value, {s}, is not in the correct format.");
-		}
-	}
 #pragma warning restore CA1000 // Do not declare static members on generic types
 
 	/// <summary>
@@ -212,10 +198,10 @@ public readonly struct Range<T>
 
 			return ranges.ToImmutable();
 		}
-		else if(typeof(T).GetInterfaces()
+		else if (typeof(T).GetInterfaces()
 		  .Any(_ => _.IsGenericType && _.GetGenericTypeDefinition() == typeof(IFloatingPoint<>)))
 		{
-			if(!T.IsInteger(numberOfPartitions))
+			if (!T.IsInteger(numberOfPartitions))
 			{
 				throw new ArgumentException(
 					$"The number of partitions, {numberOfPartitions}, must be an integral value.", nameof(numberOfPartitions));
@@ -240,9 +226,9 @@ public readonly struct Range<T>
 			ranges[^1] = new Range<T>(ranges[^1].Start, this.End);
 			return ranges.ToImmutable();
 		}
-		else 
+		else
 		{
-			return ImmutableArray<Range<T>>.Empty;
+			return [];
 		}
 	}
 
@@ -269,7 +255,7 @@ public readonly struct Range<T>
 	{
 		result = default;
 
-		if(s[0] == '[' && s[^1] == ')')
+		if (s[0] == '[' && s[^1] == ')')
 		{
 			var parts = s[1..^1];
 			var delimiter = parts.IndexOf(", ");
@@ -279,7 +265,7 @@ public readonly struct Range<T>
 				var start = parts[0..delimiter];
 				var end = parts[(delimiter + 2)..];
 
-				if(T.TryParse(start, provider, out var startValue) && T.TryParse(end, provider, out var endValue))
+				if (T.TryParse(start, provider, out var startValue) && T.TryParse(end, provider, out var endValue))
 				{
 					result = new Range<T>(startValue, endValue);
 					return true;
@@ -301,8 +287,6 @@ public readonly struct Range<T>
 	/// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is <c>null</c>.</exception>
 	public Range<T>? Union(Range<T> target)
 	{
-		ArgumentNullException.ThrowIfNull(target);
-
 		Range<T>? intersection = null;
 
 		if (this.Contains(target.Start) || this.Contains(target.End) ||
