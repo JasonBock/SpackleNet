@@ -1,11 +1,11 @@
-﻿using Spackle.Extensions;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Numerics;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace Spackle;
 
+#pragma warning disable CA1716 // Identifiers should not match keywords
 /// <summary>
 /// Provides random APIs backed by the security of <see cref="RandomNumberGenerator"/>.
 /// </summary>
@@ -336,7 +336,7 @@ public class SecureRandom
    /// Returns a new random <see cref="int"/> value between 0 (inclusive) 
    /// and <c>Int32.MaxValue</c> (exclusive).
    /// </returns>
-   public int Next() => 
+   public virtual int Next() => 
 		this.Next(int.MaxValue);
 
    /// <summary>
@@ -348,7 +348,7 @@ public class SecureRandom
    /// and <paramref name="maxValue"/> (exclusive).
    /// </returns>
    /// <exception cref="ArgumentException">Thrown if <paramref name="maxValue"/> is less than zero.</exception>
-   public int Next(int maxValue)
+   public virtual int Next(int maxValue)
 	{
 		if (maxValue < 0)
 		{
@@ -372,7 +372,7 @@ public class SecureRandom
 	/// <exception cref="ArgumentException">
 	/// Thrown if <paramref name="maxValue"/> is less than <paramref name="minValue"/>.
 	/// </exception>
-	public int Next(int minValue, int maxValue)
+	public virtual int Next(int minValue, int maxValue)
 	{
 		if (maxValue < minValue)
 		{
@@ -409,14 +409,14 @@ public class SecureRandom
    /// Fills the given buffer with random bits.
    /// </summary>
    /// <param name="buffer">The buffer to populate.</param>
-   public void NextBytes(byte[] buffer) => 
+   public virtual void NextBytes(byte[] buffer) => 
 		this.Generator.GetBytes(buffer);
 
    /// <summary>
    /// Gets a random <see cref="double"/> number.
    /// </summary>
    /// <returns>A <see cref="double"/> number.</returns>
-   public double NextDouble() => 
+   public virtual double NextDouble() => 
 		this.Next(int.MaxValue) * MaxInt32Inverse;
 
    /// <summary>
@@ -424,3 +424,4 @@ public class SecureRandom
    /// </summary>
    public RandomNumberGenerator Generator { get; }
 }
+#pragma warning restore CA1716 // Identifiers should not match keywords
