@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [13.0.0] - 2024.11.27
 
 ### Changed
-- Updated to .NET 9
+- Updated to .NET 9. Some types have breaking changes: (issue [#48](https://github.com/JasonBock/SpackleNet/issues/48))
+	- `RangeExtensions` is removed
+	- `SecureRandom` no longer derives from `Random`
 
 ## [12.0.0] - 2023.2.11
 
