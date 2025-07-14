@@ -2,12 +2,12 @@
 	<PropertyGroup>
 		<AssemblyName>Spackle</AssemblyName>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+		<DebugType>embedded</DebugType>
 		<Description>An assembly that contains utilities and extension methods to augment .NET development.</Description>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<EnablePackageValidation>true</EnablePackageValidation>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<IncludeSymbols>true</IncludeSymbols>
 		<PackageIcon>Icon.png</PackageIcon>
 		<PackageId>Spackle</PackageId>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
@@ -20,7 +20,6 @@
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<RepositoryUrl>https://github.com/jasonbock/spacklenet</RepositoryUrl>
 		<RootNamespace>Spackle</RootNamespace>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="" />
