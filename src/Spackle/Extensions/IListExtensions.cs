@@ -1,9 +1,9 @@
 ﻿namespace Spackle.Extensions;
 
 /// <summary>
-/// Provides extension methods for <see cref="IList&lt;T&gt;"/>-based objects.
+/// Provides extension methods for <see cref="IList{T}"/>-based objects.
 /// </summary>
-public static class IListOfTExtensions
+public static class IListExtensions
 {
 	private const string ErrorOutOfPosition = "The positions parameter is not a valid position value.";
 
@@ -15,7 +15,7 @@ public static class IListOfTExtensions
 	/// <param name="positions">The delta value for rotation.</param>
 	/// <param name="direction">The direction in which the values should rotate.</param>
 	/// <exception cref="ArgumentNullException">
-	/// Thrown if <paramref name="self"/> is <c>null</c>.
+	/// Thrown if <paramref name="self"/> is <see langword="null" />.
 	/// </exception>
 	/// <exception cref="ArgumentException">
 	/// Thrown if <paramref name="positions"/> is negative or larger than the number 
@@ -44,7 +44,7 @@ public static class IListOfTExtensions
 
 		if (positions <= 0 || positions > itemsCount)
 		{
-			throw new ArgumentException(IListOfTExtensions.ErrorOutOfPosition, nameof(positions));
+			throw new ArgumentException(IListExtensions.ErrorOutOfPosition, nameof(positions));
 		}
 
 		if (self.Count > 1 && positions % itemsCount != 0)
@@ -82,7 +82,7 @@ public static class IListOfTExtensions
 	/// </summary>
 	/// <typeparam name="T">The type of the members in <paramref name="self"/>.</typeparam>
 	/// <param name="self">The list to shuffle.</param>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	/// <remarks>
 	/// The implementation of <c>Shuffle</c> uses the Fisher–Yates shuffle, as implemented by Durstenfeld - 
 	/// see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle for details on this implementation.
@@ -99,7 +99,7 @@ public static class IListOfTExtensions
 	/// <typeparam name="T">The type of the members in <paramref name="self"/>.</typeparam>
 	/// <param name="self">The list to shuffle.</param>
 	/// <param name="random">The random number generator to use.</param>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> or <paramref name="random"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> or <paramref name="random"/> is <see langword="null" />.</exception>
 	/// <remarks>
 	/// The implementation of <c>Shuffle</c> uses the Fisher–Yates shuffle, as implemented by Durstenfeld - 
 	/// see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle for details on this implementation.
@@ -126,7 +126,7 @@ public static class IListOfTExtensions
 	/// <param name="self">The list to swap elements in.</param>
 	/// <param name="x">An index value into the given list.</param>
 	/// <param name="y">An index value into the given list.</param>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	/// <exception cref="IndexOutOfRangeException">Throw if <paramref name="x"/> and/or <paramref name="y"/> 
 	/// are outside the bounds of the given list.</exception>
 	/// <remarks>

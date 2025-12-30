@@ -8,6 +8,7 @@
 		<EnablePackageValidation>true</EnablePackageValidation>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<NoWarn>$(NoWarn),CA1034</NoWarn>
 		<PackageIcon>Icon.png</PackageIcon>
 		<PackageId>Spackle</PackageId>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>

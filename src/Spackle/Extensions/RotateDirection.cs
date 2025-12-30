@@ -1,7 +1,7 @@
 ﻿namespace Spackle.Extensions;
 
 /// <summary>
-/// Specifies the rotational direction for the <seealso cref="IListOfTExtensions.Rotate"/> method.
+/// Specifies the rotational direction for the <seealso cref="IListExtensions.Rotate"/> method.
 /// </summary>
 public enum RotateDirection
 {

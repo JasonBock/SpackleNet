@@ -14,14 +14,14 @@ public readonly struct Range<T>
 	where T : INumber<T>
 {
 	/// <summary>
-	/// Creates a new <see cref="Range&lt;T&gt;"/> instance,
+	/// Creates a new <see cref="Range{T}"/> instance,
 	/// where the start defaults to <code>T.Zero</code>
 	/// and end defaults to <code>T.One</code>.
 	/// </summary>
 	public Range() => (this.Start, this.End) = (T.Zero, T.One);
 
 	/// <summary>
-	/// Creates a new <see cref="Range&lt;T&gt;"/> instance.
+	/// Creates a new <see cref="Range{T}"/> instance.
 	/// </summary>
 	/// <param name="start">The start of the range (inclusive).</param>
 	/// <param name="end">The end of the range (exclusive).</param>
@@ -37,26 +37,26 @@ public readonly struct Range<T>
 	}
 
 	/// <summary>
-	/// Determines whether two specified <see cref="Range&lt;T&gt;" /> objects have the same value. 
+	/// Determines whether two specified <see cref="Range{T}" /> objects have the same value. 
 	/// </summary>
-	/// <param name="a">A <see cref="Range&lt;T&gt;" />.</param>
-	/// <param name="b">A <see cref="Range&lt;T&gt;" />.</param>
-	/// <returns><b>true</b> if the value of <paramref name="a"/> is the same as the value of <paramref name="b"/>; otherwise, <b>false</b>. </returns>
+	/// <param name="a">A <see cref="Range{T}" />.</param>
+	/// <param name="b">A <see cref="Range{T}" />.</param>
+	/// <returns><see langword="true" /><see langword="true" /> if the value of <paramref name="a"/> is the same as the value of <paramref name="b"/>; otherwise, <see langword="false" />. </returns>
 	public static bool operator ==(Range<T> a, Range<T> b) => a.Equals(b);
 
 	/// <summary>
-	/// Determines whether two specified <see cref="Range&lt;T&gt;" /> objects have different values. 
+	/// Determines whether two specified <see cref="Range{T}" /> objects have different values. 
 	/// </summary>
-	/// <param name="a">A <see cref="Range&lt;T&gt;" />.</param>
-	/// <param name="b">A <see cref="Range&lt;T&gt;" />.</param>
-	/// <returns><b>true</b> if the value of <paramref name="a"/> is different from the value of <paramref name="b"/>; otherwise, <b>false</b>. </returns>
+	/// <param name="a">A <see cref="Range{T}" />.</param>
+	/// <param name="b">A <see cref="Range{T}" />.</param>
+	/// <returns><see langword="true" /> if the value of <paramref name="a"/> is different from the value of <paramref name="b"/>; otherwise, <see langword="false" />. </returns>
 	public static bool operator !=(Range<T> a, Range<T> b) => !(a == b);
 
 	/// <summary>
 	/// Checks to see if the given value is within the current range.
 	/// </summary>
 	/// <param name="value">The value to check.</param>
-	/// <returns>Returns <c>true</c> if <paramref name="value"/> is in the range; otherwise, <c>false</c>.</returns>
+	/// <returns>Returns <see langword="true" /> if <paramref name="value"/> is in the range; otherwise, <see langword="false" />.</returns>
 	public bool Contains(T value) =>
 		value >= this.Start && value < this.End;
 
@@ -64,12 +64,12 @@ public readonly struct Range<T>
 	/// Checks to see if the given value is within the current range.
 	/// </summary>
 	/// <param name="value">The value to check.</param>
-	/// <returns>Returns <c>true</c> if <paramref name="value"/> is in the range; otherwise, <c>false</c>.</returns>
+	/// <returns>Returns <see langword="true" /> if <paramref name="value"/> is in the range; otherwise, <see langword="false" />.</returns>
 	public bool Contains(Range<T> value) =>
 		value.Start >= this.Start && value.End <= this.End;
 
 	/// <summary>
-	/// Deconstruct the current <see cref="Range&lt;T&gt;" />
+	/// Deconstruct the current <see cref="Range{T}" />
 	/// </summary>
 	/// <param name="start">The start of the range.</param>
 	/// <param name="end">The end of the range.</param>
@@ -77,39 +77,39 @@ public readonly struct Range<T>
 		(start, end) = (this.Start, this.End);
 
 	/// <summary>
-	/// Determines whether this instance of <see cref="Range&lt;T&gt;" /> and a 
-	/// specified <see cref="Range&lt;T&gt;" /> object have the same value. 
+	/// Determines whether this instance of <see cref="Range{T}" /> and a 
+	/// specified <see cref="Range{T}" /> object have the same value. 
 	/// </summary>
-	/// <param name="other">A <see cref="Range&lt;T&gt;" />.</param>
-	/// <returns><b>true</b> if <paramref name="other"/> is a <see cref="Range&lt;T&gt;" /> and its value 
-	/// is the same as this instance; otherwise, <b>false</b>.</returns>
+	/// <param name="other">A <see cref="Range{T}" />.</param>
+	/// <returns><see langword="true" /> if <paramref name="other"/> is a <see cref="Range{T}" /> and its value 
+	/// is the same as this instance; otherwise, <see langword="false" />.</returns>
 	public bool Equals(Range<T> other) =>
 		this.Start == other.Start &&
 			this.End == other.End;
 
    /// <summary>
-   /// Determines whether this instance of <see cref="Range&lt;T&gt;" /> and a specified object, 
-   /// which must also be a <see cref="Range&lt;T&gt;" /> object, have the same value. 
+   /// Determines whether this instance of <see cref="Range{T}" /> and a specified object, 
+   /// which must also be a <see cref="Range{T}" /> object, have the same value. 
    /// </summary>
    /// <param name="obj">An <see cref="Object" />.</param>
-   /// <returns><b>true</b> if <paramref name="obj"/> is a <see cref="Range&lt;T&gt;" /> and its value 
-   /// is the same as this instance; otherwise, <b>false</b>.</returns>
+   /// <returns><see langword="true" /> if <paramref name="obj"/> is a <see cref="Range{T}" /> and its value 
+   /// is the same as this instance; otherwise, <see langword="false" />.</returns>
    public override bool Equals(object? obj) =>
 		obj is Range<T> range && this.Equals(range);
 
    /// <summary>
-   /// Returns the hash code for this <see cref="Range&lt;T&gt;" />.
+   /// Returns the hash code for this <see cref="Range{T}" />.
    /// </summary>
    /// <returns>A 32-bit signed integer hash code.</returns>		
    public override int GetHashCode() => HashCode.Combine(this.Start, this.End);
 
 	/// <summary>
-	/// Gets the intersection of the current <see cref="Range&lt;T&gt;" /> 
-	/// and the target <see cref="Range&lt;T&gt;" />.
+	/// Gets the intersection of the current <see cref="Range{T}" /> 
+	/// and the target <see cref="Range{T}" />.
 	/// </summary>
-	/// <param name="target">The target <see cref="Range&lt;T&gt;" />.</param>
-	/// <returns>A new <see cref="Range&lt;T&gt;" /> instance that is the intersection, 
-	/// or <c>null</c> if there is no intersection.</returns>
+	/// <param name="target">The target <see cref="Range{T}" />.</param>
+	/// <returns>A new <see cref="Range{T}" /> instance that is the intersection, 
+	/// or <see langword="null" /> if there is no intersection.</returns>
 	public Range<T>? Intersect(Range<T> target)
 	{
 		Range<T>? intersection = null;
@@ -125,13 +125,13 @@ public readonly struct Range<T>
 	}
 
 	/// <summary>
-	/// Gets the intersection of the current <see cref="Range&lt;T&gt;" /> 
+	/// Gets the intersection of the current <see cref="Range{T}" /> 
 	/// and the target range specified by <paramref name="start"/> and <paramref name="end"/>.
 	/// </summary>
 	/// <param name="start">The start value (inclusive) of the range.</param>
 	/// <param name="end">The end value (exclusive) of the range.</param>
-	/// <returns>A new <see cref="Range&lt;T&gt;" /> instance that is the intersection, 
-	/// or <c>null</c> if there is no intersection.</returns>
+	/// <returns>A new <see cref="Range{T}" /> instance that is the intersection, 
+	/// or <see langword="null" /> if there is no intersection.</returns>
 	public Range<T>? Intersect(T start, T end) => this.Intersect(new Range<T>(start, end));
 
 #pragma warning disable CA1000 // Do not declare static members on generic types
@@ -145,7 +145,7 @@ public readonly struct Range<T>
 #pragma warning restore CA1000 // Do not declare static members on generic types
 
 	/// <summary>
-	/// Provides an array of <see cref="Range&lt;T&gt;" /> values split up
+	/// Provides an array of <see cref="Range{T}" /> values split up
 	/// based on the <paramref name="numberOfPartitions"/> value.
 	/// </summary>
 	/// <param name="numberOfPartitions">The number of partitions to make.</param>
@@ -233,16 +233,16 @@ public readonly struct Range<T>
 	}
 
 	/// <summary>
-	/// Creates a new <see cref="Range&lt;T&gt;"/> with the start and end values
+	/// Creates a new <see cref="Range{T}"/> with the start and end values
 	/// shifted the value provided in <paramref name="delta"/>.
 	/// </summary>
-	/// <param name="delta">The value to shift the start and end values iwth.</param>
-	/// <returns>A new, shifted <see cref="Range&lt;T&gt;"/>.</returns>
+	/// <param name="delta">The value to shift the start and end values with.</param>
+	/// <returns>A new, shifted <see cref="Range{T}"/>.</returns>
 	public Range<T> Shift(T delta) =>
 		new(this.Start + delta, this.End + delta);
 
 	/// <summary>
-	/// Provides a string representation of the current <see cref="Range&lt;T&gt;"/>.
+	/// Provides a string representation of the current <see cref="Range{T}"/>.
 	/// </summary>
 	/// <returns>Returns a string in the format "[start, end)".</returns>
 	public override string ToString() => $"[{this.Start}, {this.End})";
@@ -278,13 +278,13 @@ public readonly struct Range<T>
 #pragma warning restore CA1000 // Do not declare static members on generic types
 
 	/// <summary>
-	/// Gets the union of the current <see cref="Range&lt;T&gt;" /> 
-	/// and the target <see cref="Range&lt;T&gt;" />.
+	/// Gets the union of the current <see cref="Range{T}" /> 
+	/// and the target <see cref="Range{T}" />.
 	/// </summary>
-	/// <param name="target">The target <see cref="Range&lt;T&gt;" />.</param>
-	/// <returns>A new <see cref="Range&lt;T&gt;" /> instance that is the union, 
-	/// or <c>null</c> if there is no intersection.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is <c>null</c>.</exception>
+	/// <param name="target">The target <see cref="Range{T}" />.</param>
+	/// <returns>A new <see cref="Range{T}" /> instance that is the union, 
+	/// or <see langword="null" /> if there is no intersection.</returns>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="target"/> is <see langword="null" />.</exception>
 	public Range<T>? Union(Range<T> target)
 	{
 		Range<T>? intersection = null;

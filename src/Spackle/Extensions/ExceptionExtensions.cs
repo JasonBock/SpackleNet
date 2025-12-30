@@ -21,7 +21,7 @@ public static partial class ExceptionExtensions
 	/// Prints the contents of <paramref name="self"/> to the console's output stream.
 	/// </summary>
 	/// <param name="self">The <see cref="Exception"/> to print.</param>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static void Print(this Exception self) =>
 		self.Print(Console.Out);
 
@@ -31,7 +31,7 @@ public static partial class ExceptionExtensions
 	/// <param name="self">The <see cref="Exception"/> to print.</param>
 	/// <param name="writer">The <see cref="TextWriter"/> to write exception information to.</param>
 	/// <exception cref="ArgumentNullException">
-	/// Thrown if either <paramref name="self"/> or <paramref name="writer"/> is <c>null</c>.
+	/// Thrown if either <paramref name="self"/> or <paramref name="writer"/> is <see langword="null" />.
 	/// </exception>
 	public static void Print(this Exception self, TextWriter writer)
 	{

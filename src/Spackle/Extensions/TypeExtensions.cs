@@ -10,7 +10,7 @@ public static class TypeExtensions
 	/// </summary>
 	/// <param name="self">The <see cref="Type"/> to check.</param>
 	/// <returns>Returns the root element <see cref="Type"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	/// <remarks>
 	/// Certain types (e.g. arrays and byrefs) have an element type. For example,
 	/// a byref array of integers ("int[]&amp;") has an element type of "int[]",

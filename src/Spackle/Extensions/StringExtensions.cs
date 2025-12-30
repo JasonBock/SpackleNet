@@ -10,7 +10,7 @@ public static class StringExtensions
 	/// </summary>
 	/// <param name="self">The <see cref="string"/> to transform.</param>
 	/// <returns>A new <see cref="Uri"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static Uri AsUri(this string self) => new(self);
 
 	/// <summary>

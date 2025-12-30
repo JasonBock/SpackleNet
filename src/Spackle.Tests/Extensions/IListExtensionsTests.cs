@@ -3,7 +3,7 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-internal static class IListOfTExtensionsTests
+internal static class IListExtensionsTests
 {
 	[Test]
 	public static void RotateNegative()

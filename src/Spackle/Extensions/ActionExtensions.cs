@@ -12,7 +12,7 @@ public static class ActionExtensions
 	/// </summary>
 	/// <param name="self">The <see cref="Action"/> to time.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time(this Action self)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -29,7 +29,7 @@ public static class ActionExtensions
 	/// <param name="self">The <see cref="Action"/> to time.</param>
 	/// <param name="obj">The parameter for <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T>(this Action<T> self, T obj)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -48,7 +48,7 @@ public static class ActionExtensions
 	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
 	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2>(this Action<T1, T2> self, T1 arg1, T2 arg2)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -69,7 +69,7 @@ public static class ActionExtensions
 	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
 	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3>(this Action<T1, T2, T3> self, T1 arg1, T2 arg2, T3 arg3)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -92,7 +92,7 @@ public static class ActionExtensions
 	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
 	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4>(this Action<T1, T2, T3, T4> self, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -117,7 +117,7 @@ public static class ActionExtensions
 	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5>(
 		this Action<T1, T2, T3, T4, T5> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
@@ -146,7 +146,7 @@ public static class ActionExtensions
 	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6>(
 		this Action<T1, T2, T3, T4, T5, T6> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
@@ -177,7 +177,7 @@ public static class ActionExtensions
 	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7>(
 		this Action<T1, T2, T3, T4, T5, T6, T7> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
@@ -210,7 +210,7 @@ public static class ActionExtensions
 	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
 	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8)
@@ -245,7 +245,7 @@ public static class ActionExtensions
 	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -283,7 +283,7 @@ public static class ActionExtensions
 	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -323,7 +323,7 @@ public static class ActionExtensions
 	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg11">The eleventh parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -365,7 +365,7 @@ public static class ActionExtensions
 	/// <param name="arg11">The eleventh parameter to <paramref name="self"/>.</param>
 	/// <param name="arg12">The twelfth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -409,7 +409,7 @@ public static class ActionExtensions
 	/// <param name="arg12">The twelfth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg13">The thirteenth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -455,7 +455,7 @@ public static class ActionExtensions
 	/// <param name="arg13">The thirteenth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg14">The fourteenth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -503,7 +503,7 @@ public static class ActionExtensions
 	/// <param name="arg14">The fourteenth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg15">The fifteenth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -553,7 +553,7 @@ public static class ActionExtensions
 	/// <param name="arg15">The fifteenth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg16">The sixteenth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="TimeSpan"/> object that contains the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static TimeSpan Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(
 		this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,

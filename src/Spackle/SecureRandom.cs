@@ -27,7 +27,7 @@ public class SecureRandom
 	/// based on the given <see cref="RandomNumberGenerator"/>.
 	/// </summary>
 	/// <param name="generator">The <see cref="RandomNumberGenerator"/> to use.</param>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="generator"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="generator"/> is <see langword="null" />.</exception>
 	public SecureRandom(RandomNumberGenerator generator) =>
 		this.Generator = generator ?? throw new ArgumentNullException(nameof(generator));
 

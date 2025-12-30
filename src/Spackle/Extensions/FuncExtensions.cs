@@ -13,7 +13,7 @@ public static class FuncExtensions
 	/// <typeparam name="TResult">The return type of <paramref name="self"/>.</typeparam>
 	/// <param name="self">The <see cref="Func{TResult}"/> to time.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<TResult>(this Func<TResult> self)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -31,7 +31,7 @@ public static class FuncExtensions
 	/// <param name="self">The <see cref="Func{T, TResult}"/> to time.</param>
 	/// <param name="obj">The parameter for <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T, TResult>(this Func<T, TResult> self, T obj)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -51,7 +51,7 @@ public static class FuncExtensions
 	/// <param name="arg1">The first parameter to <paramref name="self"/>.</param>
 	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, TResult>(this Func<T1, T2, TResult> self, T1 arg1, T2 arg2)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -73,7 +73,7 @@ public static class FuncExtensions
 	/// <param name="arg2">The second parameter to <paramref name="self"/>.</param>
 	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, TResult>(this Func<T1, T2, T3, TResult> self, T1 arg1, T2 arg2, T3 arg3)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -97,7 +97,7 @@ public static class FuncExtensions
 	/// <param name="arg3">The third parameter to <paramref name="self"/>.</param>
 	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, TResult>(this Func<T1, T2, T3, T4, TResult> self, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
 	{
 		ArgumentNullException.ThrowIfNull(self);
@@ -123,7 +123,7 @@ public static class FuncExtensions
 	/// <param name="arg4">The fourth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, TResult>(
 		this Func<T1, T2, T3, T4, T5, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
@@ -153,7 +153,7 @@ public static class FuncExtensions
 	/// <param name="arg5">The fifth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
@@ -185,7 +185,7 @@ public static class FuncExtensions
 	/// <param name="arg6">The sixth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, T7, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
@@ -219,7 +219,7 @@ public static class FuncExtensions
 	/// <param name="arg7">The seventh parameter to <paramref name="self"/>.</param>
 	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8)
@@ -255,7 +255,7 @@ public static class FuncExtensions
 	/// <param name="arg8">The eighth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -294,7 +294,7 @@ public static class FuncExtensions
 	/// <param name="arg9">The ninth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -335,7 +335,7 @@ public static class FuncExtensions
 	/// <param name="arg10">The tenth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg11">The eleventh parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -378,7 +378,7 @@ public static class FuncExtensions
 	/// <param name="arg11">The eleventh parameter to <paramref name="self"/>.</param>
 	/// <param name="arg12">The twelfth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -423,7 +423,7 @@ public static class FuncExtensions
 	/// <param name="arg12">The twelfth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg13">The thirteenth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -470,7 +470,7 @@ public static class FuncExtensions
 	/// <param name="arg13">The thirteenth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg14">The fourteenth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -519,7 +519,7 @@ public static class FuncExtensions
 	/// <param name="arg14">The fourteenth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg15">The fifteenth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,
@@ -570,7 +570,7 @@ public static class FuncExtensions
 	/// <param name="arg15">The fifteenth parameter to <paramref name="self"/>.</param>
 	/// <param name="arg16">The sixteenth parameter to <paramref name="self"/>.</param>
 	/// <returns>A <see cref="ValueTuple{TResult, TimeSpan}"/> object that contains the result and the time it took to run <paramref name="self"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <c>null</c>.</exception>
+	/// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> is <see langword="null" />.</exception>
 	public static (TResult, TimeSpan) Time<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TResult>(
 		this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TResult> self,
 		T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8,

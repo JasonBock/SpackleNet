@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using Spackle.Reflection.Extensions;
+using Spackle.Extensions;
 using System.Reflection;
 
-namespace Spackle.Tests.Reflection.Extensions;
+namespace Spackle.Tests.Extensions;
 
 internal static class ICustomAttributeProviderExtensionsTests
 {

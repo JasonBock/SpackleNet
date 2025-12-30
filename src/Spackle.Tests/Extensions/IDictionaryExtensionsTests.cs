@@ -3,7 +3,7 @@ using Spackle.Extensions;
 
 namespace Spackle.Tests.Extensions;
 
-internal static class IDictionaryOfTExtensionsTests
+internal static class IDictionaryExtensionsTests
 {
 	[Test]
 	public static void AddPairs()
