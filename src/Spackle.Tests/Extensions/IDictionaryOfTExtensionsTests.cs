@@ -21,13 +21,12 @@ internal static class IDictionaryOfTExtensionsTests
 		};
 
 		target.AddPairs(pairs);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(target, Has.Count.EqualTo(4));
 			Assert.That(target[3], Is.EqualTo("c"));
 			Assert.That(target[4], Is.EqualTo("d"));
-		});
+		}
 	}
 
 	[Test]
@@ -46,12 +45,11 @@ internal static class IDictionaryOfTExtensionsTests
 		};
 
 		_ = Assert.Throws<ArgumentException>(() => target.AddPairs(pairs));
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(target, Has.Count.EqualTo(3));
 			Assert.That(target[3], Is.EqualTo("c"));
-		});
+		}
 	}
 
 	[Test]

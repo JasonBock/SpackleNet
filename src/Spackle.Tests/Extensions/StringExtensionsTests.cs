@@ -23,12 +23,11 @@ internal static class StringExtensionsTests
 		const string Site = "http://www.goodsite.com";
 
 		var success = Site.TryAsUri(out var result);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(success, Is.True);
 			Assert.That(result, Is.EqualTo(new Uri(Site)));
-		});
+		}
 	}
 
 	[Test]

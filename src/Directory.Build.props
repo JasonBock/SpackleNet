@@ -1,0 +1,19 @@
+<Project>
+	<PropertyGroup>
+		<AnalysisMode>all</AnalysisMode>
+		<Authors>Jason Bock</Authors>
+		<Copyright>Copyright © 2026</Copyright>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+		<!-- https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages -->
+		<NuGetAudit>true</NuGetAudit>
+		<NuGetAuditMode>all</NuGetAuditMode>
+		<NuGetAuditLevel>critical</NuGetAuditLevel>
+		<Nullable>enable</Nullable>
+		<TargetFramework>net10.0</TargetFramework>
+		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+		<UseArtifactsOutput>true</UseArtifactsOutput>
+		<Version>14.0.0</Version>
+	</PropertyGroup>
+</Project>

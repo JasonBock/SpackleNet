@@ -22,15 +22,14 @@ internal static class ExceptionExtensionsTests
 			using var writer = new StringWriter(CultureInfo.CurrentCulture);
 			e.Print(writer);
 			var content = writer.GetStringBuilder().ToString();
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
 				Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
 				Assert.That(content, Contains.Substring("https://help.com"));
 				Assert.That(content, Does.Not.Contain("Data:"));
 				Assert.That(content, Does.Not.Contain("Custom Properties:"));
-			});
+			}
 		}
 	}
 
@@ -41,14 +40,13 @@ internal static class ExceptionExtensionsTests
 		using var writer = new StringWriter(CultureInfo.CurrentCulture);
 		exception.Print(writer);
 		var content = writer.GetStringBuilder().ToString();
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(content, Contains.Substring("Type Name: System.NotSupportedException"));
 			Assert.That(content, Contains.Substring("Source: "));
 			Assert.That(content, Does.Not.Contain("Data:"));
 			Assert.That(content, Does.Not.Contain("Custom Properties:"));
-		});
+		}
 	}
 
 	[Test]
@@ -69,14 +67,13 @@ internal static class ExceptionExtensionsTests
 				Console.SetOut(writer);
 				e.Print();
 				var content = writer.GetStringBuilder().ToString();
-
-				Assert.Multiple(() =>
+				using (Assert.EnterMultipleScope())
 				{
 					Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
 					Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
 					Assert.That(content, Does.Not.Contain("Data:"));
 					Assert.That(content, Does.Not.Contain("Custom Properties:"));
-				});
+				}
 			}
 			finally
 			{
@@ -103,14 +100,13 @@ internal static class ExceptionExtensionsTests
 			using var writer = new StringWriter(CultureInfo.CurrentCulture);
 			e.Print(writer);
 			var content = writer.GetStringBuilder().ToString();
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
 				Assert.That(content, Contains.Substring("Source: Anonymously Hosted DynamicMethods Assembly"));
 				Assert.That(content, Does.Not.Contain("Data:"));
 				Assert.That(content, Does.Not.Contain("Custom Properties:"));
-			});
+			}
 		}
 	}
 
@@ -130,15 +126,14 @@ internal static class ExceptionExtensionsTests
 			using var writer = new StringWriter(CultureInfo.CurrentCulture);
 			e.Print(writer);
 			var content = writer.GetStringBuilder().ToString();
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
 				Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
 				Assert.That(content, Contains.Substring("Data:"));
 				Assert.That(content, Contains.Substring($"Key: {key}, Value: null"));
 				Assert.That(content, Does.Not.Contain("Custom Properties:"));
-			});
+			}
 		}
 	}
 
@@ -155,14 +150,13 @@ internal static class ExceptionExtensionsTests
 			using var writer = new StringWriter(CultureInfo.CurrentCulture);
 			e.Print(writer);
 			var content = writer.GetStringBuilder().ToString();
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
 				Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
 				Assert.That(content, Does.Not.Contain("Data:"));
 				Assert.That(content, Does.Not.Contain("Custom Properties:"));
-			});
+			}
 		}
 	}
 
@@ -187,15 +181,14 @@ internal static class ExceptionExtensionsTests
 			using var writer = new StringWriter(CultureInfo.CurrentCulture);
 			e.Print(writer);
 			var content = writer.GetStringBuilder().ToString();
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
 				Assert.That(content, Contains.Substring("Type Name: System.NotSupportedException"));
 				Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
 				Assert.That(content, Does.Not.Contain("Data:"));
 				Assert.That(content, Does.Not.Contain("Custom Properties:"));
-			});
+			}
 		}
 	}
 
@@ -212,8 +205,7 @@ internal static class ExceptionExtensionsTests
 			using var writer = new StringWriter(CultureInfo.CurrentCulture);
 			e.Print(writer);
 			var content = writer.GetStringBuilder().ToString();
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(content, Contains.Substring("Type Name: System.NotImplementedException"));
 				Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
@@ -221,7 +213,7 @@ internal static class ExceptionExtensionsTests
 				Assert.That(content, Contains.Substring("Key: This, Value: That"));
 				Assert.That(content, Contains.Substring("Key: And, Value: 33"));
 				Assert.That(content, Does.Not.Contain("Custom Properties:"));
-			});
+			}
 		}
 	}
 
@@ -238,8 +230,7 @@ internal static class ExceptionExtensionsTests
 			using var writer = new StringWriter(CultureInfo.CurrentCulture);
 			e.Print(writer);
 			var content = writer.GetStringBuilder().ToString();
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(content, Contains.Substring("Type Name: Spackle.Tests.Extensions.CustomException"));
 				Assert.That(content, Contains.Substring("Source: Spackle.Tests"));
@@ -247,7 +238,7 @@ internal static class ExceptionExtensionsTests
 				Assert.That(content, Contains.Substring("Custom Properties (1):"));
 				Assert.That(content, Contains.Substring("Value = custom"));
 				Assert.That(content, Does.Not.Contain("Data:"));
-			});
+			}
 		}
 	}
 

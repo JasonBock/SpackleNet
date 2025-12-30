@@ -142,12 +142,11 @@ internal static class SecureRandomTests
 		for (var i = 0; i < 100000; i++)
 		{
 			var x = random.Next(Max);
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(x, Is.GreaterThanOrEqualTo(0));
 				Assert.That(x, Is.LessThan(Max));
-			});
+			}
 		}
 	}
 
@@ -170,12 +169,11 @@ internal static class SecureRandomTests
 		for (var i = 0; i < 100000; i++)
 		{
 			var x = random.Next(Min, Max);
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(x, Is.GreaterThanOrEqualTo(Min));
 				Assert.That(x, Is.LessThan(Max));
-			});
+			}
 		}
 	}
 
@@ -189,12 +187,11 @@ internal static class SecureRandomTests
 		for (var i = 0; i < 100000; i++)
 		{
 			var x = random.Next(Min, Max);
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(x, Is.GreaterThanOrEqualTo(Min));
 				Assert.That(x, Is.LessThan(Max));
-			});
+			}
 		}
 	}
 
@@ -208,12 +205,11 @@ internal static class SecureRandomTests
 		for (var i = 0; i < 100000; i++)
 		{
 			var x = random.Next(Min, Max);
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(x, Is.GreaterThanOrEqualTo(Min));
 				Assert.That(x, Is.LessThan(Max));
-			});
+			}
 		}
 	}
 
@@ -271,12 +267,11 @@ internal static class SecureRandomTests
 		for (var i = 0; i < 500000; i++)
 		{
 			var d = random.NextDouble();
-
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(d, Is.GreaterThanOrEqualTo(0.0));
 				Assert.That(d, Is.LessThan(1.0));
-			});
+			}
 		}
 	}
 
@@ -288,7 +283,7 @@ internal static class SecureRandomTests
 
 		var elements = random.GetByteValues(10, ValueGeneration.DuplicatesAllowed);
 		{
-			Assert.Multiple(() =>
+			using (Assert.EnterMultipleScope())
 			{
 				Assert.That(elements, Has.Length.EqualTo(10), nameof(elements.Length));
 
@@ -300,7 +295,7 @@ internal static class SecureRandomTests
 				}
 
 				Assert.That(generator.MethodCallCount, Is.EqualTo(1), nameof(generator.MethodCallCount));
-			});
+			}
 		}
 	}
 
@@ -309,8 +304,7 @@ internal static class SecureRandomTests
 	{
 		var random = new SecureRandom();
 		var elements = random.GetByteValues(2560, ValueGeneration.DuplicatesAllowed);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(elements, Has.Length.EqualTo(2560), nameof(elements.Length));
 
@@ -321,8 +315,8 @@ internal static class SecureRandomTests
 				Assert.That(element, Is.LessThanOrEqualTo(byte.MaxValue));
 			}
 
-			Assert.That(new HashSet<byte>(elements), Has.Count.Not.EqualTo(elements.Length), nameof(HashSet<byte>.Count));
-		});
+			Assert.That(new HashSet<byte>(elements), Has.Count.Not.EqualTo(elements.Length), nameof(HashSet<>.Count));
+		}
 	}
 
 	[Test]
@@ -331,8 +325,7 @@ internal static class SecureRandomTests
 		using var generator = new MockRandomNumberGeneratorForGetByteValues(ValueGeneration.UniqueValuesOnly);
 		var random = new SecureRandom(generator);
 		var elements = random.GetByteValues(10, ValueGeneration.UniqueValuesOnly);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(elements, Has.Length.EqualTo(10), nameof(elements.Length));
 
@@ -343,9 +336,9 @@ internal static class SecureRandomTests
 				Assert.That(element, Is.LessThanOrEqualTo(byte.MaxValue));
 			}
 
-			Assert.That(new HashSet<byte>(elements), Has.Count.EqualTo(elements.Length), nameof(HashSet<byte>.Count));
+			Assert.That(new HashSet<byte>(elements), Has.Count.EqualTo(elements.Length), nameof(HashSet<>.Count));
 			Assert.That(generator.MethodCallCount, Is.EqualTo(11), nameof(generator.MethodCallCount));
-		});
+		}
 	}
 
 	[Test]
@@ -360,8 +353,7 @@ internal static class SecureRandomTests
 	{
 		var random = new SecureRandom();
 		var elements = random.GetDoubleValues(8);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			for (var i = 0; i < elements.Length; i++)
 			{
@@ -369,7 +361,7 @@ internal static class SecureRandomTests
 				Assert.That(element, Is.GreaterThanOrEqualTo(double.MinValue));
 				Assert.That(element, Is.LessThan(double.MaxValue));
 			}
-		});
+		}
 	}
 
 	[Test]
@@ -378,8 +370,7 @@ internal static class SecureRandomTests
 		using var generator = new MockRandomNumberGeneratorForGetInt32Values(ValueGeneration.DuplicatesAllowed);
 		var random = new SecureRandom(generator);
 		var elements = random.GetInt32Values(8, ValueGeneration.DuplicatesAllowed);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(elements, Has.Length.EqualTo(8), nameof(elements.Length));
 
@@ -391,7 +382,7 @@ internal static class SecureRandomTests
 			}
 
 			Assert.That(generator.MethodCallCount, Is.EqualTo(8), nameof(generator.MethodCallCount));
-		});
+		}
 	}
 
 	[Test]
@@ -400,8 +391,7 @@ internal static class SecureRandomTests
 		using var generator = new MockRandomNumberGeneratorForGetInt32Values(ValueGeneration.UniqueValuesOnly);
 		var random = new SecureRandom(generator);
 		var elements = random.GetInt32Values(8, ValueGeneration.UniqueValuesOnly);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(elements, Has.Length.EqualTo(8), nameof(elements.Length));
 
@@ -412,9 +402,9 @@ internal static class SecureRandomTests
 				Assert.That(element, Is.LessThanOrEqualTo(int.MaxValue));
 			}
 
-			Assert.That(new HashSet<int>(elements), Has.Count.EqualTo(elements.Length), nameof(HashSet<int>.Count));
+			Assert.That(new HashSet<int>(elements), Has.Count.EqualTo(elements.Length), nameof(HashSet<>.Count));
 			Assert.That(generator.MethodCallCount, Is.EqualTo(9), nameof(generator.MethodCallCount));
-		});
+		}
 	}
 
 	[Test]

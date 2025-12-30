@@ -11,8 +11,7 @@ internal static class RangeTests
 		var rangeA = new Range<int>(1, 3);
 		var rangeB = new Range<int>(2, 4);
 		var rangeC = new Range<int>(1, 3);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 #pragma warning disable NUnit2010 // Use EqualConstraint for better assertion messages in case of failure
 			Assert.That(rangeB == rangeA, Is.False);
@@ -32,7 +31,7 @@ internal static class RangeTests
 			Assert.That(rangeA, Is.EqualTo(rangeC));
 			Assert.That(rangeB, Is.Not.EqualTo(rangeC));
 #pragma warning restore NUnit2010 // Use EqualConstraint for better assertion messages in case of failure
-		});
+		}
 	}
 
 	[Test]
@@ -41,12 +40,11 @@ internal static class RangeTests
 		var rangeA = new Range<int>(1, 2);
 		var rangeB = new Range<int>(1, 3);
 		var rangeC = new Range<int>(1, 2);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(rangeB.GetHashCode(), Is.Not.EqualTo(rangeA.GetHashCode()));
 			Assert.That(rangeC.GetHashCode(), Is.EqualTo(rangeA.GetHashCode()));
-		});
+		}
 	}
 
 	[TestCase(5, true)]
@@ -76,24 +74,22 @@ internal static class RangeTests
 	public static void CreateDefault()
 	{
 		var range = new Range<int>();
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
-			Assert.That(range.Start, Is.EqualTo(0), nameof(range.Start));
+			Assert.That(range.Start, Is.Zero, nameof(range.Start));
 			Assert.That(range.End, Is.EqualTo(1), nameof(range.End));
-		});
+		}
 	}
 
 	[Test]
 	public static void CreateRangeWithStartLessThanEnd()
 	{
 		var range = new Range<int>(-3, 4);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(range.Start, Is.EqualTo(-3), nameof(range.Start));
 			Assert.That(range.End, Is.EqualTo(4), nameof(range.End));
-		});
+		}
 	}
 
 	[Test]
@@ -116,12 +112,11 @@ internal static class RangeTests
 	{
 		var range = new Range<int>(3, 6);
 		var (start, end) = range;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(start, Is.EqualTo(3));
 			Assert.That(end, Is.EqualTo(6));
-		});
+		}
 	}
 
 	[Test]
@@ -129,12 +124,11 @@ internal static class RangeTests
 	{
 		var range = new Range<int>(3, 6);
 		var intersection = range.Intersect(new Range<int>(5, 8))!.Value;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(intersection.Start, Is.EqualTo(5), nameof(intersection.Start));
 			Assert.That(intersection.End, Is.EqualTo(6), nameof(intersection.End));
-		});
+		}
 	}
 
 	[Test]
@@ -142,12 +136,11 @@ internal static class RangeTests
 	{
 		var range = new Range<int>(3, 6);
 		var intersection = range.Intersect(5, 8)!.Value;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(intersection.Start, Is.EqualTo(5), nameof(intersection.Start));
 			Assert.That(intersection.End, Is.EqualTo(6), nameof(intersection.End));
-		});
+		}
 	}
 
 	[Test]
@@ -155,12 +148,11 @@ internal static class RangeTests
 	{
 		var range = new Range<int>(5, 8);
 		var intersection = range.Intersect(new Range<int>(3, 6))!.Value;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(intersection.Start, Is.EqualTo(5), nameof(intersection.Start));
 			Assert.That(intersection.End, Is.EqualTo(6), nameof(intersection.End));
-		});
+		}
 	}
 
 	[Test]
@@ -182,12 +174,11 @@ internal static class RangeTests
 	{
 		var range = new Range<int>(3, 6);
 		var union = range.Union(new Range<int>(4, 10))!.Value;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(union.Start, Is.EqualTo(3), nameof(union.Start));
 			Assert.That(union.End, Is.EqualTo(10), nameof(union.End));
-		});
+		}
 	}
 
 	[Test]
@@ -195,12 +186,11 @@ internal static class RangeTests
 	{
 		var range = new Range<int>(4, 10);
 		var union = range.Union(new Range<int>(3, 6))!.Value;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(union.Start, Is.EqualTo(3), nameof(union.Start));
 			Assert.That(union.End, Is.EqualTo(10), nameof(union.End));
-		});
+		}
 	}
 
 	[Test]
@@ -208,12 +198,11 @@ internal static class RangeTests
 	{
 		var range = new Range<int>(1, 10);
 		var union = range.Union(new Range<int>(3, 6))!.Value;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(union.Start, Is.EqualTo(1), nameof(union.Start));
 			Assert.That(union.End, Is.EqualTo(10), nameof(union.End));
-		});
+		}
 	}
 
 	[Test]
@@ -221,12 +210,11 @@ internal static class RangeTests
 	{
 		var range = new Range<int>(3, 6);
 		var union = range.Union(new Range<int>(1, 10))!.Value;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(union.Start, Is.EqualTo(1), nameof(union.Start));
 			Assert.That(union.End, Is.EqualTo(10), nameof(union.End));
-		});
+		}
 	}
 
 	[Test]
@@ -240,13 +228,12 @@ internal static class RangeTests
 	public static void Parse()
 	{
 		var content = "[3, 7)";
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			var range = Range<int>.Parse(content, CultureInfo.CurrentCulture);
 			Assert.That(range.Start, Is.EqualTo(3));
 			Assert.That(range.End, Is.EqualTo(7));
-		});
+		}
 	}
 
 	[Test]
@@ -257,13 +244,12 @@ internal static class RangeTests
 	public static void ParseAsSpan()
 	{
 		var content = "[3, 7)";
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			var range = Range<int>.Parse(content.AsSpan(), CultureInfo.CurrentCulture);
 			Assert.That(range.Start, Is.EqualTo(3));
 			Assert.That(range.End, Is.EqualTo(7));
-		});
+		}
 	}
 
 	[Test]
@@ -271,12 +257,11 @@ internal static class RangeTests
 	{
 		var range = new Range<int>(0, 1000);
 		var partitions = range.Partition(4);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(partitions, Has.Length.EqualTo(4), nameof(partitions.Length));
 
-			Assert.That(partitions[0].Start, Is.EqualTo(0), "partitions[0].Start");
+			Assert.That(partitions[0].Start, Is.Zero, "partitions[0].Start");
 			Assert.That(partitions[0].End, Is.EqualTo(250), "partitions[0].End");
 
 			Assert.That(partitions[1].Start, Is.EqualTo(250), "partitions[1].Start");
@@ -287,7 +272,7 @@ internal static class RangeTests
 
 			Assert.That(partitions[3].Start, Is.EqualTo(750), "partitions[3].Start");
 			Assert.That(partitions[3].End, Is.EqualTo(1000), "partitions[3].End");
-		});
+		}
 	}
 
 	[Test]
@@ -295,8 +280,7 @@ internal static class RangeTests
 	{
 		var range = new Range<int>(1, 50000);
 		var partitions = range.Partition(7);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(partitions, Has.Length.EqualTo(7), nameof(partitions.Length));
 
@@ -320,7 +304,7 @@ internal static class RangeTests
 
 			Assert.That(partitions[6].Start, Is.EqualTo(42858), "partitions[6].Start");
 			Assert.That(partitions[6].End, Is.EqualTo(50000), "partitions[6].End");
-		});
+		}
 	}
 
 	[Test]
@@ -343,8 +327,7 @@ internal static class RangeTests
 	{
 		var range = new Range<double>(15.312, 54109.581);
 		var partitions = range.Partition(7);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(partitions, Has.Length.EqualTo(7), nameof(partitions.Length));
 
@@ -368,7 +351,7 @@ internal static class RangeTests
 
 			Assert.That(partitions[6].Start, Is.EqualTo(46381.828285714284), "partitions[6].Start");
 			Assert.That(partitions[6].End, Is.EqualTo(54109.581), "partitions[6].End");
-		});
+		}
 	}
 
 	[Test]
@@ -380,13 +363,12 @@ internal static class RangeTests
 	public static void TryParse()
 	{
 		var content = "[3, 7)";
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(Range<int>.TryParse(content, CultureInfo.CurrentCulture, out var range), Is.True);
 			Assert.That(range.Start, Is.EqualTo(3));
 			Assert.That(range.End, Is.EqualTo(7));
-		});
+		}
 	}
 
 	[TestCase("[3, 7]")]
@@ -406,13 +388,12 @@ internal static class RangeTests
 	public static void TryParseAsSpan()
 	{
 		var content = "[3, 7)";
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(Range<int>.TryParse(content.AsSpan(), CultureInfo.CurrentCulture, out var range), Is.True);
 			Assert.That(range.Start, Is.EqualTo(3));
 			Assert.That(range.End, Is.EqualTo(7));
-		});
+		}
 	}
 
 	[Test]
@@ -420,11 +401,10 @@ internal static class RangeTests
 	{
 		var range = new Range<double>(531.431, 589.1);
 		var shiftedRange = range.Shift(28.32);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(shiftedRange.Start, Is.EqualTo(559.75100000000009));
 			Assert.That(shiftedRange.End, Is.EqualTo(617.42000000000007));
-		});
+		}
 	}
 }

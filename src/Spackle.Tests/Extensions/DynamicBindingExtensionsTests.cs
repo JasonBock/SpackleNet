@@ -25,11 +25,11 @@ internal static class DynamicBindingExtensionsTests
 			}
 		}
 
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(builder.ToString(), Is.EqualTo(newValue), nameof(builder));
 			Assert.That(writer.Writer.GetStringBuilder().ToString(), Is.EqualTo(original), nameof(writer));
-		});
+		}
 	}
 
 	[Test]
@@ -52,11 +52,11 @@ internal static class DynamicBindingExtensionsTests
 			}
 		}
 
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(builder.ToString(), Is.EqualTo(newValue), nameof(builder));
 			Assert.That(writer.Writer.GetStringBuilder().ToString(), Is.EqualTo(original), nameof(writer));
-		});
+		}
 	}
 
 	[Test]
@@ -66,8 +66,7 @@ internal static class DynamicBindingExtensionsTests
 		var original = random.Next();
 		var newValue = random.Next();
 		var binded = original;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(binded, Is.EqualTo(original));
 
@@ -77,7 +76,7 @@ internal static class DynamicBindingExtensionsTests
 			}
 
 			Assert.That(binded, Is.EqualTo(original));
-		});
+		}
 	}
 
 	[Test]
@@ -86,8 +85,7 @@ internal static class DynamicBindingExtensionsTests
 		var original = Guid.NewGuid().ToString();
 		var newValue = Guid.NewGuid().ToString();
 		var binded = new Binded { InternalInstanceField = original };
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(binded.InternalInstanceField, Is.EqualTo(original));
 
@@ -97,7 +95,7 @@ internal static class DynamicBindingExtensionsTests
 			}
 
 			Assert.That(binded.InternalInstanceField, Is.EqualTo(original));
-		});
+		}
 	}
 
 	[Test]
@@ -106,8 +104,7 @@ internal static class DynamicBindingExtensionsTests
 		var original = Guid.NewGuid().ToString();
 		var newValue = Guid.NewGuid().ToString();
 		var binded = new Binded { InternalInstanceProperty = original };
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(binded.InternalInstanceProperty, Is.EqualTo(original));
 
@@ -117,7 +114,7 @@ internal static class DynamicBindingExtensionsTests
 			}
 
 			Assert.That(binded.InternalInstanceProperty, Is.EqualTo(original));
-		});
+		}
 	}
 
 	[Test]
@@ -126,8 +123,7 @@ internal static class DynamicBindingExtensionsTests
 		var original = Guid.NewGuid().ToString();
 		var newValue = Guid.NewGuid().ToString();
 		Binded.InternalStaticField = original;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(Binded.InternalStaticField, Is.EqualTo(original));
 
@@ -137,7 +133,7 @@ internal static class DynamicBindingExtensionsTests
 			}
 
 			Assert.That(Binded.InternalStaticField, Is.EqualTo(original));
-		});
+		}
 	}
 
 	[Test]
@@ -146,8 +142,7 @@ internal static class DynamicBindingExtensionsTests
 		var original = Guid.NewGuid().ToString();
 		var newValue = Guid.NewGuid().ToString();
 		Binded.InternalStaticProperty = original;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(Binded.InternalStaticProperty, Is.EqualTo(original));
 
@@ -157,7 +152,7 @@ internal static class DynamicBindingExtensionsTests
 			}
 
 			Assert.That(Binded.InternalStaticProperty, Is.EqualTo(original));
-		});
+		}
 	}
 
 	[Test]
@@ -166,8 +161,7 @@ internal static class DynamicBindingExtensionsTests
 		var original = Guid.NewGuid().ToString();
 		var newValue = Guid.NewGuid().ToString();
 		var binded = new Binded { InstanceField = original };
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(binded.InstanceField, Is.EqualTo(original));
 
@@ -177,7 +171,7 @@ internal static class DynamicBindingExtensionsTests
 			}
 
 			Assert.That(binded.InstanceField, Is.EqualTo(original));
-		});
+		}
 	}
 
 	[Test]
@@ -186,8 +180,7 @@ internal static class DynamicBindingExtensionsTests
 		var original = Guid.NewGuid().ToString();
 		var newValue = Guid.NewGuid().ToString();
 		var binded = new Binded { InstanceProperty = original };
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(binded.InstanceProperty, Is.EqualTo(original));
 
@@ -197,7 +190,7 @@ internal static class DynamicBindingExtensionsTests
 			}
 
 			Assert.That(binded.InstanceProperty, Is.EqualTo(original));
-		});
+		}
 	}
 
 	[Test]
@@ -206,8 +199,7 @@ internal static class DynamicBindingExtensionsTests
 		var original = Guid.NewGuid().ToString();
 		var newValue = Guid.NewGuid().ToString();
 		Binded.StaticField = original;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(Binded.StaticField, Is.EqualTo(original));
 
@@ -217,7 +209,7 @@ internal static class DynamicBindingExtensionsTests
 			}
 
 			Assert.That(Binded.StaticField, Is.EqualTo(original));
-		});
+		}
 	}
 
 	[Test]
@@ -226,8 +218,7 @@ internal static class DynamicBindingExtensionsTests
 		var original = Guid.NewGuid().ToString();
 		var newValue = Guid.NewGuid().ToString();
 		Binded.StaticProperty = original;
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(Binded.StaticProperty, Is.EqualTo(original));
 
@@ -237,6 +228,6 @@ internal static class DynamicBindingExtensionsTests
 			}
 
 			Assert.That(Binded.StaticProperty, Is.EqualTo(original));
-		});
+		}
 	}
 }

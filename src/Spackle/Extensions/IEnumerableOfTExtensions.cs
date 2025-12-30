@@ -17,6 +17,6 @@ public static class IEnumerableOfTExtensions
 	public static ReadOnlyCollection<T> AsReadOnly<T>(this IEnumerable<T> self)
 	{
 		ArgumentNullException.ThrowIfNull(self);
-		return new ReadOnlyCollection<T>(new List<T>(self));
+		return new ReadOnlyCollection<T>([.. self]);
 	}
 }

@@ -9,12 +9,11 @@ internal static class FuncExtensionsTests
 	public static void TimeFunc()
 	{
 		var (result, elapsed) = new Func<Guid>(Guid.NewGuid).Time();
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -26,12 +25,11 @@ internal static class FuncExtensionsTests
 			var x = arg1;
 			return Guid.NewGuid();
 		}).Time(0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -43,12 +41,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2;
 			return Guid.NewGuid();
 		}).Time(0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -60,12 +57,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2 + arg3;
 			return Guid.NewGuid();
 		}).Time(0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -77,12 +73,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2 + arg3 + arg4;
 			return Guid.NewGuid();
 		}).Time(0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -94,12 +89,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2 + arg3 + arg4 + arg5;
 			return Guid.NewGuid();
 		}).Time(0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -111,12 +105,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6;
 			return Guid.NewGuid();
 		}).Time(0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -128,12 +121,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7;
 			return Guid.NewGuid();
 		}).Time(0, 0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -145,12 +137,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8;
 			return Guid.NewGuid();
 		}).Time(0, 0, 0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -162,12 +153,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9;
 			return Guid.NewGuid();
 		}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -179,12 +169,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10;
 			return Guid.NewGuid();
 		}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -196,12 +185,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11;
 			return Guid.NewGuid();
 		}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -213,12 +201,11 @@ internal static class FuncExtensionsTests
 			var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12;
 			return Guid.NewGuid();
 		}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -230,12 +217,11 @@ internal static class FuncExtensionsTests
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12 + arg13;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -247,12 +233,11 @@ internal static class FuncExtensionsTests
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12 + arg13 + arg14;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -264,12 +249,11 @@ internal static class FuncExtensionsTests
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12 + arg13 + arg14 + arg15;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]
@@ -281,12 +265,11 @@ internal static class FuncExtensionsTests
 				var x = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8 + arg9 + arg10 + arg11 + arg12 + arg13 + arg14 + arg15 + arg16;
 				return Guid.NewGuid();
 			}).Time(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-		Assert.Multiple(() =>
+		using (Assert.EnterMultipleScope())
 		{
 			Assert.That(result, Is.Not.EqualTo(Guid.Empty), nameof(result));
 			Assert.That(elapsed.TotalMilliseconds, Is.GreaterThanOrEqualTo(0), nameof(elapsed.TotalMilliseconds));
-		});
+		}
 	}
 
 	[Test]

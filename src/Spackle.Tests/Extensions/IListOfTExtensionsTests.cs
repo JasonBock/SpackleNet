@@ -79,7 +79,7 @@ internal static class IListOfTExtensionsTests
 	{
 		var items = new List<string> { "a", "b", "c", "d", "e" };
 		items.Shuffle();
-		Assert.That(items, Is.EquivalentTo(new List<string> { "a", "b", "c", "d", "e" }));
+		Assert.That(items, Is.EquivalentTo(["a", "b", "c", "d", "e"]));
 	}
 
 	[Test]
