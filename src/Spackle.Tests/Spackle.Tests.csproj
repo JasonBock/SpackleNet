@@ -1,6 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<EnableNUnitRunner>true</EnableNUnitRunner>
+		<OutputType>Exe</OutputType>
+		<TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="Microsoft.Testing.Extensions.VSTestBridge" />
+		<PackageReference Include="Microsoft.Testing.Platform.MSBuild" />
 		<PackageReference Include="NUnit.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
