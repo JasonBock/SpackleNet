@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Spackle.Extensions;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Spackle.Tests.Extensions;
@@ -62,7 +63,7 @@ internal static class DynamicBindingExtensionsTests
 	[Test]
 	public static void BindToLocalVariable()
 	{
-		var random = new SecureRandom();
+		using var random = RandomNumberGenerator.Create();
 		var original = random.Next();
 		var newValue = random.Next();
 		var binded = original;

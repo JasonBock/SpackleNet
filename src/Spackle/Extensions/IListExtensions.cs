@@ -1,4 +1,6 @@
-﻿namespace Spackle.Extensions;
+﻿using System.Security.Cryptography;
+
+namespace Spackle.Extensions;
 
 /// <summary>
 /// Provides extension methods for <see cref="IList{T}"/>-based objects.
@@ -90,11 +92,12 @@ public static class IListExtensions
 	public static void Shuffle<T>(this IList<T> self)
 	{
 		ArgumentNullException.ThrowIfNull(self);
-		self.Shuffle(new SecureRandom());
+		using var random = RandomNumberGenerator.Create();
+		self.Shuffle(random);
 	}
 
 	/// <summary>
-	/// Shuffles the given list using the given <see cref="SecureRandom"/> generator.
+	/// Shuffles the given list using the given <see cref="RandomNumberGenerator"/> generator.
 	/// </summary>
 	/// <typeparam name="T">The type of the members in <paramref name="self"/>.</typeparam>
 	/// <param name="self">The list to shuffle.</param>
@@ -104,7 +107,7 @@ public static class IListExtensions
 	/// The implementation of <c>Shuffle</c> uses the Fisher–Yates shuffle, as implemented by Durstenfeld - 
 	/// see http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle for details on this implementation.
 	/// </remarks>
-	public static void Shuffle<T>(this IList<T> self, SecureRandom random)
+	public static void Shuffle<T>(this IList<T> self, RandomNumberGenerator random)
 	{
 		ArgumentNullException.ThrowIfNull(self);
 		ArgumentNullException.ThrowIfNull(random);

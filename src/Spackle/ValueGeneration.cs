@@ -1,7 +1,9 @@
-﻿namespace Spackle;
+﻿using Spackle.Extensions;
+
+namespace Spackle;
 
 /// <summary>
-/// Used by <see cref="SecureRandom"/> when generating arrays of random numbers.
+/// Used by <see cref="RandomNumberGeneratorExtensions"/> when generating arrays of random numbers.
 /// </summary>
 public enum ValueGeneration
 {

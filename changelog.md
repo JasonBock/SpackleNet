@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Updated to target .NET 10 (issue [#51](https://github.com/JasonBock/SpackleNet/issues/51))
+- Removed `SecureRandom` and refactored its' members into `RandomNumberGeneratorExtensions` (issue [#54](https://github.com/JasonBock/SpackleNet/issues/54))
 
 ## [13.0.1] - 2024.11.28
 
