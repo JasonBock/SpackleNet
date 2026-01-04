@@ -121,6 +121,77 @@ internal static class StringExtensionsTests
 	}
 
 	[Test]
+	public static void GetIndexesWhenOneStringExistsWithUniqueAndStringComparison()
+	{
+		var content = "abcdef";
+		var indexes = content.IndexesOf("d", StringComparison.CurrentCultureIgnoreCase, IndexesSearch.Unique);
+
+		using (Assert.EnterMultipleScope())
+		{
+			Assert.That(indexes, Has.Length.EqualTo(1));
+			Assert.That(indexes[0], Is.EqualTo(3));
+		}
+	}
+
+	[Test]
+	public static void GetIndexesWhenOneStringExistsWithOverlapAndStringComparison()
+	{
+		var content = "abcdef";
+		var indexes = content.IndexesOf("d", StringComparison.CurrentCultureIgnoreCase, IndexesSearch.Overlap);
+
+		using (Assert.EnterMultipleScope())
+		{
+			Assert.That(indexes, Has.Length.EqualTo(1));
+			Assert.That(indexes[0], Is.EqualTo(3));
+		}
+	}
+
+	[Test]
+	public static void GetIndexesWhenMultipleStringsExistsWithUniqueAndStringComparison()
+	{
+		var content = "aaaAAaAA";
+		var indexes = content.IndexesOf("aa", StringComparison.CurrentCultureIgnoreCase, IndexesSearch.Unique);
+
+		using (Assert.EnterMultipleScope())
+		{
+			Assert.That(indexes, Has.Length.EqualTo(4));
+			Assert.That(indexes[0], Is.EqualTo(0));
+			Assert.That(indexes[1], Is.EqualTo(2));
+			Assert.That(indexes[2], Is.EqualTo(4));
+			Assert.That(indexes[3], Is.EqualTo(6));
+		}
+	}
+
+	[Test]
+	public static void GetIndexesWhenMultipleStringsExistsWithOverlapAndStringComparison()
+	{
+		var content = "aaaAAaAA";
+		var indexes = content.IndexesOf("aa", StringComparison.CurrentCultureIgnoreCase, IndexesSearch.Overlap);
+
+		using (Assert.EnterMultipleScope())
+		{
+			Assert.That(indexes, Has.Length.EqualTo(7));
+			Assert.That(indexes[0], Is.EqualTo(0));
+			Assert.That(indexes[1], Is.EqualTo(1));
+			Assert.That(indexes[2], Is.EqualTo(2));
+			Assert.That(indexes[3], Is.EqualTo(3));
+			Assert.That(indexes[4], Is.EqualTo(4));
+			Assert.That(indexes[5], Is.EqualTo(5));
+			Assert.That(indexes[6], Is.EqualTo(6));
+		}
+	}
+
+	[TestCase(IndexesSearch.Unique)]
+	[TestCase(IndexesSearch.Overlap)]
+	public static void GetIndexesWhenNoStringExistsAndStringComparison(IndexesSearch indexesSearch)
+	{
+		var content = "abcdef";
+		var indexes = content.IndexesOf("q", StringComparison.CurrentCultureIgnoreCase, indexesSearch);
+
+		Assert.That(indexes, Has.Length.EqualTo(0));
+	}
+
+	[Test]
 	public static void TryAsUri()
 	{
 		const string Site = "http://www.goodsite.com";

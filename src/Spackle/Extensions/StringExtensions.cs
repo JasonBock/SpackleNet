@@ -42,14 +42,24 @@ public static class StringExtensions
 		/// <param name="indexesSearch">The kind of search to do on <paramref name="self"/>.</param>
 		/// <returns>An array containing all of the indexes for <paramref name="value"/>.</returns>
 		/// <exception cref="ArgumentNullException">Thrown if <paramref name="value" /> is <see langword="null" />.</exception>
-		public int[] IndexesOf(string value, IndexesSearch indexesSearch)
+		public int[] IndexesOf(string value, IndexesSearch indexesSearch) =>
+			self.IndexesOf(value, StringComparison.CurrentCulture, indexesSearch);
+
+		/// <summary>
+		/// Gets all the indexes of <paramref name="value"/>.
+		/// </summary>
+		/// <param name="value">The value to look for in <paramref name="self"/>.</param>
+		/// <param name="comparisonType">One of the enumeration values that specifies the rules of the search.</param>
+		/// <param name="indexesSearch">The kind of search to do on <paramref name="self"/>.</param>
+		/// <returns>An array containing all of the indexes for <paramref name="value"/>.</returns>
+		/// <exception cref="ArgumentNullException">Thrown if <paramref name="value" /> is <see langword="null" />.</exception>
+		public int[] IndexesOf(string value, StringComparison comparisonType, IndexesSearch indexesSearch)
 		{
 			ArgumentNullException.ThrowIfNull(value);
 			var indexes = new List<int>();
 
 			var startIndex = 0;
-#pragma warning disable CA1310 // Specify StringComparison for correctness
-			var index = self.IndexOf(value, startIndex);
+			var index = self.IndexOf(value, startIndex, comparisonType);
 
 			while (index != -1)
 			{
@@ -58,9 +68,8 @@ public static class StringExtensions
 				startIndex = indexesSearch == IndexesSearch.Unique ?
 					index + value.Length :
 					index + 1;
-				index = self.IndexOf(value, startIndex);
+				index = self.IndexOf(value, startIndex, comparisonType);
 			}
-#pragma warning restore CA1310 // Specify StringComparison for correctness
 
 			return [.. indexes];
 		}
