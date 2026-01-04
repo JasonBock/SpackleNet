@@ -21,12 +21,12 @@ internal static class StringExtensionsTests
 	public static void GetIndexesWhenOneCharacterExists()
 	{
 		var content = "abcdef";
-		var indeces = content.IndexesOf('d');
+		var indexes = content.IndexesOf('d');
 
 		using (Assert.EnterMultipleScope())
 		{
-			Assert.That(indeces, Has.Length.EqualTo(1));
-			Assert.That(indeces[0], Is.EqualTo(3));
+			Assert.That(indexes, Has.Length.EqualTo(1));
+			Assert.That(indexes[0], Is.EqualTo(3));
 		}
 	}
 
@@ -34,37 +34,37 @@ internal static class StringExtensionsTests
 	public static void GetIndexesWhenMultipleCharactersExists()
 	{
 		var content = "adbcddefd";
-		var indeces = content.IndexesOf('d');
+		var indexes = content.IndexesOf('d');
 
 		using (Assert.EnterMultipleScope())
 		{
-			Assert.That(indeces, Has.Length.EqualTo(4));
-			Assert.That(indeces[0], Is.EqualTo(1));
-			Assert.That(indeces[1], Is.EqualTo(4));
-			Assert.That(indeces[2], Is.EqualTo(5));
-			Assert.That(indeces[3], Is.EqualTo(8));
+			Assert.That(indexes, Has.Length.EqualTo(4));
+			Assert.That(indexes[0], Is.EqualTo(1));
+			Assert.That(indexes[1], Is.EqualTo(4));
+			Assert.That(indexes[2], Is.EqualTo(5));
+			Assert.That(indexes[3], Is.EqualTo(8));
 		}
 	}
 
 	[Test]
-	public static void GetIndecesWhenNoCharactersExists()
+	public static void GetindexesWhenNoCharactersExists()
 	{
 		var content = "abcdef";
-		var indeces = content.IndexesOf('g');
+		var indexes = content.IndexesOf('g');
 
-		Assert.That(indeces, Has.Length.EqualTo(0));
+		Assert.That(indexes, Has.Length.EqualTo(0));
 	}
 
 	[Test]
 	public static void GetIndexesWhenOneStringExistsWithUnique()
 	{
 		var content = "abcdef";
-		var indeces = content.IndexesOf("d", IndexesSearch.Unique);
+		var indexes = content.IndexesOf("d", IndexesSearch.Unique);
 
 		using (Assert.EnterMultipleScope())
 		{
-			Assert.That(indeces, Has.Length.EqualTo(1));
-			Assert.That(indeces[0], Is.EqualTo(3));
+			Assert.That(indexes, Has.Length.EqualTo(1));
+			Assert.That(indexes[0], Is.EqualTo(3));
 		}
 	}
 
@@ -72,12 +72,12 @@ internal static class StringExtensionsTests
 	public static void GetIndexesWhenOneStringExistsWithOverlap()
 	{
 		var content = "abcdef";
-		var indeces = content.IndexesOf("d", IndexesSearch.Overlap);
+		var indexes = content.IndexesOf("d", IndexesSearch.Overlap);
 
 		using (Assert.EnterMultipleScope())
 		{
-			Assert.That(indeces, Has.Length.EqualTo(1));
-			Assert.That(indeces[0], Is.EqualTo(3));
+			Assert.That(indexes, Has.Length.EqualTo(1));
+			Assert.That(indexes[0], Is.EqualTo(3));
 		}
 	}
 
@@ -85,13 +85,13 @@ internal static class StringExtensionsTests
 	public static void GetIndexesWhenMultipleStringsExistsWithUnique()
 	{
 		var content = "baaaccaa";
-		var indeces = content.IndexesOf("aa", IndexesSearch.Unique);
+		var indexes = content.IndexesOf("aa", IndexesSearch.Unique);
 
 		using (Assert.EnterMultipleScope())
 		{
-			Assert.That(indeces, Has.Length.EqualTo(2));
-			Assert.That(indeces[0], Is.EqualTo(1));
-			Assert.That(indeces[1], Is.EqualTo(6));
+			Assert.That(indexes, Has.Length.EqualTo(2));
+			Assert.That(indexes[0], Is.EqualTo(1));
+			Assert.That(indexes[1], Is.EqualTo(6));
 		}
 	}
 
@@ -99,14 +99,14 @@ internal static class StringExtensionsTests
 	public static void GetIndexesWhenMultipleStringsExistsWithOverlap()
 	{
 		var content = "baaaccaa";
-		var indeces = content.IndexesOf("aa", IndexesSearch.Overlap);
+		var indexes = content.IndexesOf("aa", IndexesSearch.Overlap);
 
 		using (Assert.EnterMultipleScope())
 		{
-			Assert.That(indeces, Has.Length.EqualTo(3));
-			Assert.That(indeces[0], Is.EqualTo(1));
-			Assert.That(indeces[1], Is.EqualTo(2));
-			Assert.That(indeces[2], Is.EqualTo(6));
+			Assert.That(indexes, Has.Length.EqualTo(3));
+			Assert.That(indexes[0], Is.EqualTo(1));
+			Assert.That(indexes[1], Is.EqualTo(2));
+			Assert.That(indexes[2], Is.EqualTo(6));
 		}
 	}
 
@@ -115,9 +115,9 @@ internal static class StringExtensionsTests
 	public static void GetIndexesWhenNoStringExists(IndexesSearch indexesSearch)
 	{
 		var content = "abcdef";
-		var indeces = content.IndexesOf("q", indexesSearch);
+		var indexes = content.IndexesOf("q", indexesSearch);
 
-		Assert.That(indeces, Has.Length.EqualTo(0));
+		Assert.That(indexes, Has.Length.EqualTo(0));
 	}
 
 	[Test]

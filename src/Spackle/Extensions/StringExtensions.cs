@@ -20,19 +20,19 @@ public static class StringExtensions
 		/// <returns>An array containing all of the indexes for <paramref name="value"/>.</returns>
 		public int[] IndexesOf(char value)
 		{
-			var indeces = new List<int>();
+			var indexes = new List<int>();
 
 			var startIndex = 0;
 			var index = self.IndexOf(value, startIndex);
 
 			while (index != -1)
 			{
-				indeces.Add(index);
+				indexes.Add(index);
 				startIndex = index + 1;
 				index = self.IndexOf(value, startIndex);
 			}
 
-			return [.. indeces];
+			return [.. indexes];
 		}
 
 		/// <summary>
@@ -45,7 +45,7 @@ public static class StringExtensions
 		public int[] IndexesOf(string value, IndexesSearch indexesSearch)
 		{
 			ArgumentNullException.ThrowIfNull(value);
-			var indeces = new List<int>();
+			var indexes = new List<int>();
 
 			var startIndex = 0;
 #pragma warning disable CA1310 // Specify StringComparison for correctness
@@ -54,7 +54,7 @@ public static class StringExtensions
 			while (index != -1)
 			{
 				// "aa" => "baaaccaa"
-				indeces.Add(index);
+				indexes.Add(index);
 				startIndex = indexesSearch == IndexesSearch.Unique ?
 					index + value.Length :
 					index + 1;
@@ -62,7 +62,7 @@ public static class StringExtensions
 			}
 #pragma warning restore CA1310 // Specify StringComparison for correctness
 
-			return [.. indeces];
+			return [.. indexes];
 		}
 
 		/// <summary>
