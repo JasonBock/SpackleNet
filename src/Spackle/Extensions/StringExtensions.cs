@@ -63,7 +63,6 @@ public static class StringExtensions
 
 			while (index != -1)
 			{
-				// "aa" => "baaaccaa"
 				indexes.Add(index);
 				startIndex = indexesSearch == IndexesSearch.Unique ?
 					index + value.Length :
