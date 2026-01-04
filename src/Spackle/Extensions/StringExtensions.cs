@@ -14,11 +14,11 @@ public static class StringExtensions
 		public Uri AsUri() => new(self);
 
 		/// <summary>
-		/// Gets all the indeces of <paramref name="value"/>.
+		/// Gets all the indexes of <paramref name="value"/>.
 		/// </summary>
 		/// <param name="value">The value to look for in <paramref name="self"/>.</param>
-		/// <returns></returns>
-		public int[] IndecesOf(char value)
+		/// <returns>An array containing all of the indexes for <paramref name="value"/>.</returns>
+		public int[] IndexesOf(char value)
 		{
 			var indeces = new List<int>();
 
@@ -36,9 +36,39 @@ public static class StringExtensions
 		}
 
 		/// <summary>
+		/// Gets all the indexes of <paramref name="value"/>.
+		/// </summary>
+		/// <param name="value">The value to look for in <paramref name="self"/>.</param>
+		/// <param name="indexesSearch">The kind of search to do on <paramref name="self"/>.</param>
+		/// <returns>An array containing all of the indexes for <paramref name="value"/>.</returns>
+		/// <exception cref="ArgumentNullException">Thrown if <paramref name="value" /> is <see langword="null" />.</exception>
+		public int[] IndexesOf(string value, IndexesSearch indexesSearch)
+		{
+			ArgumentNullException.ThrowIfNull(value);
+			var indeces = new List<int>();
+
+			var startIndex = 0;
+#pragma warning disable CA1310 // Specify StringComparison for correctness
+			var index = self.IndexOf(value, startIndex);
+
+			while (index != -1)
+			{
+				// "aa" => "baaaccaa"
+				indeces.Add(index);
+				startIndex = indexesSearch == IndexesSearch.Unique ?
+					index + value.Length :
+					index + 1;
+				index = self.IndexOf(value, startIndex);
+			}
+#pragma warning restore CA1310 // Specify StringComparison for correctness
+
+			return [.. indeces];
+		}
+
+		/// <summary>
 		/// Changes a <see cref="string"/> into a <see cref="Uri"/> if it can.
 		/// </summary>
-		/// <param name="result">The new <see cref="Uri"/> if the given string could be transforms into a <see cref="Uri"/> .</param>
+		/// <param name="result">The new <see cref="Uri"/> if the given string could be transforms into a <see cref="Uri"/>.</param>
 		/// <param name="kind">The <see cref="UriKind"/> to use for <c>self</c>.</param>
 		public bool TryAsUri(out Uri? result, UriKind kind = UriKind.Absolute) =>
 			Uri.TryCreate(self, kind, out result);

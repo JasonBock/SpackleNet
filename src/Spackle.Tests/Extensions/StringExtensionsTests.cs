@@ -18,10 +18,10 @@ internal static class StringExtensionsTests
 		Assert.That(() => (null as string)!.AsUri(), Throws.TypeOf<ArgumentNullException>());
 
 	[Test]
-	public static void GetIndecesWhenOneCharacterExists()
+	public static void GetIndexesWhenOneCharacterExists()
 	{
 		var content = "abcdef";
-		var indeces = content.IndecesOf('d');
+		var indeces = content.IndexesOf('d');
 
 		using (Assert.EnterMultipleScope())
 		{
@@ -31,10 +31,10 @@ internal static class StringExtensionsTests
 	}
 
 	[Test]
-	public static void GetIndecesWhenMultipleCharactersExists()
+	public static void GetIndexesWhenMultipleCharactersExists()
 	{
 		var content = "adbcddefd";
-		var indeces = content.IndecesOf('d');
+		var indeces = content.IndexesOf('d');
 
 		using (Assert.EnterMultipleScope())
 		{
@@ -50,7 +50,72 @@ internal static class StringExtensionsTests
 	public static void GetIndecesWhenNoCharactersExists()
 	{
 		var content = "abcdef";
-		var indeces = content.IndecesOf('g');
+		var indeces = content.IndexesOf('g');
+
+		Assert.That(indeces, Has.Length.EqualTo(0));
+	}
+
+	[Test]
+	public static void GetIndexesWhenOneStringExistsWithUnique()
+	{
+		var content = "abcdef";
+		var indeces = content.IndexesOf("d", IndexesSearch.Unique);
+
+		using (Assert.EnterMultipleScope())
+		{
+			Assert.That(indeces, Has.Length.EqualTo(1));
+			Assert.That(indeces[0], Is.EqualTo(3));
+		}
+	}
+
+	[Test]
+	public static void GetIndexesWhenOneStringExistsWithOverlap()
+	{
+		var content = "abcdef";
+		var indeces = content.IndexesOf("d", IndexesSearch.Overlap);
+
+		using (Assert.EnterMultipleScope())
+		{
+			Assert.That(indeces, Has.Length.EqualTo(1));
+			Assert.That(indeces[0], Is.EqualTo(3));
+		}
+	}
+
+	[Test]
+	public static void GetIndexesWhenMultipleStringsExistsWithUnique()
+	{
+		var content = "baaaccaa";
+		var indeces = content.IndexesOf("aa", IndexesSearch.Unique);
+
+		using (Assert.EnterMultipleScope())
+		{
+			Assert.That(indeces, Has.Length.EqualTo(2));
+			Assert.That(indeces[0], Is.EqualTo(1));
+			Assert.That(indeces[1], Is.EqualTo(6));
+		}
+	}
+
+	[Test]
+	public static void GetIndexesWhenMultipleStringsExistsWithOverlap()
+	{
+		var content = "baaaccaa";
+		var indeces = content.IndexesOf("aa", IndexesSearch.Overlap);
+
+		using (Assert.EnterMultipleScope())
+		{
+			Assert.That(indeces, Has.Length.EqualTo(3));
+			Assert.That(indeces[0], Is.EqualTo(1));
+			Assert.That(indeces[1], Is.EqualTo(2));
+			Assert.That(indeces[2], Is.EqualTo(6));
+		}
+	}
+
+	[TestCase(IndexesSearch.Unique)]
+	[TestCase(IndexesSearch.Overlap)]
+	public static void GetIndexesWhenNoStringExists(IndexesSearch indexesSearch)
+	{
+		var content = "abcdef";
+		var indeces = content.IndexesOf("q", indexesSearch);
 
 		Assert.That(indeces, Has.Length.EqualTo(0));
 	}
