@@ -1,5 +1,8 @@
 ﻿namespace Spackle.Extensions;
 
+/// <summary>
+/// Provides extension members for <see cref="HashSet{T}"/>.
+/// </summary>
 public static class HashSetExtensions
 {
 	extension<T>(HashSet<T> self)
