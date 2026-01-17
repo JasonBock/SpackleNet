@@ -58,8 +58,8 @@ public static class BigIntegerExtensions
 	/// self = 1234573919087693801, self.ToString("D", 0, 4) => "...3801"
 	/// self = 1234573919087693801, self.ToString("D", 4, 0) => "1234..."
 	///
-	/// self = 1234573919087693801, self.ToString("X", 4, 4) => "1122...OFE9"
-	/// self = 1234573919087693801, self.ToString("X", 0, 4) => "...OFE9"
+	/// self = 1234573919087693801, self.ToString("X", 4, 4) => "1122...0FE9"
+	/// self = 1234573919087693801, self.ToString("X", 0, 4) => "...0FE9"
 	/// self = 1234573919087693801, self.ToString("X", 4, 0) => "1122..."
 	/// </remarks>
 	public static string ToString(this BigInteger self, string format, int leftDigitCount, int rightDigitCount)
