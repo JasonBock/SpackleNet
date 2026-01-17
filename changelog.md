@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added a `AddRange()` extension method for `HashSet<>` (issue [#52](https://github.com/JasonBock/SpackleNet/issues/52))
+- Added a `ToString()` extension method for `BigInteger` for minimal formatting scenarios (issue [#33](https://github.com/JasonBock/SpackleNet/issues/33))
 
 ### Changed
 - Updated to target .NET 10 (issue [#51](https://github.com/JasonBock/SpackleNet/issues/51))
