@@ -1,11 +1,11 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path="../changelog.md" />
+    <File Path="../LICENSE.md" />
+    <File Path="../README.md" />
     <File Path=".editorconfig" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
-    <File Path="LICENSE.md" />
-    <File Path="README.md" />
   </Folder>
   <Project Path="Spackle.Performance/Spackle.Performance.csproj" Id="11367d10-7ac2-47fc-9773-279ee48635f4" />
   <Project Path="Spackle.Tests/Spackle.Tests.csproj" />
