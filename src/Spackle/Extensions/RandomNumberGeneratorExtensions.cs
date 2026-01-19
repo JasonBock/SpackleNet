@@ -6,7 +6,7 @@ using System.Text;
 namespace Spackle.Extensions;
 
 /// <summary>
-/// Provides a number of extension methods for the <see cref="RandomNumberGenerator"/> type.
+/// Provides a number of extension methods for a <see cref="RandomNumberGenerator"/>-based instance.
 /// </summary>
 public static class RandomNumberGeneratorExtensions
 {
