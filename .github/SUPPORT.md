@@ -1,0 +1,1 @@
+Support for this repository, whether it's fixing bugs or adding new features, are on an "as-motivated" basis. That is, I make changes if I'm motivated to do them :). Please do **not** demand changes. If anything, add issues, ask if they are valid, and if I think they are, submit a PR to address the issue. Otherwise, I'll try to handle issues as best as I can.
