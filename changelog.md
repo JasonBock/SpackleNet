@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [14.0.0] - Not Yet Released
+## [14.0.0] - 2026.01.19
 
 ### Added
 - Added a `AddRange()` extension method for `HashSet<>` (issue [#52](https://github.com/JasonBock/SpackleNet/issues/52))
@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 	- `RangeExtensions` is removed
 	- `SecureRandom` no longer derives from `Random`
 
-## [12.0.0] - 2023.2.11
+## [12.0.0] - 2023.02.11
 
 ### Added
 - Put in the `changelog.md` file (issue [#40](https://github.com/JasonBock/SpackleNet/issues/40))
