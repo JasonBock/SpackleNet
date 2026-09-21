@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
 using Spackle.Performance;
 
-BenchmarkRunner.Run<BigIntegerToString>();
+BenchmarkRunner.Run<TupleVsListEnumeration>();
